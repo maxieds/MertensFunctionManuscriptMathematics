@@ -1,0 +1,282 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsmath, amsthm, amscd, amsfonts, amssymb, graphicx, color}
+\usepackage[margin=2.8cm]{geometry}
+\usepackage[bookmarksnumbered, colorlinks, plainpages]{hyperref}
+
+%\usepackage{showkeys}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+
+\newcommand{\R}{\mbox{$\mathbb{R}$}}
+\newcommand{\N}{\mbox{$\mathbb{N}$}}
+\newcommand{\Q}{\mbox{$\mathbb{Q}$}}
+%\newcommand{\C}{\mbox{$\mathbb{C}$}}
+\newcommand{\Z}{\mbox{$\mathbb{Z}$}}
+\newcommand{\K}{\mbox{$\mathbb{K}$}}
+\newcommand{\nwl}{\left (}
+\newcommand{\nwp}{\right )}
+\newcommand{\wzor}[1]{{\rm (\ref{#1})}}
+\newcommand{\ckd}{\hspace{0.5cm} $\square$\medskip\par\noindent}
+\newcommand{\dowod}{{\it Proof:}\ \ }
+\newcommand{\id}{{\mathcal J}}
+\newcommand{\ip}[2]{\left\langle#1|#2\right\rangle}
+\newcommand{\kropka}{\hspace{-1.3ex}.\ }
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ds}{\displaystyle\frac}
+\newcommand{\su}{\displaystyle\sum}
+\newcommand{\lm}{\displaystyle\lim_{n \rightarrow \infty}}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Tr}{Tr}
+\setcounter{MaxMatrixCols}{15}
+
+
+\allowdisplaybreaks
+\begin{document}
+\title{\textbf{The Matrix}}
+%\author {\bf  Ernie Croot, Hamed Mousavi}
+%\begin{center}
+%\address{Department of Mathematics, Georgia Tech, Atlanta, US.}
+%\end{center}
+\maketitle
+
+\section{Set up}
+Let $0<b_1<\cdots <b_r$ and $0<c_1<\cdots <c_r$ be real numbers. Assume that
+\begin{align*}
+A=\begin{bmatrix}
+e^{b_1c_1} & \cdots & e^{b_1c_r}\\
+\vdots & \ddots & \vdots \\
+e^{b_rc_1} & \cdots & e^{b_rc_r}
+\end{bmatrix}
+\end{align*}
+We want to find a lower bound for the smallest eigenvalue $\lambda_1$ of the $r \times r$ matrix  $A$. 
+We have the result from \cite[Chapter 4]{pinkus} that $A$ is a strictly positive matrix, meaning that all of
+its eigenvalues are positive. We know from \cite[Remark Page 4]{piazza} that the smallest singular
+value $\sigma_1$ is larger than
+\begin{align}\label{sigma1}
+\sigma_1 > \frac{|\det(A)|}{2^{\frac{r}{2}-1}\parallel A\parallel_2}>0
+\end{align}
+Let $\sigma_1$ and $\lambda_1$ denote the smallest singular value and smallest eigenvalue of A, respectively.
+We first show that $|\sigma_1|\leq \lambda_1$.
+Let $v$ be a unit eigenvector of $A$ for the eigenvalue $\lambda_1$ with $\parallel v \parallel_2 = 1$. 
+Since $Av = \lambda_1 v$, we have that 
+$$v^TA^TAv=\parallel Av\parallel_2^2 = \lambda_1^2 \parallel v\parallel_2^2 = \lambda_1^2.$$
+It is not difficult to verify that $A$ and $A^TA$ are a positive definite matrices. 
+Thus, we can write $A^TA = U^TDU$ for $U$ unitary and some diagonal matrix $D$
+which has nonnegative diagonal entries. By definition, $\sigma_1^2$ corresponds to the 
+minimum value of the eigenvalues of $v^TA^TAv$. 
+Hence, we get that 
+$$\lambda_1^2 = v^TA^TAv \geq \min_{\parallel x\parallel =1} x^TA^TAx = \min_{\parallel x\parallel =1} (Ux)^TD(Ux) = \min_{\parallel y\parallel =1}y^TDy = \sigma_1^2.$$
+The bound in \eqref{sigma1} is then also a lower bound for $\lambda_1$.
+Since $\parallel A \parallel_2 \leq r e^{b_rc_r}$ by the bound of the $2$-norm from above by $\parallel A \parallel_F$,
+we need only to find a lower bound for $\det(A)$ to effectively bound 
+$\lambda_1$ using \eqref{sigma1}.
+
+\begin{definition}
+     \label{def_MatricesBCDE}
+Let $B,C\in \mathbb{M}_{r}(\mathbb{R}^+)$ be the respective 
+Vandermonde matrices in our constants $\{b_1,\ldots,b_r\}$ and $\{c_1,\ldots,c_r\}$ 
+defined as follows:
+\begin{align*}
+B = \begin{bmatrix}
+1 & b_1 & b_1^2 & \cdots & b_1^{r-1}\\
+1 & b_2 & b_2^2 & \cdots & b_2^{r-1}\\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+1 & b_r & b_r^2 & \cdots & b_r^{r-1}
+\end{bmatrix}
+\quad \text{ and }\quad 
+C= \begin{bmatrix}
+1 & 1 & 1& \cdots & 1\\
+c_1 & c_2 & c_3 & \cdots & c_r\\
+\vdots & \vdots & \vdots & \vdots & \vdots \\
+ c_1^{r-1} & c_2^{r-1} & c_3^{r-1} & \cdots & c_r^{r-1}
+\end{bmatrix}. 
+\end{align*}
+Since $B$ is a Vandemonde matrix and $C$ is the transpose of a 
+Vandermonde matrix, each of $B$ and $C$ are invertible. 
+Let $m$ be a natural number such that 
+\begin{align}
+\label{eqn_mdef_ineq_v1}
+m > 3 + \max\left\{ r ,  \max_{\substack{1\leq i, j \leq r \\ i \neq j}} \frac{r!e^{b_r}}{(b_i-b_j)}, 
+     \max_{\substack{1 \leq i, j \leq r \\ i \neq j}}\frac{r!e^{c_r}}{(c_i-c_j)}, \right\}
+\end{align}
+Assume that the matrix $H\in \mathbb{M}_{r}(\mathbb{R})$ is defined such that its 
+$(i,j)^{th}$ entries are given by 
+$$H_{ij} = \sum_{\ell=m}^{\infty} \frac{b_i^{\ell}c_j^{\ell}}{\ell!}.$$
+Let the matrix $E\in \mathbb{M}_{r}(\mathbb{R}^{+})$ be defined by 
+$$E = [\epsilon_{ij}] := B^{-1}HC^{-1}.$$
+Suppose that $D\in \mathbb{M}_{r}(\mathbb{R}^{+})$ is the diagonal matrix defined by 
+\begin{align*}
+D =   \begin{bmatrix}
+1 & 0 & 0 & \cdots & 0\\
+0 & 1 & 0 & \cdots & 0\\
+0 & 0 & \frac{1}{2} & \cdots & 0\\
+\vdots & \vdots &\vdots & \ddots & \vdots \\
+0 & 0 & 0\cdots & 0& \frac{1}{(r-1)!} 
+\end{bmatrix}
+\end{align*}
+We define the $r \times r$ real matrix $T$ as follows:  
+\begin{align*}
+T = B (D+E) C.
+\end{align*}
+\end{definition}
+
+\section{Proofs}
+
+\begin{lemma}\label{calc}
+For every $0<a<\log\left(\frac{m}{r!}\right)$ (\textcolor{red}{tightened}) and 
+$x<\frac{\pi^{\frac{1}{4}}}{ea}\sqrt{e-\frac{1}{2}} \times (m-1) m^{\frac{1}{m-1}}$ 
+(\textcolor{red}{being precise is good -- does this help?}) we have 
+\begin{align*}
+e^{ax} -2\sum_{\ell=r}^{m-1} \frac{a^{\ell}x^{\ell}}{\ell!} > \frac{1}{2}. 
+\end{align*}
+\end{lemma}
+\begin{proof}
+We prove the lemma inductively. 
+For $a> 0$, let 
+$$f(x) = e^{ax} -2\sum_{\ell=r}^{m-1} \frac{a^{\ell}x^{\ell}}{\ell!} - \frac{1}{2}.$$
+For $B_m > 0$ we have that 
+\[
+f\left(\frac{B_m}{a}\right) > e^{B_m} - \frac{2m B_m^{m-1}}{(m-1)!} - \frac{1}{2}. 
+\]
+Then $f(0) = \frac{1}{2} >0$ and by arithmetic we can verify that for all sufficiently large $m$ 
+$$f\left(\frac{\pi^{\frac{1}{4}}}{ea}\sqrt{e-\frac{1}{2}} \times (m-1) m^{\frac{1}{m-1}}\right) > 0.$$ 
+We conclude that if for some $x_0 \in \mathbb{R}$ that $f(x_0) = 0$, then $f$ also has a local minimum at some $x_1>0$. 
+Hence, if $f(x_0) =0$ then $f^{\prime}(x_1) = 0$ as well. But one can see by direct computation that 
+$$f^{\prime}(x) = a e^{ax} - 2a\sum_{\ell=r-1}^{m-2} \frac{a^{\ell}x^{\ell}}{\ell!}.$$
+By similar reasoning, if $f^{\prime}(x_0) = 0$ for some $x_0 > 0$, 
+then we must have that $f^{\prime\prime}(x_2) = 0$ for some $x_2>0$. That is
+$$f^{\prime\prime}(x) = a^2 e^{ax} - 2a^2\sum_{\ell=r-2}^{m-3} \frac{a^{\ell}x^{\ell}}{\ell!} = 0, \text{ for some }x>0.$$
+Inductively applying this argument, we see that $f(x_0) = 0$ for some $x_0 > 0$ if and only if
+$$e^{ax_{r}} - 2\sum_{\ell=0}^{m-r-1} \frac{a^{\ell}x_r^{\ell}}{\ell!} = 0, \text{ for some } x_r \geq 0.$$
+But we see that this condition can never be attained because 
+with an appropriate choice of $m$ we always have that the tail of the exponential series satisfies
+\begin{align*}
+\sum_{\ell =0}^{m-r-1} \frac{a^{\ell}x^{\ell}}{\ell!}> 
+     \sum_{\ell=m-r}^{\infty} \frac{a^{\ell}x^{\ell}}{\ell!}. 
+\end{align*}
+We conclude that $f(x) \neq 0$ for all $x > 0$. 
+\end{proof}
+ 
+\begin{theorem}
+We have
+\begin{align*}
+%\det(A) > 2^{-r}e^{r(b_1c_1-b_rc_r)} \times \prod_{i< j} (b_j-b_i)(c_j-c_i) \times \prod_{\ell=1}^{r-1}\frac{1}{\ell !} 
+\det(A) > \frac{2^{-r}e^{r(b_1c_1-b_rc_r)}}{r!^{r-1}} \times \prod_{i< j} (b_j-b_i)(c_j-c_i).  
+\end{align*}
+\end{theorem}
+\noindent 
+%\textbf{Note: } You can tidy this up by writing 
+%\begin{align*}
+%\det(A) > \frac{2^{-r}e^{r(b_1c_1-b_rc_r)}}{r!^{r-1}} \times \prod_{i< j} (b_j-b_i)(c_j-c_i).  
+%\end{align*}
+\begin{proof}
+Recall that we have defined $T = B(D+E)C$ in terms of the 
+matrices from Definition \ref{def_MatricesBCDE}.
+Straightforward expansion shows that
+$$T = A - H^{\prime}$$
+where the $(i,j)^{th}$ entries of the $r \times r$ matrix $H^{\prime}$ correspond to 
+$$H^{\prime}_{ij} = \sum_{\ell= r}^{m-1} \frac{b_i^{\ell}c_j^{\ell}}{\ell!}.$$
+A simple algebraic manipulation of the formula for $A$ in terms of $T$ given above shows that 
+\begin{align}
+\label{deta}
+\det(A) = \det(T) \det(I+ T^{-1}(A-T)) = \det(T)\det\left(I+ T^{-1}H^{\prime}\right). 
+\end{align}
+We argue that $\parallel T^{-1}H'\parallel_2$ is small. 
+Hence, with the identity that for any positive matrices $M_1,M_2$ we have that 
+$\det(M_1+M_2) \geq \det(M_1) + \det(M_2)$, we find 
+that we can bound $\det(A)$ from below well by approximating $\det(T)$ \textcolor{red}{(we do not know the matrix $H'$ is positive. We can use the continuity of $\det$ with respect to $L^2-$norm metric here)}. 
+By the known determinant formula for Vandermonde matrices, we see that 
+\begin{align}
+\label{dett}
+\det(T) = \det(D+E) \times\prod_{i< j} (b_j-b_i)(c_j-c_i). 
+\end{align}
+We have
+\begin{align*}
+\parallel T^{-1}H^{\prime}\parallel_2^2&\leq \frac{\parallel H^{\prime}\parallel_2^2}{\parallel T\parallel_2^2} = 
+     \frac{\Tr\left((A-T)(A-T)^T\right)}{\Tr(TT^T)}\nonumber\\
+& = \frac{\Tr(AA^T)+Tr(TT^T)-2Tr(AT^T)}{\Tr(TT^T)} \nonumber\\
+& =  1-\frac{\Tr\left((2T-A)A^T\right)}{\Tr(TT^T)}.
+\end{align*}
+An upper bound for $\Tr(TT^T)$ is
+\[
+\Tr(TT^T) = \sum_{j=1}^r\sum_{i=1}^r\left(e^{b_ic_j} - 
+  \sum_{\ell=r}^{m-1}\frac{b_i^{\ell}c_j^{\ell}}{\ell!}\right)^2\leq r^2 e^{2b_rc_r}. 
+\]
+We next find a lower bound for $\Tr\left((2T-A)A^T\right)$ as follows:
+\begin{align*}
+\Tr\left((2T-A)A^T\right) &= \sum_{1\leq i,j\leq r} \left(2T-A\right)_{ij}A_{ij} \nonumber\\
+&= \sum_{1\leq i,j\leq r} \left(e^{b_ic_j} - 2\sum_{\ell =r}^{m-1} \frac{b_i^{\ell}c_j^{\ell}}{\ell!}\right)e^{b_ic_j}.
+\end{align*}
+By lemma \ref{calc} we conclude that
+$$\Tr\left((2T-A)A^T\right) > \frac{r^2}{2}e^{b_1c_1}.$$
+In total, when we combine the bounds we get that
+\begin{align*}
+\parallel T^{-1}H^{\prime}\parallel_2^2 \leq 1 - \frac{1}{2}e^{b_1c_1-2b_rc_r}.
+\end{align*}
+If $\rho_1$ is the the largest eigenvalue of $T^{-1}H^{\prime}$, then 
+$\rho_1^2<1 - \frac{1}{2}e^{b_1c_1-2b_rc_r}$. 
+This implies that
+\begin{align*}
+\det\left(I+T^{-1}H^{\prime}\right) > \prod_{j=1}^r \left(1-\rho_1\right) > 2^{-r}e^{r(b_1c_1-2b_rc_r)}.
+\end{align*}
+Using \eqref{deta}, we combine our bounds to see that 
+\begin{align*}
+\det(A) > 2^{-r}e^{r(b_1c_1-2b_rc_r)} \times \det(T). 
+\end{align*}
+It remains to compute a lower bound for $\det(D+E)$ in the expression for $\det(T)$ 
+from \eqref{dett}. 
+Notice that 
+$$\det(D+E) = \det(D) \det(I+D^{-1}E) = \det(I+D^{-1}E) \times \prod_{\ell=0}^{r-1} \frac{1}{\ell!}.$$
+We have that 
+$$\parallel E\parallel_2= \parallel B^{-1}HC^{-1}\parallel_2$$
+Also, the entries of $B^{-1}$ and $C^{-1}$ respectively are at most
+$$b_r^r \times \prod_{i < j} (b_i-b_j)^{-1}, c_r^r \times \prod_{i < j} (c_i-c_j)^{-1}.$$
+On the other hand, all entires of $H$ are at most $\frac{1}{(m/2)!}$. 
+Together, these observations imply that 
+$$\parallel D^{-1}E\parallel_2  \ll  \frac{(b_rc_r)^{r}}{(m/2)!} \times \prod_{\ell=0}^r \ell! 
+   \times \prod (c_i-c_j)^{-1}(b_i-b_j)^{-1}.$$
+By the definition of $m$ from \eqref{eqn_mdef_ineq_v1}, 
+the right-hand-side of the previous equation is very small, and 
+hence, $\parallel D^{-1} E\parallel_2$ is also negligible. 
+This implies that 
+$$\det(D+E) \gg \prod_{\ell=0}^{r-1} \frac{1}{\ell!}.$$
+Hence, we see that 
+\[
+\det(T) \gg \prod_{i< j} (b_j-b_i)(c_j-c_i) \times \prod_{\ell=1}^{r-1}\frac{1}{\ell!}
+     \qedhere 
+\]
+\end{proof}
+
+\bigskip 
+
+\begin{thebibliography}{99}
+\bibitem{pinkus} Pinkus, A. ``Totally Positive Matrices”, Cambridge University Press, 2010.
+\bibitem{piazza}  G.Piazza, T. Politi, ``An upper bound for the condition number of a matrix in spectral norm”,
+Journal of Computational and Applied Mathematics (143) 141-144, 2002.
+\end{thebibliography}
+
+\end{document}
+
+
+
+

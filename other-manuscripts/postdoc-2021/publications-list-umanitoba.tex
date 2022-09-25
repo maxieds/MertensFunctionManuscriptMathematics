@@ -1,0 +1,513 @@
+%\documentclass[draft,12pt,reqno]{article} 
+\documentclass[10pt,reqno,letterpaper]{article} 
+
+%\usepackage[showframe,verbose=true,margin=1in,nohead,letterpaper]{geometry}
+\usepackage[verbose=true,margin=1in,nohead,letterpaper]{geometry}
+
+\usepackage{amsmath} 
+\usepackage{amsfonts} 
+\usepackage{amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[usenames,dvipsnames]{xcolor} 
+\hypersetup{
+    colorlinks,
+    linkcolor={Gray!50!Black}, 
+    citecolor={Gray!50!Black},
+    urlcolor={Gray!50!Black}
+}
+\usepackage{amssymb} 
+\usepackage{amscd} 
+\usepackage{url} 
+\usepackage{datetime}
+\usepackage{tcolorbox}
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\numberwithin{theorem}{section}
+
+\theoremstyle{definition} 
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{discussion}[theorem]{Discussion}
+\newtheorem{facts}[theorem]{Facts}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{heuristic}[theorem]{Heuristic}
+\newtheorem{ansatz}[theorem]{Ansatz}
+
+%\usepackage[T1]{fontenc} 
+\usepackage{MnSymbol}
+
+%% : Customize the beleagueredBibliography and Citations for BibTeX: 
+%\usepackage{natbib} 
+%\bibpunct{[}{]}{;}{}{,}{,~} 
+
+%% : Page Formatting and Related Configuration Options: 
+\setlength{\parindent}{0in} 
+\setlength{\parskip}{0.0325in} 
+\setlength{\parsep}{0in} 
+%\setlength{\headsep}{0.1in} 
+%\setlength{\headheight}{0in} 
+%\setlength{\topskip}{0in} 
+%\setlength{\topmargin}{0in} 
+%\setlength{\topsep}{0in} 
+%\setlength{\partopsep}{0in} 
+%\setlength{\pdfpagewidth}{8.5in} 
+%\setlength{\pdfpageheight}{11in} 
+%\setlength{\textwidth}{6.5in}
+%\setlength{\textheight}{9in} 
+%\setlength{\oddsidemargin}{-0.0in}
+%\setlength{\evensidemargin}{-0.0in}
+%\setlength{\topmargin}{-0.2in}
+
+%% Define and setup special stylized section number headings:
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{adjustbox}
+
+\newcommand{\CustomSectionNumberHeading}[1]{
+     \vspace*{-1mm}
+     \trimbox{1.8mm 1.6mm 5.8mm 2mm}{% LHS-SPC FROM-BOT RHS-SPC
+          \begin{tikzpicture}
+               \draw[fill,color=black] (-2mm,-2mm) rectangle (2mm,2mm);
+               \draw[color=white] (0mm,0mm) node { \textbf{\large{#1}} };
+          \end{tikzpicture}
+     }
+     \hspace*{-1.5mm}
+}
+
+\usepackage[compact]{titlesec} 
+\titlespacing{\section}{0pt}{-0.9mm}{-0.9mm} 
+\titlespacing{\subsection}{0pt}{-0.9mm}{-0.9mm} 
+\titleformat{\section}{\bfseries\large}{\CustomSectionNumberHeading{\thesection}}{10pt}{}
+\titleformat{\subsection}{\bfseries\normalsize}{
+     \hspace*{-1mm}\thesubsection\ \ --\hspace*{-1.5mm}}{14pt}{} 
+
+%\setlength{\abovedisplayskip}{0in} 
+%\setlength{\abovedisplayshortskip}{0in} 
+%\setlength{\belowdisplayskip}{0in} 
+%\setlength{\belowdisplayshortskip}{0in} 
+
+%% : Table Spacing and Formatting: 
+\setlength{\abovecaptionskip}{0in} 
+\setlength{\belowcaptionskip}{0in} 
+
+%% : Change Various Labelings and Counter Defines: 
+\renewcommand{\thesection}{\arabic{section}} 
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+\addtocounter{footnote}{1}
+
+\newcommand{\ie}[0]{i.e.\ } 
+\newcommand{\cf}[0]{\emph{cf.}\ } 
+\newcommand{\etc}[0]{etc.\ } 
+\newcommand{\PhD}[0]{Ph.D.\ } 
+
+%% : Concrete mathematics Book Recurrence Notation (Special Case Triangles): 
+\newcommand{\gkpSI}[2]{\ensuremath{\genfrac{\lbrack}{\rbrack}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpSII}[2]{\ensuremath{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpEI}[2]{\ensuremath{\genfrac{\langle}{\rangle}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpEII}[2]{\ensuremath{\left\langle\genfrac{\langle}{\rangle}{
+            0pt}{}{#1}{#2}\right\rangle}} 
+
+%% : Other math Mode Macros Used by the Article: 
+\newcommand{\Iverson}[1]{\ensuremath{\left[#1\right]_{\delta}}} 
+\newcommand{\Floor}[2]{\ensuremath{\left\lfloor \frac{#1}{#2} \right\rfloor}}
+
+\usepackage{enumitem}
+\usepackage{textcomp}  % Required for encoding \textbigcircle
+\usepackage{scalerel}  % Required for emoji \scalerel
+\def\🌐{\scalerel*{\includegraphics{../cv-resume/earth-globe-americas-1f30e.png}}{\textrm{\textbigcircle}}}
+\def\OneFFourCFour{\scalerel*{\includegraphics{../cv-resume/paper-1F4C4.png}}{\textrm{$\qed$}}}
+
+%% Set the default font to Helvetica:
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\newcounter{completeBibitemIncrementCtr}
+\setcounter{completeBibitemIncrementCtr}{0}
+
+
+\let\oldthebibliography\thebibliography
+\let\endoldthebibliography\endthebibliography
+\renewenvironment{thebibliography}[1]{
+     \renewcommand{\refname}{} 
+     \bibliographystyle{plain}
+     \begin{oldthebibliography}{#1}
+     \setlength{\itemsep}{0em}
+     \setlength{\parskip}{0em}
+     \setlength{\topsep}{0pt}
+     \setlength{\partopsep}{0pt}
+     \setcounter{enumiv}{\value{completeBibitemIncrementCtr}}
+     \footnotesize 
+}
+{
+     \setcounter{completeBibitemIncrementCtr}{\value{enumiv}}
+     \end{oldthebibliography}
+}
+
+\newcommand{\seqnum}[1]{\href{http://oeis.org/#1}{\color{Gray!50!Black}{\underline{#1}}}}
+
+%% Misc spacing (lines and space between equations and text): 
+\linespread{1.0}
+\AtBeginDocument{
+     \setlength{\abovedisplayskip}{0.25pt} 
+     \setlength{\abovedisplayshortskip}{0.25pt} 
+     \setlength{\belowdisplayskip}{0.25pt} 
+     \setlength{\belowdisplayshortskip}{0.25pt} 
+     \setlength{\jot}{0pt} 
+}
+\allowdisplaybreaks
+
+%% Start Content:
+\begin{document}
+
+\noindent 
+{\bfseries\Large Maxie Dion Schmidt} \\[0.5ex]
+{\bfseries\Large Publication List and Software Projects} \\ 
+\hrule\hrule\hrule\medskip
+
+\renewcommand{\thesection}{B}
+\section{Bibliography and software contributions} 
+\label{page_Section_BibliographyB} 
+
+\vskip 0.1in
+\subsection{Peer-reviewed publications} 
+\label{page_BibliographyB_subSection_MDSPubs} 
+
+\vskip 0.35cm
+
+\subsubsection*{Highlighted articles} 
+
+\begin{enumerate}
+     \setlength{\itemsep}{-1mm} 
+
+\item 
+Schmidt, M.~D. \emph{Exact formulas for the generalized sum-of-divisors functions}. 
+Integers 21 {\bf A19} (2021). 
+\item 
+Merca, M. and Schmidt, M.~D. \emph{A partition identity related to Stanley's theorem}. 
+Amer. Math. Monthly 125 {\bf 10}: 929--933 (2018). 
+\url{https://doi.org/10.1080/00029890.2018.1521232}
+\item 
+Schmidt, M.~D. \emph{Continued fractions and $q$-series generating functions for the 
+                     generalized sum-of-divisors functions}. 
+J. Number Theory 180: 579--605 (2017). 
+\url{https://doi.org/10.1016/j.jnt.2017.05.023}
+
+\end{enumerate} 
+
+\subsubsection*{Complete listing of publications} 
+
+\vskip -0.35cm 
+
+\begin{thebibliography}{10}
+
+\bibitem{MDS-NO-21}
+Schmidt, M.~D., Kirkpatrick, A., and Heitch, C. \emph{RNAStructViz: graphical base pairing analysis}. 
+Bioinformatics {\bf 197} (2021). 
+\url{https://doi.org/10.1101/2021.01.20.427505}
+
+\bibitem{MDS-NO-20}
+Schmidt, M.~D. \emph{Exact formulas for the generalized sum-of-divisors functions}. 
+Integers 21 {\bf A19} (2021). 
+
+\bibitem{MDS-NO-18}
+Mousavi, H. and Schmidt, M.~D. \emph{Factorization theorems for relatively prime divisor sums, 
+                                     GCD sums and generalized Ramanujan sums}. 
+Ramanujan J. {\bf 54}: 309--341 (2021). 
+\url{http://doi.org/10.1007/s11139-020-00323-5} 
+
+\bibitem{MDS-NO-19}
+Schmidt, M.~D. \emph{Combinatorial sums and identities involving generalized divisor functions with bounded divisors}. 
+Integers 20 {\bf A85} (2020). 
+
+\bibitem{MDS-NO-16}
+Merca, M. and Schmidt, M.~D. \emph{Factorization theorems for generalized Lambert series and applications}. 
+Ramanujan J. {\bf 51}: 391--419 (2020). 
+\url{https://doi.org/10.1007/s11139-018-0095-7}
+
+\bibitem{MDS-NO-17}
+Schmidt, M.~D. \emph{A short note on integral transformations and 
+                     conversion formulas for sequence generating functions}. 
+Axioms Special Issue on Mathematical Analysis and Applications II 8 {\bf 2}, 62 (2019). 
+\url{https://doi.org/10.3390/axioms8020062} 
+
+\bibitem{MDS-NO-9}
+Merca, M. and Schmidt, M.~D. \emph{The partition function $p(n)$ in terms of the classical M\"{o}bius function}. 
+Ramanujan J. {\bf 49}: 87--96 (2019). 
+
+\bibitem{MDS-NO-12}
+Merca, M. and Schmidt, M.~D. \emph{Generating special arithmetic functions by Lambert series factorizations}. 
+Contrib. Discrete Math. 14 {\bf (1)}: 31--45 (2019). 
+
+\bibitem{MDS-NO-15}
+Schmidt, M.~D. \emph{Zeta series generating function transformations related to 
+                     generalized Stirling numbers and partial sums of the Hurwitz zeta function}. 
+Online J. Anal. Comb. 13 {\bf 158}. (2018). 
+
+\bibitem{MDS-NO-14}
+Schmidt, M.~D. \emph{New congruences and finite difference equations for generalized factorial functions}. 
+Integers 18 {\bf A78} (2018). 
+
+\bibitem{MDS-NO-13}
+Schmidt, M.~D. \emph{Combinatorial identities for generalized Stirling numbers 
+                     expanding $f$-factorial functions and the $f$-harmonic numbers}. 
+J. Integer Seq. 21 {\bf 18.2.7} (2018). 
+
+\bibitem{MDS-NO-11}
+Schmidt, M.~D. \emph{Jacobi-type continued fractions and congruences for 
+                     binomial coefficients modulo integers $h \geq 2$}. 
+Integers 18 {\bf A46} (2018). 
+
+\bibitem{MDS-NO-10}
+Merca, M. and Schmidt, M.~D. \emph{A partition identity related to Stanley's theorem}. 
+Amer. Math. Monthly 125 {\bf 10}: 929--933 (2018). 
+\url{https://doi.org/10.1080/00029890.2018.1521232}
+
+\bibitem{MDS-NO-8}
+Schmidt, M.~D. \emph{Continued Fractions for Square Series Generating Functions}. 
+Ramanujan J. {\bf 46}: 795--820 (2018). 
+\url{https://doi.org/10.1007/s11139-017-9971-9}
+
+\bibitem{MDS-NO-7}
+Schmidt, M.~D. \emph{New recurrence relations and matrix equations for 
+                     arithmetic functions generated by Lambert series}. 
+Acta Arith. 181 (2017): 355-367. 
+\url{http://doi.org/10.4064/aa170217-4-8} 
+
+\bibitem{MDS-NO-6}
+Schmidt, M.~D. \emph{Continued fractions and $q$-series generating functions for the 
+                     generalized sum-of-divisors functions}. 
+J. Number Theory 180: 579--605 (2017). 
+\url{https://doi.org/10.1016/j.jnt.2017.05.023}
+
+\bibitem{MDS-NO-5}
+Schmidt, M.~D. \emph{Generating function transformations related to 
+                     polylogarithm functions and the $k$-order harmonic numbers}. 
+Online J. Anal. Comb. 12 {\bf 2} (2017). 
+
+\bibitem{MDS-NO-4}
+Schmidt, M.~D. \emph{Square series generating function transformations}. 
+J. Inequal. Spec. Funct. 8 {\bf 2} (2017).
+
+\bibitem{MDS-NO-3}
+Schmidt, M.~D. \emph{Jacobi-type continued fractions for the ordinary generating functions of 
+                     generalized factorial functions}. 
+J. Integer Seq. 20 {\bf 17.3.4} (2017). 
+
+\bibitem{MDS-NO-2}
+Schmidt, M.~D. \emph{A computer algebra package for polynomial sequence recognition}. 
+Illinois IDEALS (2014). 
+\url{https://www.ideals.illinois.edu/handle/2142/49378}
+
+\bibitem{MDS-NO-1}
+Schmidt, M.~D. \emph{Generalized $j$-factorial functions, polynomials, and applications}. 
+J. Integer Seq. 13 {\bf 10.6.7}  (2010).
+
+\end{thebibliography}
+
+\bigskip\hrule\bigskip
+\subsection{Preprint manuscripts} 
+
+\begin{thebibliography}{10}
+
+\bibitem{MDS-MANU-JNT2021} 
+Schmidt, M.~D. \emph{New characterizations of partial sums of the M\"{o}bius function}. 
+Preprint (2021). 
+\url{https://arxiv.org/abs/2102.05842}
+
+\bibitem{}
+Schmidt, M.~D. \emph{A recent open source embedded implementation of the DESFire specification 
+                     designed for on-the-fly logging with NFC based systems}. Preprint (2021).
+
+\bibitem{MDS-MANU-LSERIES} 
+Schmidt, M.~D. \emph{A catalog of interesting and useful Lambert series identities}. 
+Preprint (2020). 
+\url{https://arxiv.org/abs/2004.02976} 
+
+\bibitem{MDS-MANU-PCGAPDISTS-TILINGS} 
+Schmidt, M.~D. \emph{Pair correlation and gap distributions for substitution tilings and 
+                     generalized Ulam sets in the plane}. 
+Preprint (2017). 
+\url{https://arxiv.org/abs/1707.05509}
+
+
+\bibitem{MDS-MANU-FACTTHMS-EXOTIC} 
+Schmidt, M.~D. \emph{Factorization theorems for Hadamard products and 
+                     higher-order derivatives of Lambert series generating functions}. 
+Preprint (2017). 
+\url{https://arxiv.org/abs/1712.00608} 
+
+\bibitem{MDS-MANU-MERCA-FACTORPAIRS} 
+Merca, M. and Schmidt, M.~D. \emph{New factor pairs for factorizations of Lambert series generating functions}. 
+Preprint (2017). 
+\url{https://arxiv.org/abs/1706.02359}
+
+\bibitem{MDS-MSTHESIS-EXT}
+Schmidt, M.~D. \emph{A computer algebra package for polynomial sequence recognition}. 
+Preprint (2016). 
+\url{https://arxiv.org/abs/1609.07301}
+
+\end{thebibliography}
+
+\bigskip\hrule\bigskip
+\subsection{STEM supportive and educational software}
+
+     \vskip 0.15in
+     {\footnotesize 
+        \begin{itemize}[leftmargin=0.4cm,itemsep=-0.5mm] 
+        
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{GTFold Python}}: 
+                  Python bindings and library to modernize and extend for the historical set of \emph{GTFold} 
+                  command line utilities for use with Python. It is a scientific computing project to facilitate 
+                  experimentation with RNA structures in computational biology. 
+                  The source code will be released publicly on GitHub in late 2021. 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Mathematically-oriented Unix fortune utility mod}}: 
+                  A math-related add-on package providing terminal-based text to be displayed on the 
+                  command line in the form of 
+                  Unix fortune cookie wisdom. It features a custom \emph{Concrete Math} book style 
+                  upper case $\Sigma$ summation ASCII-art graphic. \\ 
+                  \🌐 \url{github/maxieds/math-fortune-mod} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Mertens function manuscript computational supplement}}: 
+                  Facilitates computations with and exploration of the Mertens function, $M(x)$, 
+                  in both \emph{SageMath} and \emph{Mathematica}. 
+                  Software and supporting documentation written to accompany the publication of 
+                  \cite{MDS-MANU-JNT2021}. \\ 
+                  \🌐 \url{github/maxieds/MertensFunctionComputations}
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{OptiKey ``Big Hacker'' keyboard extensions}}: 
+                  Open source code and documentation that makes typing programming languages on-screen for users 
+                  with disabilities more accessible. These extensible ``Big Hacker'' encoded 
+                  keyboards are designed to simplify on-screen entry 
+                  of programming languages. This task otherwise requires scrolling through a cell-phone-style 
+                  nested set of keyboard screens to enter a single line of code in C++, Perl or Python. %\\ 
+                  %\🌐 \url{https://github.com/OptiKey/OptiKey/wiki/Creating-and-Using-Dynamic-Keyboards} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Partitions into parts package}}: 
+                  An extendable and expository Mathematica demo 
+                  package for computing the number of partitions of a positive integer $n$ 
+                  into parts of the form $pt+a$ for $p$ prime and $0 \leq a < p$. \\ 
+                  \🌐 \url{github/maxieds/PartitionsIntoParts} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Prairie Learn contributor}}: 
+                  Prairie Learn is an open source \emph{learning management system} (or LMS) 
+                  that is a viable option to replace usage of the popular \textit{Canvas} LMS at many 
+                  universities. It is actively developed at UBC and UIUC and is used on a 
+                  private server form at UC Berkeley. 
+                  I have so far contributed code to enable custom function names, symbolic constants, 
+                  custom-defined operator symbols, and documentation available 
+                  for use with \texttt{sympy} Python library parsing of internal 
+                  \texttt{pl-symbolic-input} elements. This pull request enables crucial 
+                  parsing for questions in calculus, mathematics and physics by enabling custom function names and 
+                  symbolic constants. \\ 
+                  \🌐 \url{github/PrairieLearn/PrairieLearn} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{RNAStructViz}}: 
+                  A cross-platform GUI-based application to visualize and compare RNA secondary structures 
+                  that commonly arise in mathematical biology applications. 
+                  See the application note in \cite{MDS-NO-21}. \\ 
+                  %Supports standardized text-based 
+                  %input formats for sequences and is able to export summary results and statistics to 
+                  %common formats such as PNG, SVG and CSV. \\ 
+                  \🌐 \url{github/gtDMMB/RNAStructViz/wiki} 
+
+            \item[]%[$\blacktriangleright$] 
+                 \emph{\textbf{Sage and Mathematica special sequence formula recognition packages}}: 
+                  UIUC MS thesis software in both Mathematica (original) and Sage (extended). Designed to 
+                  recognize formulas for sequences 
+                  involving special combinatorial primitives and functions. \\ 
+                  \🌐 \url{github/maxieds/GuessPolynomialSequences} \\ 
+                  \🌐 \url{github/maxieds/sage-guess} 
+             
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{WXML tilings Python library}}: 
+                  I was offered an unforgettable opportunity by Jayadev Athreya over 2016--2017 to take part in 
+                  mentoring advanced undergraduates in mathematics. 
+                  %by teaching a self-created topics course remotely 
+                  %with the University of Washington. 
+                  The course outline focused on getting students hands-on 
+                  experience with experimental mathematics methodology, gap distributions and spatial statistics and 
+                  visualizing substitution tilings of the plane in the Python programming language. \\ 
+                  \🌐 \url{github/maxieds/WXMLTilingsHOWTO} 
+ 
+        \end{itemize}
+     } 
+
+\bigskip\hrule\bigskip
+\subsection{Other significant open source software}
+
+     \vskip 0.15in
+     {\footnotesize 
+
+        \begin{itemize}[leftmargin=0.4cm,itemsep=-0.5mm]
+
+            \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Android file picker light library}}: 
+                  A file and directory chooser widget library for Android OS that focuses on presenting an easy to 
+                  configure lightweight UI. Designed from the top down to work with newer Android 10 and 11 
+                  (API 29+) platforms in the future. \\ 
+                  \🌐 \url{github/maxieds/AndroidFilePickerLight}
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Chameleon Mini crypto mod firmware extension}}: 
+                  A modification of the stock Chameleon Mini firmware sources to enable 
+                  cryptographically secure and integrity checked binary data uploads onto the device. \\ 
+                  \🌐 \url{github/maxieds/ChameleonCryptoModFirmware} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Chameleon Mini Live Debugger (CMLD)}}: 
+                  An interactive NFC logging interface for 
+                  Android OS phones that interfaces to Chameleon Mini hardware over USB. 
+                  Over 500 active users on the Google \emph{Play Store}. \\ 
+                  \🌐 \url{github/maxieds/ChameleonMiniLiveDebugger} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{DESFire emulation support for the Chameleon Mini}}: 
+                  The Chameleon Mini is a hardware tool for NFC debugging, card emulation, security testing, 
+                  reconnaissance, and general purpose low-level data logging for contactless RFID cards 
+                  like university IDs. 
+                  This work enables embedded emulation support for the complex and proprietary 
+                  Mifare DESFire type NFC tags on recent Chameleon Mini devices. \\ 
+                  %Includes extensions of hardware accelerated cryptographic routines for AES/2K-DES/3DES. \\ 
+                  \🌐 \url{github/emsec/ChameleonMini} \\ 
+                  \🌐 \url{github/maxieds/ChameleonMiniDESFireStack} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Homebrew live streamer}}: 
+                  A customizable, roll-your-own solution for live A/V recording to an Android phone device. 
+                  It is also used 
+                  with live media streaming to Facebook and YouTube for a transparent, open source non-proprietary 
+                  application to perform the media streaming. 
+                  The application was written to covertly record a private memento of a 
+                  special three hour Smashing Pumpkins concert in Atlanta from 2018. \\ 
+                  \🌐 \url{github/maxieds/HomeBrewLiveStreamer} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Mifare classic tool library}}: 
+                  A Java and Android OS library wrapper around the functionality of the popular 
+                  \emph{Mifare Classic Tool} (MCT) application for Android phones. \\ 
+                  \🌐 \url{github/maxieds/MifareClassicToolLibrary} \\ 
+                  \🌐 \url{github/maxieds/ChameleonMiniUSBInterface} 
+ 
+          \end{itemize}
+
+     }
+
+
+\end{document}

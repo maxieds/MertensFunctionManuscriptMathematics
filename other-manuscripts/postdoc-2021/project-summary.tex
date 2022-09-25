@@ -1,0 +1,266 @@
+%\documentclass[draft,12pt,reqno]{article} 
+\documentclass[10pt,reqno,letterpaper]{article} 
+
+%\usepackage[showframe,verbose=true,margin=1in,nohead,letterpaper]{geometry}
+\usepackage[verbose=true,margin=1in,nohead,letterpaper]{geometry}
+
+\usepackage{amsmath} 
+\usepackage{amsfonts} 
+\usepackage{amsthm} 
+\usepackage[usenames,dvipsnames]{color} 
+\usepackage{amssymb} 
+\usepackage{amscd} 
+\usepackage{url} 
+\usepackage{datetime}
+\usepackage{enumitem}
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\numberwithin{theorem}{section}
+
+\theoremstyle{definition} 
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{discussion}[theorem]{Discussion}
+\newtheorem{facts}[theorem]{Facts}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{heuristic}[theorem]{Heuristic}
+\newtheorem{ansatz}[theorem]{Ansatz}
+
+%\usepackage[T1]{fontenc} 
+\usepackage{MnSymbol}
+
+%% : Customize the beleagueredBibliography and Citations for BibTeX: 
+\usepackage{natbib} 
+\bibpunct{[}{]}{;}{}{,}{,~} 
+
+%% : Page Formatting and Related Configuration Options: 
+\setlength{\parindent}{0in} 
+\setlength{\parskip}{0.0325in} 
+\setlength{\parsep}{0in} 
+%\setlength{\headsep}{0.1in} 
+%\setlength{\headheight}{0in} 
+%\setlength{\topskip}{0in} 
+%\setlength{\topmargin}{0in} 
+%\setlength{\topsep}{0in} 
+%\setlength{\partopsep}{0in} 
+%\setlength{\pdfpagewidth}{8.5in} 
+%\setlength{\pdfpageheight}{11in} 
+%\setlength{\textwidth}{6.5in}
+%\setlength{\textheight}{9in} 
+%\setlength{\oddsidemargin}{-0.0in}
+%\setlength{\evensidemargin}{-0.0in}
+%\setlength{\topmargin}{-0.2in}
+
+%\usepackage[compact]{titlesec} 
+%\titlespacing{\section}{0pt}{-0.75mm}{-0.75mm} 
+%\titlespacing{\subsection}{0pt}{-0.75mm}{-0.75mm} 
+%\titlespacing{\subsubsection}{0pt}{*0}{*0} 
+%\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{}{} 
+%\titleformat{\subsubsection}{\small\bfseries}{\thesubsubsection}{}{} 
+
+%% Define and setup special stylized section number headings:
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{adjustbox}
+
+\newcommand{\CustomSectionNumberHeading}[1]{
+     \vspace*{-1mm}
+     \trimbox{1.8mm 1.6mm 5.8mm 2mm}{% LHS-SPC FROM-BOT RHS-SPC
+          \begin{tikzpicture}
+               \draw[fill,color=black] (-2mm,-2mm) rectangle (2mm,2mm);
+               \draw[color=white] (0mm,0mm) node { \textbf{\large{#1}} };
+          \end{tikzpicture}
+     }
+     \hspace*{-1.5mm}
+}
+
+\usepackage[compact]{titlesec} 
+%\titlespacing{\section}{0pt}{-0.9mm}{-0.9mm} 
+%\titlespacing{\subsection}{0pt}{-0.9mm}{-0.9mm} 
+%\def\TitleSpacingAdjust{-0.895mm}
+\def\TitleSpacingAdjust{-0.5mm}
+\titlespacing{\section}{0pt}{\TitleSpacingAdjust}{\TitleSpacingAdjust} 
+\titlespacing{\subsection}{0pt}{\TitleSpacingAdjust}{\TitleSpacingAdjust} 
+%\titleformat{\section}{\bfseries\large}{\CustomSectionNumberHeading{\thesection}}{10pt}{}
+\titleformat{\section}{\bfseries\large}{\thesection}{10pt}{}
+%\titleformat{\subsection}{\bfseries\normalsize}{
+%     \hspace*{-1mm}\scalebox{1.35}{$\blacktriangleright$}\hspace*{3.5mm}\thesubsection\ \ --\hspace*{-1.5mm}}{10pt}{} 
+%\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection\ \ --\hspace*{-1.5mm}}{10pt}{}
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection}{10pt}{}
+
+\setlength{\parindent}{0.2in} 
+\setlength{\parskip}{0.8mm} 
+\setlength{\parsep}{0in} 
+
+\pagestyle{empty}
+
+\setlength{\abovedisplayskip}{0in} 
+\setlength{\abovedisplayshortskip}{0in} 
+\setlength{\belowdisplayskip}{0in} 
+\setlength{\belowdisplayshortskip}{0in} 
+\setlength{\jot}{0pt} 
+
+%% : Table Spacing and Formatting: 
+\setlength{\abovecaptionskip}{0in} 
+\setlength{\belowcaptionskip}{0in} 
+
+%% : Change Various Labelings and Counter Defines: 
+\renewcommand{\thesection}{\arabic{section}} 
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+\addtocounter{footnote}{1}
+
+\newcommand{\ie}[0]{i.e.\ } 
+\newcommand{\cf}[0]{\emph{cf.}\ } 
+\newcommand{\etc}[0]{etc.\ } 
+\newcommand{\PhD}[0]{Ph.D.\ } 
+
+%% : Concrete mathematics Book Recurrence Notation (Special Case Triangles): 
+\newcommand{\gkpSI}[2]{\ensuremath{\genfrac{\lbrack}{\rbrack}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpSII}[2]{\ensuremath{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpEI}[2]{\ensuremath{\genfrac{\langle}{\rangle}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpEII}[2]{\ensuremath{\left\langle\genfrac{\langle}{\rangle}{
+            0pt}{}{#1}{#2}\right\rangle}} 
+
+%% : Other math Mode Macros Used by the Article: 
+\newcommand{\Iverson}[1]{\ensuremath{\left[#1\right]_{\delta}}} 
+\newcommand{\Floor}[2]{\ensuremath{\left\lfloor \frac{#1}{#2} \right\rfloor}}
+
+\usepackage{textcomp}  % Required for encoding \textbigcircle
+\usepackage{scalerel}  % Required for emoji \scalerel
+\def\🌐{\scalerel*{\includegraphics{cv-resume/earth-globe-americas-1f30e.png}}{\textrm{\textbigcircle}}}
+\def\OneFFourCFour{\scalerel*{\includegraphics{cv-resume/paper-1F4C4.png}}{\textrm{$\qed$}}}
+
+%% Set the default font to Helvetica:
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+%% Misc spacing (lines and space between equations and text): 
+\linespread{1.0}
+\AtBeginDocument{
+     \setlength{\abovedisplayskip}{0.25pt} 
+     \setlength{\abovedisplayshortskip}{0.25pt} 
+     \setlength{\belowdisplayskip}{0.25pt} 
+     \setlength{\belowdisplayshortskip}{0.25pt} 
+     \setlength{\jot}{0pt} 
+}
+\allowdisplaybreaks
+
+%% Start Content:
+\begin{document}
+
+\newcommand{\GRFPEssayTitle}{NSF Postdoctoral Fellowship Project Summary}
+
+\section{Overview}
+
+The primary research interests of the PI are in combinatorial and 
+analytic number theory with an emphasis on 
+integer sequences, generating function methods, continued fractions, 
+software development, and experimental mathematics. 
+The proposed host institution is Penn State University (PSU) under the direction of 
+supporting mathematician Prof.~R.~C.~Vaughan. 
+The expertise of the PSU faculty in both analytic and combinatorial number theory 
+with a focus on partitions 
+will provide the support needed to continue creative work in the areas in 
+which the applicant (the PI; henceforth, MDS) already has $21+$ publications and manuscripts. 
+The breadth of the tenure track PSU math faculty also offers unique 
+prospects to get involved in new work with innovative mathematicians. 
+
+\section{Intellectual Merit}
+
+The work of MDS on the Mertens function, $M(x)$, over the past few years explores 
+new unconventional connections between strong additivity and signed sums of 
+multiplicative functions. Her research on this function connects $M(x)$ with a key 
+unsigned auxiliary sequence and the characterization of its distribution with an 
+explicit non-centrally normal probability distribution. A favorite quote of hers 
+due to her NSF sponsor 
+%, whose work is a significant influence, 
+is reproduced as follows: 
+``\emph{It is evident that the primes are randomly distributed but, 
+      unfortunately, we do not know [yet] what 'random' means}.''
+%She will present her recent work on these new characterizations of $M(x)$ at her invited talk 
+%in the work in early career number theory special session of the \emph{AMS JMM 2022} in Seattle this coming year. 
+The recent work of hers on cross-correlation statistics provides new ways to express deep 
+connections of number theoretic objects, such as the distribution of the primes and 
+divisor sums of multiplicative functions, to other branches of mathematics such as partitions. 
+Her plans as a postdoc are to continue to publishing work in number theory 
+and combinatorial analysis. This includes generalizing the new connections connecting signed sums of 
+sequences besides $\mu(n)$ 
+to additivity with explicit probability distributions and 
+work on the open questions in her doctoral thesis research. 
+The project description precisely motivates her proposed work 
+%coordinated with the NSF 
+at PSU and addresses significant open problems. 
+
+\section{Broader Impacts}
+
+%\subsection*{A personal tribute to RBG: DESFire firmware project and wireless security software} 
+%\subsection*{Open source STEM related software, DESFire firmware project and wireless security software}
+\label{subSection_TributeToRBG_DESFire} 
+
+From 2020--2021, MDS worked on a larger scale, energizing and experimental 
+security project that was a welcome challenge and software outlet away 
+from her pure math research over the pandemic. 
+The project brings sophisticated new 
+low-level embedded firmware extensions to a type of NFC penetration testing and 
+wireless data sniffer-loggers 
+(the Chameleon Mini) that interfaces with common NFC tags (e.g., most university student ID cards). 
+This project afforded a heightened platform online 
+over which to bring 
+more awareness by users to important issues 
+%local US and global socioeconomic issues and disparity that 
+that have increasingly beleaguered the world this pandemic. 
+In particular, the first beta testing versions became a reality 
+the long weekend of the sad passing of inspirational 
+US supreme court justice Ruth Bader Ginsberg on 
+Rosh Hashanah, to whom MDS was able to pay tribute by working on this software. 
+MDS is proud to have ``hacked'' for freedom with free software, as she likes to say, for days on end 
+while cloaked in an over-sized \emph{Black Lives Matter} shirt. 
+%It is immortalized in a photo snapshot posted to the development page for the project. 
+%The net gain from the project is that the complex and proprietary \emph{DESFire} NFC tag
+%specification is now emulated by the Chameleon Mini hardware appreciated globally by 
+%wireless security researchers. 
+The experience working on this project speaks to the power of 
+open source software (OSS) and how MDS intends to use its reach as a postdoc. 
+
+MDS also feels that she will be able to more broadly contribute 
+to initiatives in mathematics and other STEM fields as a 
+NSF postdoctoral fellow at PSU.
+One crucial component of the proposed activities at PSU is to continue collaborating on 
+OSS with a focus on advancing educational STEM initiatives.  
+For example, \emph{Prairie Learn} is a LMS that is a viable option to replace \textit{Canvas} at many 
+institutions. It is actively developed at a few leading universities. 
+%It is an excellent demonstration of the type of open source software work she will continue to 
+%develop as a postdoc. 
+She has so far contributed code to enhance 
+the \texttt{sympy} Python library parsing within the project. This enables 
+parsing for questions posed to students in mathematics and physical sciences. 
+MDS will actively hold a seminar focused on teaching all types of students and educators how to use and 
+write software using OSS in mathematics as a postdoc at PSU. 
+
+%\subsection*{Advancing opportunities for women and minorities in mathematics}
+
+MDS reflects positively on having benefited over the years from her undergraduate research experiences 
+with Prof.~Bruce Reznick and 
+mentoring experiences with Prof.~Bruce Berndt who was influential in 
+developing her mathematical writing style.
+MDS reflects being taken seriously as an 
+undergraduate pursuing original research was particularly encouraging through 
+her mentors. She plans to pass on the wisdom she has learned
+by talking with these experienced career mathematicians to young motivated researchers as her 
+own professional career moves forward. This especially applies to offering advice and 
+influencing talented women in mathematics to develop their own early original 
+research work as undergraduates and onward. 
+MDS will make these plans a reality by leading seminars at PSU targeted at broader outreach by getting 
+women and minority students at or below the graduate level involved in fulfilling extracurricular roles 
+presenting their research and mentoring other students in math at PSU. 
+
+\end{document}

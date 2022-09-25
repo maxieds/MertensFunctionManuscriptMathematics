@@ -1,0 +1,25 @@
+\BOOKMARK [1][-]{section*.1}{Notation and conventions}{}% 1
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 2
+\BOOKMARK [2][-]{subsection.1.1}{Preliminaries}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.1}{Definitions}{subsection.1.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.1.2}{Properties}{subsection.1.1}% 5
+\BOOKMARK [3][-]{subsubsection.1.1.3}{Conjectures on boundedness and limiting behavior}{subsection.1.1}% 6
+\BOOKMARK [2][-]{subsection.1.2}{A concrete new approach to characterizing M\(x\)}{section.1}% 7
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Summatory functions of Dirichlet convolutions of arithmetic functions}{subsection.1.2}% 8
+\BOOKMARK [3][-]{subsubsection.1.2.2}{An exact expression for M\(x\) via strongly additive functions}{subsection.1.2}% 9
+\BOOKMARK [3][-]{subsubsection.1.2.3}{Formulas illustrating the new characterizations of M\(x\)}{subsection.1.2}% 10
+\BOOKMARK [1][-]{section.2}{Initial proofs of new results}{}% 11
+\BOOKMARK [2][-]{subsection.2.1}{Establishing the summatory function properties and inversion identities}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.2}{Proving the characteristic signedness property of g-1\(n\)}{section.2}% 13
+\BOOKMARK [2][-]{subsection.2.3}{Statements of limiting asymptotic formulas}{section.2}% 14
+\BOOKMARK [2][-]{subsection.2.4}{Results on the distribution of exceptional values of \(n\) and \(n\)}{section.2}% 15
+\BOOKMARK [1][-]{section.3}{Auxiliary sequences to express the Dirichlet inverse function g-1\(n\)}{}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Definitions and properties of triangular component function sequences}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.2}{Relating the function C\(n\)\(n\) to exact formulas for g-1\(n\)}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.3}{Another connection to the distribution of the primes}{section.3}% 19
+\BOOKMARK [1][-]{section.4}{The distributions of C\(n\)\(n\) and |g-1\(n\)|}{}% 20
+\BOOKMARK [1][-]{section.5}{Proofs of new formulas and limiting relations for M\(x\)}{}% 21
+\BOOKMARK [2][-]{subsection.5.1}{Establishing initial asymptotic bounds on the summatory function G-1\(x\)}{section.5}% 22
+\BOOKMARK [2][-]{subsection.5.2}{Bounding M\(x\) by asymptotics for G-1\(x\)}{section.5}% 23
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 24
+\BOOKMARK [1][-]{section.1}{Table: The Dirichlet inverse function g-1\(n\) and the distribution of its summatory function}{}% 25

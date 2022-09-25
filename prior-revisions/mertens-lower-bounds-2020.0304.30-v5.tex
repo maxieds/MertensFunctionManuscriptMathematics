@@ -1,0 +1,2363 @@
+\documentclass[11pt,reqno,a4letter]{article} 
+
+\usepackage{amsthm,amsfonts,amscd,amsmath}
+\usepackage[hidelinks]{hyperref} 
+\usepackage{url}
+\usepackage[usenames,dvipsnames]{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!70!white},
+    citecolor={blue!70!white},
+    urlcolor={blue!80!white}
+}
+
+\usepackage[normalem]{ulem}
+\usepackage{graphicx} 
+\usepackage{datetime} 
+\usepackage{cancel}
+\usepackage{subcaption}
+\captionsetup{format=hang,labelfont={bf},textfont={small,it}} 
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\usepackage{stmaryrd,tikzsymbols} 
+\usepackage{framed} 
+\usepackage{ulem}
+\usepackage[T1]{fontenc}
+\usepackage{pbsi}
+
+
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=0.65in}
+
+\usepackage{rotating,adjustbox}
+
+\usepackage{diagbox}
+\newcommand{\trianglenk}[2]{$\diagbox{#1}{#2}$}
+\newcommand{\trianglenkII}[2]{\diagbox{#1}{#2}}
+
+\let\citep\cite
+
+\newcommand{\undersetbrace}[2]{\underset{\displaystyle{#1}}{\underbrace{#2}}}
+
+\newcommand{\gkpSI}[2]{\ensuremath{\genfrac{\lbrack}{\rbrack}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpSII}[2]{\ensuremath{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}}
+\newcommand{\cf}{\textit{cf.\ }} 
+\newcommand{\Iverson}[1]{\ensuremath{\left[#1\right]_{\delta}}} 
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor} 
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil} 
+\newcommand{\e}[1]{e\left(#1\right)} 
+\newcommand{\seqnum}[1]{\href{http://oeis.org/#1}{\color{ProcessBlue}{\underline{#1}}}}
+
+\usepackage{upgreek,dsfont,amssymb}
+\renewcommand{\chi}{\upchi}
+\newcommand{\ChiFunc}[1]{\ensuremath{\chi_{\{#1\}}}}
+\newcommand{\OneFunc}[1]{\ensuremath{\mathds{1}_{#1}}}
+
+\usepackage{ifthen}
+\newcommand{\Hn}[2]{
+     \ifthenelse{\equal{#2}{1}}{H_{#1}}{H_{#1}^{\left(#2\right)}}
+}
+
+\newcommand{\Floor}[2]{\ensuremath{\left\lfloor \frac{#1}{#2} \right\rfloor}}
+\newcommand{\Ceiling}[2]{\ensuremath{\left\lceil \frac{#1}{#2} \right\rceil}}
+
+\DeclareMathOperator{\DGF}{DGF} 
+\DeclareMathOperator{\ds}{ds} 
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\fg}{fg}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\rpp}{rpp}
+\DeclareMathOperator{\logll}{\ell\ell}
+
+%\usepackage{pifont}
+%\newcommand{\checkmark}[0]{\ding{51}} 
+
+\title{
+       \LARGE{
+       Lower bounds on the Mertens function $M(x)$ for $x \gg 2.3315 \times 10^{1656520}$ 
+       } 
+       %\\ 
+       %\large{\it New unique lower bounds on $M(x) / \sqrt{x}$ along an asymptotically 
+       %   huge infinite subsequence of reals} 
+}
+\author{{\large Maxie Dion Schmidt} \\ 
+        {\normalsize \href{mailto:maxieds@gmail.com}{maxieds@gmail.com}} \\[0.1cm] 
+        {\small Georgia Institute of Technology} 
+} 
+
+\date{\small\underline{Last Revised:} \today\ \ -- \ \ Compiled with \LaTeX2e} 
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\numberwithin{theorem}{section}
+
+\theoremstyle{definition} 
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{discussion}[theorem]{Discussion}
+\newtheorem{facts}[theorem]{Facts}
+\newtheorem{summary}[theorem]{Summary}
+
+\renewcommand{\arraystretch}{1.25} 
+
+\setlength{\textheight}{10.5in}
+\setlength{\topmargin}{-.1in}
+\setlength{\textwidth}{7in} 
+\setlength{\evensidemargin}{-0.25in} 
+\setlength{\oddsidemargin}{-0.25in} 
+
+\usepackage[top=15mm, bottom=15mm, left=12mm, right=12mm]{geometry}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{2cm} 
+
+\input{glossaries-bibtex/PreambleGlossaries-Mertens}
+
+\allowdisplaybreaks 
+
+\begin{document} 
+
+\maketitle
+
+\begin{abstract} 
+The Mertens function, $M(x) = \sum_{n \leq x} \mu(n)$, is classically 
+defined to be the summatory function of the M\"obius function 
+$\mu(n)$. In some sense, the M\'obius function can be viewed as a 
+signed indicator function of the squarefree integers which have 
+asymptotic density of $6 / \pi^2 \approx 0.607927$ and a corresponding 
+well-known asymptotic average order formula. The signed terms in the 
+sums in the definition of the Mertens function introduce complications 
+in the form of semi-randomness and cancellation inherent to the 
+distribution of the M\"obius function over the natural numbers. The 
+Mertens conjecture which states that $|M(x)| < C \cdot \sqrt{x}$ for all 
+$x \geq 1$ has a well-known disproof due to Odlyzko et. al. 
+It is widely believed that $M(x) / \sqrt{x}$ is an unbounded function 
+which changes sign infinitely often and exhibits a negative bias 
+over all natural numbers $x \geq 1$. 
+
+We focus on obtaining new lower bounds 
+for $M(x)$ by methods that generalize to handle other related cases of 
+special number theoretic summatory functions. 
+The key to our proofs calls upon a known result from the standardized 
+summatory function enumeration by DGFs found in Chapter 7 of 
+Montogomery and Vaughan. There is also a distinct flavor of combinatorial analysis 
+peppered in with the standard methods from analytic number theory which distinguishes 
+our methods. 
+%We make surprising claims about a classical conjecture on the boundedness of 
+%$|M(x)| / \sqrt{x}$ along infinite subsequences of reals (\emph{TBA}). 
+
+\bigskip %\hrule\bigskip
+\noindent
+\textbf{Keywords and Phrases:} {\it M\"obius function sums; Mertens function; summatory function; 
+                                    arithmetic functions; 
+                                    Dirichlet inverse; Liouville lambda function; prime omega functions; 
+                                    prime counting functions; Dirichlet series and DGFs; 
+                                    asymptotic lower bounds; Mertens conjecture; 
+                                    asymptotic methods from the Montgomery and Vaughan textbook. } \\ 
+% 11-XX			Number theory
+%    11A25  	Arithmetic functions; related numbers; inversion formulas
+%    11Y70  	Values of arithmetic functions; tables
+%    11-04  	Software, source code, etc. for problems pertaining to number theory
+% 11Nxx		Multiplicative number theory
+%    11N05  	Distribution of primes
+%    11N37  	Asymptotic results on arithmetic functions
+%    11N56  	Rate of growth of arithmetic functions
+%    11N60  	Distribution functions associated with additive and positive multiplicative functions
+%    11N64  	Other results on the distribution of values or the characterization of arithmetic functions
+\textbf{Primary Math Subject Classifications (2010):} {\it 11N37; 11A25; 11N60; 11N64; and 11-04. } 
+\end{abstract} 
+
+\bigskip\hrule\bigskip
+%\noindent
+%Note that this draft has been checked and semi-arguably verified as (mostly, e.g., almost surely) 
+%error free by the following distinguished full professors of mathematics 
+%(in addition to the author): 
+%\begin{itemize} 
+%     \item[\checkmark] TODO -- \textit{Affiliation} 
+%     \item[\checkmark] TODO -- \textit{Affiliation} 
+%\end{itemize} 
+
+\newpage
+\section{Introduction} 
+
+\subsection{The Mertens function -- definition, properties, known results and conjectures} 
+\label{subSection_MertensMxClassical_Intro} 
+
+Suppose that $n \geq 1$ is a natural number with factorization into 
+distinct primes given by 
+$n = p_1^{\alpha_1} p_2{\alpha_2} \cdots p_k^{\alpha_k}$. 
+We define the \emph{M\"oebius function} to be the signed indicator function 
+of the squarefree integers: 
+\[
+\mu(n) = \begin{cases} 
+     1, & \text{if $n = 1$; } \\ 
+     (-1)^k, & \text{if $\alpha_i = 1$, $\forall 1 \leq i \leq k$; } \\ 
+     0, & \text{otherwise.} 
+     \end{cases} 
+\]
+There are many known variants and special properties of the M\"oebius function 
+and its generalizations \cite[\cf \S 2]{HANDBOOKNT-2004}, however, for our 
+purposes we seek to explore the properties and asymptotics of weighted 
+summatory functions over $\mu(n)$. 
+The Mertens summatory function, or \emph{Mertens function}, is defined as 
+\begin{align*} 
+M(x) & = \sum_{n \leq x} \mu(n),\ x \geq 1, \\ 
+     & \longmapsto \{1, 0, -1, -1, -2, -1, -2, -2, -2, -1, -2, -2, -3, -2, 
+     -1, -1, -2, -2, -3, -3, -2, -1, -2, -2\}
+\end{align*} 
+A related function which counts the 
+number of \emph{squarefree} integers than $x$ sums the average order of the M\"obius function as 
+\[ 
+Q(n) = \sum_{n \leq x} |\mu(n)| \sim \frac{6x}{\pi^2} + O\left(\sqrt{x}\right). 
+\] 
+It is known that the asymptotic density of the positively versus negatively 
+weighted sets of squarefree numbers are in fact equal as $x \rightarrow \infty$: 
+\[
+\mu_{+}(x) = \frac{\#\{1 \leq n \leq x: \mu(n) = +1\}}{Q(x)} = 
+     \mu_{-}(x) = \frac{\#\{1 \leq n \leq x: \mu(n) = -1\}}{Q(x)} 
+     \xrightarrow[n \rightarrow \infty]{} \frac{3}{\pi^2}. 
+\]
+While this limiting law suggests an even bias for the Mertens function, 
+in practice $M(x)$ has a noted negative bias in its values, and the actual 
+local oscillations between the approximate densities of the sets 
+$\mu_{\pm}(x)$ lend an unpredictable nature to the function and its 
+characteistic oscillatory sawtooth shaped plot -- even over asymptotically 
+large and variable intervals.
+
+\subsubsection{Properties} 
+
+The well-known approach to evaluating the behavior of $M(x)$ for large 
+$x \rightarrow \infty$ results from a formulation of this summatory 
+function as a predictable exact sum involving $x$ and the non-trivial 
+zeros of the Riemann zeta function for all real $x > 0$. 
+This formula is easily expressed via an inverse Mellin transformation 
+over the reciprocal zeta function. In particular, 
+we notice that since by Perron's formula we have 
+\[
+\frac{1}{\zeta(s)} = \int_1^{\infty} \frac{s \cdot M(x)}{x^{s+1}} dx, 
+\]
+we then obtain that 
+\[
+M(x) = \frac{1}{2\pi\imath} \int_{T-\imath\infty}^{T+\imath\infty} 
+     \frac{x^s}{s \cdot \zeta(s)} ds. 
+\] 
+This representation along with the standard Euler product 
+representation for the reciprocal zeta function leads us to the 
+exact expression for $M(x)$ when $x > 0$ given by the next theorem. 
+
+\begin{theorem}[Analytic Formula for $M(x)$] 
+\label{theorem_MxMellinTransformInvFormula} 
+If the RH is true, the there exists an infinite sequence 
+$\{T_k\}_{k \geq 1}$ satisfying $k \leq T_k \leq k+1$ for each $k$ 
+such that for any $x \in \mathbb{R}_{>0}$ 
+\[
+M(x) = \lim_{k \rightarrow \infty} 
+     \sum_{\substack{\rho: \zeta(\rho) = 0 \\ |\Im(\rho)| < T_k}} 
+     \frac{x^{\rho}}{\rho \cdot \zeta^{\prime}(\rho)} - 2 + 
+     \sum_{n \geq 1} \frac{(-1)^{n-1}}{n \cdot (2n)! \zeta(2n+1)} 
+     \left(\frac{2\pi}{x}\right)^{2n} + 
+     \frac{\mu(x)}{2} \Iverson{x \in \mathbb{Z}^{+}}. 
+\] 
+\end{theorem} 
+
+An unconditional bound on the Mertens function due to Walfisz 
+\cite{see Ivic} states that there is an absolute constant $C > 0$ such that 
+$$M(x) \ll x \exp\left(-C \cdot \log^{3/5}(x) 
+  (\log\log x)^{-3/5}\right).$$ 
+Under the assumption of the RH, Soundararajan proved new updated estimates 
+bounding $M(x)$ for large $x$ in 2009 of the following forms: 
+\begin{align*} 
+M(x) & \ll \sqrt{x} \exp\left(\log^{1/2}(x) (\log\log x)^{14}\right), \\ 
+M(x) & = O\left(\sqrt{x} \exp\left( 
+     \log^{1/2}(x) (\log\log x)^{5/2+\epsilon}\right)\right),\ 
+     \forall \epsilon > 0. 
+\end{align*} 
+Other explicit bounds due to the article by Kotnik include the following 
+simpler estimates for the Mertens function when $x$ is sufficiently 
+large: 
+\begin{align*} 
+|M(x)| & < \frac{x}{4345},\ \forall x > 2160535, \\ 
+|M(x)| & < \frac{0.58782 \cdot x}{\log^{11/9}(x)},\ \forall x > 685. 
+\end{align*} 
+
+\subsubsection{Conjectures} 
+
+The Riemann Hypothesis is equivalent to showing that 
+$M(x) = O\left(x^{1/2+\varepsilon}\right)$ for any 
+$0 < \varepsilon < \frac{1}{2}$. 
+It is still unresolved whether 
+\[ 
+\limsup_{x\rightarrow\infty} |M(x)| / \sqrt{x} = \infty, 
+\] 
+although computational evidence suggests that this is a likely conjecture 
+\cite{ORDER-MERTENSFN,HURST-2017}. 
+There is a rich history to the original statement of the \emph{Mertens conjecture} which 
+states that 
+\[ 
+|M(x)| < c \cdot x^{1/2},\ \text{ some constant $c > 0$, }
+\] 
+which was first verified by Mertens for $c = 1$ and $x < 10000$, 
+although since its beginnings in 1897 has since been disproved by computation. 
+
+There are a number of other interesting unsolved and at 
+least somewhat accessible open problems 
+related to the asymptotic behavior of $M(x)$ at large $x$. 
+It is believed that the sign of $M(x)$ changes infinitely often. 
+That is to say that it is widely believed that $M(x)$ is 
+ocsillatory and exhibits a negative bias in so much as 
+$M(x) < 0$ more frequently than $M(x) > 0$ over all 
+$x \in \mathbb{N}$\footnote{ 
+     See for example the discussion in the following thread: \\ 
+     \url{https://mathoverflow.net/questions/98174/is-mertens-function-negatively-biased}. 
+}. 
+One of the most famous still unanswered questions about the Mertens 
+function concerns whether $|M(x)| / \sqrt{x}$ is unbounded on the 
+natural numbers. In particular, the precise statement of this 
+problem is to produce an affirmative answer whether 
+$\limsup_{x \rightarrow \infty} |M(x)| / \sqrt{x} = +\infty$, or 
+equivalently whether there is an infinite sequence of natural numbers 
+$\{x_1, x_2, x_3, \ldots\}$ such that $M(x_i) x_i^{-1/2}$ grows without 
+bound along this subsequence. 
+
+Extensive computational evidence has produced 
+a conjecture due to Gonek that in fact the limiting behavior of 
+$M(x)$ satisfies 
+that $$\limsup_{x \rightarrow \infty} \frac{|M(x)|}{\sqrt{x} 
+(\log\log x)^{5/4}},$$ 
+corresponds to some bounded constant. 
+A probabilistic proof along these 
+lines has been given by Ng in 2008, though to date an exact rigorous 
+proof (rather than somewhat heuristic argument) that $M(x) / \sqrt{x}$ is 
+unbounded still remains elusive. 
+We cite that prior to this point it is known that \cite[\cf \S 4.1]{PRIMEREC} 
+\[
+\limsup_{x\rightarrow\infty} \frac{M(x)}{\sqrt{x}} > 1.060\ \qquad (\text{now } 1.826054), 
+\] 
+and 
+\[ 
+\liminf_{x\rightarrow\infty} \frac{M(x)}{\sqrt{x}} < -1.009\ \qquad (\text{now } -1.837625), 
+\] 
+although based on work by Odlyzyko and te Riele it seems probable that 
+each of these limits should be $\pm \infty$, respectively 
+\cite{ODLYZ-TRIELE,MREVISITED,ORDER-MERTENSFN,HURST-2017}. 
+It is also known that $M(x) = \Omega_{\pm}(\sqrt{x})$ and 
+$M(x) / \sqrt{x} = \Omega_{\pm}(1)$. 
+
+\subsection{A new approach to bounding $M(x)$ from below} 
+
+\subsubsection{Summing series over Dirichlet convolutions} 
+
+\begin{theorem}[Summatory functions of Dirichlet convolutions] 
+\label{theorem_SummatoryFuncsOfDirCvls} 
+Let $f,g: \mathbb{Z}^{+} \rightarrow \mathbb{C}$ be any arithmetic functions such that $f(1) \neq 0$. 
+Suppose that $F(x) := \sum_{n \leq x} f(n)$ and $G(x) := \sum_{n \leq x} g(n)$ denote the summatory 
+functions of $f,g$, respectively, and that $F^{-1}(x)$ denotes the summatory function of the 
+Dirichlet inverse $f^{-1}(n)$ of $f$, i.e., the unique arithmetic function such that 
+$f \ast f^{-1} = \varepsilon$ where $\varepsilon(n) = \delta_{n,1}$ is the multiplicative identity 
+with respect to Dirichlet convolution. Then we have the following equivalent expressions for the 
+summatory function of $f \ast g$ for integers $x \geq 1$: 
+\begin{align*} 
+\pi_{f \ast g}(x) & = \sum_{n \leq x} \sum_{d|n} f(d) g(n/d) \\ 
+     & = \sum_{d \leq x} f(d) G\left(\Floor{x}{d}\right) \\ 
+     & = \sum_{k=1}^{x} G(k) \left[F\left(\Floor{x}{k}\right) - 
+     F\left(\Floor{x}{k+1}\right)\right]. 
+\end{align*} 
+Moreover, we can invert the linear system determining the coefficients of $G(k)$ for $1 \leq k \leq x$ 
+naturally to express $G(x)$ as a linear combination of the original left-hand-side summatory function as:
+\[
+G(x) = \sum_{j=1}^{x} \pi_{f \ast g}(j) \left[F^{-1}\left(\Floor{x}{j}\right) - 
+     F^{-1}\left(\Floor{x}{j+1}\right)\right]. 
+\]
+\end{theorem} 
+
+\begin{cor}[Convolutions Arising From M\"obius Inversion] 
+\label{cor_CvlGAstMu} 
+Suppose that $g$ is an arithmetic functions with $g(1) \neq 0$. Define the summatory function of 
+the convolution of $g$ with $\mu$ by $\widetilde{G}(x) := \sum_{n \leq x} (g \ast \mu)(n)$. 
+Then 
+\[
+M(x) = \sum_{k=1}^{x} \left(\sum_{j=\floor{\frac{x}{k+1}}+1}^{\floor{\frac{x}{k}}} g^{-1}(j)\right) 
+     \widetilde{G}(k), \forall x \geq 1. 
+\]
+\end{cor} 
+
+\subsubsection{A motivating special case} 
+\label{example_InvertingARecRelForMx_Intro}
+ 
+Using $\chi_{\mathbb{P}} + \varepsilon = (\omega + 1) \ast \mu$, 
+where $\chi_{\mathbb{P}}$ is the characteristic 
+function of the primes, we have that $\widetilde{G}(x) = \pi(x) + 1$ in 
+Corollary \ref{cor_CvlGAstMu}. 
+In particular, the corollary implies that 
+\begin{equation} 
+\label{eqn_Mx_gInvnPixk_formula} 
+M(x) = \sum_{k=1}^{x} (\omega+1)^{-1}(k) \left[\pi\left(\Floor{x}{k}\right) + 1\right]. 
+\end{equation} 
+We can compute the first few terms for the
+Dirichlet inverse sequence of 
+$g(n) := \omega(n) + 1$ numerically for the first few sequence values as 
+\[
+\{g^{-1}(n)\}_{n \geq 1} = \{1, -2, -2, 2, -2, 5, -2, -2, 2, 5, -2, -7, -2, 5, 5, 2, -2, -7, -2, 
+     -7, 5, 5, -2, 9, \ldots \}. 
+\] 
+The sign of these terms is given by $\lambda(n) = (-1)^{\Omega(n)}$ 
+(see Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1}). 
+Note that since the DGF of $\omega(n)$ is given by 
+$D_{\omega}(s) = P(s) \zeta(s)$ where $P(s)$ is the \emph{prime zeta function}, we do have a 
+Dirichlet series for the inverse functions to invert coefficient-wise using more classical 
+contour integral methods. 
+In fact, Fr\"oberg has previously done some preliminary investigation as to the properties of the 
+inversion to find the coefficients of $(1+P(s))^{-1}$ \cite{FROBERG-1968}. 
+However, we will take a more combinatorial tact to investigating bounds on this inverse function 
+sequence in the coming sections. 
+
+\begin{conjecture}
+\label{lemma_gInv_MxExample} 
+Suppose that $n \geq 1$ is a squarefree integer. We have the following properties characterizing the 
+Dirichlet inverse function $g^{-1}(n) = (\omega+1)^{-1}(n)$ over these integers: 
+\begin{itemize} 
+
+\item[(A)] $g^{-1}(1) = 1$, which follows immediately by computation; 
+\item[(B)] $\operatorname{sgn}(g^{-1}(n)) = \mu(n) \equiv \lambda(n)$; 
+\item[(C)] If $w(n) = k$, we can write the inverse function at $k$ as 
+     \[
+     g^{-1}(n) = \sum_{m=0}^{k} \binom{k}{m} \cdot m!. 
+     \]
+     The ``obvious`` interpretation to these sums is that we are counting up the factorizations of 
+     $n$ according to the number of prime factors in each term, selecting each $k$ of the primes, and then 
+     scaling by a ``count`` of how many ways there are to arrange $k$ such factors.
+\end{itemize} 
+We illustrate parts (B)--(C) of this conjecture clearly using 
+Table \ref{table_conjecture_Mertens_ginvSeq_approx_values} given on 
+page \pageref{table_conjecture_Mertens_ginvSeq_approx_values} of the appendix section. 
+\end{conjecture} 
+
+\textit{So why exactly is the Dirichlet inverse function, $g^{-1}(n)$, difficult to evaluate? } 
+There are mutltiple apparent reasons for this. The first is that the Dirichlet inverse function not only 
+depends on the prime factorization of $n$ in the typical way, involving weighted sums of $\Omega(n)$ terms of the 
+function $\omega(n) + 1$, but also in the additive nature of how we build up and assemble these terms in an essentially 
+non-multiplicative, but instead very additive, way.  
+Note that for primes $a,b$ and positive integers $m,n \geq 1$, the 
+(incomplete) additivity of $\omega(n)$ implies that $\omega(a^m b^n) = \omega(a) + \omega(b)$ where by convention 
+$\omega(1) = 0$. The extra additive factor of $+1$ (that was added to make the function Dirichlet invertible) 
+also does not depend on $n$ in the corresponding expansions of the Dirichlet inverse terms. 
+
+The realization that the beautiful, and simplistic, e.g., not terribly complicated considering the 
+subject matter, form of property (C) 
+in Conjecture \ref{lemma_gInv_MxExample} holds for all squarefree $n \geq 1$ 
+motivates our pursuit of formulas for the inverse functions $g^{-1}(n)$ based on the configuration of the 
+exponents in the prime factorization of any $n \geq 2$. 
+In Section \ref{Section_InvFunc_PreciseExpsAndAsymptotics} we consider expansions of these inverse functions 
+recursively, starting from a few first exact cases of an auxillary function, $C_k(n)$, 
+that depends on the precise exponents in the prime factorization of $n$. 
+We then prove limiting asymptotics for these functions and assemble the main terms in the expansion of 
+$g^{-1}(n)$ using artifacts from combinatorial analysis. 
+Combined with the DGF-based generating function for certain summatory functions indicating the parity of 
+$\Omega(n)$ introduced in the next subsection of this introduction, 
+this take on the identity in \eqref{eqn_Mx_gInvnPixk_formula} provides us with a powerful new method to 
+bound $M(x)$ from below. 
+
+We will sketch the key results and formulation to the construction we use next. 
+For natural numbers $n \geq 1, k \geq 0$, let 
+\begin{align*} 
+C_k(n) := \begin{cases} 
+     \varepsilon(n), & \text{ if $k = 0$; } \\ 
+     \sum\limits_{d|n} \omega(d) C_{k-1}(n/d), & \text{ if $k \geq 1$. } 
+     \end{cases} 
+\end{align*} 
+By M\"obius inversion (see Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1}), 
+we have that 
+\[
+(g^{-1} \ast 1)(n) = \lambda(n) \cdot C_{\Omega(n)}(n), \forall n \geq 1. 
+\]
+We have limiting asymptotics on these functions given by the following theorem: 
+
+\begin{theorem}[Asymptotics for the functions $C_k(n)$] 
+\label{theorem_Ckn_GeneralAsymptoticsForms} 
+Let $\mathds{1}_{\ast_m}(n)$ denote the $m$-fold Dirichlet convolution of one with itself at $n$. 
+The function $\sigma_0 \ast 1_{\ast_m}$ is multiplicative with values at prime powers 
+given by 
+\[
+(\sigma_0 \ast \mathds{1}_{\ast_m})(p^{\alpha}) = \binom{\alpha+m+1}{m+1}. 
+\]
+We have the following asymptotic bases cases for the functions $C_k(n)$: 
+\begin{align*} 
+C_1(n) & \sim \log\log n \\ 
+C_2(n) & \sim \frac{\sigma_0(n) n}{\log n} + O(\log\log n) \\ 
+C_3(n) & \sim -\frac{(\sigma_0 \ast 1)(n) n^2}{\log n} + 
+     O\left(n \cdot \log\log n\right). 
+\end{align*} 
+For all $k \geq 4$, we obtain that the dominant asymptotic term and the error bound terms for 
+$C_k(n)$ are given by 
+\[
+C_k(n) \sim (\sigma_0 \ast \mathds{1}_{\ast_{k-2}})(n) \times \frac{(-1)^{k} n^{k-1}}{(\log n)^{k-1} (k-1)!} + 
+     O_k\left(\frac{n^{k-2}}{(k-2)!} \cdot \frac{(\log\log n)^{k-2}}{(\log n)^{k-2}}\right), 
+     \mathrm{\ as\ }n \rightarrow \infty. 
+\]
+\end{theorem} 
+
+Then we can prove (see Corollary \ref{cor_ASemiForm_ForGInvx_v1}) that 
+\[
+g^{-1}(n) \sim \lambda(n) \times \sum_{d|n} C_{\Omega(d)}(d). 
+\]
+This in turn implies that 
+\[
+G^{-1}(x) \succsim \sum_{n \leq x} \lambda(n) \cdot C_{\Omega(n)}(n) \times 
+     \sum_{d=1}^{\Floor{x}{n}} \lambda(d). 
+\]
+Now we require the bounds suggested in the next section to work at summing the 
+previous functions for large $x$ as $x \rightarrow \infty$. 
+
+\subsubsection{Re-discovering a known enumerative result using DGFs from Mongomery and Vaughan} 
+
+Our inspiration for the new bounds found in the last sections of this article allows us to sum 
+non-negative arithmetic functions weighted by the Liouville lambda function, 
+$\lambda(n) = (-1)^{\Omega(n)}$. In particular, it uses a hybrid generating function and DGF method 
+under which we are able to recover ``good enough'' asymptotics about the summatory functions that 
+encapsulate the parity of $\lambda(n)$: 
+\[
+\widehat{\pi}_k(x) := \#\{n \leq x: \Omega(n) = k\}, k \geq 1. 
+\] 
+The precise statement of the theorem that we employ for these new bounds is re-stated as follows: 
+
+\begin{theorem}[Montgomery and Vaughan, \S 7.4]
+\label{theorem_HatPi_ExtInTermsOfGz} 
+Let $\widehat{\pi}_k(x) := \#\{n \leq x: \Omega(n)=k\}$. For $R < 2$ we have that 
+\[
+\widehat{\pi}_k(x) = G\left(\frac{k-1}{\log\log x}\right) \frac{x}{\log x} 
+     \frac{(\log\log x)^{k-1}}{(k-1)!} \left(1 + O_R\left(\frac{k}{(\log\log x)^2}\right)\right),  
+\]
+uniformly for $1 \leq k \leq R \log\log x$ where 
+\[
+G(z) := \frac{F(1, z)}{\Gamma(z+1)} = \frac{1}{\Gamma(z+1)} \times 
+     \prod_p \left(1-\frac{z}{p}\right)^{-1} \left(1-\frac{1}{p}\right)^z. 
+\]
+\end{theorem} 
+
+The precise formulations of the inverse function asymptotics 
+proved in Section \ref{Section_InvFunc_PreciseExpsAndAsymptotics} depend on being able to form 
+significant lower bounds on the summatory functions of an always positive arithmetic function 
+weighted by $\lambda(n)$. 
+The next theorem, proved in Section \ref{Section_MVCh7_GzBounds}, 
+is the crux of the starting point for our new asymptotic lower bounds. 
+
+\begin{theorem}[Generating functions of symmetric functions] 
+\label{theorem_GFs_SymmFuncs_SumsOfRecipOfPowsOfPrimes} 
+We obtain upper and lower bounds of the partial prime products of the form
+\begin{align*} 
+\alpha_0(z, x) & \leq \prod_{p \leq x} \left(1-\frac{z}{p}\right)^{-1} \leq \alpha_1(z, x), 
+\end{align*} 
+where it suffices to take 
+\begin{align*}
+\alpha_0(z, x) & = \frac{\exp\left(\frac{55}{4} \log^2 2\right)}{\log^3 2} (\log x)^3 
+     \left(\frac{e^{B} \log^2 x}{\log 2}\right)^{z} \\ 
+\alpha_1(z, x) & = \exp\left(\frac{11}{3} \log^2 x\right) \left(e^{B} \log 2\right)^{z}. 
+\end{align*}  
+\end{theorem} 
+
+The argument providing new lower bounds for $G(z)$ is completed by the 
+proof given in Corollary \ref{cor_BoundsOnGz_FromMVBook_initial_stmt_v1}. 
+This leads to a structure involving the 
+incomplete gamma function by Theorem \ref{theorem_HatPi_ExtInTermsOfGz}. 
+In Lemma \ref{lemma_CLT_and_AbelSummation}, we justify that this construction, 
+which holds uniformly for 
+$k \leq \frac{3}{2} \log\log x$, allows us to asymptotically enumerate the main terms 
+in the expansions of $\widehat{\pi}_k(x)$ when we sum over just $k$ in this range 
+(as opposed to $k \leq \frac{\log x}{\log 2}$). 
+
+\subsection{Organization of this document} 
+
+We have the following section-by-section summary of the topics we consider and the 
+results we prove to arrive at the last significant lower bounds on 
+$M(x)$ given at last in Section \ref{Section_KeyApplications}: 
+\begin{itemize} 
+     \item \textbf{Section \ref{Section_PrelimProofs_Config}}: 
+           We use this section to prove and state preliminary facts and results we will need along the 
+           way of pulling out the more difficult, and significant asymptotic bounds in the next sections. 
+           These results are either well-known, or fairly simple to prove in construction, but they are 
+           required to rigirously justify the arguments in the sections below. 
+     \item \textbf{Section \ref{Section_InvFunc_PreciseExpsAndAsymptotics}}: 
+           We use this section to perform a complete and precise re-routing of the observed results in 
+           Conjecture \ref{lemma_gInv_MxExample}. 
+           In particular, we provide recursively exact relations for an auxillary 
+           sequence of functions, $C_k(n)$, that can be used to formulate correspondingly simple forms 
+           of $g^{-1}(x)$ and its summatory function. 
+           
+           The limiting asymptotics of these functions 
+           proved in Theorem \ref{theorem_Ckn_GeneralAsymptoticsForms} are key combined with 
+           Corollary \ref{cor_ComputingInvFuncs_InPractice_DivSumgInvAst1_v1}, 
+           which together show how to construct new lower bounds on the 
+           summatory functions of $G^{-1}(x)$. We will make much reference to these results in 
+           Section \ref{Section_KeyApplications}. 
+     \item \textbf{Section \ref{Section_MVCh7_GzBounds}}: 
+           In this section, we cite a more enumerative DGF construction for finding uniform bounds 
+           on the summatory functions, $\widehat{\pi}_k(x)$, that indicate the parity of $\lambda(n)$ 
+           on average (e.g., when using Abel summation). 
+           It turns out that it is not necessary to form the infinite products over the primes 
+           involved in the original statement of the component DGFs from 
+           Theorem \ref{theorem_HatPi_ExtInTermsOfGz}. 
+           
+           More precisely, to obtain ``good enough'' bounds on 
+           $\widehat{\pi}_k(x)$, it is only necessary to take the primes $p \leq x$ in these 
+           products. We use generating functions for elementary symmetric polynomials, along with 
+           variants of \emph{Mertens theorem} bounding finite sums of the reciprocals of the primes, 
+           to establish upper and lower bounds on the function $G(z)$ from 
+           Theorem \ref{theorem_HatPi_ExtInTermsOfGz}. 
+     \item \textbf{Section \ref{Section_KeyApplications}}: 
+           This section is the culmination in all of the work in the pages that preceed it. 
+           Namely, we prove effective asymptotic lower bounds on the summatory function of $g^{-1}$. 
+           The bounds are stated case-wise in Theorem \ref{theorem_gInv_GeneralAsymptoticsForms} 
+           corresponding to the leading sign of 
+           $G^{-1}(x)$ and the parity of $\floor{\log\log\log\log x}$. 
+           
+           It turns out that along one particular infinite subsequence of (asymptotically huge) reals, 
+           $x_n := \exp\left\{e^{e^{4n}}\right\}$, we ``win'' largely with $x$ 
+           and can obtain new, significant scaled lower bounds 
+           for the Mertens function $|M(x)| / \sqrt{x}$. This last statement provides a solution, and 
+           partial answer, to the classical 
+           question of boundedness of $M(x)$, at which rate along subsequences it is unbounded (very slowly), 
+           and addresses an logarithmic power improvement to \emph{Gonek's conjecture}. 
+           The key result of Corolllary \ref{cor_ThePipeDreamResult_v1} to cite here is found on page 
+           \pageref{cor_ThePipeDreamResult_v1}. 
+     \item \textbf{Section \ref{Section_GensToWeightedMertensFuncs}}: 
+           This section introduces a class of weighted Mertens functions, $M_{\alpha}(x)$, which are analogous 
+           to the weighted summatory functions, $L_{\alpha}(x)$, of the Liouville lambda function. 
+           We attempt to meaningfully extend the scaled lower bounds for $M(x) / \sqrt{x}$ to these 
+           functions. It turns out that an analysis by cases on $\alpha$ is necessary to formulate these 
+           limit-supremum-type bounds on the scaled generalized Mertens functions. 
+     \item \textbf{\ref{Appendix_Glossary_NotationConvs}}: 
+           To make a common source of references to definitions of key functions and sequences defined within the article, 
+           we provide a comprehensive list of commonly used notation and conventions. 
+           Where possible, we have included page references to local definitions of special 
+           sequences and functions where they are given in the text. 
+           We have organized the symbols list alphabetically by symbol. 
+           This listing of notation and conventions is a useful reference to accompany the article. 
+     \item \textbf{\ref{Appendix_SoftwarePackages}}: 
+           An indexed repository has been created on the 
+           author's personal GitHub page at the following link to archive the 
+           computations referenced in this thesis: 
+           \href{https://github.com/maxieds/MertensBoundsPackages}{\url{https://github.com/maxieds/MertensBoundsPackages}}. 
+           Thus, this software allows the author to provide portable software implementations 
+           of operations that are frequently useful in approaching the topics we consider within this 
+           document. There are (\emph{will be}) both \texttt{Mathematica} and \texttt{SageMath} (e.g., Python) packages 
+           contained in this repository. Special and/or time consuming computations we use here have also 
+           been archived in a separate directory of the repository above. 
+\end{itemize} 
+
+\newpage 
+\section{Preliminary proofs and configuration} 
+\label{Section_PrelimProofs_Config} 
+
+\subsection{Establishing the summatory function inversion identities} 
+
+Given the interpretation of the summatory functions over an arbitrary Dirichlet convolution 
+(and the vast number of such identities for special number theoretic functions -- \cf 
+\cite{CATALOG-INTDIRSERIES,CATALOG-LAMBERTSERIES}), it is not surprising that this formulation of the first theorem 
+may well provide many fruitful applications, indeed. In addition to those cited in the 
+compendia of the catalog reference, we have notable identities of the form: 
+$(f \ast 1)(n) = [q^n] \sum_{m \geq 1} f(m) q^m / (1-q^m)$, 
+$\sigma_k = \operatorname{Id}_k \ast 1$, $\operatorname{Id}_1 = \phi \ast \sigma_0$, 
+$\chi_{\operatorname{sq}} = \lambda \ast 1$ (see sections below), 
+$\operatorname{Id}_k = J_k \ast 1$, $\log = \Lambda \ast 1$, and of course 
+$2^{\omega} = \mu^2 \ast 1$. 
+The result in Theorem \ref{theorem_SummatoryFuncsOfDirCvls} is 
+natural and displays a quite beautiful form of symmetry between the 
+initial matrix terms, $$t_{x,j}(f) = \sum_{k=\floor{\frac{x}{j+1}}+1}^{\floor{\frac{x}{j}}} f(k),$$ and the 
+corresponding inverse matrix, $$t_{x,j}^{-1}(f) = \sum_{k=\floor{\frac{x}{j+1}}+1}^{\floor{\frac{x}{j}}} f^{-1}(k),$$ 
+as expressed by the duality of $f$ and its Dirichlet inverse function $f^{-1}$. Since the recurrence relations for the 
+summatory functions $G(x)$ arise naturally in applications where we have established bounds on sums of 
+Dirichlet convolutions of arithmetic functions, we will go ahead and prove it here before moving along to some 
+motivating examples of the use of this theorem. 
+
+\begin{proof}[Proof of Theorem \ref{theorem_SummatoryFuncsOfDirCvls}]
+Let $h,g$ be arithmetic functions where $g(1) \neq 1$ has a Dirichlet inverse. Denote the summatory functions of $h$ and $g$, 
+respectively, by $H(x) = \sum_{n \leq x} h(n)$ and $G(x) = \sum_{n \leq x} g(n)$. 
+We define $S_{g,h}(x)$ to be the summatory function of the Dirichlet convolution of $g$ with $h$: $g \ast h$. 
+Then we can easily see that the following expansions hold: 
+\begin{align*} 
+S_{g,h}(x) & := \sum_{n=1}^{x} \sum_{d|n} g(n) h(n/d) = \sum_{d=1}^x g(d) H\left(\floor{\frac{x}{d}}\right) \\ 
+     & = \sum_{i=1}^x \left[G\left(\floor{\frac{x}{i}}\right) - G\left(\floor{\frac{x}{i+1}}\right)\right] H(i). 
+\end{align*} 
+Thus we have an implicit statement of a recurrence relation for the summatory function $H$, weighted by $g$ and $G$, 
+whose non-homogeneous term is the summatory function, $S_{g,h}(x)$, of the Dirichlet convolutions $g \ast h$. 
+We form the matrix of coefficients associated with this system for $H(x)$, and proceed to invert it to express an 
+exact solution for this function over all $x \geq 1$. Let the ordinary (initial, non-inverse) matrix entries be denoted by 
+\[
+g_{x,j} := G\left(\floor{\frac{x}{j}}\right) - G\left(\floor{\frac{x}{j+1}}\right) \equiv G_{x,j} - G_{x,j+1}. 
+\]
+Then the matrix we must invert in this problem is lower triangular, with ones on its diagonals -- and hence is invertible. 
+Moreover, if we let $\hat{G} := (G_{x,j})$, then this matrix is expressable by an invertible shift operation as 
+\[
+(g_{x,j}) = \hat{G} (I - U^{T}); U = (\delta_{i,j+1}), (I - U^T)^{-1} = (\Iverson{j \leq i}). 
+\]
+It is a nice round fact that if we take successive differences of floor functions, we get non-zero behavior at divisors: 
+\[
+G\left(\floor{\frac{x}{j}}\right) - G\left(\floor{\frac{x-1}{j}}\right) = 
+     \begin{cases} 
+     g\left(\frac{x}{j}\right), & \text{ if $j | x$; } \\ 
+     0, & \text{ otherwise. } 
+     \end{cases}
+\]
+We use this property to invertibly shift the matrix $\hat{G}$, and then invert the result, to obtain a matrix involving the 
+Dirichlet inverse of $g$: 
+\begin{align*} 
+\left[(I-U^{T}) \hat{G}\right]^{-1} & = \left(g\left(\frac{x}{j}\right) \Iverson{j|x}\right)^{-1} = 
+     \left(g^{-1}\left(\frac{x}{j}\right) \Iverson{j|x}\right). 
+\end{align*} 
+Now we can express the inverse of the target matrix $(g_{x,j})$ in terms of these Dirichlet inverse functions 
+as follows: 
+\begin{align*} 
+(g_{x,j}) & = (I-U^{T})^{-1} \left(g\left(\frac{x}{j}\right) \Iverson{j|x}\right) (I-U^{T}) \\ 
+(g_{x,j})^{-1} & = (I-U^{T})^{-1} \left(g^{-1}\left(\frac{x}{j}\right) \Iverson{j|x}\right) (I-U^{T}) \\ 
+     & = \left(\sum_{k=1}^{\floor{\frac{x}{j}}} g^{-1}(k)\right) (I-U^{T}) \\ 
+     & = \left(\sum_{k=1}^{\floor{\frac{x}{j}}} g^{-1}(k) - \sum_{k=1}^{\floor{\frac{x}{j+1}}} g^{-1}(k)\right). 
+\end{align*} 
+Thus the summatory function $H$ is exactly expressed by the inverse vector product of the form 
+\begin{align*} 
+H(x) & = \sum_{k=1}^x g_{x,k}^{-1} \cdot S_{g,h}(k) \\ 
+     & = \sum_{k=1}^x \left(\sum_{j=\floor{\frac{x}{k+1}}+1}^{\floor{\frac{x}{k}}} g^{-1}(j)\right) \cdot S_{g,h}(k). 
+     \qedhere
+\end{align*} 
+\end{proof} 
+
+\subsection{Proving the crucial property from the conjecture over the squarefree integers} 
+
+\begin{prop}[A Divisor Sum Identity from the Exercises in Apostol] 
+\label{prop_AntiqueDivisorSumIdent} 
+Let $\chi_{\mathbb{P}}$ denote the characteristic function of the primes, 
+$\varepsilon(n) = \delta_{n,1}$ be the identity with respect to Dirichlet convolution, 
+and denote by $\omega(n)$ the additive function that counts the number of 
+distinct prime factors of $n$. 
+Then 
+$$\chi_{\mathbb{P}} + \varepsilon = (\omega + 1) \ast \mu.$$ 
+The summatory function of the LHS is $\widetilde{G}(x) = \pi(x)+1$.
+\end{prop}
+\begin{proof} 
+The the crux of the stated identity is to prove that for all $n \geq 1$, 
+$\chi_{\mathbb{P}}(n) = (\mu \ast \omega)(n)$ -- our claim. 
+We notice that the Mellin transform of $\pi(x)$ -- the summatory function of 
+$\chi_{\mathbb{P}}(n)$ -- at $-s$ is given by 
+\begin{align*} 
+s \cdot \int_1^{\infty} \frac{\pi(x)}{x^{s+1}} dx & = \sum_{n \geq 1} \frac{\nabla[\pi](n-1)}{n^s} \\ 
+     & = \sum_{n \geq 1} \frac{\chi_{\mathbb{P}}(n)}{n^s} = P(s). 
+\end{align*} 
+This is typical fodder which more generally relates the Mellin transform $\mathcal{M}[S_f](-s)$ to the 
+DGF of the sequence $f(n)$ as cited, for example, in \cite[\S 11]{APOSTOLANUMT}. Now we consider the 
+DGF of the right-hand-side function, $f(n) := (\mu \ast \omega)(n)$, as 
+\[
+D_f(s) = \frac{1}{\zeta(s)} \times \sum_{n \geq 1} \frac{\omega(n)}{n^s} = P(s).  
+\]
+Thus for any $\Re(s) > 1$, the DGFs of each side of the 
+claimed equation coincide. So by uniqueness of Dirichlet series, we see that in fact the claim 
+holds. To obtain the full result, we add to each side of this equation a term of 
+$\varepsilon(n) \equiv (\mu \ast 1)(n)$, and then factor the resulting convolution identity. 
+\end{proof} 
+
+\begin{prop}[Signage of Dirichlet inverses of positive and bounded arithmetic functions] 
+\label{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1} 
+Suppose that $f$ is an arithmetic function with $f(1) = 1$ and such that $f(n) > 0$ 
+for all $n \geq 2$. Then for all $n \geq 1$, 
+\[
+\operatorname{sgn}\left(f^{-1}(n)\right) = \lambda(n). 
+\]
+\end{prop} 
+\begin{proof} 
+We begin by using an identity for the 
+Dirichlet inverse of a general arithmetic function with $f(1) = 1$ proved in 
+\cite{MERCA-SCHMIDT-RAMJ,MOUSAVI-SCHMIDT-2019}: 
+\begin{align*} 
+f^{-1}(n) & = \sum_{j=1}^{\Omega(n)} \left[(f-\varepsilon)_{\ast_{2j}}(n) - 
+    (f-\varepsilon)_{\ast_{2j-1}}(n)\right] \\ 
+     & = \sum_{j=1}^{\Omega(n)} \sum_{r=0}^{j} \binom{j}{r} (-1)^{r} f_{\ast_r}(n) \varepsilon(n)^{j-r}. 
+\end{align*} 
+In the previous equations we have suppressed the long form of the multiple convolution expansions and 
+intend $f_{\ast_k}$ to denote the $k$-fold convolution of $f$ with itself. 
+
+We know that $f^{-1}(1) = \frac{1}{f(1)}$. For $n \geq 2$, the last equation only has non-zero terms 
+when $j-r = 0$. Thus for $n \geq 2$, we have that 
+\begin{align} 
+\label{eqn_fInv_GenCvlExpFormula_v3} 
+f^{-1}(n) & = \sum_{j=1}^{\Omega(n)} (-1)^{j} f_{\ast_j}(n). 
+\end{align} 
+We handle the remainder of the proof in cases using the result that 
+\[
+f_{\ast_{m+1}}(n) \geq f_{\ast_{m}}(n), \forall n, m \geq 1, 
+\]
+as follows: 
+\begin{itemize} 
+     \item Suppose that $\Omega(n)$ is even. Then 
+     \[
+     \sum_{j=1}^{\frac{\Omega(n)}{2}} TODO. 
+     \]
+     \item Suppose that $\Omega(n)$ is odd. Then 
+     \[
+     TODO. 
+     \]
+\end{itemize} 
+In either case, we obtain the signedness on the Dirichlet inverse functions that we have 
+stated in the proposition. 
+\end{proof} 
+
+\subsection{Other facts and listings of results we will need in our proofs} 
+
+\begin{theorem}[Mertens theorem]
+\label{theorem_Mertens_theorem}  
+\[
+P_1(x) := \sum_{p \leq x} \frac{1}{p} = \log\log x + B + o\left(\frac{1}{\log x}\right), 
+\]
+where $B \approx 0.2614972128476427837554$ is an absolute constant. We actually can bound the 
+left-hand-side more explicitly by 
+\[
+P_1(x) = \log\log x + B + O\left(e^{-(\log x)^{\frac{1}{14}}}\right). 
+\]
+\end{theorem} 
+
+\begin{cor}
+\label{lemma_Gz_productTermV2} 
+We have that for sufficiently large $x \gg 1$ 
+\[
+\prod_{p \leq x} \left(1 - \frac{1}{p}\right) = \frac{e^{-B}}{\log x}\left[ 
+     1 - \frac{(\log x)^{1/14}}{B} + o\left((\log x)^{1/14}\right)\right]. 
+\]
+Hence, for $1 < |z| < R < 2$ we obtain that 
+\[
+\prod_{p \leq x} \left(1 - \frac{1}{p}\right)^{z} = \frac{e^{-Bz}}{(\log x)^{z}} \left[ 
+     1 - \frac{z}{B} (\log x)^{\frac{1}{14}} + o_z\left(z^2 \cdot (\log x)^{\frac{1}{14}}\right)\right]. 
+\]
+\end{cor} 
+\begin{proof} 
+By taking logarithms and using Mertens theorem above, we obtain that 
+\begin{align*} 
+\log \prod_{p \leq x} \left(1-\frac{1}{p}\right) & = \sum_{p \leq x} \log\left(1-\frac{1}{p}\right) \\ 
+     & \approx -\log\log x - B +O\left(e^{-(\log x)^{1/14}}\right). 
+\end{align*} 
+Hence, the first formula follows by expanding out an alternating series for the exponential 
+function. The second formula follows for $z \notin \mathbb{Z}$ by an application of the 
+generalized binomial series given by 
+\[
+\log \prod_{p \leq x} \left(1-\frac{1}{p}\right)^{z} \approx \frac{e^{-Bz}}{(\log x)^{z}} \times 
+     \sum_{r \geq 0} \binom{z}{r} \frac{(-1)^r}{B^r} (\log x)^{\frac{r}{14}}, 
+\]
+where for $1 < |z| < 2$, we obtain the next result stated above with 
+$\binom{z}{1} = z$ and $\binom{z}{2} = z(z-1) / 2$. 
+\end{proof} 
+
+\begin{facts}[Exponential Integrals and Incomplete Gamma Functions] 
+\label{facts_ExpIntIncGammaFuncs} 
+\begin{subequations}
+The following two variants of the \emph{exponential integral function} are defined by 
+\begin{align*} 
+\operatorname{Ei}(x) & := \int_{-x}^{\infty} \frac{e^{-t}}{t} dt, \\ 
+E_1(z) & := \int_1^{\infty} \frac{e^{-tz}}{t} dt, \Re(z) \geq 0, 
+\end{align*} 
+where $\operatorname{Ei}(-kz) = -E_1(kz)$. We have the following inequalities providing 
+quasi-polynomial upper and lower bounds on $E_1(z)$: 
+\begin{equation}
+1-\frac{3}{4} z \leq E_1(z) - \gamma - \log z \leq 1-\frac{3}{4} z + \frac{11}{36} z^2. 
+\end{equation}
+A related function is the (uppper) \emph{incomplete gamma function} defined by 
+\[
+\Gamma(s, x) = \int_{x}^{\infty} t^{s-1} e^{-t} dt, \Re(s) > 0. 
+\]
+We have the following properties of $\Gamma(s, x)$: 
+\begin{align} 
+\Gamma(s, x) & = (s-1)! \cdot e^{-x} \times \sum_{k=0}^{s-1} \frac{x^k}{k!}, s \in \mathbb{Z}^{+}, \\ 
+\Gamma(s+1, 1) & = e^{-1} \Floor{s!}{e}, s \in \mathbb{Z}^{+}, \\ 
+\Gamma(s, x) & \sim x^{s-1} \cdot e^{-x}, |x| \rightarrow +\infty. 
+\end{align}
+\end{subequations}
+\end{facts} 
+
+\newpage
+\section{Precisely defining, enumerating, and bounding the 
+         Dirichlet inverse functions, $g^{-1}(n) := (\omega+1)^{-1}(n)$} 
+\label{Section_InvFunc_PreciseExpsAndAsymptotics} 
+
+\subsection{Developing an improved conjecture: 
+            Proving precise bounds on the inverse functions $g^{-1}(n)$ for all $n$} 
+
+Conjecture \ref{lemma_gInv_MxExample} is not the most accurate fomulation of the limiting behavior of the 
+Dirichlet inverse functions $g^{-1}(n)$ that we can prove. 
+We need to come up with better bounds to plug back into the asymptotic analysis we obtain in the 
+next sections. It turns out that these results are related to symmetric functions of the exponents in the 
+prime factorizations of each $n \leq x$. The idea is that by having information about $g^{-1}(n)$ 
+in terms of its prime factorization exponents for $n \leq x$, we should be able to extrapolate 
+what we need which is information about the average behavior of the summatory functions, $G^{-1}(x)$, 
+from the proofs above. 
+
+With this in mind, we define the following sequence for integers $n \geq 1, k \geq 0$: 
+\begin{align} 
+C_k(n) := \begin{cases} 
+     \varepsilon(n), & \text{ if $k = 0$; } \\ 
+     \sum\limits_{d|n} \omega(d) C_{k-1}(n/d), & \text{ if $k \geq 1$. } 
+     \end{cases} 
+\end{align} 
+We will illustrate by example the first few cases of these functions for small $k$ after we prove 
+the next lemma. 
+The sequence of important semi-diagonals of these functions begins as 
+\cite[\seqnum{A008480}]{OEIS} 
+\[
+\{\lambda(n) \cdot C_{\Omega(n)}(n) \}_{n \geq 1} \mapsto \{
+     1, -1, -1, 1, -1, 2, -1, -1, 1, 2, -1, -3, -1, 2, 2, 1, -1, -3, -1, \
+     -3, 2, 2, -1, 4, 1, 2, \ldots \}. 
+\]
+
+\begin{lemma}[An exact formula for $g^{-1}(n)$] 
+\label{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} 
+For all $n \geq 1$, we have that 
+\[
+g^{-1}(n) = \sum_{d|n} \mu(n/d) \lambda(d) C_{\Omega(d)}(d). 
+\]
+\end{lemma}
+\begin{proof} 
+We first write out the standard recurrence relation for the Dirichlet inverse of 
+$\omega+1$ as 
+\begin{align*} 
+g^{-1}(n) & = - \sum_{\substack{d|n \\ d>1}} (\omega(d) + 1) f^{-1}(n/d) && \implies \\ 
+     (g^{-1} \ast 1)(n) & = -(\omega \ast g^{-1})(n). 
+\end{align*} 
+Now by repeatedly expanding the right-hand-side, and removing corner cases in the nested sums since 
+$\omega(1) = 0$ by convention, we find that 
+\[
+(g^{-1} \ast 1)(n) = (-1)^{\Omega(n)} C_{\Omega(n)}(n) = \lambda(n) C_{\Omega(n)}(n). 
+\]
+The statement follows by M\"obius inversion applied to each side of the last equation. 
+\end{proof}
+
+Notice that this approach, while it definitely has its complications due to the necessary step of 
+M\"obius inversion, is somewhat simpler that trying to form the Dirichlet inverse of the sum of 
+$\omega+1$ directly, though this is also a possible approach. We decided against that method as a 
+primary motivator because of the need to estimate convolutions of $\omega$ with $m$-fold convolutions 
+of $1$, e.g., the generalized Dirichlet divisor problem -- which is known to be hard also. 
+We are already going to need to evaluate iterated convolutions of $\omega(n)$ with itself, so we might 
+as well sidestep the need to understand the Dirichlet divisor function complications in that form. 
+
+\begin{example}[Special cases of the functions $C_k(n)$ for small $k$]
+We cite the following special cases which should be easy enough to see on paper: 
+\begin{align*} 
+C_0(n) & = \delta_{n,1} \\ 
+C_1(n) & = \omega(n) \\ 
+C_2(n) & = \sigma_0(n) \times \sum_{p|n} \frac{\nu_p(n)}{\nu_p(n)+1} - \gcd\left(\Omega(n), \omega(n)\right). 
+\end{align*} 
+We also can see a recurrence relation between successive $C_k(n)$ values over $k$ of the form 
+\begin{equation}
+\label{eqn_Ckn_recFormula_v1} 
+C_k(n) = \sum_{p|n} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}}} \sum_{i=1}^{\nu_p(n)} C_{k-1}\left(d \cdot p^i\right). 
+\end{equation}
+Thus we can work out further cases of the $C_k(n)$ for a while until we are able to understand the 
+general trends of its asymptotic behaviors. 
+In particular, we can compute the main term of $C_3(n)$ as follows where we use the notation that 
+$p,q$ are prime indices: 
+\begin{align*} 
+C_3(n) & \sim \sum_{p|n} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}}} \sum_{i=1}^{\nu_p(n)} \sum_{q|dp^i} 
+     \frac{\nu_q(dp^i)}{\nu_q(dp^i)+1} \sigma_0(d) (i+1) \\ 
+     & = \sum_{p|n} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}}} \sum_{i=1}^{\nu_p(n)} \left[ 
+     \sum_{q|d} \frac{\nu_q(d)}{\nu_q(d)+1} \sigma_0(d) (i+1) + \sum_{j=1}^{i} 
+     \frac{j}{(j+1)} \sigma_0(d) (i+1)
+     \right] \\ 
+     & = \sum_{p|n} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}}} \sum_{q|d} \sigma_0(d) \left[ 
+     \frac{\nu_p(n)(\nu_p(n)+3)}{2} \frac{\nu_q(d)}{\nu_q(d)+1} + 
+     \frac{1}{12}(\nu_p(n)+1)(\nu_p(n)+2)\left(4\nu_p(n)+9-6 H_{\nu_p(n)+2}^{(1)}\right) 
+     \right]. 
+\end{align*} 
+We will break the two key component sums into separate calculations. First, we compute that\footnote{ 
+     Here, the arithmetic function $\sigma_0 \ast 1$ is multiplicative. It's value at prime powers can be 
+     computed as 
+     \[
+     (\sigma_0 \ast 1)(p^{\alpha}) = \sum_{i=0}^{\alpha} (i+1) = \frac{(\alpha+1)(\alpha+2)}{2}. 
+     \]
+}
+\begin{align*} 
+C_{3,1}(n) & = \sum_{p|n} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}}} 
+     \frac{\nu_p(n)(\nu_p(n)+3)}{2} \times \sum_{q|d} \frac{\nu_q(d)}{\nu_q(d)+1} \sigma_0(d) \\ 
+     & = \sum_{\substack{p,q|n \\ p \neq q}} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}q^{\nu_q(n)}}} 
+     \frac{\nu_p(n)(\nu_p(n)+3)}{2} \times \sum_{i=1}^{\nu_q(n)} \frac{\nu_q(dq^i)}{\nu_q(dq^i)+1} 
+     \sigma_0(dq^i) \\ 
+     & = \sum_{\substack{p,q|n \\ p \neq q}} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}q^{\nu_q(n)}}} 
+     \frac{\nu_p(n)(\nu_p(n)+3)\nu_q(n)(\nu_q(n)+3)}{4}\sigma_0(d) \\ 
+     & = (\sigma_0 \ast 1)(n) \times \sum_{\substack{p,q|n \\ p \neq q}} 
+     \frac{\nu_p(n)(\nu_p(n)+3)\nu_q(n)(\nu_q(n)+3)}{(\nu_p(n)+1)(\nu_p(n)+2)(\nu_q(n)+1)(\nu_q(n)+2)}. 
+\end{align*} 
+Next, we have that 
+\begin{align*} 
+C_{3,2}(n) & = \sum_{p|n} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}}} \sum_{q|d} 
+     \frac{1}{12}(\nu_p(n)+1)(\nu_p(n)+2)\left(4\nu_p(n)+9-6 H_{\nu_p(n)+2}^{(1)}\right) \sigma_0(d) \\ 
+     & = \sum_{\substack{p,q|n \\ p \neq q}} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}q^{\nu_q(n)}}} 
+     \sum_{i=1}^{\nu_q(n)} 
+     \frac{1}{12}(\nu_p(n)+1)(\nu_p(n)+2)\left(4\nu_p(n)+9-6 H_{\nu_p(n)+2}^{(1)}\right) \sigma_0(d) (i+1) \\ 
+     & = (\sigma_0 \ast 1)(n) \times \sum_{\substack{p,q|n \\ p \neq q}} 
+     \frac{1}{6}\frac{\nu_q(n) (\nu_q(n) + 3)}{ 
+     (\nu_q(n)+1)(\nu_q(n)+2)} \left(4\nu_p(n)+9-6 H_{\nu_p(n)+2}^{(1)}\right). 
+\end{align*} 
+Now to roughly bound the error term, e.g., the GCD of prime omega functions from the exact formula for $C_3(n)$, 
+we observe that the divisor function has average order of the form: 
+\[
+d(n) \sim \log n + (2\gamma-1) + O\left(\frac{1}{\sqrt{n}}\right). 
+\] 
+Then using that $\omega(n), \Omega(n) \sim \log\log n$, as discussed in the next remarks, we bound the 
+error as 
+\begin{align*} 
+C_{3,3}(n) & = -\sum_{p|n} \sum_{d\rvert\frac{n}{p^{\nu_p(n)}}} \sum_{i=1}^{\nu_p(n)} 
+     \gcd\left(\Omega(d) + i, \omega(d) + 1\right) \\ 
+     & = \sum_{p|n} \frac{\nu_p(n)}{\nu_p(n) + 1} O\left(\sigma_0(n) \cdot \log\log n\right) \\ 
+     & = O\left(\pi(n) \cdot \log n \cdot \log\log n\right) \\ 
+     & = O\left(n \cdot \log\log n\right). 
+\end{align*} 
+In total, we obtain that 
+\begin{align} 
+\label{eqn_ExactFormula_Ck3n} 
+C_3(n) & = (\sigma_0 \ast 1)(n) \times \sum_{\substack{p,q|n \\ p \neq q}} 
+     \frac{1}{6}\frac{\nu_q(n) (\nu_q(n) + 3)}{ 
+     (\nu_q(n)+1)(\nu_q(n)+2)} \left(4\nu_p(n)+9-6 H_{\nu_p(n)+2}^{(1)}\right)) \\ 
+\notag 
+     & \phantom{= \quad\ } + 
+     \sigma_0(n) \times \sum_{\substack{p,q|n \\ q \neq p}} 
+     \frac{2^{\nu_q(n)} \nu_p(n) (\nu_p(n) + 3)}{4 (\nu_p(n) + 1) (\nu_q(n) + 1)} \\ 
+\notag
+     & \phantom{= \quad\ } + 
+     O\left(n \cdot \log\log n\right). 
+\end{align} 
+For the next cases, we would use similar techniques. The key is to compute enough small cases that we can see 
+the dominant asymptotic terms in these expansions. We will expand more on this below. 
+\end{example}
+
+\begin{remark}[Recursive growth of the functions $C_k(n)$]
+We note that the average order of $\Omega(n) \sim \log\log n$, so that for large $x \gg 1$ tending to 
+infinity, we can expect (on average) that for $p|n$, $1 \leq \nu_p(n)$ (for large $p|x, p \sim \frac{x}{\log x}$) 
+and $\nu_p(n) \approx \log\log n$. However, if $x$ is primorial, we can have 
+$\Omega(x) \sim \frac{\log x}{\log\log x}$. There is, however, a duality with the size of $\Omega(x)$ and the 
+rate of growth of the $\nu_p(x)$ exponents. That is to say that on average, 
+even though $\nu_p(x) \sim \log\log n$ for most $p|x$, if $\Omega(x) = m \approx O(1)$ is small, then 
+\[
+\nu_p(x) \approx \log_{\sqrt[m]{\frac{x}{\log x}}}(x) = \frac{m \log x}{\log\left(\frac{x}{\log x}\right)}. 
+\]
+Since we will be essentially averaging the inverse functions, $g^{-1}(n)$, via their summatory functions 
+over the range $n \leq x$ for $x$ large, we tend not to worry about bounding anything but by the 
+average case, which wins when we sum and tend to infinity. 
+Given these observations, we can use the function $C_3(n)$ we just painstakingly computed exactly 
+as an asymptotic benchmark to build further approximations. In particular, the dominant order terms in 
+$C_3(n)$ are given by 
+\[
+C_3(n) \sim \frac{(\sigma_0 \ast 1)(n) n^2}{\log^2 n} - 
+     \frac{(\sigma_0 \ast 1)(n) n^2}{\log n} + 
+     O\left(n \cdot \log\log n\right). 
+\]
+We will leave the terms involving the divisor function $\sigma_0(n)$ and convolutions 
+involving it unevaluated because of how much their growth can fluctuate depending on prime 
+factorizations for now. 
+\end{remark} 
+
+\begin{summary}[Asymptotics of the $C_k(n)$]
+We have the following asymptotic relations relations for the growth of small cases of 
+the functions $C_k(n)$: 
+\begin{align*} 
+C_1(n) & \sim \log\log n \\ 
+C_2(n) & \sim \frac{\sigma_0(n) n}{\log n} + O(\log\log n) \\ 
+C_3(n) & \sim \frac{(\sigma_0 \ast 1)(n) n^2}{\log^2 n} - 
+     \frac{(\sigma_0 \ast 1)(n) n^2}{\log n} + 
+     O\left(n \cdot \log\log n\right). 
+\end{align*} 
+Theorem \ref{theorem_Ckn_GeneralAsymptoticsForms} stated below 
+makes precise what these formulas suggest about the growth rates of 
+$C_k(n)$. 
+\end{summary} 
+
+\begin{remark}[Symmetry in the prime factorizations of the inverse functions] 
+Now that we can see a general order pattern to the growth of the components of 
+the inverse function constructions, we should discuss periodicity of both these 
+functions, $C_{\Omega(n)}(n)$, and then the resulting inverse function formulas  
+approximating $g^{-1}(n)$. Namely, as the exact formula in terms of the prime 
+factorizations of $n$ derived in \eqref{eqn_ExactFormula_Ck3n} shows, the values of 
+these functions are symmetric in the prime factorizations of $n$. 
+
+The approximations 
+we made in the last few results and remarks merely allow us to formulate what the 
+behavior should be for large $n \gg 1$. In fact, if two integers $n_1, n_2$ have the 
+same prime exponent pattern, the values of both $C_{\Omega(n)}(n)$ and 
+$g^{-1}(n)$ are (up to signage) identical regardless of the primes these exponent 
+patterns exponentiate! We may be able to make use of this fact in avoiding duplication, 
+or counting the number of identical values, as we did implicitly when we used the 
+functions $\widehat{\pi}_k(n)$ in the previous subsection. 
+\end{remark}
+
+\begin{proof}[Proof of Theorem \ref{theorem_Ckn_GeneralAsymptoticsForms}] 
+We showed how to compute the formulas for the base cases in the preceeding examples 
+discussed above. We can also see that $C_3(n)$ satsfies the target formula specification. 
+Let's proceed by using induction with the recurrence formula from 
+\eqref{eqn_Ckn_recFormula_v1} 
+relating $C_k(n)$ to $C_{k-1}(n)$ for all $k \geq 1$. The strategy is to 
+precisely evaluate the sums recursively, and drop the messy troblesome lower order 
+terms that contribute to the nuances of the full formulas, along the way. What results is 
+precise for sufficiently large $n \gg 1$. 
+We will compute the main term formula first, then complete the proof 
+by bounding the easier error term calculations. 
+
+Suppose that $k \geq 4$. By the recurrence formula for $C_k(n)$, we have that 
+\begin{align*} 
+C_k(n) & \sum_{p|n} \sum_{d|np^{-\nu_p(n)}} \sum_{i=1}^{\nu_p(n)} -\frac{(dp^i)^{k-1}}{(\log(dp^i))^{k-1}} 
+     \binom{i+k-1}{k-1} (\sigma_0 \ast \mathds{1}_{\ast_{k-2}})(d). 
+\end{align*} 
+Now to handle the inner sum, we bound by setting $\alpha \equiv \nu_p(n)$ and 
+invoking \emph{Mathematica} in the form of 
+\begin{align*} 
+\operatorname{IC}_k(n) & = \sum_{i=1}^{\alpha} -\frac{(dp^i)^{k-1}}{(\log(dp^i))^{k-1}} 
+     \binom{i+k-1}{k-1} \\ 
+     & \approx \int -\frac{(dp^{\alpha})^{k-1}}{(\log(dp^{\alpha}))^{k-1}} 
+     \binom{\alpha+k-1}{k-1} \\ 
+     & \sim \frac{1}{(k-1)! \log^k p} \left( 
+     \operatorname{Ei}((k-2) \log(dp^{\alpha})) \left[
+     \log^{k-1}(d) - (k-1)! \log^{k-1}(p)\right] 
+     \right) \\ 
+     & \phantom{\approx\qquad\ } - 
+     \frac{1}{(k-2) (k-1)! \log^k p} \left( 
+     \log^{k-2}(d) + \alpha^{k-2} \log^{k-2}(p) 
+     \right). 
+\end{align*} 
+We now simplify somewhat again by setting
+$$p \mapsto \left(\frac{n}{e}\right)^{\frac{1}{\log\log n}}, \alpha \mapsto \log\log n, 
+  \log p \mapsto \frac{\log n}{\log\log n}.$$ 
+Also, since $p \gg_{n} d$, we obtain the dominant asymptotic growth terms of 
+\begin{align*} 
+\operatorname{IC}_k(n) & \sim \frac{\alpha^{k-2}}{(k-2) (k-1)! \log^2 p} \\ 
+     & \approx \frac{(\log\log n)^k}{(k-2) (k-1)! \log^2 n}. 
+\end{align*} 
+Now, as we did in the previous example work, we handle the sums by pulling out a factor of the inner 
+divisor sum depending only on $n$ (and $k$): 
+\begin{align*} 
+C_k(n) & = \sum_{p|n} (\sigma_0 \ast \mathds{1}_{\ast_{k-1}})(n) 
+     \binom{p^{\nu_p(n)} + k}{k}^{-1} \times \operatorname{IC}_k(n) \\ 
+     & = (\sigma_0 \ast \mathds{1}_{\ast_{k-1}})(n) 
+     \binom{p^{\nu_p(n)} + k}{k}^{-1} \cdot \pi(n) \times \operatorname{IC}_k(n)
+\end{align*} 
+Combining with the remaining terms we get by induction, we have proved our target bound holds 
+for $C_k(n)$. 
+
+To bound the error terms, again suppose inductively that $k \geq 4$. We compute the 
+big-O bounds as follows letting $\alpha \equiv \nu_p(n)$: 
+\begin{align*} 
+\operatorname{ET}_k(n) & = 
+     \sum_{i=1}^{\nu_p(n)} n^{k-2} \cdot \frac{(\log\log n)^{k-2}}{(\log n)^{k-2}} \\ 
+     & \approx 
+     \int (dp^{\alpha})^{k-2} \log\log(dp^{\alpha}) d\alpha \\ 
+     & = -\frac{\operatorname{Ei}((k-2) \log(dp^{\alpha}))}{(k-2) \log p} + 
+     \frac{d^{k-2} p^{(k-2)\alpha}}{(k-2) \log p} \log(dp^{\alpha}) \\ 
+     & \sim \frac{d^{k-2} p^{(k-2)\alpha}}{(k-2) \log p} \log(dp^{\alpha}). 
+\end{align*} 
+In the last expansion, we have dropped the exponential integral terms since they provide at most 
+polynomial powers of the logarithm of their inputs. 
+To evaluate the outer divisor sum from the recurrence relation for $C_k(n)$, we will require the 
+followiing bound providing an average order on the \emph{generalied sum-of-divisors functions}, 
+$\sigma_{\alpha}(n) := \sum_{d|n} d^{\alpha}$. In particular, we have that for integers $\alpha \geq 2$ 
+\cite[\S 27.11]{NISTHB}: 
+\[
+\sigma_{\alpha}(n) \sim \frac{\zeta(\alpha+1)}{\alpha+1} x^{\alpha} + O(x^{\alpha-1}). 
+\]
+Approximating the number of terms in the prime divisor sum by $\pi(x) \sim \frac{x}{\log x}$, 
+we thus obtain 
+\begin{align*} 
+\operatorname{ET}_k(n) & \approx \frac{(\log\log n)^{k-1} e^{k-2}}{(k-1)(k-2)} 
+     x^{(k-2)\left[1-\frac{1}{\log\log x}\right]+1+\log\log x} \zeta(k-1). 
+\end{align*} 
+So up to what is effectively constant in $k$, and dropping lower order terms for a slightly 
+suboptimal, but still sufficient for our purposes, error bound formula, 
+we have completed the proof by induction. 
+\end{proof} 
+
+\begin{cor}[Computing the inverse functions] 
+\label{cor_ComputingInvFuncs_InPractice_DivSumgInvAst1_v1} 
+In contrast to the complicated formulation given by 
+Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1}, we have that 
+\[
+g^{-1}(n) \sim \lambda(n) \times \sum_{d|n} C_{\Omega(d)}(d). 
+\]
+This is to say that for all $n \geq 2$ 
+\[
+\left\lvert 1 - \frac{\lambda(n) \times \sum_{d|n} C_{\Omega(d)}(d)}{g^{-1}(n)} \right\rvert = 
+     o\left(\sum_{d|n} C_{\Omega(d)}(d)\right). 
+\]
+Moreover, we can bound the error terms as 
+\[
+\left\lvert \frac{\lambda(n) \times \sum_{d|n} C_{\Omega(d)}(d)}{g^{-1}(n)} \right\rvert = 
+     O\left(\frac{(\log\log n)^2}{\log n} \cdot 
+     \frac{\Gamma(\log\log n)}{ 
+     n^{\log\log n} \cdot (\log n)^{\log\log n}}\right) 
+     \xrightarrow{n \rightarrow \infty} 0. 
+\]
+\end{cor} 
+\begin{proof} 
+Using Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1}, it suffices to show that 
+the squarefree divisors $d|n$ such that $\operatorname{sgn}(\mu(d) \lambda(n/d)) = -1$ 
+have an order of magnitude less adbundancy than the corresponding cases of positive sign on 
+the terms in the divisor sum from the lemma. Let $n$ have $m_1$ prime factors $p_1$ such that 
+$v_{p_1}(n) = 1$, $m_2$ such that $v_{p_2}(n) = 2$, and the remaining 
+$m_3 := \Omega(n) - m_1 - 2m_2$ prime factors of higher-order exponentation. 
+We have a few cases to consider after re-writing the sum from the lemma in the following form: 
+\[
+g^{-1}(n) = \lambda(n) C_{\Omega(n)}(n) + \sum_{i=1}^{\omega(n)} \left\{
+     \sum_{\substack{d|n \\ \omega(d) = \Omega(d) = i \\ \#\{p|d:\nu_p(d) = 1\} = k_1 \\ 
+     \#\{p|d:\nu_p(d) = 2\} = k_2 \\ \#\{p|d:\nu_p(d) \geq 3\} = k_3}} 
+     \mu(d) \lambda(n/d) C_{\Omega(n/d)}(n/d) \right\}. 
+\]
+We obtain the following cases of the squarefree divisors contributing to the signage on the 
+terms in the above sum: 
+\begin{itemize} 
+\item The sign of $\mu(d)$ is $(-1)^{i} = (-1)^{k_1+k_2+k_3}$; 
+\item If $m_3 < \#\{p|n: \nu_p(n) \geq 3\}$, then $\lambda(n/d) = 1$ (since $\mu(n/d) = 0$); 
+\item Given $(k_1, k_2, k_3)$ as above, since $\lambda(n) = (-1)^{\Omega(n)}$, we have that 
+      $\mu(d) \cdot \lambda(n/d) = (-1)^{i-k_1-k_2} \lambda(n)$. 
+\end{itemize} 
+Thus we define the following sums, parameterized in the $(m_1,m_2,m_3; n)$, which corresponds to a 
+change in expected parity transitioning from the M\"obius inversion sum from 
+Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} to the 
+sum approximating $g^{-1}(n)$ defined at the start of this result: 
+\begin{align*} 
+\widetilde{S}_{\operatorname{odd}}(m_1, m_2, m_3; n) & := 
+     \sum_{i=1}^{\omega(n)/2} \sum_{k_1=0}^{\Floor{i}{2}} \sum_{k_2=0}^{\Floor{i}{2}-k_1} \left[
+     \binom{m_1}{2k_1+1} \binom{2m_2}{2k_2+1} + \binom{m_1}{2k_1} \binom{2m_2}{2k_2}
+     \right] \Iverson{i-k_1-k_2 = k_3 \equiv m_3} \\ 
+\widetilde{S}_{\operatorname{even}}(m_1, m_2, m_3; n) & := 
+     \sum_{i=1}^{\omega(n)/2} \sum_{k_1=0}^{\Floor{i}{2}} \sum_{k_2=0}^{\Floor{i}{2}-k_1} \left[
+     \binom{m_1}{2k_1} \binom{2m_2}{2k_2+1} + \binom{m_1}{2k_1+1} \binom{2m_2}{2k_2}
+     \right] \Iverson{i-k_1-k_2 = k_3 \equiv m_3}. 
+\end{align*} 
+\textit{Part I (Lower bounds on the inner sums of the count functions). } 
+We claim that 
+\begin{align}
+\label{eqn_SoddSeven_lower_bounds_v1} 
+\widetilde{S}_{\operatorname{odd}}(m_1, m_2, m_3; n) & \gg 
+     \binom{m_1}{i+1} + \binom{m_1}{\frac{i}{2}} \binom{2m_2-1}{\frac{i}{2}+1} \\ 
+\notag 
+\widetilde{S}_{\operatorname{even}}(m_1, m_2, m_3; n) & \gg 
+     \binom{m_1}{i+1} + \binom{m_1}{\frac{i}{2}-1} \binom{2m_2}{\frac{i}{2}+1}. 
+\end{align} 
+To prove \eqref{eqn_SoddSeven_lower_bounds_v1} we have to provide a straightforward bound that 
+represents the maximums of the terms in $m_1,m_2$. In particular, observe that for 
+\begin{align*} 
+\widetilde{S}_{\operatorname{odd}}(m_1, m_2; u) & = 
+     \sum_{k_1=0}^{u} \sum_{k_2=0}^{u-k_1} \left[\binom{m_1}{2k_1} \binom{2m_2}{2k_2+1} + 
+     \binom{m_1}{2k_1+1} \binom{2m_2}{2k_2}\right] \\ 
+\widetilde{S}_{\operatorname{even}}(m_1, m_2; u) & = 
+     \sum_{k_1=0}^{u} \sum_{k_2=0}^{u-k_1} \left[\binom{m_1}{2k_1+1} \binom{2m_2}{2k_2+1} + 
+     \binom{m_1}{2k_1} \binom{2m_2}{2k_2}\right], 
+\end{align*} 
+we have that 
+\begin{align*} 
+\widetilde{S}_{\operatorname{odd}}(m_1, m_2; u) & \succsim \binom{m_1}{2u+1} + 
+     \max_{1 \leq k_1 \leq u} \binom{m_1}{2k_1+1} \binom{2m_2}{2u+1-2k_1} \\ 
+     & = \binom{m_1}{2u+1} + \binom{m_1}{2k_1+1} \binom{2m_2}{2u+1-2k_1} \Biggr\rvert_{k_1=\frac{u}{2}} \\ 
+     & =  \binom{m_1}{2u+1} + \binom{m_1}{u+1} \binom{2m_2}{u+1} \\ 
+\widetilde{S}_{\operatorname{even}}(m_1, m_2; u) & \succsim \binom{m_1}{2u+1} + 
+     \max_{1 \leq k_1 \leq u} \binom{m_1}{2k_1} \binom{2m_2}{2u+1-2k_1} \\ 
+     & = \binom{m_1}{2u+1} + \binom{m_1}{u-1} \binom{2m_2}{u+1}.  
+\end{align*} 
+The lower bounds in \eqref{eqn_SoddSeven_lower_bounds_v1} then follow by setting 
+$u \equiv \Floor{i}{2}$. \\ 
+\textit{Part II (Bounding $m_1,m_2,m_3$ and effective $(i, k_1, k_2)$ contributing to the count). } 
+We thus have to determine the asymptotic growth rate of 
+$\widetilde{S}_{\operatorname{odd}}(m_1, m_2, m_3; n) + \widetilde{S}_{\operatorname{even}}(m_1, m_2, m_3; n)$, 
+and show that it is of comparitively small order. First, we bound the count of non-zero $m_3$ for 
+$n \leq x$ from below. 
+For the cases where we expect differences in 
+signage, it's the last Iverson convention term that kills the order of growth, e.g., we expect differences 
+when the parameter $m_3$ is larger than the usual configuration. 
+We know that 
+\[
+\pi_k(x) \sim \frac{x}{\log x} \frac{(\log\log x)^{k-1}}{(k-1)!}. 
+\]
+Using the formula for $\pi_k(x)$, we can count the average orders of $m_1,m_2$ as 
+\begin{align*}
+N_{m_1}(x) & \approx \frac{1}{x} \#\{n \leq x: \omega(n) = 1\} \sim \frac{\log\log x}{\log x} \\ 
+N_{m_2}(x) & \approx \frac{1}{x} \#\{n \leq x: \omega(n) = 2\} \sim \frac{(\log\log x)^2}{\log x}. 
+\end{align*} 
+Additionally, in Corollary \ref{cor_BoundsOnGz_FromMVBook_initial_stmt_v1}, 
+we proved a lower bound on $\widehat{\pi}_k(x)$. 
+When we have parameters with respect to some $n \geq 1$ 
+such that $m_3 > 0$, it must be the case that 
+\[
+\Omega(n) - \omega(n) > \begin{cases} 
+     0, & \text{ if $\omega(n) \geq 2$; } \\ 
+     1, & \text{ if $\omega(n) = 1$. } 
+     \end{cases}
+\]
+To count the number of cases $n \leq x$ where this happens, we form the sums 
+\begin{align*} 
+N_{m_3}(x) & \gg \pi_1(x) \times \sum_{k=3}^{\frac{3}{2} \log\log x} \widehat{\pi}_k(x) + 
+     \sum_{k=2}^{\frac{3}{2} \log\log x} \sum_{j=k+1}^{\frac{3}{2} \log\log x} 
+     \pi_k(x) \widehat{\pi}_j(x) \\ 
+     & \succsim \frac{Ae}{B} \frac{x}{\log^{\frac{13}{14}}(x)} + 
+     \sum_{k=2}^{\log\log x} \pi_k(x) \left[ 
+     \frac{Ae}{B} \log^{\frac{1}{14}}(x) 
+     \right] \\ 
+     & \succsim \frac{Ae}{B} \frac{x}{\log^{\frac{13}{14}}(x)} + 
+     \frac{Ae \sqrt{2}}{2 \sqrt{\pi} B} \frac{x}{\log^{\frac{13}{14}}(x) \sqrt{\log\log x}}. 
+\end{align*} 
+Now in practice, we are not summing up $n \leq x$, but rather $n \leq \log\log x$. So the 
+above function evaluates to 
+\[
+N_{m_3}(\log\log x) \gg \frac{\log\log x}{(\log\log\log x)^{13/14}} \gg 
+     \frac{\log\log x}{\log\log\log x}. 
+\]
+Next, we go about solving the subproblem of finding when $i-k_1-k_2 = m_3$. First, we find a lower 
+solution index on $i$ using asymptotics for the \emph{Lambert $W$-function}, 
+$W_0(x) = \log x - \log\log x + o(1)$: 
+\begin{align*} 
+\frac{i}{2} = \frac{\log\log x}{\log\log\log x} & \iff \log\log x \succsim \frac{i}{2}\left( 
+     \log i + \log\log i\right) \\ 
+     & \iff \frac{i}{2} \sim \frac{\log\log x}{\log\log\log x}. 
+\end{align*} 
+Now since $2 \leq k_1+k_2 \leq i/2$, when $x$ is large, we actually obtain a number of 
+soultions on the order of 
+\[
+\frac{\log\log x}{2} - \frac{\log\log x}{\log\log\log x} = \frac{\log\log x}{2} (1+o(1)). 
+\]
+\textit{Part III (Putting it all together). } 
+Using the binomial coefficient inequality 
+\[
+\binom{n}{k} \geq \frac{n^k}{k^k}, 
+\]
+we can work out carefully on paper using \eqref{eqn_SoddSeven_lower_bounds_v1} that 
+\begin{align*} 
+\widetilde{S}_{\operatorname{odd}}(m_1, m_2, m_3; n) & \succsim 
+     \frac{\log\log x}{2} \left(\frac{\log\log\log x}{2 \log x}\right)^{\frac{2\log\log x}{\log\log\log x}+1} 
+     \left[1 + \frac{(\log\log\log x)^2}{\log^2 x} 
+     (4 \log\log x \cdot \log\log\log x)^{\frac{\log\log x}{2 \log\log\log x} + 1}\right] \\ 
+\widetilde{S}_{\operatorname{odd}}(m_1, m_2, m_3; n) & \succsim 
+     \frac{\log\log x}{2} \left(\frac{\log\log\log x}{2 \log x}\right)^{\frac{2\log\log x}{\log\log\log x}+1} 
+     \left[1 + \left(\frac{\log x}{2 \log\log\log x}\right) 
+     (8 \log\log x)^{\frac{\log\log x}{\log\log\log x} + 1}\right]. 
+\end{align*} 
+\textit{Part IV (Obtaining the rate at which the ratio goes to zero). } 
+Let 
+\[
+S_{\operatorname{diff}}(m_1, m_2, m_3; n) := 
+     S_{\operatorname{even}}(m_1, m_2, m_3; n) + S_{\operatorname{odd}}(m_1, m_2, m_3; n). 
+\]
+Then we have that 
+\begin{align*} 
+\left\lvert \frac{\lambda(x) \times \sum_{d|x} C_{\Omega(d)}(d)}{g^{-1}(x)} \right\rvert & = 
+     \frac{\sum\limits_{\substack{d|x \\ d \leq \log\log x}} C_{\Omega(d)}(d)}{(\log\log d)}{|g^{-1}(x)|} = \\ 
+     & = O\left(\frac{S_{\operatorname{diff}}\left(\frac{\log\log x}{\log x}, \frac{(\log\log x)^2}{\log x}, 
+     \frac{(\log\log x)^2}{\log\log\log x}; x\right)}{C_{\Omega(x)}(x)}\right) \\ 
+     & = O\left(\frac{\log x \cdot \log\log x}{\log\log\log x \cdot C_{\Omega(x)}(x)} 
+     \left(\frac{\sqrt{2 \log\log x} \cdot \log\log\log x}{\log x} 
+     \right)^{\frac{2\log\log x}{\log\log\log x}}\right) \\ 
+     & = O\left(\frac{(\log\log x)^2 \cdot \log x}{\log\log\log x \cdot C_{\Omega(x)}(x)}\right). 
+\end{align*} 
+We borrow from Corollary \ref{cor_Asymptotics_KeyCases_Of_Ckn_v1} 
+proved below in this section to get a lower bound on $C_{\Omega(x)}(\log\log x)$. 
+This result implies the stated bound, which tends to zero as $x \rightarrow \infty$. 
+\end{proof} 
+
+\textbf{TODO}: Is this $d \mapsto \log\log d$ in the above result? 
+
+\begin{cor} 
+\label{cor_ASemiForm_ForGInvx_v1} 
+We have that for sufficiently large $x$, as $x \rightarrow \infty$ that 
+\begin{align*} 
+G^{-1}(x) & \succsim \widehat{L}_0(x) \times \sum_{n \leq x} 
+     \lambda(n) \cdot C_{\Omega(n)}(n), 
+\end{align*} 
+where the function 
+\[
+\widehat{L}_0(x) := (-1)^{\floor{\frac{3}{2} \log\log x} + 1} \left( 
+     \sqrt{\frac{3}{\pi}} \frac{A (2e+3)}{4B \log^{\frac{3}{2}}(2)}\right) \cdot 
+     \frac{(\log x)^{\frac{43}{14} + \frac{3}{2 \log 2} - \frac{3}{2 \log 3}}}{ 
+     \sqrt{\log\log x}}, 
+\]
+with the exponent $\frac{43}{14} + \frac{3}{2 \log 2} - \frac{3}{2 \log 3} \approx 3.87011$. 
+\end{cor} 
+\begin{proof} 
+Using Corollary \ref{cor_ComputingInvFuncs_InPractice_DivSumgInvAst1_v1}, we have that 
+\begin{align*} 
+G^{-1}(x) & \approx \sum_{n \leq x} \lambda(n) \cdot (g^{-1} \ast 1)(n) \\ 
+     & = \sum_{d \leq x} C_{\Omega(d)}(d) \times \sum_{n=1}^{\Floor{x}{d}} \lambda(dn). 
+\end{align*} 
+Now we see that by complete additivity (multiplicativity) of $\Omega$ ($\lambda$) that 
+\begin{align*} 
+\sum_{n=1}^{\Floor{x}{d}} \lambda(dn) & = \sum_{n=1}^{\Floor{x}{d}} \lambda(d) \lambda(n) 
+     = \lambda(d) \sum_{n \leq \Floor{x}{d}} \lambda(n). 
+\end{align*} 
+Borrowing a result from the next sections 
+(proved in Section \ref{Section_MVCh7_GzBounds}), 
+we can establish that 
+\begin{align*} 
+\sum_{n \leq x} \lambda(n) & \gg \sum_{n \leq \frac{3}{2} \log\log x} (-1)^k \cdot \widehat{\pi}_k(x) \\ 
+     & \succsim (-1)^{\floor{\frac{3}{2} \log\log x} + 1} \left( 
+     \sqrt{\frac{3}{\pi}} \frac{A (2e+3)}{4B \log^{\frac{3}{2}}(2)}\right) \cdot 
+     \frac{(\log x)^{\frac{43}{14} + \frac{3}{2 \log 2} - \frac{3}{2 \log 3}}}{ 
+     \sqrt{\log\log x}} \\ 
+     & =: \widehat{L}_0(x). 
+\end{align*} 
+Then since for large enough $x$ and $d \leq x$, 
+\[
+\log(x/d) \sim \log x, \log\log(x/d) \sim \log\log x, 
+\] 
+we can obtain the stated result. 
+\end{proof} 
+
+\begin{cor}[Asymptotics for very special case of the functions $C_k(n)$] 
+\label{cor_Asymptotics_KeyCases_Of_Ckn_v1} 
+For $k \gg 1$ sufficiently large, we have that 
+\[
+C_{\Omega(n)}(n) \sim (\sigma_0 \ast \mathds{1}_{\ast_{\log\log n-2}})(n) \times \lambda(n) 
+     \frac{n^{\log\log n -1}}{(\log n)^{\log\log -1} \Gamma(\log\log n)}. 
+\]
+Moreover, by considering the average orders of the function $\nu_p(n)$ for $p$ large and 
+tending to infinity, we have bounds on the aysmptotic behavior of these functions 
+of the form 
+\[
+\lambda(n)\widehat{\tau}_0(n) \precsim C_{\Omega(n)}(n) \precsim \lambda(n)\widehat{\tau}_1(n). 
+\]
+It suffices to take the functions 
+\begin{align*} 
+\widehat{\tau}_0(n) & := \frac{1}{\log 2} \cdot \frac{\log n}{(\log n)^{\log\log n}} \cdot 
+     \frac{n^{\log\log n-1}}{\Gamma(\log\log n)} \\ 
+\widehat{\tau}_1(n) & := \frac{1}{2e \log 2} \cdot \frac{(\log n)^2}{(\log n)^{\log\log n}} \cdot 
+     \frac{n^{\log\log n}}{\Gamma(\log\log n)}. 
+\end{align*} 
+\end{cor} 
+\begin{proof} 
+The first stated formula follows from 
+Theorem \ref{theorem_Ckn_GeneralAsymptoticsForms} by setting 
+$k := \Omega(n) \sim \log\log n$ and simplifying. We evaluate the Dirichlet convolution 
+functions and approximate as follows: 
+\begin{align*} 
+(\sigma_0 \ast \mathds{1}_{\log\log n-2})(n) & = \sum_{p|n} \binom{\nu_p(n) + \log\log n-1}{\log\log n-1} \\ 
+     & \geq \sum_{p|n} \frac{(\nu_p(n) + \log\log n-1)^{\log\log n-1}}{(\log\log n)^{\log\log n-1}} \\ 
+     & \sim \frac{n}{\log 2} \\ 
+(\sigma_0 \ast \mathds{1}_{\log\log n-2})(n) & \leq \left(
+     \frac{(\nu_p(n) + \log\log n-1)e}{\log\log n-1} 
+     \right)^{\log\log n -1} \\ 
+     & \sim (2e)^{\log\log n-1} \\ 
+     & = \frac{n \cdot \log n}{2e \log 2}.    
+\end{align*} 
+The upper and lower bounds are obtained from the next well known binomial coefficient approximations 
+using Stirling's formula. 
+\[
+\frac{n^k}{k^k} \leq \binom{n}{k} \leq \frac{n^k}{k!} < \left(\frac{ne}{k}\right)^k 
+     \qedhere 
+\]
+\end{proof} 
+
+\newpage 
+\section{Summing functions weighted by the Liouville lambda function, $\lambda(n) := (-1)^{\Omega(n)}$: 
+         \textit{
+         Borrowing a method of enumeration of summatory functions by Dirichlet series and Euler products 
+         from Montgomery and Vaughan, Chapter 7} 
+        } 
+\label{Section_MVCh7_GzBounds} 
+        
+\subsection{Discussion: The enumerative DGF result in Theorem \ref{theorem_HatPi_ExtInTermsOfGz} from 
+            Montgomery and Vaughan} 
+
+In the reference we have defined $F(s, z)$ for $\Re(s) > 1$ such that the 
+Dirichlet series coefficients, $a_z(n)$, are defined by 
+\[
+\zeta(s)^z F(s, z) := \sum_{n \geq 1} \frac{a_z(n)}{n^s}, \Re(s) > 1. 
+\]
+For the function 
+\[
+F(s, z) := \prod_p \left(1 - \frac{z}{p^s}\right) \left(1-\frac{1}{p^s}\right)^z, 
+\]
+we obtain in the notation above that $a_z(n) \equiv z^{\Omega(n)}$, and that the summatory 
+function satisfies 
+\[
+A_z(x) := \sum_{n \leq x} z^{\Omega(n)} = \sum_{k \geq 0} \widehat{\pi}_k(x) z^k. 
+\]
+Hence, by the Cauchy integral formula, for $r < 2$ we get that 
+\[
+\widehat{\pi}_k(x) = \frac{1}{2\pi\imath} \oint_{|z|=r} \frac{A_z(x)}{z^{k+1}} dz, 
+\]
+from which we obtain the stated formula in the theorem. 
+
+What this enumeratively-flavored result of Montgomery and Vaughan allows us to do is get a 
+``good enough'' lower bound on sums of positive and asymptotically bounded arithmetic functions 
+weighted by the Lioville lambda function, $\lambda(n) = (-1)^{\Omega(n)}$. 
+For comparison, we have known, more classical bounds due to Erd\"os and TODO that state for 
+\[
+\pi_k(x) := \#\{n \leq x: \omega(n) = k\}, 
+\]
+we have tightly that \cite{TODO,TODO} 
+\[
+\pi_k(x) = (1 + o(1)) \cdot \frac{x}{\log x} \frac{(\log\log x)^{k-1}}{(k-1)!}. 
+\] 
+
+We seek to approximate the right-hand-side of $G(z)$ by only taking the products of the primes 
+$p \leq x$, e.g., $p \in \left\{2,3,5,\ldots,x\right\}$. 
+We will require some fairly elementary estimates of products of primes, Mertens theorem on the 
+rate of divergence of the sum of the reciprocals of the primes, and on some generating function 
+techniques involving elementary symmetric functions. 
+
+\subsection{The key new results utilizing Theorem \ref{theorem_HatPi_ExtInTermsOfGz}} 
+
+\begin{cor} 
+\label{cor_PartialSumsOfReciprocalsOfPrimePowers} 
+For real $s \geq 1$, let 
+\[
+P_s(x) := \sum_{p \leq x} p^{-s}, x \gg 1. 
+\]
+When $s := 1$, we have the known bound in Mertens theorem. For $s > 1$, we obtain that 
+\[
+P_s(x) \approx E_1((s-1) \log 2) - E_1((s-1) \log x) + o(1). 
+\]
+It follows that 
+\[
+\gamma_0(s, x) + o(1) \leq P_s(x) \leq \gamma_1(s, x) + o(1), 
+\]
+where it suffices to take 
+\begin{align*}
+\gamma_0(z, x) & = -s\log\left[\frac{\log x}{\log 2}\right] - \frac{3}{4}s(s-1) \log(x/2) - 
+     \frac{11}{36} s(s-1)^2 \log^2(2) \\ 
+\gamma_1(z, x) & = \phantom{-} s\log\left[\frac{\log x}{\log 2}\right] - \frac{3}{4}s(s-1) \log(x/2) + 
+     \frac{11}{36} s(s-1)^2 \log^2(x). 
+\end{align*}
+\end{cor} 
+\begin{proof} 
+Let $s > 1$ be real-valued. 
+By Abel summation where our summatory function is given by $A(x) = \pi(x) \sim \frac{x}{\log x}$ and 
+our function $f(t) = t^{-s}$ so that $f^{\prime}(t) = -s \cdot t^{-(s+1)}$, we obtain that 
+\begin{align*} 
+P_s(x) & = \frac{1}{x^s \cdot \log x} + s \cdot \int_2^{x} \frac{dt}{t^s \log t} \\ 
+     & = E_1((s-1) \log x) - E_1((s-1) \log 2) + o(1), |x| \rightarrow \infty. 
+\end{align*} 
+Now using the inequalities in Facts \ref{facts_ExpIntIncGammaFuncs}, we obtain that the 
+difference of the exponential integral functions is bounded above and below by 
+\begin{align*} 
+\frac{P_s(x)}{s} & \geq -\log\left[\frac{\log x}{\log 2}\right] - \frac{3}{4}(s-1) \log(x/2) - 
+     \frac{11}{36} (s-1)^2 \log^2(2) \\ 
+\frac{P_s(x)}{s} & \leq \phantom{-} \log\left[\frac{\log x}{\log 2}\right] - \frac{3}{4}(s-1) \log(x/2) + 
+     \frac{11}{36} (s-1)^2 \log^2(x). 
+\end{align*} 
+This completes the proof of the bounds cited above in the statement of this lemma. 
+\end{proof} 
+
+\begin{proof}[Proof of Theorem \ref{theorem_GFs_SymmFuncs_SumsOfRecipOfPowsOfPrimes}] 
+We have that for all integers $0 \leq k \leq m$
+\[
+[z^k] \prod_{1 \leq i \leq m} (1-f(i) z)^{-1} = [z^k] \exp\left(\sum_{j \geq 1} 
+     \left(\sum_{i=1}^m f(i)^j\right) \frac{z^j}{j}\right). 
+\]
+In our case we have that $f(i)$ denotes the $i^{th}$ prime. Hence, summing over all $p \leq x$ 
+in place of $0 \leq k \leq m$ in the previous formula applied in tandem with 
+Corollary \ref{cor_PartialSumsOfReciprocalsOfPrimePowers}, we obtain that the logarithm of the 
+generating function series we are after corresponds to 
+\begin{align*} 
+\log\left[\prod_{p \leq x} \left(1-\frac{z}{p}\right)^{-1}\right] & = (B + \log\log x) z + 
+     \sum_{j \geq 2} \left[a(x) + b(x)(j-1) + c(x) (j-1)^2\right] z^j \\ 
+     & = (B + \log\log x) z - a(x) \left(1 + \frac{1}{z-1} + z\right) + b(x) \left( 
+     1 + \frac{2}{z-1} + \frac{1}{(z-1)^2}\right) \\ 
+     & \phantom{= (B + \log\log x) z\ } - 
+     c(x) \left( 
+     1 + \frac{4}{z-1} + \frac{5}{(z-1)^2} + \frac{2}{(z-1)^3}\right). 
+\end{align*} 
+In the previous equations, the upper and lower bounds formed by the functions $(a,b,c)$ are 
+given by 
+\begin{align*} 
+(a_{\ell}, b_{\ell}, c_{\ell}) & := \left(-\log\left[\frac{\log x}{\log 2}\right], 
+     \frac{3}{4} \log\left(\frac{x}{2}\right), - \frac{11}{36} \log^2 2\right) \\ 
+(a_u, b_u, c_u) & := \left(\log\left[\frac{\log x}{\log 2}\right], 
+     -\frac{3}{4} \log\left(\frac{x}{2}\right), \frac{11}{36} \log^2 x\right). 
+\end{align*} 
+Now we make a prudent decision to set $R := \frac{3}{2}$ so that 
+$$z \equiv z(k, x) = \frac{k-1}{\log\log x} \in [0, R),$$ for $x \gg 1$ very large. 
+Thus $(z-1)^{-m} \in [(-1)^m, 2^m]$ for integers $m \geq 1$, and we can then form the upper and 
+lower bounds from above. What we get out of these formulas is stated as in the theorem bounds. 
+\end{proof} 
+
+\begin{cor}[Bounds on $G(z)$ from MV] 
+\label{cor_BoundsOnGz_FromMVBook_initial_stmt_v1} 
+We have that for the function $G(z) := F(1, z) / \Gamma(z+1)$ from Montgomery and Vaughan, there 
+is a constant $A_0$ and functions of $x$ only, $B_0(x), C_0(x)$, so that 
+\[
+A_0 \cdot B_0(x) \cdot C_0(x)^{z} \left(1 - \frac{z}{B} (\log x)^{\frac{1}{14}}\right) \leq G(z). 
+\]
+It suffices to take 
+\begin{align*} 
+A_0 & = \frac{\exp\left(\frac{55}{4} \log^2 2\right)}{\log^3(2) \cdot \Gamma(5/2)} 
+     \approx 1670.84511225 \\ 
+B_0(x) & = \log^3 x \\ 
+C_0(x) & = \frac{\log x}{\log 2}. 
+\end{align*} 
+\end{cor}
+\begin{proof} 
+This result is a consequence of applying both 
+Corollary \ref{lemma_Gz_productTermV2} and 
+Theorem \ref{theorem_GFs_SymmFuncs_SumsOfRecipOfPowsOfPrimes} to the definition of $G(z)$. 
+In particular, we obtain bounds of the following form from the theorem: 
+\[
+\frac{A_0 \cdot B_0(x) \cdot C_0(x)^{z}}{\Gamma(z+1)} \leq 
+     \frac{G(z)}{\prod_p \left(1-\frac{1}{p}\right)^{z}} \leq 
+     \frac{A_1 \cdot B_1(x) \cdot C_1(x)^{z}}{\Gamma(z+1)}. 
+\]
+Since $z \equiv z(k, x) = \frac{k-1}{\log\log x}$ and $k \in [1, R\log\log x]$, we obtain that 
+for small $k$ and $x \gg 1$ large $\Gamma(z+1) \approx 1$, and for $k$ towards the upper bound of 
+its interval that $\Gamma(z+1) \approx \Gamma(5/2)$ (recall that we set $R := 3/2$ in the 
+preceeding proof of Theorem \ref{theorem_GFs_SymmFuncs_SumsOfRecipOfPowsOfPrimes}). 
+Thus when we expand out the formula given by the corollary in conjunction with these bounds on the 
+gamma function, we obtain the claimed results. 
+\end{proof} 
+
+\newpage
+\section{Key applications: Establishing lower bounds for $M(x)$ by cases along infinite subsequences} 
+\label{Section_KeyApplications} 
+
+\subsection{The culmination of what we have done so far} 
+
+As before, in the previous subsection, we cannot hope to evaluate $\lambda(n)$ just yet, but only on 
+average using Abel summation. We need to know the bounds on $\widehat{\pi}_k(x)$ we developed in the 
+proof of Corollary \ref{cor_BoundsOnGz_FromMVBook_initial_stmt_v1}. 
+A summation by parts argument shows that 
+\begin{align} 
+\notag
+M(x) & = \sum_{k=1}^{x} g^{-1}(k) (\pi(x/k)+1) \\ 
+\label{eqn_pf_tag_v2-restated_v2} 
+     & \approx G^{-1}(x) - \sum_{k=1}^{x/2} G^{-1}(k) \cdot \frac{x}{k^2 \log(x/k)}. 
+\end{align} 
+Thus it suffices for us to compute the effective \emph{average order} of $g^{-1}(n)$ 
+by summing its summatory function, $G^{-1}(n)$, including absorbing the parity of the 
+$\lambda(n)$ terms into the parity of the $\Omega(n)$ terms we are summing over. 
+
+\begin{lemma} 
+\label{lemma_CLT_and_AbelSummation} 
+Suppose that $f(n)$ is an arithmetic function such that $f(n) > 0$ for all $n \geq 1$ and 
+$f(n) \succsim \widehat{\tau}_{\ell}(n)$ as $n \rightarrow \infty$ where 
+$\widehat{\tau}_{\ell}(t)$ is a continuously differentiable function of $t$ for all 
+large enough $t \gg 1$. 
+We define the sign-scaled summatory function of $f$ as follows: 
+\[
+F_{\lambda}(x) := \sum_{n \leq x} \lambda(n) \cdot f(n). 
+\]
+Let 
+\[
+A_{\Omega}^{(\ell)}(t) := \sum_{k=1}^{\floor{\frac{3}{2} \log\log t}} (-1)^k \widehat{\pi}_k(t). 
+\]
+Then we have that 
+\[
+F_{\lambda}(\log\log x) \succsim A_{\Omega}^{(\ell)}(x) \widehat{\tau}_{\ell}(\log\log x) - 
+     \int_1^{\log\log x} 
+     A_{\Omega}^{(\ell)}(t) \widehat{\tau}_{\ell}^{\prime}(t) dt. 
+\]
+\end{lemma}
+\begin{proof} 
+The formula for $F_{\lambda}(x)$ is valid by Abel summation provided that 
+\[
+\left\lvert \frac{\sum\limits_{\frac{3}{2} \log\log t < n \leq \frac{\log t}{\log 2}}}{ 
+     A_{\Omega}^{(\ell)}(t)}\right\rvert = o(1), 
+\]
+e.g., the asymptotically dominant terms indicating the parity of 
+$\lambda(n)$ are encompassed by the terms summed by $A_{\Omega}^{(\ell)}(t)$ for 
+sufficiently large $t$ as $t \rightarrow \infty$. 
+
+Using the argument in Montgomery and Vaughan (Chapter 7) \cite[Thm.\ 7.21]{MV}, we can see that 
+uniformly in $x$ 
+\begin{equation} 
+\label{eqn_ProbCLT_for_Omegan_cited_result} 
+\#\left\{3 \leq n \leq x: \frac{\Omega(n) - \frac{3}{2}\log\log n}{\sqrt{\log\log n}} \leq 0\right\} = 
+     \frac{3}{4}x + O_{\varepsilon}\left(\frac{x}{\sqrt{\log\log x}}\right), 
+\end{equation} 
+We can prove easily by symbolic summation with \emph{Mathematica} 
+and well known asymptotic approximations for $\Gamma(m, z)$ for large $|z| \rightarrow \infty$ 
+and using Stirling's formula that 
+\[
+|A_{\Omega}^{(\ell)}(t)| 
+     \sim \frac{3A}{4eB \log^{\frac{3}{2}}(2) \Gamma\left(1 + \frac{3}{2}\log\log t\right)} \left( 
+     (2e+3) \log^{\frac{1}{14}}(t) - 2B\right) 
+     \log^{\frac{3}{2}}(t) (\log\log t)^{\frac{3}{2}\log\log t}
+\] 
+for all $\varepsilon > 0$ ($Y > 0$). 
+Now we are looking at $x \mapsto \log\log x$ in \eqref{eqn_ProbCLT_for_Omegan_cited_result}, 
+so that our tail on $A_{\Omega}^{(\ell)}(t)$ is 
+\[
+|A_{\Omega}^{(\ell)}(x)| \sim 
+     \frac{3A(2e+3)}{4eB \log^{\frac{3}{2}}(2)} \log^{\frac{11}{7}}(x) (\log\log x)^{\frac{3}{2}\log\log x} + 
+     O\left(\frac{3}{4}\log\log x + \frac{\log\log x}{\sqrt{\log\log\log\log x}}\right). 
+\]
+Thus we have captured the asymptotically dominant main order terms in our formula as 
+$x \rightarrow \infty$. 
+\end{proof} 
+
+To simplify notation, for integers $m \geq 1$, let the \emph{iterated logarithm function} 
+(not to be confused with powers of $\log x$) be defined for $x > 0$ by 
+\[
+\log_{\ast}^{m}(x) := \begin{cases} 
+     x, & \text{ if $m = 0$; } \\ 
+     \log x, & \text{ if $m = 1$; } \\ 
+     \log\left[\log_{\ast}^{m-1}(x)\right], & \text{ if $m \geq 2$. } 
+     \end{cases}
+\]
+So $\log_{\ast}^2(x) = \log\log x$, $\log_{\ast}^3(x) = \log\log\log x$, 
+$\log_{\ast}^4(x) = \log\log\log\log x$, $\log_{\ast}^5(x) = \log\log\log\log\log x$, and so on. 
+This notation will come in handy to abbreviate the dominant asymptotic terms we find next in 
+Theorem \ref{theorem_gInv_GeneralAsymptoticsForms}. 
+
+We use the result of 
+Corollary \ref{cor_Asymptotics_KeyCases_Of_Ckn_v1} and 
+Corollary \ref{cor_BoundsOnGz_FromMVBook_initial_stmt_v1} 
+to prove the following theorem: 
+
+\begin{theorem}[Asymptotics and bounds for the summatory functions $G^{-1}(x)$] 
+\label{theorem_gInv_GeneralAsymptoticsForms}
+We define the lower summatory function, $G_u^{-1}(x)$, 
+to provide bounds on the magnitude of $G^{-1}(x)$: 
+$$|G_{\ell}^{-1}(x)| \ll |G^{-1}(x)|,$$ for all sufficiently large $x \gg 1$. 
+We have the following asymptotic approximations for the lower and upper summatory functions where 
+$C_{\ell}$ is an absolute constant and $\widehat{L}_0(x)$ is the multiplier function from 
+Corollary \ref{cor_ASemiForm_ForGInvx_v1}: 
+\begin{align*} 
+ & -\frac{G_{\ell}^{-1}\left(x\right)}{\widehat{L}_0(\log\log x)} 
+     \succsim -C_{\ell} -
+     \frac{3A(2e+3)}{\sqrt{2\pi}9e^2B \log^2 2 (\log\log 2)^{\frac{3}{2}}}
+     (\log\log x)^{\frac{39}{7}} \left( 
+     \frac{\log x}{\log\log x}\right)^{\log_{\ast}^3(x)-1} 
+     \log_{\ast}^3(x)^{\frac{\log_{\ast}^3(x)}{2}} \\ 
+     & \phantom{G_{\ell}^{-1}\left(x\right)} - 
+     \begin{cases} 
+     \frac{A 3^{5/2} (2e+3)}{32\pi e^2 \log 2 (\log\log 2)^{\frac{3}{2}}} \left( 
+      \frac{2^{25/6}}{3^{4/3}}\right)^{\log_{\ast}^3(x)} \log\log x \cdot \log_{\ast}^3(x)^{1/3} 
+      \log_{\ast}^4(x)^{11/7} 
+      \frac{\log_{\ast}^5(x)^{\frac{3}{2}\log_{\ast}^5(x)}}{\log_{\ast}^3(x)^{\frac{5}{2}\log_{\ast}^3(x)}}, & 
+      \text{ if $(-1)^{2 \floor{\log_{\ast}^4(x)}} = +1$; } \\ 
+      -\frac{A 3^{5/2} (2e+3)}{16\pi e \log^{3/2}(2)} \left( 
+      \frac{2^{25/6}}{3^{4/3}}\right)^{\log_{\ast}^4(x)} \log_{\ast}^3(x)^{4/3} 
+      \log_{\ast}^5(x)^{11/7} 
+      \frac{\log_{\ast}^6(x)^{\frac{3}{2}\log_{\ast}^6(x)}}{\log_{\ast}^4(x)^{\frac{5}{2}\log_{\ast}^4(x)}}, & 
+      \text{ if $(-1)^{\floor{2 \log_{\ast}^4(x)}} = -1$; }
+     \end{cases} \\ 
+ & \frac{G_{\ell}^{-1}\left(x\right)}{\widehat{L}_0(\log\log x)} 
+     \succsim C_{\ell} + \frac{3A(2e+3)}{\sqrt{2\pi}4eB (\log\log\log 2)^{\frac{3}{2}}}
+     \log_{\ast}^3(x)^{\frac{32}{7}} \left( 
+     \frac{\log\log x}{\log_{\ast}^3(x)}\right)^{\log_{\ast}^4(x)-1} 
+     \log_{\ast}^4(x)^{\frac{\log_{\ast}^4(x)}{2}+1} \\ 
+     & \phantom{G_{\ell}^{-1}\left(x\right)} + 
+     \begin{cases} 
+     \frac{A 3^{5/2} (2e+3)}{16\pi e \log^{3/2}(2)} \left( 
+      \frac{2^{25/6}}{3^{4/3}}\right)^{\log_{\ast}^4(x)} \log_{\ast}^3(x)^{4/3} 
+      \log_{\ast}^5(x)^{11/7} 
+      \frac{\log_{\ast}^6(x)^{\frac{3}{2}\log_{\ast}^6(x)}}{\log_{\ast}^4(x)^{\frac{5}{2}\log_{\ast}^4(x)}}, & 
+      \text{ if $(-1)^{\floor{2 \log_{\ast}^4(x)}} = +1$; } \\ 
+     -\frac{A 3^{5/2} (2e+3)}{32\pi e^2 \log 2 (\log\log 2)^{\frac{3}{2}}} \left( 
+      \frac{2^{25/6}}{3^{4/3}}\right)^{\log_{\ast}^3(x)} \log\log x \cdot \log_{\ast}^3(x)^{1/3} 
+      \log_{\ast}^4(x)^{11/7} 
+      \frac{\log_{\ast}^5(x)^{\frac{3}{2}\log_{\ast}^5(x)}}{\log_{\ast}^3(x)^{\frac{5}{2}\log_{\ast}^3(x)}}, & 
+      \text{ if $(-1)^{2 \floor{\log_{\ast}^4(x)}} = -1$. }
+     \end{cases} 
+\end{align*} 
+\end{theorem} 
+\begin{proof}[Proof (Lower Bounds)] 
+Recall from our proof of Corollary \ref{cor_BoundsOnGz_FromMVBook_initial_stmt_v1} that 
+a lower bound on the function $\widehat{\pi}_k(x)$ is given by $G\left(\frac{k-1}{\log\log x}\right)$ 
+where the function $G(z)$ is bounded below by 
+\[
+G(z) \gg A_0 x \frac{(\log\log x)^{k-1}}{(k-1)!} \left(\frac{\log x}{\log 2}\right)^{z} \log^2 x \left( 
+     1 - \frac{z}{B} \log^{\frac{1}{14}}(x)\right). 
+\]
+Thus we can form a lower summatory function indicating the parity of all 
+$\Omega(n)$ for $n \leq x$ as 
+\begin{align} 
+\notag 
+A_{\Omega}^{(\ell)}(t) & = \sum_{k \leq \frac{3}{2}\log\log t} (-1)^k G\left(\frac{k-1}{\log\log t}\right) \\ 
+\label{proof_thm_GInvFunc_v0} 
+     & \sim \frac{3A}{4eB \log^{\frac{3}{2}}(2) \Gamma\left(1 + \frac{3}{2}\log\log t\right)} \left( 
+     (2e+3) \log^{\frac{1}{14}}(t) - 2B\right) 
+     \log^{\frac{3}{2}}(t) (\log\log t)^{\frac{3}{2}\log\log t}. 
+\end{align} 
+We apply Abel summation to obtain that 
+\begin{equation} 
+\label{proof_thm_GInvFunc_v1} 
+G_{\ell}^{-1}(x) = \widehat{\tau}_0(x) A_{\Omega}^{(\ell)}(x) - 
+     \widehat{\tau}_0(u_0) A_{\Omega}^{(\ell)}(u_0) - \int_{u_0}^{x} \widehat{\tau}_0^{\prime}(t) 
+     A_{\Omega}^{(\ell)}(t) dt, 
+\end{equation} 
+where we define the integrand function, 
+$I_{\ell}(t) := (-1)^{1+\Floor{3\log\log t}{2}} \cdot \widehat{\tau}_0^{\prime}(t) A_{\Omega}^{(\ell)}(t)$, as 
+(with some limiting simplifications) 
+\begin{align*} 
+I_{\ell}\left(e^{e^{\frac{4k}{3}}}\right) e^{e^{\frac{4k}{3}}} & = 
+     \frac{4A 4^{2 k-1} 9^{-k} k^{2k} \left((3+2 e) e^{2k/21}-2 B\right) ]
+     \exp \left(-\frac{16 k^2}{9}+2k+e^{4k/3} 
+     \left(\frac{4k}{3}-1\right)-1\right)}{3B \log ^{\frac{5}{2}}(2)} \times \\ 
+     & \phantom{=\ } \times 
+     \left(4 e^{4 k/3} k-8k-3 \log k-3 \gamma +6+3 
+     \log 3-6 \log 2\right).
+\end{align*} 
+There is no hope to be had with traditional symbolic integration software to integrate 
+this function precisely without some limiting and algebraic modifications. The integration term 
+in \eqref{proof_thm_GInvFunc_v1} is summed approximately as follows: 
+\begin{align*} 
+\int_{u_0-1}^{x} \widehat{\tau}_0^{\prime}(t) A_{\Omega}^{(\ell)}(t) dt & \sim 
+     \sum_{k=u_0+1}^{\log\log\log\log x} \left( 
+     \frac{I_{\ell}\left(e^{e^{\frac{4k+2}{3}}}\right)}{(2k)! \left(\frac{4k}{3}\right)!} - 
+     \frac{I_{\ell}\left(e^{e^{\frac{4k}{3}}}\right)}{(2k)! \left(\frac{4k}{3}\right)!}
+     \right) e^{e^{\frac{4k}{3}}} \\ 
+     & \approx 
+     C_0(u_0) + 
+     (-1)^{\Floor{\log\log x}{2}} \times 
+     \int_{\frac{\log\log x}{2}-\frac{1}{2}}^{\frac{\log\log x}{2}} 
+     \frac{I_{\ell}\left(e^{e^{\frac{4k}{3}}}\right)}{(2k)! \left(\frac{4k}{3}\right)!} 
+     e^{e^{\frac{4k}{3}}} dk. 
+\end{align*} 
+We cannot integrate the integrands we require exactly in terms of known functions, besides by 
+numerical methods, which is clearly a useless endeavor for our purposes. 
+
+Fortunately, the 
+differences on the upper and lower bounds on each integral in the last equation 
+is small, and in particular $\frac{1}{2} \lll \log\log x$. 
+So we can use a small perturbation of $+1$ in the power terms of $I_{\ell}(t)$ combined with 
+an appeal to the binomial series, the expansion of binomial coefficients by the Stirling numbers 
+of the first kind, and the following exact indefinite integral for $x,z \in \mathbb{R}$: 
+\begin{align*} 
+\int t^p e^{ct} dt & = \frac{(-1)^p}{c^{p+1}} \Gamma(p+1, -ct) \sim 
+     \frac{e^{ct} t^p}{c}. 
+\end{align*} 
+Define the following function of $t$ and note the change of variable $t \mapsto \frac{k-1}{2}$: 
+\begin{align*} 
+I_{\ell}\left(e^{e^{\frac{4k}{3}}}\right) e^{e^{\frac{4k}{3}}} & = 
+     (1+k)^{2k} \exp\left(-\frac{16k^2}{9} \left(\frac{4k}{3}-1\right) e^{\frac{4k}{3}}\right) 
+     e^{2k-1} \widehat{f}(t_0). 
+\end{align*} 
+So we take one reciprocal factor in the next integrand, and set the remaining powers of $t^p$ to be 
+$t_0^p$ for $t_0$ a bound of integration which results in a lower bound on our target integrand from 
+Abel summation. From this perspective, we obtain using the exponential generating functions for the 
+Stirling numbers of the first kind that \cite[\S 7.4]{GKP}
+\begin{align*}
+\widehat{T}_{\ell}(t_0; t) & = \int \widehat{I}_{\ell}(t) dt \\ 
+     & \gg \sum_{m \geq 0} \sum_{n \geq 0} \sum_{q \geq 0} \sum_{j \geq 0} \sum_{r \geq 0} 
+     \frac{(-1)^{m+q+j+r}}{m! n! q! j!} \left(\frac{4}{3}\right)^{2m+n} \gkpSI{j}{r} 
+     \left\{\int 
+     t^{2m+n+j+r} \exp\left(\left(2 + \frac{4}{3}(n+q)\right) t\right) dt 
+     \right\} \frac{\widehat{f}(t_0)}{e} \\ 
+     & \succsim 
+     -\frac{3 \widehat{f}(t_0)}{4e} e^{2t} e^{-\frac{16 k^2}{9}} \left( 
+     \gamma + \frac{e^{te^{\frac{4t}{3}}}}{t e^{\frac{4t}{3}}} + \frac{4t}{3}
+     \right) \left(
+     \gamma + \frac{e^{te^{\frac{4t}{3}}}}{k e^{\frac{4t}{3}}} - \frac{4t}{3} 
+     \right) t^{2t} 
+\end{align*} 
+In the previous equation, we have used that $(n+q+12)^{-1} \succsim \frac{1}{nq}$ and that 
+for large $x \ggg 1$ tending to infinity 
+\[
+\sum_{m \geq 1} \frac{(-x)^m}{m \cdot m!} = -\left(\gamma + \Gamma(0, x) + \log x\right) \sim 
+     -\left(\gamma + \frac{e^{-x}}{x} + \log x\right). 
+\]
+Now we define the coefficient functions, which would have otherwise complicated our integrals, 
+in the form of $\widehat{f}(t_0) = \operatorname{cf}_{+}(t_0) - \operatorname{cf}_{-}(t_0)$ as 
+\begin{align*}
+\operatorname{cf}_{+}(t) & := \left(\frac{16}{9}\right)^t \left(2 B (8 t+3 \gamma +
+     6 \log 2)+6 B \log t+12 e^{10 t/7} t+8 e^{\frac{10 t}{7}+1} t+6 e^{\frac{2 t}{21}+1}
+     (2+\log 3)+9 e^{2 t/21} (2+\log 3)\right)\\ 
+\operatorname{cf}_{-}(t) & := \left(\frac{16}{9}\right)^t \left(2 B \left(4 e^{4 t/3} t+6+3 
+     \log 3\right)+(3+2 e) e^{2 t/21} (8 t+3 \gamma +6 \log 2)+3 (3+2 e) e^{2 t/21}
+     \log t\right). 
+\end{align*} 
+Let 
+\[
+\widehat{h}(t) := 3 \cdot 4^{-t-1} \left(\frac{3}{4}\right)^{\frac{4t}{3}} \frac{\sqrt{3}}{ 
+     16\pi t^{\frac{10t}{3}+1}}. 
+\]
+Thus applying Stirling's formula when $x$ is large we have that 
+\begin{align} 
+\label{proof_thm_GInvFunc_v2}  
+\widehat{R}_{\ell}(x) & = (-1)^{\Floor{\log\log x}{2}} \times 
+     \int_{\frac{\log\log x}{2}-\frac{1}{2}}^{\frac{\log\log x}{2}} 
+     \frac{I_{\ell}\left(e^{e^{\frac{4k}{3}}}\right)}{(2k)! \left(\frac{4k}{3}\right)!} 
+     e^{e^{\frac{4k}{3}}} dk \\ 
+\notag 
+     & \succsim (-1)^{\Floor{x}{2}} \times \widehat{h}\left(\frac{\log\log x}{2}\right) \Biggl[ 
+     \widehat{T}\left(\frac{\log\log x}{2}; \frac{\log\log x}{2}\right) \left( 
+     \operatorname{cf}_{+}\left(\frac{\log\log x-1}{2}\right) - 
+     \operatorname{cf}_{-}\left(\frac{\log\log x}{2}\right)
+     \right) \\ 
+\notag 
+     & \phantom{\succsim\ } - 
+     \widehat{T}\left(\frac{\log\log x-1}{2}; \frac{\log\log x-1}{2}\right) \left( 
+     \operatorname{cf}_{+}\left(\frac{\log\log x}{2}\right) - 
+     \operatorname{cf}_{-}\left(\frac{\log\log x-1}{2}\right)
+     \right) 
+     \Biggr]. 
+\end{align} 
+Since for real $0 < s < 1$ such that $s \rightarrow 0$, we have that $\log(1+s) \sim s$ and 
+$(1+s)^{-1} \sim -s$, we can approximate the differences implies by the last estimate using that 
+for $t$ large tending to infinity we have 
+\[
+     \log_{\ast}^m\left(t - \frac{1}{2}\right) \sim \log_{\ast}^{m}(t) - 
+     \frac{1}{2 \log^{m-1} t}, m \geq 1. 
+\]
+Then taking the difference in \eqref{proof_thm_GInvFunc_v2} above and removing lower-order terms that 
+do not contribute to the dominant asymptotic terms, we obtain that 
+\begin{align} 
+\label{proof_thm_GInvFunc_v3} 
+\int_{u_0}^{x^{\ast}} \widehat{\tau}_0^{\prime}(t) A_{\Omega}^{(\ell)}(t) & \succsim 
+      C_0(u_0) + \frac{(-1)^{\floor{\log\log x}} \cdot A 3^{5/2} (2e+3)}{16\pi e \log{3/2}(2)} \left( 
+      \frac{2^{25/6}}{3^{4/3}}\right)^{\log\log x} \log^{4/3}(x) \log_{\ast}^3(x)^{11/7} 
+      \frac{\log_{\ast}^4(x)^{\frac{3}{2}\log_{\ast}^4(x)}}{(\log\log x)^{\frac{5}{2} \log\log x}}. 
+\end{align} 
+Finally, using Stirling's formula for very large $x$ and 
+\eqref{proof_thm_GInvFunc_v0}, we can see that 
+\begin{align*} 
+\widehat{\tau}_0(x) & \sim \frac{\log^2 x \cdot \log\log x}{\sqrt{2\pi} \cdot x} \left( 
+     \frac{x}{\log x \cdot \log\log x}\right)^{\log\log x} \\ 
+A_{\Omega}^{(\ell)}(x) & \sim 
+     \frac{3A(2e+3)}{4eB \log^{\frac{3}{2}}(2)} \log^{\frac{11}{7}}(x) (\log\log x)^{\frac{3}{2}\log\log x}. 
+\end{align*} 
+So we have that the first term in \eqref{proof_thm_GInvFunc_v1} is given by 
+\begin{align*} 
+\widehat{\tau}_0(x) A_{\Omega}^{(\ell)}(x) & \sim 
+     \frac{3A(2e+3)}{\sqrt{2\pi}4eB \log^{\frac{3}{2}}(2) \cdot x}
+     \log^{\frac{25}{7}}(x) \left( 
+     \frac{x}{\log x}\right)^{\log\log x} (\log\log x)^{\frac{\log\log x}{2}+1}. 
+\end{align*} 
+Now what we have done using the approximations to $C_{\Omega(n)}(n)$ for large $n$ is sum up 
+\begin{align*} 
+\sum_{n \leq x} C_{\Omega}(n) & :\succsim C_{\ell} + 
+     \frac{3A(2e+3)}{\sqrt{2\pi}4eB \log^{\frac{3}{2}}(2)}
+     \log^{\frac{32}{7}}(x) \left( 
+     \frac{x}{\log x}\right)^{\log\log x-1} (\log\log x)^{\frac{\log\log x}{2}+1} \\ 
+     & \phantom{\succsim C_{\ell}\ } + 
+     \frac{(-1)^{\floor{\log\log x}} \cdot A 3^{5/2} (2e+3)}{16\pi e \log{3/2}(2)} \left( 
+      \frac{2^{25/6}}{3^{4/3}}\right)^{\log\log x} \log^{4/3}(x) \log_{\ast}^3(x)^{11/7} 
+      \frac{\log_{\ast}^4(x)^{\frac{3}{2}\log_{\ast}^4(x)}}{(\log\log x)^{\frac{5}{2} \log\log x}}.
+\end{align*} 
+In practice, we have over-summed by quite a bit. Since $\Omega(n) \leq \floor{\log_2 n} = \Floor{\log n}{\log 2}$, 
+many of the terms in the previous equation are actually zero (recall that $C_0(n) = \delta_{n,1}$). 
+So we are actually only going to sum up to the average order of 
+$\Omega(n) \sim \log\log n$ in some cases, and to the maximum order of $\Omega(n) \leq \frac{\log n}{\log 2}$ in 
+others, depending on the signage of the last term. 
+
+For the upper bound cases, we form essentially the same argument using the integrand 
+\begin{align*} 
+\widetilde{I}_{\ell}(t) & := A_{\Omega}^{(\ell)}(t) \widehat{\tau}_1^{\prime}(t) \\ 
+     & = A_{\Omega}^{(\ell)}(t) \left[\frac{\widehat{\tau}_0(t)}{2e \log t} - 
+     \frac{\widehat{\tau}_0(t)}{2e \log^2 t} + 
+     \frac{t \cdot \widehat{\tau}_0^{\prime}(t)}{2e \log t}\right] \\ 
+     & \sim \frac{t}{2e \cdot \log t} \widehat{I}_{\ell}(t). 
+\end{align*} 
+This completes the proof of the claimed lower bound for $x$ sufficiently large and tending to infinity. 
+\end{proof} 
+
+\subsection{Lower bounds on the scaled Mertens function along an infinite subsequence}
+
+\begin{cor}[Bounds for the classically scaled Mertens function] 
+\label{cor_ThePipeDreamResult_v1} 
+Let $u_0 := e^{e^{e^{e}}}$ and define the infinite increasing subsequence, 
+$\{x_n\}_{n \geq 1}$, by $x_n := e^{e^{e^{e^{4n}}}}$. 
+We have that along the increasing subsequence $x_y$ for large 
+$y \geq \max\left(\ceiling{e^{e^{e^{e}}}}, u_0+1\right), y \gg 3 \times 10^{1656520}$:  
+\[
+\frac{|M(x_{y})|}{\sqrt{x_{y}}} \succsim 
+     \frac{3\sqrt{3} A^2(2e+3)^2}{16 \sqrt{2} \pi e^2 B^2 \log^2 2 (\log\log 2)^{3}} \left[ 
+     \frac{(\log\log x_y)^{\frac{85}{14}} \cdot 
+     (\log x_y)^{\frac{29}{14}+\frac{3}{2 \log (2)}-\frac{3}{2 \log (3)}}}{\log\log\log x_y} 
+     \right], \mathrm{\ as\ } y \rightarrow \infty. 
+\]
+\end{cor} 
+\begin{proof}[Proof of the Asymptotic Lower Bound] 
+Since $\pi(1) = 0$ and $\pi(j) = \pi(\sqrt{x})$ for all $\sqrt{x} \leq j \leq \frac{x}{2}$, 
+we can write \eqref{eqn_pf_tag_v2-restated_v2} in the following form using Abel summation: 
+\begin{align} 
+\label{eqn_pf_tag_v2-restated_v3} 
+M(x) & \succsim G_{\ell}^{-1}(x) + G_{\ell}^{-1}(u_0) A_{\Omega}^{(\ell)}(u_0) - 
+      G_{\ell}^{-1}(x) A_{\Omega}^{(\ell)}(x) \\ 
+\notag 
+      & \phantom{\succsim G_{ell}^{-1}(x)\ } + 
+      \int_{u_0}^{\sqrt{x}} 
+      \frac{x}{t^2 \log(x/t)} \frac{d}{dt}\left[G_{\ell}^{-1}(t)\right] dt + 
+      \int_{\sqrt{x}}^{x/2} 
+      \frac{\sqrt{x}}{t^2 \log(\sqrt{x}/t)} \frac{d}{dt}\left[G_{\ell}^{-1}(t)\right] dt. 
+\end{align} 
+Moreover, we have that 
+\[
+\left\lvert \int_{\sqrt{x}}^{x/2} \frac{2\pi(\sqrt{x})}{t^2 \log x} 
+     \frac{d}{dt}\left[G_{\ell}^{-1}(t)\right] dt \right\rvert \leq 
+     \frac{4 \pi(\sqrt{x})}{\log x} \left(\frac{2}{x} - \frac{1}{\sqrt{x}}\right) 
+     \frac{d}{dx}\left[\max\left(|G_{\ell}^{-1}(\sqrt{x})|, |G_{\ell}^{-1}(x/2)|\right)\right] 
+     = o(1). 
+\]
+We select $x$ and $u_0$ so that $G_{\ell}^{-1}(u_0) = 0$, as is it's derivative, and 
+$\min(-G_{\ell}^{-1}(u_0), -G_{\ell}^{-1}(\sqrt{x})) = -G_{\ell}^{-1}(\sqrt{x})$. 
+Then \eqref{eqn_pf_tag_v2-restated_v3} becomes 
+\begin{align*} 
+M(x) & \gg G_{\ell}^{-1}(x) - G_{\ell}^{-1}(x) A_{\Omega}^{(\ell)}(x) + \int_{u_0}^{\sqrt{x}} 
+      \frac{x}{t^2 \log(x/t)} \frac{d}{dt}\left[G_{\ell}^{-1}(t)\right] dt + o(1) \\ 
+     & \gg G_{\ell}^{-1}(x) - G_{\ell}^{-1}(x) A_{\Omega}^{(\ell)}(x) + 
+     \frac{x}{\log(x/u_0)} \times \int_{u_0}^{\sqrt{x}} 
+     \frac{1}{t^2} \frac{d}{dt}\left[G_{\ell}^{-1}(t)\right] dt + o(1) \\ 
+     & \gg G_{\ell}^{-1}(x) - G_{\ell}^{-1}(x) A_{\Omega}^{(\ell)}(x) 
+     -\frac{2 x}{\log(x/u_0)} \left(\frac{d}{dt}\left[G_{\ell}^{-1}(t)\right] 
+     \Biggl\lvert_{t=\sqrt{x}} \frac{1}{\sqrt{x}} - 
+     \frac{d}{dt}\left[G_{\ell}^{-1}(t)\right] 
+     \Biggl\lvert_{t=u_0} \frac{1}{u_0}\right) \\ 
+     & = G_{\ell}^{-1}(x) - G_{\ell}^{-1}(x) A_{\Omega}^{(\ell)}(x) - 
+     \frac{2\sqrt{x}}{\log(x/u_0)} \frac{d}{dt}\left[G_{\ell}^{-1}(t)\right] 
+     \Biggl\lvert_{t=\sqrt{x}} \frac{1}{\sqrt{x}}. 
+\end{align*} 
+To satisfy the conditions above, it suffices to take $u_0 = e^{e^{e^{e}}}$, 
+and a sufficient requirement on $x$ 
+(using Theorem \ref{theorem_gInv_GeneralAsymptoticsForms}) is that 
+$\floor{\log\log\log\log x} \equiv 0 \bmod{2}$ using the formula for 
+$-G_{\ell}^{-1}(t)$. 
+
+Let $\widehat{G}_{\ell}^{-1}(x) := \frac{G_{\ell}^{-1}(x)}{}$. 
+So the last equation is re-written as 
+\begin{align*} 
+M(x) & \gg \log\log x \cdot \widehat{L}_0(\log\log x) \times \Biggl\{
+     G_{\ell}^{-1}(x) - G_{\ell}^{-1}(x) A_{\Omega}^{(\ell)}(x) \\ 
+     & \phantom{\gg G_{\ell}^{-1}\ } + 
+     \frac{2\sqrt{x}}{\log(x/u_0)} \Biggl[
+     C_{\ell} + 
+     \frac{3A(2e+3)}{\sqrt{2\pi}9e^2B \log^2 2 (\log\log 2)^{\frac{3}{2}}}
+     (\log\log x)^{\frac{39}{7}} \left( 
+     \frac{\log x}{\log\log x}\right)^{\log_{\ast}^3(x)-1} 
+     \log_{\ast}^3(x)^{\frac{\log_{\ast}^3(x)}{2}} \\ 
+     & \phantom{\gg G_{\ell}^{-1}\ } - 
+     \frac{A 3^{5/2} (2e+3)}{32\pi e^2 \log 2 (\log\log 2)^{\frac{3}{2}}} \left( 
+      \frac{2^{25/6}}{3^{4/3}}\right)^{\log_{\ast}^3(x)} \log\log x \cdot \log_{\ast}^3(x)^{1/3} 
+      \log_{\ast}^4(x)^{11/7} 
+      \frac{\log_{\ast}^5(x)^{\frac{3}{2}\log_{\ast}^5(x)}}{\log_{\ast}^3(x)^{\frac{5}{2}\log_{\ast}^3(x)}}
+     \Biggr] + o(1)\Biggl\}.  
+\end{align*} 
+Now when we scale $M(x)$ by a reciprocal of $\sqrt{x}$ and let 
+$x \rightarrow \infty$ along this subsequence, we obtain that 
+\begin{align*} 
+\frac{M(x)}{\sqrt{x}} & \gg \frac{\log\log x \cdot \widehat{L}_0(\log\log x)}{\log(x/u_0)} \left[ 
+     \frac{6A(2e+3)}{\sqrt{2\pi}8e^2B \log^2 2 (\log\log 2)^{\frac{3}{2}}}
+     (\log\log x)^{\frac{39}{7}} \left( 
+     \frac{\log x}{\log\log x}\right)^{\log_{\ast}^3(x)-1} 
+     \log_{\ast}^3(x)^{\frac{\log_{\ast}^3(x)}{2}}\right] + 
+     o\left(1\right) \\ 
+     & \succsim \frac{3A(2e+3)}{4 \sqrt{2\pi}e^2B \log^2 2 (\log\log 2)^{\frac{3}{2}}} \left[ 
+     \log\log x \cdot \widehat{L}_0(\log\log x) \cdot 
+     \frac{(\log\log x)^{\frac{39}{7}}}{\log x} \left( 
+     \frac{\log x}{\log\log x}\right)^{\log_{\ast}^3(x)-1} 
+     \log_{\ast}^3(x)^{\frac{\log_{\ast}^3(x)}{2}}\right] \\ 
+     & \succsim \frac{3\sqrt{3} A^2(2e+3)^2}{16 \sqrt{2} \pi e^2 B^2 \log^2 2 (\log\log 2)^{3}} \left[ 
+     \frac{(\log\log x)^{\frac{85}{14}} \cdot 
+     (\log x)^{\frac{29}{14}+\frac{3}{2 \log (2)}-\frac{3}{2 \log (3)}}}{\log\log\log x} \right]. 
+\end{align*} 
+And we are done proving the stated bound. 
+Notice that the above expression tends to $+\infty$ as $x \rightarrow \infty$. 
+\end{proof} 
+
+\subsection{Remarks} 
+
+\begin{remark}[Tightness of the lower bounds] 
+One remaining question for scaling $|M(x)| / f(x)$ is exactly how tight can the function 
+$f \in \mathcal{F}$ be made so that 
+(for $\mathcal{F}$ some reasonable function space with bases in polynomials of $x$ and 
+powers of iterated logarithms) 
+\[
+\operatorname{argmax}\limits_{f \in \mathcal{F}} 
+     \left\{\limsup_{x \rightarrow \infty} \frac{|M(x)|}{f(x)}\right\} = O(1)? 
+\] 
+What we have proved is that we can take 
+\[
+f(x) =  \sqrt{x} \cdot \frac{(\log\log x)^{\frac{85}{14}} \cdot 
+     (\log x)^{\frac{29}{14}+\frac{3}{2 \log (2)}-\frac{3}{2 \log (3)}}}{\log\log\log x}, 
+\]
+to obtain the above where the limiting constant is 
+$$O(1) \mapsto \frac{3\sqrt{3} A^2(2e+3)^2}{16 \sqrt{2} \pi e^2 B^2 \log^2 2 (\log\log 2)^{3}}.$$ 
+But is this the tightest possible $f$ provably? 
+(\textit{Note that Gonek's famous conjecture states that $f(x) := \sqrt{x} \cdot (\log\log x)^{5/4}$, and 
+that we apparently asymptotically win here by a logarithmic landslide since 
+$\frac{85}{14} - \frac{5}{4} = \frac{135}{28} \approx 4.82143$ $\dSmiley$.}) 
+
+There is also the possibility of tightening the bound from above using the upper bounds proved in 
+Theorem \ref{theorem_GFs_SymmFuncs_SumsOfRecipOfPowsOfPrimes} 
+along an infinite subsequence tending to infinity. We do not approach this problem here 
+due to length constraints and that our lower bounds seem to have done much better than was 
+previously known before about the (un)boundedness of the scaled Mertens function -- our initial 
+so-called ``pipe dream'', or ''impossible'', result.  
+\end{remark} 
+
+\newpage
+\section{Generalizations to weighted Mertens functions}
+\label{Section_GensToWeightedMertensFuncs} 
+
+\subsection{A standard notion of generalizing the Mertens function} 
+
+We define the notion of a 
+\emph{generalized, or weighted, Mertens summatory function} for fixed 
+$\alpha \in \mathbb{C}$ as 
+\begin{equation} 
+\label{eqn_MAlphaAstx_WeightedClassicalMertensFuncs_def_v1} 
+M_{\alpha}(x) = \sum_{n \leq x} \frac{\mu(n)}{n^{\alpha}},\ x \geq 1, 
+\end{equation} 
+where the special case of $M_0^{\ast}(x)$ 
+coincides with the definition of the classical Mertens function $M(x)$. 
+We have in these cases that 
+\begin{equation} 
+\label{eqn_GenMertensFuncs_MAlphax_def_v2} 
+M_{\alpha}(x) = \sum_{n \leq x} g^{-1}(x) \left[\pi\left(\frac{x}{n}\right) + 
+     \left(\frac{n}{x}\right)^{\alpha}\right]. 
+\end{equation} 
+The plots shown in Figure \ref{figure_MertensSummatoryFns_init_plots} 
+illustrate the chaotic behavior of the growth of these 
+functions for $x$ in small intervals when $\alpha \in \{1, 0, -1, -2\}$. 
+
+\begin{figure}[ht!] 
+
+\begin{minipage}{\textwidth} 
+\begin{center}
+\frame{\includegraphics[width=0.45\textwidth]{images/graph-100.png}} 
+\frame{\includegraphics[width=0.45\textwidth]{images/graph-500.png}} 
+\end{center} 
+\end{minipage} 
+
+\bigskip
+
+\begin{minipage}{\textwidth} 
+\begin{center}
+\frame{\includegraphics[width=0.45\textwidth]{images/graph-1500.png}} 
+\frame{\includegraphics[width=0.45\textwidth]{images/graph-10000.png}} 
+\end{center}
+\end{minipage} 
+
+\caption{Comparison of the Mertens Summatory Functions $M_{\alpha}(x) / x^{\frac{1}{2}-\alpha}$ 
+         for Small $x$ and $\alpha$} 
+\label{figure_MertensSummatoryFns_init_plots} 
+
+\end{figure} 
+
+Related questions are often posed in relation to the strikingly 
+similar properties of the 
+summatory functions over the Liouville lambda function, 
+$L_{\alpha}(x) := \sum_{n \leq x} \lambda(n) n^{-\alpha}$, where 
+$$\lambda(n) = (-1)^{\Omega(n)} = \sum_{d^2|n} \mu(n/d^2).$$  
+For example, it is known that \cite{JNT-HUMPHRIES-2013} 
+\begin{itemize} 
+     \item For $\alpha = 0, 1$ and $0 < \alpha < \frac{1}{2}$, a counting argument shows that 
+     $L_{\alpha}(x)$ changes sign infinitely often, though these functions exhibit a known 
+     negative bias that is numerically apparent for large $x$. 
+     \item We have the trivial \emph{upper bounds} providing that 
+     \[
+     |L_{\alpha}(x)| \leq \sum_{n \leq x} n^{-\alpha} \ll x^{1-\alpha}. 
+     \]
+     \item For some absolute constant $C > 0$, 
+     \[
+     |L_{\alpha}(x)| = O\left(x^{1-\alpha} \exp\left\{-C \frac{(\log x)^{3}{5}}{(\log\log x)^{1/5}} 
+          \right\}\right), 0 \leq \alpha \leq \frac{1}{2}. 
+     \]
+     \item Since 
+     \[
+     \frac{\zeta(2\alpha+2s)}{\zeta(\alpha+s)} = s \int_1^{\infty} \frac{L_{\alpha}(x)}{x^s} \frac{dx}{x}, 
+     \]
+     we have exact formulas for $L_{\alpha}(x)$ involving the non-trivial zeros of the 
+     Riemann zeta function by Mellin inversion (\cf Theorem \ref{theorem_MxMellinTransformInvFormula}).  
+     \item The RH is equivalent to $L_{\alpha}(x) = O(x^{\frac{1}{2}-\alpha+\varepsilon})$ for all 
+           $\varepsilon > 0$ when $0 \leq \alpha \leq \frac{1}{2}$. 
+\end{itemize} 
+%Observe using the function $x \cdot \widehat{L}_0(x)$ from Corollary \ref{cor_ASemiForm_ForGInvx_v1} 
+%that (inadvertently), we have shown the lower bound providing (TODO) 
+%\[
+%L_0(x) \succsim (-1)^{\floor{\frac{3}{2} \log\log x} + 1} \left( 
+%     \sqrt{\frac{3}{\pi}} \frac{A (2e+3)}{4B \log^{\frac{3}{2}}(2)}\right) \cdot 
+%     \frac{x \cdot (\log x)^{\frac{43}{14} + \frac{3}{2 \log 2} - \frac{3}{2 \log 3}}}{ 
+%     \sqrt{\log\log x}} + O\left(x\right). 
+%\] 
+
+\subsection{Analogous asymptotic lower bounds on $M_{\alpha}(x)$} 
+
+We first observe that for real $\alpha > 1$, we have that 
+\[
+s \times \int_1^{\infty} \frac{M_{\alpha}(x)}{x^{s+1}} dx = \frac{1}{\zeta(s+\alpha)}, \Re(s) > 1-\alpha. 
+\]
+So for $\alpha > 2$, we obtain that 
+\[
+\limsup\limits_{x \rightarrow \infty} M_{\alpha}(x) = -\frac{1}{\zeta(\alpha-1)}. 
+\]
+There is some analysis by cases for $\alpha \leq 2$ due to the terms in 
+\eqref{eqn_GenMertensFuncs_MAlphax_def_v2} that match the bound from 
+Corollary \ref{cor_ThePipeDreamResult_v1} for $M(x)$. 
+In particular, until $x^{-\alpha}$ exceeds $x$, we inherit the main terms from 
+$M_0(x) \equiv M(x)$. Consider the differences in the next two theorems. 
+
+\begin{theorem} 
+For real $\alpha \leq -2$ such that $\alpha$ is independent of $x$ in $M_{\alpha}(x)$, 
+we have that 
+\[
+\limsup\limits_{x \rightarrow \infty} \frac{|M_{\alpha}(x)|}{x^{-(\alpha+1)/2}} \geq 
+     \frac{x^{\alpha}}{|\alpha|} G_{\ell}^{-1}\left(x^{\frac{\alpha-1}{2\alpha}}\right) 
+     \xrightarrow{x \rightarrow \infty} +\infty. 
+\]
+\end{theorem}
+\begin{proof} 
+\end{proof} 
+
+\begin{cor}
+For $\alpha \leq -2$ such that $\alpha$ is independent of $x$ in $M_{\alpha}(x)$, 
+we have that 
+\[
+\limsup\limits_{x \rightarrow \infty} 
+     \frac{|M_{\alpha}(x)|}{x^{-(\alpha+1)/2} \cdot \left[\frac{x^{\alpha}}{|\alpha|} 
+     G_{\ell}^{-1}\left(x^{\frac{\alpha-1}{2\alpha}}\right)\right]} \geq 1. 
+\]
+\end{cor} 
+
+\begin{theorem} 
+For real $-2 < \alpha \leq 1$ with $\alpha \neq 0$ 
+such that $\alpha$ is independent of $x$ in $M_{\alpha}(x)$, we have that 
+\[
+\limsup\limits_{x \rightarrow \infty} \frac{|M_{\alpha}(x)|}{\sqrt{x}} \geq 
+     G_{\ell}^{-1}\left(\sqrt{x}\right) 
+     \xrightarrow{x \rightarrow \infty} +\infty. 
+\]
+\end{theorem}
+\begin{proof} 
+\end{proof} 
+
+\begin{cor} 
+For real $-2 < \alpha \leq 1$ with $\alpha \neq 0$ 
+such that $\alpha$ is independent of $x$ in $M_{\alpha}(x)$, we have that 
+\[
+\limsup\limits_{x \rightarrow \infty} \frac{|M_{\alpha}(x)|}{\sqrt{x} 
+     \cdot G_{\ell}^{-1}\left(\sqrt{x}\right)} \geq 1. 
+\]
+\end{cor}
+
+\newpage 
+\section{Conclusions (TODO)} 
+
+\newpage 
+\renewcommand{\refname}{References} 
+\bibliography{glossaries-bibtex/thesis-references}{}
+\bibliographystyle{plain}
+
+\newpage
+\renewcommand{\thesubsection}{T.\arabic{subsection}}
+\subsection{Table: Computations with a highly signed Dirichlet inverse function} 
+\label{table_conjecture_Mertens_ginvSeq_approx_values}
+
+\begin{table}[h!]
+
+\centering
+
+\tiny
+\begin{equation*}
+\boxed{
+\begin{array}{|cc|c|ccc|c|c|ccc|c|ccc}
+ n & \mathbf{Primes} & & \mathbf{Sqfree} & \mathbf{PPower} & \bar{\mathbb{S}} & & g^{-1}(n) & 
+ \lambda(n) \operatorname{sgn}(g^{-1}(n)) & \lambda(n) g^{-1}(n) - \widehat{f}_1(n) & 
+ \lambda(n) g^{-1}(n) - \widehat{f}_2(n) & & G^{-1}(n) & G^{-1}_{+}(n) & G^{-1}_{-}(n) \\ \hline 
+ 1 & 1^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 1 & 1 & 0 & 0 & \text{--} & 1 & 1 & 0 \\
+ 2 & 2^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & -1 & 1 & -2 \\
+ 3 & 3^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & -3 & 1 & -4 \\
+ 4 & 2^2 & \text{--} & \text{N} & \text{Y} & \text{N} & \text{--} & 2 & 1 & 0 & -1 & \text{--} & -1 & 3 & -4 \\
+ 5 & 5^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & -3 & 3 & -6 \\
+ 6 & 2^1 3^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 2 & 8 & -6 \\
+ 7 & 7^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 0 & 8 & -8 \\
+ 8 & 2^3 & \text{--} & \text{N} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & -2 & \text{--} & -2 & 8 & -10 \\
+ 9 & 3^2 & \text{--} & \text{N} & \text{Y} & \text{N} & \text{--} & 2 & 1 & 0 & -1 & \text{--} & 0 & 10 & -10 \\
+ 10 & 2^1 5^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 5 & 15 & -10 \\
+ 11 & 11^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 3 & 15 & -12 \\
+ 12 & 2^2 3^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & -4 & 15 & -19 \\
+ 13 & 13^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & -6 & 15 & -21 \\
+ 14 & 2^1 7^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & -1 & 20 & -21 \\
+ 15 & 3^1 5^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 4 & 25 & -21 \\
+ 16 & 2^4 & \text{--} & \text{N} & \text{Y} & \text{N} & \text{--} & 2 & 1 & 0 & -3 & \text{--} & 6 & 27 & -21 \\
+ 17 & 17^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 4 & 27 & -23 \\
+ 18 & 2^1 3^2 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & -3 & 27 & -30 \\
+ 19 & 19^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & -5 & 27 & -32 \\
+ 20 & 2^2 5^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & -12 & 27 & -39 \\
+ 21 & 3^1 7^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & -7 & 32 & -39 \\
+ 22 & 2^1 11^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & -2 & 37 & -39 \\
+ 23 & 23^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & -4 & 37 & -41 \\
+ 24 & 2^3 3^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & 9 & 1 & 4 & -3 & \text{--} & 5 & 46 & -41 \\
+ 25 & 5^2 & \text{--} & \text{N} & \text{Y} & \text{N} & \text{--} & 2 & 1 & 0 & -1 & \text{--} & 7 & 48 & -41 \\
+ 26 & 2^1 13^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 12 & 53 & -41 \\
+ 27 & 3^3 & \text{--} & \text{N} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & -2 & \text{--} & 10 & 53 & -43 \\
+ 28 & 2^2 7^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & 3 & 53 & -50 \\
+ 29 & 29^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 1 & 53 & -52 \\
+ 30 & 2^1 3^1 5^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & -16 & 1 & 0 & -4 & \text{--} & -15 & 53 & -68 \\
+ 31 & 31^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & -17 & 53 & -70 \\
+ 32 & 2^5 & \text{--} & \text{N} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & -4 & \text{--} & -19 & 53 & -72 \\
+ 33 & 3^1 11^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & -14 & 58 & -72 \\
+ 34 & 2^1 17^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & -9 & 63 & -72 \\
+ 35 & 5^1 7^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & -4 & 68 & -72 \\
+ 36 & 2^2 3^2 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & 14 & 1 & 9 & 1 & \text{--} & 10 & 82 & -72 \\
+ 37 & 37^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 8 & 82 & -74 \\
+ 38 & 2^1 19^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 13 & 87 & -74 \\
+ 39 & 3^1 13^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 18 & 92 & -74 \\
+ 40 & 2^3 5^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & 9 & 1 & 4 & -3 & \text{--} & 27 & 101 & -74 \\
+ 41 & 41^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 25 & 101 & -76 \\
+ 42 & 2^1 3^1 7^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & -16 & 1 & 0 & -4 & \text{--} & 9 & 101 & -92 \\
+ 43 & 43^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 7 & 101 & -94 \\
+ 44 & 2^2 11^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & 0 & 101 & -101 \\
+ 45 & 3^2 5^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & -7 & 101 & -108 \\
+ 46 & 2^1 23^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & -2 & 106 & -108 \\
+ 47 & 47^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & -4 & 106 & -110 \\
+ 48 & 2^4 3^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -11 & 1 & 6 & -4 & \text{--} & -15 & 106 & -121 \\
+ 49 & 7^2 & \text{--} & \text{N} & \text{Y} & \text{N} & \text{--} & 2 & 1 & 0 & -1 & \text{--} & -13 & 108 & -121 \\
+ 50 & 2^1 5^2 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & -20 & 108 & -128 \\
+ 51 & 3^1 17^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & -15 & 113 & -128 \\
+ 52 & 2^2 13^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & -22 & 113 & -135 \\
+ 53 & 53^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & -24 & 113 & -137 \\
+ 54 & 2^1 3^3 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & 9 & 1 & 4 & -3 & \text{--} & -15 & 122 & -137 \\
+ 55 & 5^1 11^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & -10 & 127 & -137 \\
+ 56 & 2^3 7^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & 9 & 1 & 4 & -3 & \text{--} & -1 & 136 & -137 \\
+% 57 & 3^1 19^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 4 & 141 & -137 \\
+% 58 & 2^1 29^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 9 & 146 & -137 \\
+% 59 & 59^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 7 & 146 & -139 \\
+% 60 & 2^2 3^1 5^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & 30 & 1 & 14 & 0 & \text{--} & 37 & 176 & -139 \\
+% 61 & 61^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 35 & 176 & -141 \\
+% 62 & 2^1 31^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 40 & 181 & -141 \\
+% 63 & 3^2 7^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & 33 & 181 & -148 \\
+% 64 & 2^6 & \text{--} & \text{N} & \text{Y} & \text{N} & \text{--} & 2 & 1 & 0 & -5 & \text{--} & 35 & 183 & -148 \\
+% 65 & 5^1 13^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 40 & 188 & -148 \\
+% 66 & 2^1 3^1 11^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & -16 & 1 & 0 & -4 & \text{--} & 24 & 188 & -164 \\
+% 67 & 67^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 22 & 188 & -166 \\
+% 68 & 2^2 17^1 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -7 & 1 & 2 & -2 & \text{--} & 15 & 188 & -173 \\
+% 69 & 3^1 23^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & 5 & 1 & 0 & -1 & \text{--} & 20 & 193 & -173 \\
+% 70 & 2^1 5^1 7^1 & \text{--} & \text{Y} & \text{N} & \text{N} & \text{--} & -16 & 1 & 0 & -4 & \text{--} & 4 & 193 & -189 \\
+% 71 & 71^1 & \text{--} & \text{Y} & \text{Y} & \text{N} & \text{--} & -2 & 1 & 0 & 0 & \text{--} & 2 & 193 & -191 \\
+% 72 & 2^3 3^2 & \text{--} & \text{N} & \text{N} & \text{Y} & \text{--} & -23 & 1 & 18 & 6 & \text{--} & -21 & 193 & -214 \\
+\end{array}
+}
+\end{equation*}
+
+\bigskip\hrule\smallskip 
+
+\caption*{\textbf{\rm \bf Table \thesubsection:} 
+          \textbf{Computations of the first several cases of $\mathbf{g^{-1}(n) \equiv (\omega+1)^{-1}(n)}$ 
+          for $\mathbf{1 \leq n \leq 56}$.} \\ 
+          The column labeled \texttt{Primes} provides the prime factorization of each $n$ so that the values of 
+          $\omega(n)$ and $\Omega(n)$ are easily extracted. The columns labeled, respectively, \texttt{Sqfree}, \texttt{PPower} and 
+          $\bar{\mathbb{S}}$ list inclusion of $n$ in the sets of squarefree integers, prime powers, and the set $\bar{\mathbb{S}}$ 
+          that denotes the positive integers $n$ which are neither squarefree nor prime powers. The next two columns provide the 
+          explicit values of the inverse function $g^{-1}(n)$ and indicate that the sign of this function at $n$ is given by 
+          $\lambda(n) = (-1)^{\Omega(n)}$. Then the next two columns show the small-ish magnitude differences between the unsigned 
+          magnitude of $g^{-1}(n)$ and the summations $\widehat{f}_1(n) := \sum_{k \geq 0} \binom{\omega(n)}{k} \cdot k!$ and 
+          $\widehat{f}_2(n) := \sum_{k \geq 0} \binom{\omega(n)}{k} \cdot \#\{d|n: \omega(d) = k\}$. Finally, the last three 
+          columns show the summatory function of $g^{-1}(n)$, $G^{-1}(x) := \sum_{n \leq x} g^{-1}(n)$, borken down into its 
+          respective positive and negative components: $G^{-1}_{+}(x) := \sum_{n \leq x} g^{-1}(n) \Iverson{g^{-1}(n) > 0}$ and 
+          $G^{-1}_{-}(x) := \sum_{n \leq x} g^{-1}(n) \Iverson{g^{-1}(n) < 0}$. } 
+
+\end{table}
+
+\newpage
+\setcounter{section}{0}
+\renewcommand{\thesection}{Appendix \Alph{section}}
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+
+\newpage
+\section{Reference on common abbreviations, special notation and other conventions} 
+\label{Appendix_Glossary_NotationConvs}
+
+     \vskip -0.35in
+     \printglossary[type={symbols},title={},style={glossstyleSymbol},nogroupskip=true]
+
+\smallskip\hrule\smallskip 
+TODO: Add local notation $C_k(x), g^{-1}(n), G^{-1}(x), \nu_p(n), \succsim$, ... ; 
+
+\newpage
+\section{Accompanying software references and examples (TODO)} 
+\label{Appendix_SoftwarePackages} 
+
+\end{document}

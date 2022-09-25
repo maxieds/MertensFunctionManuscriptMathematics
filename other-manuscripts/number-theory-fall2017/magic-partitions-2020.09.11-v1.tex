@@ -1,0 +1,786 @@
+\documentclass[11pt,reqno]{amsart} 
+
+\usepackage{amsthm,amsfonts,amscd,amsmath}
+\usepackage[hidelinks]{hyperref} 
+\usepackage{url}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\usepackage[normalem]{ulem}
+\usepackage{graphicx} 
+\usepackage{datetime} 
+\usepackage{cancel}
+\usepackage{caption,subcaption}
+\captionsetup{format=hang,labelfont={bf},textfont={small,it}} 
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\usepackage{stmaryrd} 
+\usepackage{framed} 
+
+\let\citep\cite
+
+\newcommand{\undersetbrace}[2]{\underset{\displaystyle{#1}}{\underbrace{#2}}}
+
+\newcommand{\gkpSI}[2]{\ensuremath{\genfrac{\lbrack}{\rbrack}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpSII}[2]{\ensuremath{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}}
+
+\newcommand{\cf}{\textit{cf.\ }} 
+\newcommand{\Iverson}[1]{\ensuremath{\left[#1\right]_{\delta}}} 
+
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor} 
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil} 
+\newcommand{\e}[1]{e\left(#1\right)} 
+
+\usepackage{upgreek}
+
+\renewcommand{\chi}{\upchi}
+
+\DeclareMathOperator{\DGF}{DGF} 
+\DeclareMathOperator{\ds}{ds} 
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\fg}{fg}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\rpp}{rpp}
+\DeclareMathOperator{\sgn}{sgn}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\title[Sign Smoothing Convolutions]{
+       Sign Smoothing Convolutions of the Dirichlet Inverses of Arithmetic Functions 
+} 
+\author[H. Mousavi and M. D. Schmidt]{
+         Hamed Mousavi \\ 
+         Maxie D. Schmidt 
+} 
+
+\email{\href{mailto:hmousavi6@gatech.edu}{hmousavi6@gatech.edu} \\ 
+     \href{mailto:maxieds@gmail.com}{maxieds@gmail.com} \\ 
+       \href{mailto:mschmidt34@gatech.edu}{mschmidt34@gatech.edu}
+}
+\address{Georgia Institute of Technology \\ 
+         School of Mathematics \\ 
+         117 Skiles Building \\ 
+         686 Cherry Street NW \\ 
+         Atlanta, GA 30332 \\ 
+         USA
+} 
+
+\date{\today} 
+
+\keywords{Arithmetic functions; Dirichlet inverse; Dirichlet convolution; 
+          Dirichlet series; sign changes of arithmetic function; 
+          smoothing transformations and sums; discrete convolution. }
+\subjclass[2010]{11A25; 11N64; 11N56. }
+
+
+\allowdisplaybreaks 
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\numberwithin{theorem}{section}
+
+\theoremstyle{definition} 
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{heuristic}[theorem]{Heuristic}
+
+\renewcommand{\arraystretch}{1.25} 
+
+\setlength{\textwidth}{7in} 
+\setlength{\evensidemargin}{-0.25in} 
+\setlength{\oddsidemargin}{-0.25in} 
+
+\begin{document} 
+
+\begin{abstract} 
+Sign changes in sums of arithmetic functions and their inverses are a subtle topic 
+with room to grow new results. Suppose that $S_f(x) := \sum_{n \leq x} f(n)$ is the 
+summatory function of some arithmetic function $f$ such that $f(1) \neq 1$. There are known 
+lower bounds on the limiting growth of $V(S_f, Y)$ -- the number of sign changes of $S_f(y)$ 
+on the interval $y \in (0, Y]$ as $Y \rightarrow \infty$. We observe a partition theoretic 
+smoothing discrete convolution of the local oscillatory properties of sums of the 
+Dirichlet inverse of $f$, $S_{f^{-1}}(x)$, which leads to a sequence of convolution sums which 
+are eventually constant in sign. We investigate exponential function sign smoothing convolutions 
+and then generalize our results to prove more optimal sign smoothing weight functions for any 
+fixed Dirichlet invertible $f$. We give applications a plenty of these sign smoothing convolution 
+sums. 
+\end{abstract}
+
+\maketitle
+
+\section{Introduction} 
+
+\subsection{Dirichlet convolutions and Dirichlet inverse functions} 
+
+The sign changes of an arithmetic function $f$ are often considered in applications 
+where we must estimate the growth of sums depending on $f$. For any fixed $f$, we 
+define its summatory function for all positive integers $x \geq 1$ by 
+\[
+S_f(x) := \sum_{n \leq x} f(n). 
+\]
+Given any two arithmetic functions $f$ and $g$, we define their 
+\emph{Dirichlet convolution}, $f \ast g$, to be the divisor sum 
+\[
+(f \ast g)(n) := \sum_{d|n} f(d) g\left(\frac{n}{d}\right), \forall n \geq 1. 
+\] 
+The multiplicative inverse with respect to Dirichlet convolution is defined by 
+$\varepsilon(n) \equiv \delta_{n,1}$ so that $f \ast \varepsilon = \varepsilon \ast f = f$ for 
+any arithmetic $f$. If $f(1) \neq 1$, then it is Dirichlet invertible. That is, there is another 
+arithmetic function $f^{-1}(n)$ such that $f \ast f^{-1} = f^{-1} \ast f = \varepsilon$. 
+We find that the signedness of $f^{-1}$ is dictated, or prescribed, by the local 
+sign change patterns of $f$. 
+Because such locally unpredictable signage is crucial to the understanding of many 
+classical problems and applications, we state the next proposition to 
+clarify the situation for a class of nicely behaved invertible arithmetic $f \geq 0$. 
+
+\begin{prop}[The Sequence of Signs of the Dirichlet Inverse] 
+\label{prop_SeqOfSignsOfDirInv_SpCases_stmt_intro_v1} 
+Suppose that $f(1) := c_f \neq 0$ and that $f(n) \geq 0$ for all $n \geq 2$. Then 
+\begin{itemize} 
+
+\item[1.] If $f$ is completely multiplicative then $\sgn(f^{-1}(n)) = \mu(n)$; 
+\item[2.] If $c_f = 1$, then $\sgn(f^{-1}(n)) = \lambda(n) = (-1)^{\Omega(n)}$; 
+\item[3.] If $c_f < 1$, then $\sgn(f^{-1}(n)) = -1$. 
+
+\end{itemize} 
+\end{prop} 
+
+The class of non-negative invertible $f$ covered by the formulas above tend to have 
+nicer, more manageable summatory functions as well. For example, consider that 
+whenever $f(n) \geq 0$ for all $n \geq 1$, we have that its summatory function 
+satsfies predictable properties under Riemann differentiation and integration 
+\cite[\cf \S 13]{APOSTOL-ANUMT}. 
+
+\begin{definition}[Dirichlet Generating Functions, or DGFs, of an Arithmetic Function] 
+Just as the generating function of many combinatorially relevant sequences encodes 
+information about the form and properties of the underlying sequence, we have another 
+notion of a generating function, the \emph{Dirichlet generating function}, or DGF, of 
+an arithmetic function $f$ which is defined for all 
+$s := \sigma+\imath t \in \mathbb{C}$ such that the 
+following sequence converges: 
+\[
+D_f(s) := \sum_{n \geq 1} \frac{f(n)}{n^s} = 
+     \sum_{n \geq 1} \frac{f(n) \left[\cos(t \log n) + \imath \sin(t \log n)\right]}{n^s}, 
+     \Re(s) > \sigma_{c,f}. 
+\]
+Provided that $f$ is multiplicative, we have the \emph{Euler product} representation of the DGF 
+of $f$ given by the prime-indexed product
+\[
+D_f(s) = \prod_{p \in \mathbb{P}} \left(1 + \sum_{r=1}^{\infty} \frac{f(p^r)}{p^{rs}}\right), 
+     \Re(s) > \sigma_{c,f}. 
+\]
+The DGF of $f$ is related to the Mellin transform of its summatory function at 
+$-s$ by 
+\[
+D_f(s) = s \cdot \int_1^{\infty} \frac{S_f(x)}{x^{s+1}} dx, \Re(s) > \sigma_{a,f}, 
+\]
+where $\sigma_{a,f}$ is the abscissa of absolute convergence of the DGF $D_f(s)$. 
+The DGF of $f$ is an analytic function of $s$ for all $\Re(s) > \sigma_{a,f}$. 
+The DGF of the Dirichlet inverse of $f$ is given by the reciprocal of the 
+DGF of $f$. An inversion formula for recovering the coefficients $f(n)$ of $n^{-s}$ 
+from a given DGF is stated as follows \cite[\S 11.11]{APOSTOL-ANUMT}: 
+\[
+f(x) = \lim_{T \rightarrow \infty} \frac{1}{2T} \int_{-T}^{T} x^{\sigma+\imath t} 
+     D_f(\sigma + \imath t) dt, \forall x \in \mathbb{Z}^{+}; 
+     \forall \sigma > \sigma_{a,f}. 
+\]
+\end{definition} 
+
+\subsection{Known results on local sign changes of an arithmetic function} 
+
+\begin{heuristic}[Duality of the Behavior and Local Oscillations of Dirichlet Inverse Functions]
+One heuristic that recurs in applications is that if an 
+invertible $f \geq 0$ is non-negative for all $n \geq 1$, then the corresponding 
+sequence of sign changes for its inverse $f^{-1}$ is oscillatory and typically 
+hard to predict. The same is true for invertible non-negative integer matrices: 
+the corresponding inverse matrices as a general measure tend to display 
+semi-random, highly oscillatory, and variably signed behavior. So it stands to reason 
+that we may expect the initial invertible function $f$ to determine the behavior and other 
+structural properties of $f^{-1}$. In general, the local growth rates of $f$ dictates by 
+upper bound on the unsigned magnitude of $f^{-1}$ the maximum growth rates of the inverse 
+functions \cite{DIRINVFUNC-GROWTH-PROPS}. 
+\end{heuristic} 
+
+\subsubsection{Sign changes of $f$ on increasingly large intervals} 
+
+Let $V(f, Y)$ denote the number of sign changes of $f$ on the interval $(0, Y]$ for 
+real $Y > 0$. 
+More precisely, we have that 
+\[
+V(f, Y) := \sup \left\{N: \exists \{x_i\}_{i=1}^N, 0<x_1<\cdots<x_N \leq Y, 
+     f(x_i) \neq 0, \sgn(f(x_i)) \neq \sgn(f(x_{i+1})), \forall 1 \leq i < N\right\}. 
+\]
+It is known that the analytic properties, poles, and zeros of the 
+Dirichlet generating function, $D_f(s)$, or DGF, of $f$ provide key insights into the 
+sign changes of these functions \cite{OSCPROPS-ARITHFUNCSI}. 
+For example, if the DGF of $f$ is analytic on some half-plane, subject to certain 
+restrictions, then Landau showed in 1905 that 
+the summatory function of $f$, $S_f(x)$, changes signs infinitely often as we let 
+$x$ tend to infinity. In particular, we 
+obtain the following theorem of P\'olya, which extends Landau's result to provide a 
+statement concerning the frequency of the sign changes of $S_f(x)$: 
+
+\begin{theorem}[P\'olya on Sign Changes of the Summatory Function of an Arithmetic Function] 
+Suppose that $S_f(x)$ is real-valued for all $x \geq x_0$, and define the function 
+$\hat{F}_f(s)$ by the Mellin transform at $-s$ as 
+\[
+\hat{F}_f(s) := \int_{x_0}^{\infty} \frac{S_f(x)}{x^{s+1}} dx. 
+\]
+Suppose that $\hat{F}_f(s)$ is analytic for all $\Re(s) > \theta$, but is not analytic 
+in any half-plane $\Re(s) > \theta - \varepsilon$ for $\varepsilon > 0$. 
+Furthermore, suppose that $\hat{F}_f(s)$ is meromorphic in some half-plane 
+$\Re(s) > \theta - c_0$ for some $c_0 > 0$. Let 
+\[
+\gamma_f := \begin{cases} 
+     \inf \{|t|: \hat{F}_f(s) \text{\ is not analytic at\ } s = \theta+\imath t\}, & \text{\rm
+     if $f$ is not analytic at $\Re(s) = \theta$; } \\ 
+     \infty, & \text{\rm otherwise.}
+     \end{cases}. 
+ \]
+ Then 
+ \[
+ \limsup_{Y \rightarrow \infty} \left\{\frac{V(S_f, Y)}{\log Y}\right\} \geq \frac{\gamma_f}{\pi}. 
+\]
+\end{theorem} 
+
+\subsection{A smoothing sum of exponentials that extracts signedness from a sequence} 
+
+Let $\zeta_m := \exp(2\pi\imath / m)$ denote the primitive $m^{th}$ root of unity. 
+Our idea and new construction is to ``encode'' $f$ in such a way that its signedness is expressed in a 
+predictable way. To this end, we define two invertible transformations on a fixed $f$ formed by a 
+discrete convolution with the special partition number sequences defined above: 
+\begin{align} 
+\label{eqn_sfn_tfn_SignSmoothingByExpFuncSumsFuncs_intro_v1}
+s_{m,k}[f](n) & := \sum_{j=1}^{n} f(j) \zeta_m^{n-j} \exp\left(\pi \sqrt{k(n-j)}\right), 
+     \forall n \geq 1; m \in \mathbb{Z}^{+}; k \in (0, \infty); \\ 
+\notag 
+t_{m,k}[f](n) & := \sum_{j|n} f(j) \zeta_m^{n-j} \exp\left(\pi \sqrt{k(n-j)}\right), 
+     \forall n \geq 1; m \in \mathbb{Z}^{+}; k \in (0, \infty).
+\end{align} 
+The transformation in the previous equation is invertible by convolution with another signed 
+sequence of exponential functions. 
+The characteristic limiting behavior we observe in these 
+transformations is typified by the next definitions. 
+
+\begin{definition}
+We say that a arithmetic sequence $\{f(n)\}_{n \geq 1}$ has 
+\emph{property $\mathcal{P}_{1,m,k}$} at $N$ if the sign of $\Re\left\{s_{m,k}[f](n) \cdot \zeta_m^{-n}\right\}$ 
+is constant for all $n \geq N$. Similarly, we say that $f$ has 
+\emph{property $\mathcal{P}_{2,m,k}$} at $N$ if the sign of $\Im\left\{s_{m,k}[f](n) \cdot \zeta_m^{-n}\right\}$ 
+is constant for all $n \geq N$. 
+We define for $i := 1,2$ 
+\begin{align*} 
+M_{i,m,k}(f) & := \sup \left\{n \geq 1: f \text{\ does not have property\ } \mathcal{P}_{i,m,k} \text{\ at\ } n\right\}. 
+\end{align*} 
+\end{definition} 
+
+The above definition shows that if an arithmetic function $f$ satisfies $\mathcal{P}_{m,k}$ at some finite $N \geq 1$, then 
+for all sufficiently large $n \geq N$, the signed magnitude of the real part of the transformation 
+$s_{m,k}[f](n)$ tends to one side of the real line or the other. The definition does not provide the limiting signage of the 
+transformation sequence even if the function $f$ satisfies property $\mathcal{P}_{m,k}$. 
+
+\begin{theorem}[A Sign Smoothing Convolution Operator by Exponential Function Scaling] 
+\label{theorem_MainTheorem_Stmt_v1} 
+For any Dirichlet invertible arithmetic function $f$ which is non-vanishing on the positive integer, 
+any $m \in \mathbb{Z}^{+}$, and any $k \in (0, \infty)$ such that 
+$f(n) \ll \exp(\pi\sqrt{kn})$, $M_{1,m,k}(f^{-1})$ and $M_{2,m,k}(f^{-1})$ are finite. Moreover, 
+\[
+\lim_{n \rightarrow \infty} \left\lvert \Re\left\{\frac{s_{m,k}[f^{-1}](n)}{\zeta_m^n}\right\} \right\rvert = +\infty, 
+     \quad\text{ and }\quad 
+\lim_{n \rightarrow \infty} \left\lvert \Im\left\{\frac{s_{m,k}[f^{-1}](n)}{\zeta_m^n}\right\} \right\rvert = +\infty
+\]
+\end{theorem} 
+
+\begin{theorem} 
+\label{theorem_Intro_InitBounds} 
+For any Dirichlet invertible $f$ which is non-vanishing on the positive integers, 
+any $m \in \mathbb{Z}^{+}$, and any $k \in (0, \infty)$, we have that 
+\begin{align}
+\tag{A.1} 
+M_{1,m,k}(f^{-1}) & = TODO_{1,m,k}; \\ 
+\tag{A.2} 
+M_{2,m,k}(f^{-1}) & = TODO_{2,m,k}; \\ 
+\tag{B} 
+\limsup_{n \rightarrow \infty} \left(\sgn\left\{\Re\left[s_{m,k}[f^{-1}](n) \cdot \zeta_m^{-n}\right]\right\}\right) & = 
+     TODO_{m,k}; \\ 
+\tag{C} 
+\limsup_{n \rightarrow \infty} \left(\sgn\left\{\Im\left[s_{m,k}[f^{-1}](n) \cdot \zeta_m^{-n}\right]\right\}\right) & = 
+     TODO_{m,k}.
+\end{align} 
+\end{theorem}
+
+\begin{theorem}[A Sign Smoothing Convolution Operator by Exponential Function Scaling] 
+\label{theorem_MainTheorem_Stmt_v2} 
+For any Dirichlet invertible arithmetic function $f$ which is non-vanishing on the positive integers, 
+any $m \in \mathbb{Z}^{+}$, and any $k \in (0, \infty)$ such that 
+$f(n) \ll \exp(\pi\sqrt{kn})$, the sign of 
+$\Re\left[t_{m,k}[f^{-1}](n) \cdot \zeta_m^{-n}\right]$ is eventually constant. 
+That is, there exists a finite $N_f \geq 1$ such that for all $n > N_f$, 
+\[
+\sgn\left\{\Re\left[t_{m,k}[f^{-1}](n) \zeta_m^{-n}\right]\right\} - 
+     \sgn\left\{\Re\left[t_{m,k}[f^{-1}](n-1) \zeta_m^{1-n}\right]\right\} = 0. 
+\]
+\end{theorem} 
+
+\subsection{Generalizations of the sign smoothing convolutions} 
+
+For any $\mathcal{A}_n \subseteq \{1,2,\ldots,n\}$, and monotone increasing function 
+$E: \mathbb{N} \rightarrow \mathbb{R}$ such that $f(n) \ll E(n)$, that 
+\begin{align*} 
+\sum_{j \in \mathcal{A}_n} f(j) E(n-j) & = \sum_{j \in \mathcal{A}_n} \left[ 
+     1-2(V(f, j)-V(f, j-1))\right] |f|(j) E(n-j) \\ 
+     & = \sum_{j \in \mathcal{A}_n} |f|(j) E(n-j) - 2 V(f, n) |f|(n) E(0) \\ 
+     & \phantom{=\quad\ } + 
+     2 \sum_{\substack{j \in \mathcal{A}_n \\ j < n}} V(f, j) \left[ 
+     |f|(j+1) E(n-1-j) - |f|(j) E(n-j) 
+     \right]. 
+\end{align*} 
+The definitions of $\mathcal{A}_n$ corresponded to 
+$\{1 \leq d \leq n: d|n\}$ for the sums $t_{m,k}[f](n)$ and to 
+$\{1,2,\ldots,n\}$ for the sums $s_{m,k}[f](n)$ 
+we defined in \eqref{eqn_sfn_tfn_SignSmoothingByExpFuncSumsFuncs_intro_v1} of the 
+previous subsection. 
+
+We now arrive at a natural question to consider 
+about sign smoothing convolutions with the previous eventually constant sign properties 
+where the weight function (previously of 
+exponentials to a square root power of the input) is in some sense ``optimal'' for the 
+Dirichlet invertible function $f$ and its inverse $f^{-1}$. 
+That is, what is the most natural choice of the sign smoothing weight function we use in our convolved 
+sums that results in 
+\begin{itemize} 
+\item[1.] Optimal growth rates of the convolved sums (or otherwise nice properties to 
+work with); and 
+\item[2.] The resulting sequence of convolved sums is constant in sign for the maximal number of 
+natural numbers possible? 
+\end{itemize} 
+Consider the following questions in particular: 
+
+\begin{question}[A Natural Sign Smoothing Function for $f$]
+Given that $f(n) = O(U_f(n))$ and $V(f, Y) = O(V_f(Y))$ -- and these upper bounds are \emph{tight} in so much as 
+$\forall \varepsilon, \delta>0$, $\exists N, Y \geq 1$ such that $f(N) + \varepsilon > U_f(N)$ and 
+$V(f, Y) + \delta > V_f(Y)$ -- 
+what is the optimal (minimal) choice of 
+monotone increasing functions $E_f, E_f^{\ast}$ such that the signs of 
+\[
+t_f[E^{\ast}](n) := \sum_{j|n} f(j) E_f^{\ast}(n/j), s_f[E](n) := \sum_{j=1}^{n} f(j) E_f(n-j), 
+\]
+are eventually constant? Can we choose the best possible functions $E_f, E_f^{\ast}$ so that the signs of the 
+corresponding sequences above are constant for all $n \geq N_f$ with $N_f \geq 1$ minimal over the natural 
+numbers? That is, given some function space $\mathcal{E}_f$, what is 
+\[
+E_f := \operatorname{argmin}\limits_{E \in \mathcal{E}_f} \left\{ 
+     \min_{N \in \mathbb{Z}^{+}} \left[s_f[E](n+1) - s_f[E](n) = 0, \forall n \geq N
+     \right]\right\}, 
+\]
+and is this function unique? 
+\end{question} 
+
+\subsubsection{Remarks about smoothing by partition functions with sub-exponential growth} 
+
+Why do the functions $E_k(n) := \exp(\pi \sqrt{kn})$ seem to do universally so well for all functions $f$ 
+we have tried (what is special about these forms)? Why do some partition function sequences work better than 
+others (or not at all) with respect to preserving the property of sign smoothing of any arithmetic $f$? 
+
+\subsubsection{Remarks about the significance of establishing the 
+               existence of optimal sign smoothing convolutions} 
+
+\section{Proofs of the theorems and key results} 
+
+
+\subsection{Some immediate corollaries} 
+
+We can relate the sequence of $s_{1,k}[f](x)$ to the summatory function $S_f(x)$ of $f$ closely within 
+some bounded error term. In particular, it is not difficult to prove that 
+\[
+S_f(x) = \frac{s_{1,k}[f](x)}{\exp(\pi\sqrt{kx})} + O\left(\sum_{j=1}^{x-1} S_f(j) e^{-\pi\sqrt{kx}}\right). 
+\]
+So provided that the growth rates of $S_f(x)$ are sub-polynomial (significantly sub-exponential), we have a good 
+approximation to $S_f(x)$ when $x \gg 1$ is large. This leads us to the following corollary: 
+
+\begin{cor}[A Sign Bias for General Summatory Functions]
+For limiting large $x \gg 1$, the summatory function $S_f(x)$ has a sign bias towards 
+\[
+\limsup_{x \rightarrow \infty} \left(\sgn\left\{s_{1,k}[f](x)\right\}\right). 
+\]
+\end{cor}
+\begin{proof}
+This is easy given the eventually constant sign theorems ... 
+\end{proof} 
+
+\begin{example}[A Sign Bias for the Mertens Function]
+The \emph{Mertens function}, $M(x) := \sum_{n \leq x} \mu(n)$, defines the summatory function of the 
+M\"obius function. Since $M(x) = o(x)$ for all $x \geq 1$, we have that 
+\[
+M(x) = s_{1,k}[\mu](x) \cdot \exp(-\pi\sqrt{kx}) + O\left(x^2 e^{-\pi\sqrt{kx}}\right), 
+\]
+where $\mu$ is the Dirichlet inverse of $f(n) \equiv 1$. 
+Now by Theorem \ref{theorem_Intro_InitBounds}, we have that the 
+sign of $s_{1,k}[\mu](x)$ is constant for all 
+$x \geq TODO$. Then by computation, we can see that the sign of $s_{1,1}[\mu](x)$ eventually 
+tends towards $-1$ (TODO). Thus we have an observation of a long suspected bias of the values of the 
+Mertens function on the positive integers towards negative values!
+\end{example} 
+
+\begin{example}[Sign Biases for Weighted Mertens Functions]
+For real $\alpha \geq 0$, define the weighted Mertens function by 
+\[
+M_{\alpha}(x) := \sum_{n \leq x} \frac{\mu(n)}{n^{\alpha}}, \forall x \in \mathbb{Z}^{+}. 
+\]
+The function $M_{\alpha}(x)$ is the summatory function of the Dirichlet inverse of the function 
+$f(n) = \operatorname{Id}_{-\alpha}(n)$. Then (TODO) ... 
+\end{example} 
+
+\begin{example}[Verifying Known Sign Biases for $L_{\alpha}(x)$]
+The weighted summatory function of the Liouville lambda function is defined by 
+\[
+L_{\alpha}(x) := \sum_{n \leq x} \frac{\lambda(n)}{n^{\alpha}}, 
+     \forall x \in \mathbb{Z}^{+}; \alpha \geq 0
+\]
+It is known that for all real $\alpha \geq 1$, there is a negative sign bias for $L_{\alpha}(x)$ 
+\cite{TODO}. 
+Since TODO ... 
+\end{example} 
+
+
+
+\section{Local optimality of the convolution weight functions} 
+
+
+\begin{remark}[A Necessary Condition for Sign Smoothing Convolutions] 
+We call $s_f[E]$ a \emph{sign smoothing convolution} if the sign of $s_f[E](x)$ is 
+constant for all sufficiently large $x \gg 1$. 
+Notice from the proof of the previous result that we have shown
+\[
+\mathcal{M}[s_f[E]](-s) = \frac{(1-s) D_f(s)}{s} \Gamma(s) \sin(\pi s) \left[ 
+     E(0) + \int_1^{\infty} \frac{E(x)-E(x-1)}{x^{s+1}} dx 
+     \right]. 
+\]
+Suppose that this Mellin transformation is analytic for $\Re(s) > \theta_0$, but is not 
+analytic in any larger half-plane $\Re(s) > \theta_0-\varepsilon$ for $\varepsilon>0$. 
+If $s_f[E](x)$ \emph{does not change sign} 
+infinitely often as $x \rightarrow \infty$, then it must 
+be the case that $\mathcal{M}[s_f[E]](-s)$ is not analytic at $s := \theta_0$ 
+\citep[\cf Landau's Theorem]{OSCPROPS-ARITHFUNCSI}. 
+\end{remark} 
+
+\begin{prop}[Growth of Sign Smoothing Convolutions]
+For any arithmetic function $f$ and positive (strictly increasing) functions $E$ on the non-negative reals, 
+we define 
+\[
+s_f[E](n) := \sum_{j=1}^{n} f(j) E(n-j), \forall n \in \mathbb{Z}^{+}. 
+\] 
+We can assert conditions on the rate of growth of these sums given by the functions $\phi$ such 
+that $$s_f[E](x) = \sum_{k \geq 0} \phi(k) \frac{(-x)^{k}}{k!}.$$ In particular, we have that 
+for any $k > \sigma_{a,f}$, these functions are given by 
+\[
+\phi(k) = \frac{(1-k) D_f(k)}{k} \Gamma(k) \sin(\pi k) \left[ 
+     E(0) + \int_1^{\infty} \frac{E(x)-E(x-1)}{x^{k+1}} dx 
+     \right]. 
+\] 
+%Clearly, $\phi(0) = 0$ and for all $k \in [1, \floor{\sigma_{a,f}}] \cap \mathbb{Z}$, if we can 
+%analytically continue $D_f(s)$ at $s = k$, then we can obtain formulas for these initial values of 
+%$\phi$. 
+\end{prop} 
+\begin{proof} 
+Apply Ramanujan's Master Theorem for Mellin transforms ... 
+\end{proof} 
+
+
+
+
+\section{Applications} 
+
+\subsection{Computations of the signs of the Dirichlet inverse of any arithmetic function $f$} 
+
+A partition theoretic motivation for expressing the Dirichlet inverse of any $f$ such that 
+$f(1) \neq 0$ provides that for $n > 1$: 
+\begin{equation} 
+\label{eqn_fInvDirInv_PartitionsFormula} 
+f^{-1}(n) = \sum_{k=1}^{\Omega(n)} (-1)^k \left\{ 
+     \sum_{{\lambda_1+2\lambda_2+\cdots+k\lambda_k=n} \atop {\lambda_1, \lambda_2, \ldots, \lambda_k | n}} 
+     \frac{(\lambda_1+\lambda_2+\cdots+\lambda_k)!}{1! 2! \cdots k!} 
+     f(\lambda_1) f(\lambda_2)^2 \cdots f(\lambda_k)^k\right\}. 
+\end{equation} 
+Let the $m$-fold convolution of an arithmetic function $g$ with itself (i.e., convolve 
+$g$ with itself $m$ times in a row at $n$) be denoted by $[g]_{\ast_m}$. Then 
+Mousavi and Schmidt proved that \cite{MOUSAVI-SCHMIDT-2019} 
+\begin{equation} 
+\label{eqn_} 
+f^{-1}(n) = \frac{\varepsilon(n)}{f(1)} + 
+     \sum_{j=0}^{\left\lfloor \frac{\Omega(n)}{2} \right\rfloor} \left( 
+     [f-f(1)\cdot\varepsilon]_{\ast_{2j+1}}(n) - f(1) \times 
+     [f-f(1)\cdot\varepsilon]_{\ast_{2j}}(n)
+     \right) \frac{1}{f(1)^{2j+1}}. 
+\end{equation} 
+Since we can expand $m$-fold convolutions of a sum of $k$ arithmetic functions using the 
+multinomial (with $k$ terms at $m$) theorem as 
+\[
+[f_1+f_2+\cdots+f_k]_{\ast_m} = \sum_{\substack{i_1+i_2+\cdots+i_k = m \\ i_1,i_2,\ldots,i_k \geq 0}} 
+     \binom{m}{i_1,i_2,\ldots,i_k} [f_1]_{\ast_{i_1}} [f_2]_{\ast_{i_2}} \cdots 
+     [f_k]_{\ast_{i_k}}, 
+\]
+this last formula for $f^{-1}$ leads to another set of insights we can apply in expressing the 
+sign of $f^{-1}(n)$. Namely, we give the next proof of 
+Proposition \ref{prop_SeqOfSignsOfDirInv_SpCases_stmt_intro_v1} which 
+we stated in the introduction section on Dirichlet convolutions to identify some key 
+properties of ``nicely behaved'' Dirichlet inverse functions. 
+
+\begin{proof}[Proof of Proposition \ref{prop_SeqOfSignsOfDirInv_SpCases_stmt_intro_v1}]
+\end{proof} 
+
+\subsection{New bounds on summatory functions of a Dirichlet inverse} 
+
+We begin by stating a theorem proved by Schmidt in her dissertation research: 
+
+\begin{theorem}[Schmidt, 2019] 
+\label{theorem_Schmidt2019} 
+Let $f,g$ be arithmetic functions such that $f(1) \neq 0$. We define the summatory 
+function of the Dirichlet convolution of $f$ and $g$ by the next expansions. 
+\begin{align*} 
+\pi_{f,g}(x) & := \sum_{n \leq x} \sum_{d|n} f(d) g(n/d) \\ 
+     & \phantom{:} = \sum_{d=1}^{x} f(d) S_g\left(\floor{\frac{x}{d}}\right) \\ 
+     & \phantom{:} = \sum_{k=1}^{x} \left(S_f\left(\floor{\frac{x}{k}}\right) - 
+     S_f\left(\floor{\frac{x}{k+1}}\right)\right) S_g(k). 
+\end{align*} 
+Then the summatory function of $g$ has a representation by a convolved sum involving 
+the summatory function of $f^{-1}$ and $\pi_{f,g}(x)$ of the following form: 
+\begin{align*} 
+S_g(x) & = \sum_{k=1}^{x} \left(\sum_{j=\floor{\frac{x}{k+1}}+1}^{\floor{\frac{x}{k}}} f^{-1}(j)\right) 
+     \pi_{f,g}(k) \\ 
+     & = \sum_{k=1}^{x} \left(S_{f^{-1}}\left(\floor{\frac{x}{k}}\right) - 
+     S_{f^{-1}}\left(\floor{\frac{x}{k+1}}\right)\right) \pi_{f,g}(k), 
+     \forall x \in \mathbb{Z}^{+}. 
+\end{align*} 
+\end{theorem} 
+
+\begin{example}[A New Expression for the Mertens Function Involving Euler's Totient] 
+\label{example_Mx_ExOfThm} 
+Given that we have the standard convolution identity $\phi(n) = (\operatorname{Id}_1 \ast \mu)(n)$, 
+where the Dirichlet inverse of the identity function is expressed exactly as 
+$\operatorname{Id}_1^{-1}(n) = n \cdot \mu(n)$, we can use the theorem to write a new 
+summation identity for the \emph{Mertens function}, $M(x) := \sum_{n \leq x} \mu(n)$, in terms of 
+familiar arithmetic functions. 
+In particular, we obtain that 
+\[
+M(x) = \sum_{k=1}^{x} \left(\sum_{j=\floor{\frac{x}{k+1}}+1}^{\floor{\frac{x}{k}}} j \cdot \mu(j)\right) 
+     \Phi(k),
+\]
+where 
+$$\Phi(x) := \sum_{n \leq x} \phi(n) \sim \frac{3x^2}{\pi^2} + O\left(x (\log x)^{2/3} (\log\log x)^{4/3}\right),$$ 
+is the summatory function of the totient function. 
+The inner difference of summatory function terms (over $j \cdot \mu(j)$) in the above equation 
+can be summed by parts to obtain that 
+\[
+\sum_{j=\floor{\frac{x}{k+1}}+1}^{\floor{\frac{x}{k}}} j \cdot \mu(j) = 
+     \floor{\frac{x}{k}} M\left(\floor{\frac{x}{k}}\right) - 
+     \floor{\frac{x}{k+1}} M\left(\floor{\frac{x}{k+1}}\right) - 
+     \sum_{n=\floor{\frac{x}{k+1}}+1}^{\floor{\frac{x}{k}}} M(n). 
+\]
+Other similar examples can be used, and in particular any divisor sum identity resulting from 
+M\"obius inversion, to obtain new formulas for $M(x)$ using 
+Theorem \ref{theorem_Schmidt2019}. 
+\end{example} 
+
+\begin{remark}[General Procedure for Applying the Theorem]
+The general procedure for using the theorem to express a useful formula for the summatory 
+function of some $f$ is to write $h := g \ast f$ where $S_h(x)$ is ``nice'' and $g$ is Dirichlet 
+invertible. Then we have that 
+\begin{equation}
+\label{eqn_Sfx_hEQgAstfCvl_ident} 
+S_f(x) = \sum_{k=1}^{x} \left[S_{g^{-1}}\left(\floor{\frac{x}{k}}\right) - 
+     S_{g^{-1}}\left(\floor{\frac{x}{k+1}}\right)\right] S_h(k). 
+\end{equation} 
+Notice that this method is not dissimilar to applying the so-called 
+\emph{convolution method} to approximate a sum of arithmetic functions 
+\cite{TODO-CVLMETHOD-CROOT}. 
+Given that we have the broadly applicable result in Theorem \ref{theorem_Schmidt2019}, 
+we now turn to the question of obtaining better estimates of the summatory functions, 
+$S_{f^{-1}}(x)$, for any Dirichlet invertible $f$. 
+\end{remark} 
+
+\begin{theorem}[Summatory Functions of the Dirichlet Inverse of an Arithmetic Function] 
+Suppose that $f$ is a Dirichlet invertible arithmetic function. 
+Let the shifted summatory functions be defined as 
+$$S_f^{\ast}(x) := \sum_{2 \leq n \leq x} f(n) = S_f(x) - f(1).$$ 
+For natural numbers $m \geq 1$, let the sequence $T_f^{[m]}(x)$ be defined recursively by 
+\[
+T_f^{[m]}(x) = \begin{cases} 
+     S_f^{\ast}(x), & m = 1; \\ 
+     \sum\limits_{k=2}^{x} f(k) T_f^{[m-1]}\left(\floor{\frac{x}{k}}\right), & m \geq 2. 
+     \end{cases} 
+\]
+The functions $T_f^{[m]}(x)$ are also given explicitly by the nested summation formula 
+\[
+T_f^{[m]}(x) = \sum_{2 \leq k_1 \leq x} \sum_{2 \leq k_2 \leq \frac{x}{k_1}} \cdots 
+     \sum_{2 \leq k_m \leq \frac{x}{k_1k_2 \cdots k_{m-1}}} f(k_1) f(k_2) \cdots f(k_m). 
+\]
+Using this notation, we have that 
+\[
+S_{f^{-1}}(x) = \frac{1}{f(1)} + \sum_{m=1}^{\log_2(x)} \frac{(-1)^{m} T_f^{[m]}(x)}{f(1)^{m+1}}. 
+\]
+\end{theorem} 
+\begin{proof} 
+\end{proof} 
+
+\begin{cor}[Summatory Functions of Non-Negative Arithmetic Functions] 
+\label{cor_SummatoryFuncs_NonNegf} 
+Suppose that $f$ is a Dirichlet invertible arithmetic function such that $f(n) \geq 0$ for all 
+natural numbers $n \geq 1$. Then the expression for the summatory functions defined in 
+\eqref{eqn_Sfx_hEQgAstfCvl_ident} can be split (much like a signed measure) 
+into positive and negative components as 
+\begin{align*} 
+S_f^{+}(x) & = \sum_{k=1}^{x} \left(\sum_{m=1}^{\log(x/k)} \frac{T_g^{[2m]}\left(\frac{x}{k}\right)}{ 
+     g(1)^{2m+1}}\right) h(k) \\ 
+S_f^{-}(x) & = \sum_{k=1}^{x} \left(\sum_{m=1}^{\log(x/k)} \frac{T_g^{[2m+1]}\left(\frac{x}{k}\right)}{ 
+     g(1)^{2m+2}}\right) h(k), 
+\end{align*} 
+where $S_f(x) = S_f^{+}(x) - S_f^{-}(x)$. Moreover, the signed component functions each satisfy 
+$S_f^{+}(x), S_f^{-1}(x) \geq 0$ for all $x \geq 1$. 
+
+Furthermore, the nagative bias of the negatively signed terms in the expansion of $S_f(x)$ only 
+contribute weight summing over $1 \leq k \leq x$ for $k \in [1, x/2]$. In particular, we can write 
+\[
+S_f(x) = \sum_{k=1}^{\frac{x}{2}} \sum_{m \geq 1} \left(T_g^{[2m]}\left(\frac{x}{k}\right) - \int_2^{x/k} 
+     \frac{g(t)}{g(1)} T_g^{[2m]}\left(\frac{x}{kt}\right) dt\right) \frac{h(k)}{g(1)^{2m+1}} + 
+     \sum_{\frac{x}{2} < k \leq x} \sum_{m \geq 1} T_g^{[2m]}\left(\frac{x}{k}\right) \frac{h(k)}{g(1)^{2m+1}}. 
+\]
+If we make the additional assumptions that $h \geq 0$ and $g(1) \equiv 1$, then we can use the above 
+formula to quantify an expression for the negative bias of the summatory function $S_f(x)$. 
+\end{cor} 
+\begin{proof} 
+\end{proof} 
+
+\begin{question}[Applications to Signed Measures]
+In \cite{NG-MERTENS}, Ng gives a probabilistic argument which establishes the existence of a 
+limiting measure $\nu$ on $\mathbb{R}$. This measure is defined such that for all 
+bounded Lipschitz continuous functions $f$ on the reals, we have the existence of $\nu$ 
+satisfying 
+\[
+\lim_{Y \rightarrow \infty} \frac{1}{Y} \int_0^{Y} f\left(e^{-y/2} M(e^y)\right) dy = 
+\int_{-\infty}^{\infty} f(x) d\nu(x), 
+\]
+where $M(x)$ is the Mertens function. Given that we know how to split the summatory functions 
+into signed positive and negative parts via Corollary \ref{cor_SummatoryFuncs_NonNegf}, it seems 
+natural to ask whether we can make similar sense out of the signed components of any summatory 
+function expressed in this way? 
+\end{question} 
+
+\begin{example}[Returning to the Mertens Function Application of the Theorem]
+In the example of the Mertens function sums started in Example \ref{example_Mx_ExOfThm}, we have our 
+function $g(n) \equiv n, \forall n \geq 1$ in the form of 
+\eqref{eqn_Sfx_hEQgAstfCvl_ident}. Then we can compute the functions $T_g^{[m]}(x)$ inductively by the 
+iterated integrals 
+\[
+T_g^{[m]}(x) = \int_2^{x} \int_2^{\frac{x}{t_0}} \cdots \int_2^{\frac{x}{t_0t_1 \cdots t_{m-2}}} 
+     t_0 t_1 \cdots t_{m-1} dt_{m-1} \cdots dt_1 dt_0. 
+\]
+We find that for sequences of constants $\hat{C}_0(m), C_i(m)$, these functions are given by 
+\[
+T_g^{[m]}(x) = \hat{C}_0(m) + x^2 \times \sum_{i=0}^{m} C_i(m) \log^{i}(x). 
+\]
+The coefficient sequences, which satisfy $\hat{C}_0(m), C_i(m) \geq 0$ for all $m \geq 1$ and 
+$0 \leq i \leq m$, can be computed recursively as 
+\begin{align*} 
+\hat{C}_0(m+1) & = -2 \hat{C}_0(m) \\ 
+C_0(m+1) & = \frac{\hat{C}_0(m)}{2} + \sum_{i=0}^m \frac{C_i(m)}{i+1} (-\log(2))^{i+1} \\ 
+C_{m+1}(m+1) & = \frac{C_m(m)}{m+1} \\ 
+C_i(m+1) & = \sum_{j=i-1}^{m} \binom{j+1}{i} \frac{C_j(m)}{j+1} (-\log(2))^{j+1-i}, \forall 1 \leq i \leq m. 
+\end{align*} 
+Thus if we let 
+\[
+U_g^{[u]}(x) := \sum_{m=1}^{u} (-1)^m T_g^{[m]}(x) = \sum_{m=1}^u (-1)^{m} \hat{C}_0(m) + 
+     \sum_{i=0}^u \sum_{m=i}^{u} x^2 (-1)^m C_i(m) \log^{i}(x), 
+\]
+then we obtain a formula for $M(x)$ given by 
+\begin{align*} 
+M(x) & \approx \sum_{k|x} \Phi\left(\frac{x}{k}\right) \left[U_g^{[\log k]}(k) - U_g^{[\log(k-1)]}(k)\right] \\ 
+     & = \sum_{k|x} \Phi\left(\frac{x}{k}\right) \left[(-1)^m T_g^{[m]}(k)\right]\Biggr|_{m=\floor{\log(k-1)}}. 
+\end{align*} 
+TODO ... 
+\end{example} 
+
+\subsection{Improving bounds on sign changes of arithmetic functions on short intervals} 
+
+\subsection{Partition theoretic applications (smoothness, or roundness, etc.)} 
+
+\section{Open questions and possible generalizations} 
+
+
+\section{Numerical data: Tables of examples for special Dirichlet inverse functions} 
+
+\subsection{Examples of the theorems} 
+
+\subsection{Examples of sign smoothing, but non-optimal lower bound on the number of natural numbers 
+               it takes to arrive at a constant sign in the convolved sequence} 
+               
+\subsection{Counter examples of ``natural'' choices of sign smoothing convolution functions} 
+
+The $f$ by $f^{-1}$ sums, examples where this seems to work, and examples where it totally fails ... 
+
+\section{Concluding thoughts and remarks} 
+
+\subsection{Working topics list} 
+
+We also should consider the roles of the following properties: 
+\begin{itemize} 
+
+\item The role of local osciallations of an arithmetic function? 
+\item Sign changes of $\nabla[f](n)$? 
+\item An exponential sum formula for $M_j(x)$ ... 
+
+\end{itemize} 
+
+\subsection*{Acknowledgements} 
+
+
+\begin{thebibliography}{10} 
+
+\bibitem{APOSTOL-ANUMT} 
+T. M. Apostol, \textit{Introduction to analytic number theory}, Springer, 1976. 
+
+\bibitem{DIRINVFUNC-GROWTH-PROPS} 
+F. Baustian and V. Bobkov, On asymptotic behavior of Dirichlet inverse, {\em ArXiv:math.NT/1903.12445} (2019). 
+
+\bibitem{OSCPROPS-ARITHFUNCSI} 
+J. Kaczorowski and J. Pintz, Oscillatory properties of arithmetical 
+  functions I, \emph{Acta Math. Hung.} {\bf 48}, pp. 173--185, 
+  1986. 
+
+\bibitem{MULTFUNCS-INSHORTINTS} 
+K. Matom\"aki and M. Radziwitt, Multiplicative functions in 
+  short intervals, \emph{Annals of Math.}, Vol. 183, No. 3, 
+  pp. 1015--1056 (2016). 
+
+\bibitem{MOUSAVI-SCHMIDT-2019} 
+H. Mousavi and M. D. Schmidt, Factorization theorems for relatively prime 
+  divisor sums, GCD sums, and generalized {R}amanujan sums, 
+  \emph{Ramanujan J.}, to appear (2019). 
+
+\bibitem{NG-MERTENS} 
+N. Ng, The distribution of the summatory function of the M\"obius function, 
+  \emph{ArXiv:math.NT/0310381} (2008). 
+
+\bibitem{SUMMABILITY-DIRCVLS} 
+S. L. Segal, Summability by Dirichlet convolutions, 
+  \emph{Proc. Camb. Phil. Soc.} \textbf{63}, 393 (1967). 
+
+\end{thebibliography} 
+
+
+\end{document} 

@@ -1,0 +1,127 @@
+\begin{thebibliography}{10}
+
+\bibitem{APOSTOLANUMT}
+T.~M. Apostol.
+\newblock {\em Introduction to Analytic Number Theory}.
+\newblock Springer--Verlag, 1976.
+
+\bibitem{BILLINGSLY-CLT-PRIMEDIVFUNC}
+P.~Billingsley.
+\newblock On the central limit theorem for the prime divisor function.
+\newblock {\em Amer. Math. Monthly}, 76(2):132--139, 1969.
+
+\bibitem{ERDOS-KAC-REF}
+P.~Erd{\H{o}}s and M.~Kac.
+\newblock The guassian errors in the theory of additive arithmetic functions.
+\newblock {\em American Journal of Mathematics}, 62(1):738--742, 1940.
+
+\bibitem{FROBERG-1968}
+C.~E. Fr{\"{o}}berg.
+\newblock On the prime zeta function.
+\newblock {\em BIT Numerical Mathematics}, 8:87--202, 1968.
+
+\bibitem{HARDYWRIGHT}
+G.~H. Hardy and E.~M. Wright, editors.
+\newblock {\em An Introduction to the Theory of Numbers}.
+\newblock Oxford University Press, 2008 (Sixth Edition).
+
+\bibitem{HUMPHRIES-JNT-2013}
+P.~Humphries.
+\newblock The distribution of weighted sums of the {L}iouville function and
+  {P}\'{o}lya's conjecture.
+\newblock {\em J. Number Theory}, 133:545--582, 2013.
+
+\bibitem{HURST-2017}
+G.~Hurst.
+\newblock Computations of the {M}ertens function and improved bounds on the
+  {M}ertens conjecture.
+\newblock {\em Math. Comp.}, 87:1013--1028, 2018.
+
+\bibitem{CLT-RANDOM-ORDERED-FACTS-2011}
+H.~Hwang and S.~Janson.
+\newblock A central limit theorem for random ordered factorizations of
+  integers.
+\newblock {\em Electron. J. Probab.}, 16(12):347--361, 2011.
+
+\bibitem{MREVISITED}
+T.~Kotnik and H.~t{\'{e}}~Riele.
+\newblock The {M}ertens conjecture revisited.
+\newblock {\em Algorithmic Number Theory}, $7^{th}$ International Symposium,
+  2006.
+
+\bibitem{ORDER-MERTENSFN}
+T.~Kotnik and J.~van~de Lune.
+\newblock On the order of the {M}ertens function.
+\newblock {\em Exp. Math.}, 2004.
+
+\bibitem{LEHMAN-1960}
+R.~S. Lehman.
+\newblock On {L}iouville's function.
+\newblock {\em Math. Comput.}, 14:311--320, 1960.
+
+\bibitem{MV}
+H.~L. Montgomery and R.~C. Vaughan.
+\newblock {\em Multiplicative Number Theory: I. Classical Theory}.
+\newblock Cambridge, 2006.
+
+\bibitem{NG-MERTENS}
+N.~Ng.
+\newblock The distribution of the summatory function of the {M}{\'{o}}bius
+  function.
+\newblock {\em Proc. London Math. Soc.}, 89(3):361--389, 2004.
+
+\bibitem{ODLYZ-TRIELE}
+A.~M. Odlyzko and H.~J.~J. t{\'{e}}~Riele.
+\newblock Disproof of the {M}ertens conjecture.
+\newblock {\em J. Reine Angew. Math}, 1985.
+
+\bibitem{NISTHB}
+Frank W.~J. Olver, Daniel~W. Lozier, Ronald~F. Boisvert, and Charles~W. Clark,
+  editors.
+\newblock {\em {NIST} Handbook of Mathematical Functions}.
+\newblock Cambridge University Press, 2010.
+
+\bibitem{RENYI-TURAN}
+A.~Renyi and P.~Turan.
+\newblock On a theorem of {E}rd{\"{o}}s-{K}ac.
+\newblock {\em Acta Arithmetica}, 4(1):71--84, 1958.
+
+\bibitem{PRIMEREC}
+P.~Ribenboim.
+\newblock {\em The new book of prime number records}.
+\newblock Springer, 1996.
+
+\bibitem{ROBIN-PRIMEOMEGAFUNC-BOUNDS}
+G.~Robin.
+\newblock Estimate of the {C}hebyshev function $\theta$ on the $k^{th}$ prime
+  number and large values of the number of prime divisors function $\omega(n)$
+  of $n$.
+\newblock {\em Acta Arith.}, 42(4):367--389, 1983.
+
+\bibitem{ROSSER-SCHOENFELD-1962}
+J.~B. Rosser and L.~Schoenfeld.
+\newblock Approximate formulas for some functions of prime numbers.
+\newblock {\em Illinois J. Math.}, 6:64--94, 1962.
+
+\bibitem{SCHMIDT-MERTENS-COMPUTATIONS}
+M.~D. Schmidt.
+\newblock {S}age{M}ath and {M}athematica software for computations with the
+  {M}ertens function, 2021.
+\newblock \url{https://github.com/maxieds/MertensFunctionComputations}.
+
+\bibitem{OEIS}
+N.~J.~A. Sloane.
+\newblock The {O}nline {E}ncyclopedia of {I}nteger {S}equences, 2020.
+\newblock \url{http://oeis.org}.
+
+\bibitem{SOUND-MERTENS-ANNALS}
+K.~Soundararajan.
+\newblock Partial sums of the {M}{\"{o}}bius function.
+\newblock {\em Annals of Mathematics}, 2009.
+
+\bibitem{TITCHMARSH}
+E.~C. Titchmarsh.
+\newblock {\em The theory of the {R}iemann zeta function}.
+\newblock Clarendon Press, 1951.
+
+\end{thebibliography}

@@ -1,0 +1,215 @@
+%\documentclass[draft,12pt,reqno]{article} 
+\documentclass[10pt,reqno,letterpaper]{article} 
+
+%\usepackage[showframe,verbose=true,margin=1in,nohead,letterpaper]{geometry}
+\usepackage[verbose=true,margin=1in,nohead,letterpaper]{geometry}
+
+\usepackage{amsmath} 
+\usepackage{amsfonts} 
+\usepackage{amsthm} 
+\usepackage[usenames,dvipsnames]{color} 
+\usepackage{amssymb} 
+\usepackage{amscd} 
+\usepackage{url} 
+\usepackage{datetime}
+\usepackage{enumitem}
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\numberwithin{theorem}{section}
+
+\theoremstyle{definition} 
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{discussion}[theorem]{Discussion}
+\newtheorem{facts}[theorem]{Facts}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{heuristic}[theorem]{Heuristic}
+\newtheorem{ansatz}[theorem]{Ansatz}
+
+%\usepackage[T1]{fontenc} 
+\usepackage{MnSymbol}
+
+%% : Customize the beleagueredBibliography and Citations for BibTeX: 
+\usepackage{natbib} 
+\bibpunct{[}{]}{;}{}{,}{,~} 
+
+%% : Page Formatting and Related Configuration Options: 
+\setlength{\parindent}{0in} 
+\setlength{\parskip}{0.0325in} 
+\setlength{\parsep}{0in} 
+%\setlength{\headsep}{0.1in} 
+%\setlength{\headheight}{0in} 
+%\setlength{\topskip}{0in} 
+%\setlength{\topmargin}{0in} 
+%\setlength{\topsep}{0in} 
+%\setlength{\partopsep}{0in} 
+%\setlength{\pdfpagewidth}{8.5in} 
+%\setlength{\pdfpageheight}{11in} 
+%\setlength{\textwidth}{6.5in}
+%\setlength{\textheight}{9in} 
+%\setlength{\oddsidemargin}{-0.0in}
+%\setlength{\evensidemargin}{-0.0in}
+%\setlength{\topmargin}{-0.2in}
+
+%\usepackage[compact]{titlesec} 
+%\titlespacing{\section}{0pt}{-0.75mm}{-0.75mm} 
+%\titlespacing{\subsection}{0pt}{-0.75mm}{-0.75mm} 
+%\titlespacing{\subsubsection}{0pt}{*0}{*0} 
+%\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{}{} 
+%\titleformat{\subsubsection}{\small\bfseries}{\thesubsubsection}{}{} 
+
+%% Define and setup special stylized section number headings:
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{adjustbox}
+
+\newcommand{\CustomSectionNumberHeading}[1]{
+     \vspace*{-1mm}
+     \trimbox{1.8mm 1.6mm 5.8mm 2mm}{% LHS-SPC FROM-BOT RHS-SPC
+          \begin{tikzpicture}
+               \draw[fill,color=black] (-2mm,-2mm) rectangle (2mm,2mm);
+               \draw[color=white] (0mm,0mm) node { \textbf{\large{#1}} };
+          \end{tikzpicture}
+     }
+     \hspace*{-1.5mm}
+}
+
+\usepackage[compact]{titlesec} 
+%\titlespacing{\section}{0pt}{-0.9mm}{-0.9mm} 
+%\titlespacing{\subsection}{0pt}{-0.9mm}{-0.9mm} 
+%\def\TitleSpacingAdjust{-0.895mm}
+\def\TitleSpacingAdjust{-0.5mm}
+\titlespacing{\section}{0pt}{\TitleSpacingAdjust}{\TitleSpacingAdjust} 
+\titlespacing{\subsection}{0pt}{\TitleSpacingAdjust}{\TitleSpacingAdjust} 
+%\titleformat{\section}{\bfseries\large}{\CustomSectionNumberHeading{\thesection}}{10pt}{}
+\titleformat{\section}{\bfseries\large}{\thesection}{10pt}{}
+%\titleformat{\subsection}{\bfseries\normalsize}{
+%     \hspace*{-1mm}\scalebox{1.35}{$\blacktriangleright$}\hspace*{3.5mm}\thesubsection\ \ --\hspace*{-1.5mm}}{10pt}{} 
+%\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection\ \ --\hspace*{-1.5mm}}{10pt}{}
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection}{10pt}{}
+
+\setlength{\parindent}{0.2in} 
+\setlength{\parskip}{0.8mm} 
+\setlength{\parsep}{0in} 
+
+\pagestyle{empty}
+
+\setlength{\abovedisplayskip}{0in} 
+\setlength{\abovedisplayshortskip}{0in} 
+\setlength{\belowdisplayskip}{0in} 
+\setlength{\belowdisplayshortskip}{0in} 
+\setlength{\jot}{0pt} 
+
+%% : Table Spacing and Formatting: 
+\setlength{\abovecaptionskip}{0in} 
+\setlength{\belowcaptionskip}{0in} 
+
+%% : Change Various Labelings and Counter Defines: 
+\renewcommand{\thesection}{\arabic{section}} 
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+\addtocounter{footnote}{1}
+
+\newcommand{\ie}[0]{i.e.\ } 
+\newcommand{\cf}[0]{\emph{cf.}\ } 
+\newcommand{\etc}[0]{etc.\ } 
+\newcommand{\PhD}[0]{Ph.D.\ } 
+
+%% : Concrete mathematics Book Recurrence Notation (Special Case Triangles): 
+\newcommand{\gkpSI}[2]{\ensuremath{\genfrac{\lbrack}{\rbrack}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpSII}[2]{\ensuremath{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpEI}[2]{\ensuremath{\genfrac{\langle}{\rangle}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpEII}[2]{\ensuremath{\left\langle\genfrac{\langle}{\rangle}{
+            0pt}{}{#1}{#2}\right\rangle}} 
+
+%% : Other math Mode Macros Used by the Article: 
+\newcommand{\Iverson}[1]{\ensuremath{\left[#1\right]_{\delta}}} 
+\newcommand{\Floor}[2]{\ensuremath{\left\lfloor \frac{#1}{#2} \right\rfloor}}
+
+\usepackage{textcomp}  % Required for encoding \textbigcircle
+\usepackage{scalerel}  % Required for emoji \scalerel
+\def\🌐{\scalerel*{\includegraphics{cv-resume/earth-globe-americas-1f30e.png}}{\textrm{\textbigcircle}}}
+\def\OneFFourCFour{\scalerel*{\includegraphics{cv-resume/paper-1F4C4.png}}{\textrm{$\qed$}}}
+
+%% Set the default font to Helvetica:
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+%% Misc spacing (lines and space between equations and text): 
+\linespread{1.0}
+\AtBeginDocument{
+     \setlength{\abovedisplayskip}{0.25pt} 
+     \setlength{\abovedisplayshortskip}{0.25pt} 
+     \setlength{\belowdisplayskip}{0.25pt} 
+     \setlength{\belowdisplayshortskip}{0.25pt} 
+     \setlength{\jot}{0pt} 
+}
+\allowdisplaybreaks
+
+%% Start Content:
+\begin{document}
+
+\newcommand{\GRFPEssayTitle}{NSF Postdoctoral Fellowship Project Summary}
+
+\noindent
+{\bf\LARGE{Data Management Plan}}
+\smallskip\hrule\smallskip
+
+\section{Plans for sharing the products of research}
+
+The PI will pursue stimulating research problems 
+with cross-disciplinary applications in mathematics, computer science and open source software (OSS). 
+The PI strives to continue to contribute high quality open source software, educationally 
+literate publicly available source code advancing STEM areas, and to grow herself as a 
+professional and academic software developer. 
+The PI intends to 
+publish the results of her research on these topics in peer-reviewed journals, present 
+the results through talks at professional conferences, and make the research broadly 
+available for education, teaching, and other purposes in venues such as the web. 
+This includes plans of the PI to widely disseminate her research and make it 
+freely available to others via preprint manuscript servers such as \emph{arXiv} and 
+on public open source software repositories including \emph{GitHub}. 
+
+The PI plans to publish software 
+contributions to support her work in pure mathematics including releasing files, scripts and 
+other programs that were key in motivating new discoveries and conjectures in print publications 
+online in open venues. 
+Other STEM supportive software contributions made while an active recipient of the NSF fellowship award, 
+including extensions of the projects referenced from the bibliography 
+section of the \emph{Project Description} statement, will continue to be made widely available to the 
+general public online. 
+The PI's experience with open source software provides her with  
+insight, grounded philosophy and a great passionate love for OSS. 
+As such, unless pre-existing license agreements for derivative software sources prevent her plans, the PI 
+intends to release all software she writes related to her work 
+funded by the NSF fellowship as OSS under a permissive 
+license such as the \emph{GNU Public License} (GPL-V3) or a 
+\emph{Creative Commons} (CC) license variant. 
+
+\section{Plans for data management} 
+
+The bulk of the work proposed for the fellowship project is to conduct research in pure mathematics. 
+For work of this type, the PI does not require the collection of data from external sources nor subjects. 
+That is to say that while she may use experimental mathematics to motivate and 
+explore new topics in her work, saving the results on her personal computers in the process, there is no 
+need for a rigorously structured data management methodology for her work in these areas. 
+Likewise, the PI does not plan to develop software funded by the NSF that relies on privileged, 
+confidential, government classified, nor otherwise sensitive data sets. 
+The PI similarly has no plans to create software that relies on the interplay of personally 
+identifiable information of human subjects nor participants in the development process of these works, 
+such as general users and pre-release beta testers. 
+Hence, the PI requires no extensive plans nor statements of protocol for data management in the 
+software type work within her proposed project. 
+The PI will of course strictly adhere to any guidelines or mandated requirements by her sponsoring 
+institution, Penn State University, in handling her own private information and 
+maintaining the computer systems she uses to conduct her research.  
+
+\end{document}

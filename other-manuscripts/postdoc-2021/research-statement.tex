@@ -1,0 +1,1135 @@
+%\documentclass[draft,12pt,reqno]{article} 
+\documentclass[10pt,reqno,letterpaper]{article} 
+
+%\usepackage[showframe,verbose=true,margin=1in,nohead,letterpaper]{geometry}
+\usepackage[verbose=true,margin=1in,nohead,letterpaper]{geometry}
+
+\usepackage{amsmath} 
+\usepackage{amsfonts} 
+\usepackage{amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[usenames,dvipsnames]{xcolor} 
+\hypersetup{
+    colorlinks,
+    linkcolor={Gray!50!Black}, 
+    citecolor={Gray!50!Black},
+    urlcolor={Gray!50!Black}
+}
+\usepackage{amssymb} 
+\usepackage{amscd} 
+\usepackage{url} 
+\usepackage{datetime}
+\usepackage{tcolorbox}
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\numberwithin{theorem}{section}
+
+\theoremstyle{definition} 
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{discussion}[theorem]{Discussion}
+\newtheorem{facts}[theorem]{Facts}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{heuristic}[theorem]{Heuristic}
+\newtheorem{ansatz}[theorem]{Ansatz}
+
+%\usepackage[T1]{fontenc} 
+\usepackage{MnSymbol}
+
+%% : Customize the beleagueredBibliography and Citations for BibTeX: 
+%\usepackage{natbib} 
+%\bibpunct{[}{]}{;}{}{,}{,~} 
+
+%% : Page Formatting and Related Configuration Options: 
+\setlength{\parindent}{0in} 
+\setlength{\parskip}{0.0325in} 
+\setlength{\parsep}{0in} 
+%\setlength{\headsep}{0.1in} 
+%\setlength{\headheight}{0in} 
+%\setlength{\topskip}{0in} 
+%\setlength{\topmargin}{0in} 
+%\setlength{\topsep}{0in} 
+%\setlength{\partopsep}{0in} 
+%\setlength{\pdfpagewidth}{8.5in} 
+%\setlength{\pdfpageheight}{11in} 
+%\setlength{\textwidth}{6.5in}
+%\setlength{\textheight}{9in} 
+%\setlength{\oddsidemargin}{-0.0in}
+%\setlength{\evensidemargin}{-0.0in}
+%\setlength{\topmargin}{-0.2in}
+
+%% Define and setup special stylized section number headings:
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{adjustbox}
+
+\newcommand{\CustomSectionNumberHeading}[1]{
+     \vspace*{-1mm}
+     \trimbox{1.8mm 1.6mm 5.8mm 2mm}{% LHS-SPC FROM-BOT RHS-SPC
+          \begin{tikzpicture}
+               \draw[fill,color=black] (-2mm,-2mm) rectangle (2mm,2mm);
+               \draw[color=white] (0mm,0mm) node { \textbf{\large{#1}} };
+          \end{tikzpicture}
+     }
+     \hspace*{-1.5mm}
+}
+
+\usepackage[compact]{titlesec} 
+%\titlespacing{\section}{0pt}{-0.9mm}{-0.9mm} 
+%\titlespacing{\subsection}{0pt}{-0.9mm}{-0.9mm} 
+%\def\TitleSpacingAdjust{-0.895mm}
+\def\TitleSpacingAdjust{-0.5mm}
+\titlespacing{\section}{0pt}{\TitleSpacingAdjust}{\TitleSpacingAdjust} 
+\titlespacing{\subsection}{0pt}{\TitleSpacingAdjust}{\TitleSpacingAdjust} 
+%\titleformat{\section}{\bfseries\large}{\CustomSectionNumberHeading{\thesection}}{10pt}{}
+\titleformat{\section}{\bfseries\large}{\thesection}{10pt}{}
+%\titleformat{\subsection}{\bfseries\normalsize}{
+%     \hspace*{-1mm}\scalebox{1.35}{$\blacktriangleright$}\hspace*{3.5mm}\thesubsection\ \ --\hspace*{-1.5mm}}{10pt}{} 
+%\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection\ \ --\hspace*{-1.5mm}}{10pt}{}
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection}{10pt}{}
+
+\usepackage{lastpage,fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\footskip}{12pt}
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{\hrule\hrule\smallskip\textbf{Page\ \thepage\ of \pageref*{LastPage}}}
+
+\setlength{\parindent}{0.2in} 
+\setlength{\parskip}{0.55mm} 
+\setlength{\parsep}{0in} 
+
+%% : Table Spacing and Formatting: 
+\setlength{\abovecaptionskip}{0in} 
+\setlength{\belowcaptionskip}{0in} 
+
+%% : Change Various Labelings and Counter Defines: 
+\renewcommand{\thesection}{\arabic{section}} 
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} 
+\addtocounter{footnote}{1}
+
+\newcommand{\ie}[0]{i.e.\ } 
+\newcommand{\cf}[0]{\emph{cf.}\ } 
+\newcommand{\etc}[0]{etc.\ } 
+\newcommand{\PhD}[0]{Ph.D.\ } 
+
+%% : Concrete mathematics Book Recurrence Notation (Special Case Triangles): 
+\newcommand{\gkpSI}[2]{\ensuremath{\genfrac{\lbrack}{\rbrack}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpSII}[2]{\ensuremath{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpEI}[2]{\ensuremath{\genfrac{\langle}{\rangle}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpEII}[2]{\ensuremath{\left\langle\genfrac{\langle}{\rangle}{
+            0pt}{}{#1}{#2}\right\rangle}} 
+
+%% : Other math Mode Macros Used by the Article: 
+\newcommand{\Iverson}[1]{\ensuremath{\left[#1\right]_{\delta}}} 
+\newcommand{\Floor}[2]{\ensuremath{\left\lfloor \frac{#1}{#2} \right\rfloor}}
+
+\usepackage{enumitem}
+\usepackage{textcomp}  % Required for encoding \textbigcircle
+\usepackage{scalerel}  % Required for emoji \scalerel
+\def\🌐{\scalerel*{\includegraphics{../cv-resume/earth-globe-americas-1f30e.png}}{\textrm{\textbigcircle}}}
+\def\OneFFourCFour{\scalerel*{\includegraphics{../cv-resume/paper-1F4C4.png}}{\textrm{$\qed$}}}
+
+%% Set the default font to Helvetica:
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\newcounter{completeBibitemIncrementCtr}
+\setcounter{completeBibitemIncrementCtr}{0}
+
+
+\let\oldthebibliography\thebibliography
+\let\endoldthebibliography\endthebibliography
+\renewenvironment{thebibliography}[1]{
+     \renewcommand{\refname}{} 
+     \bibliographystyle{plain}
+     \begin{oldthebibliography}{#1}
+     \setlength{\itemsep}{0em}
+     \setlength{\parskip}{0em}
+     \setlength{\topsep}{0pt}
+     \setlength{\partopsep}{0pt}
+     \setcounter{enumiv}{\value{completeBibitemIncrementCtr}}
+     \footnotesize 
+}
+{
+     \setcounter{completeBibitemIncrementCtr}{\value{enumiv}}
+     \end{oldthebibliography}
+}
+
+\newcommand{\seqnum}[1]{\href{http://oeis.org/#1}{\color{Gray!50!Black}{\underline{#1}}}}
+
+%% Misc spacing (lines and space between equations and text): 
+\linespread{1.0}
+\AtBeginDocument{
+     \setlength{\abovedisplayskip}{0.25pt} 
+     \setlength{\abovedisplayshortskip}{0.25pt} 
+     \setlength{\belowdisplayskip}{0.25pt} 
+     \setlength{\belowdisplayshortskip}{0.25pt} 
+     \setlength{\jot}{0pt} 
+}
+\allowdisplaybreaks
+
+%% Start Content:
+\begin{document}
+
+\noindent 
+{\bfseries\Large Maxie Dion Schmidt} \\[0.5ex]
+{\bfseries\Large Research Statement with Bibliography} \\ 
+\hrule\medskip
+
+\section{My background and direction as a professional researcher}
+
+My journey from an undergraduate at the University of Illinois (UIUC) to now, 
+where I will graduate with my Ph.D. in mathematics from the 
+Georgia Institute of Technology (GA Tech) in 2022, 
+is long and was difficult for me. 
+One constant that has always been with me over this time period has been my 
+enthusiasm and drive to work on mathematics. 
+I have always had an excellent support system over the years 
+by keeping my immediate family around me. 
+In 2005--2006, when I first assumed academic leave from UIUC as a freshmen in computer science, 
+Hurricane Katrina struck New Orleans and the Gulf Coast. 
+As a result of that historic natural disaster and the 
+structural engineering catastrophe that ensued, my grandmother's house 
+was submerged under water for weeks. I traveled with my mom by car from the Midwest to try to 
+recover what remained of her life and belongings. I ended up 
+receiving a fateful challenge and inspiration from another family member. 
+
+My late uncle talked with me about what I was interested in studying, and then used 
+his home office inkjet printer to assemble a stack of six to ten printouts of top ranked general 
+mathematics journal websites with their submission guidelines for authors. 
+I took him literally when he issued me the kind directive to ``\emph{[here] go work on this}'' as a challenge 
+to publish my own original research in mathematics. 
+I started with the material from my high school copy of the graduate 
+\emph{Concrete Mathematics} textbook \cite{GKP} and gradually 
+read every survey and book on the prime numbers that I could find online 
+(\cf \cite{PRIMEREC}). 
+The effort and emphasis on personal work and 
+discovery paid dividends after I returned 
+to UIUC as a double major in mathematics and computer science. 
+I received the Barry M. Goldwater scholarship in 2010. 
+My first peer-reviewed publication was accepted into a respected journal that year. 
+
+My long-term professional goal is to become a top-tier research mathematician. In making this happen, 
+I can advance and make progress on important topics of merit and broad interest in my areas of study. 
+I strive to contribute high quality open source software, educationally 
+literate publicly available source code advancing STEM areas, and to grow myself as a 
+professional software developer. 
+I seek to find interesting intersections and interplay between these fields while making 
+a difference to others through my engagement working on this new research. 
+A career goal of mine is to never stagnate by always keeping things 
+fresh, open and interesting. I will continue to dare to take on the uncommon risk of enjoying 
+challenging research problems that I encounter within new fields and 
+sub-branches of mathematics. 
+I will pursue stimulating research problems 
+with cross-disciplinary applications in mathematics, computer science and open source software. I intend to 
+publish the results of my research on these topics in peer-reviewed journals, present 
+the results through talks at professional conferences, and make the research broadly 
+available for education, teaching, and other purposes in venues such as the web. As 
+woman working within my areas of study, I will continue to promote new learning 
+and research mentorship opportunities to encourage diversity and help to bridge the gender 
+gap for the under-represented talented women in these fields.
+
+\section{Research objectives, methodology and significance of proposed work} 
+\label{Section_SummaryOfPriorWork} 
+
+\subsection{Diversity of my past accomplishments and publications}
+
+My research combines number theory, combinatorics and software development. 
+More broadly, I have interests in studying combinatorial and analytic number theory, 
+in applied cryptography and embedded computer hardware, and in software engineering. 
+I have been funded as a graduate research assistant for the last three years or so developing 
+open source software in applied mathematical biology at GA Tech. 
+My active peer-reviewed publication list is diverse with now over twenty-one entries, as is my 
+public profile of open source software projects, each of which reflect the breadth and 
+depth of my combined research areas. 
+%\footnote{
+%     My active list of manuscripts is tracked at \url{https://arxiv.org/a/schmidt_m_2.html} 
+%     with major publications at \url{http://orcid.org/0000-0002-3170-5535}. 
+%     My open source software contributions are mostly indexed at 
+%     \url{https://github.com/maxieds}. 
+%}. 
+There are detailed bibliography sections starting on page 
+\pageref{page_Section_BibliographyB} for complete reference information. 
+
+\subsection{Recent work in analytic number theory}
+\label{subSection_PriorWork_MertensFunctionMx} 
+
+\noindent 
+{\small \textbf{\emph{History of the Mertens function (or partial sums of the M\"obius function).}}} 
+The multiplicative function $\mu(n)$ is deeply connected to the 
+distribution of the prime numbers through the Euler product representation of the Riemann zeta 
+function where it is convergent \cite{APOSTOLANUMT}. 
+The Mertens function, $M(x) := \sum_{n \leq x} \mu(n)$, forms partial sums 
+of the classical M\"obius function for $x \geq 1$ \cite[\seqnum{A008683}; \seqnum{A002321}]{OEIS}.
+We interpret the probability that any integer $n \geq 2$ has an even (or odd) number of prime 
+factors so that we can view the completely multiplicative function $\lambda(n) := (-1)^{\Omega(n)}$ as a 
+randomized ``\emph{digital coin flip}'' of sorts 
+\cite[\seqnum{A008836}; \seqnum{A002819}]{OEIS}. Since $\mu(n) \neq 0$ if and only if 
+$n$ is squarefree where $\mu(n) = \lambda(n)$ whenever 
+$n$ is squarefree, this description facilitates modeling the 
+partial sums, $M(x)$, as a $\{-1,0,+1\}$-weighted random walk on the integers. 
+The value of the Mertens function indicates the position of a particle starting at zero 
+after $x$ steps whose directions are simulated in this quasi-randomized way according to 
+the values of $\mu(n)$, or equivalently, by the distribution of the number of distinct prime factors of 
+any $n \geq 2$. 
+%An inverse Mellin transform applied to the DGF of $\mu(n)$, given by $\zeta(s)^{-1}$, 
+%implies that 
+%\[
+%M(x) = \lim_{T \rightarrow \infty}\ \frac{1}{2\pi\imath} \times \int_{T-\imath\infty}^{T+\imath\infty} 
+%     \frac{x^s}{s \zeta(s)} ds.
+%\]
+The sequence of slow growing oscillatory values of $M(x)$ begin 
+as in the following figure (\cf plots to the left; legend on the right): \\[0.4mm] 
+%\[
+%\{M(x)\}_{x \geq 1} = \{1, 0, -1, -1, -2, -1, -2, -2, -2, -1, -2, -2, -3, -2, -1, -1, -2, -2, 
+%     -3, -3, -2, -1, -2, -2, -2, \ldots \}. 
+%\] 
+\begin{minipage}{0.48\textwidth}
+     \includegraphics[height=1.4in]{../Mathematica/MertensPlots-v3.png}
+\end{minipage} \hfill
+\begin{minipage}{0.485\textwidth}
+\begin{tcolorbox}[width=\linewidth,halign=justify,boxsep=0mm,arc=2.25mm,colframe=gray!49]
+\em\small 
+A comparison of the plots of $M(x)$, $L(x) := \sum_{n \leq x} \lambda(n)$, and 
+three simulated random walks for $1 \leq x \leq 1500$. 
+We define a sequence of i.i.d. random variables, $\{B_k(p)\}_{k \geq 1}$, such that 
+$\mathbb{P}[B_k(p) = +1] = 1 - \mathbb{P}[B_k(p) = -1] = p$ for $p \in (0, 1)$. 
+The two random walk variants we consider are defined by the sums 
+$\operatorname{ORW}(p, x) := \sum_{k=1}^{x} B_k(p)$ and 
+$\operatorname{MRW}(p, x) := \sum_{k=1}^{x} B_k(p) \Iverson{\mu(k) \neq 0}$ for $x \geq 1$. 
+\end{tcolorbox}
+\end{minipage}
+An inverse Mellin transform leads to the exact expression of $M(x)$ for any $x > 0$ 
+given by the statement of the following theorem of Titchmarsh \cite{TITCHMARSH}. 
+It relates the Mertens function 
+to the non-trivial zeros of the Riemann zeta function for any $x > 0$. 
+That is, assuming the \emph{Riemann Hypothesis} (RH), there is an infinite sequence 
+$\{T_k\}_{k \geq 1}$ satisfying $k \leq T_k \leq k+1$ for each $k \geq 1$ 
+such that for any $x > 0$ 
+\[
+M(x) = \lim_{k \rightarrow \infty} 
+     \sum_{\substack{\rho: \zeta(\rho) = 0 \\ |\Im(\rho)| < T_k}} 
+     \frac{x^{\rho}}{\rho \zeta^{\prime}(\rho)} - 2 + 
+     \sum_{n \geq 1} \frac{(-1)^{n-1}}{n (2n)! \zeta(2n+1)} 
+     \left(\frac{2\pi}{x}\right)^{2n} + 
+     \frac{\mu(x)}{2} \Iverson{x \in \mathbb{Z}^{+}}. 
+\]
+The RH is equivalent to showing that 
+$M(x) = O\left(x^{\frac{1}{2}+\epsilon}\right)$ for any 
+$0 < \epsilon < \frac{1}{2}$. 
+There is a rich history to the original statement of the Mertens conjecture which 
+asserted that $|M(x)| < C \sqrt{x}$ for some absolute constant $C > 0$.
+The conjecture was first verified by F.~Mertens himself for $C = 1$ and all $x < 10^{4}$ 
+without the benefit of modern computation \cite{HAVIL-GAMMA}. 
+Since its beginnings in 1897, the Mertens conjecture has been disproved by computational methods using 
+non-trivial simple zeta function zeros with comparatively small imaginary parts in the famous paper by 
+A.~M.~Odlyzko and H.~J.~J.~t\'{e} Riele \cite{ODLYZ-TRIELE}. 
+More recent attempts 
+at bounding $M(x)$ naturally consider determining the rates at which the function 
+$M(x) x^{-\frac{1}{2}}$ grows with or without bound along infinite 
+subsequences in the limit supremum and infimum senses 
+\cite{ORDER-MERTENSFN}. 
+Non-computational breakthrough progress on 
+bounding or determining significant properties 
+underlying the distribution of the Mertens function has been slow with the 
+exception of two major papers over the last twenty years or so 
+\cite{NG-MERTENS,SOUND-MERTENS-ANNALS}. 
+
+\noindent 
+{\small \textbf{\emph{My recent work with the Mertens function.}}} 
+My preprint manuscript \cite{MDS-MANU-JNT2021} is accepted 
+into the \emph{Journal of Number Theory} this year.  
+I rigorously prove a more combinatorial 
+and additively structured new characterization of $M(x)$ by 
+considering an auxiliary signed sequence, $g^{-1}(n)$, and its corresponding 
+partial sums, $G^{-1}(x)$. 
+These comparatively regular sequences have not yet been studied in connection with the Mertens function. 
+%The integer sequence we consider is precisely defined as the Dirichlet inverse function 
+We precisely define the Dirichlet inverse function 
+$g^{-1}(n) := (\omega+1)^{-1}(n)$ 
+for all $n \geq 1$ where $\omega(n)$ is the strongly additive function that 
+counts the number of \emph{distinct} prime factors of $n$ 
+\cite[\seqnum{A001221}; \seqnum{A001222}]{OEIS}. 
+The first few values of $g^{-1}(n)$ are given by 
+\cite[\seqnum{A341444}]{OEIS}. 
+%\[
+%\{g^{-1}(n)\}_{n \geq 1} = \{1, -2, -2, 2, -2, 5, -2, -2, 2, 5, -2, -7, -2, 5, 5, 2, -2, -7, -2,
+%     -7, 5, 5, -2, 9, 2, 5, -2, -7, -2, \ldots \}. 
+%\] 
+An exact formula for $g^{-1}(n)$ is 
+\[
+g^{-1}(n) = \lambda(n) \times \sum_{d|n} \mu^2\left(\frac{n}{d}\right) C_{\Omega(d)}(d), n \geq 1,  
+\]
+where \cite[\seqnum{A008480}]{OEIS} 
+\[
+C_{\Omega(n)}(n) = \begin{cases}
+     1, & \text{if $n = 1$; } \\ 
+     (\Omega(n))! \times \prod\limits_{p^{\alpha}||n} \frac{1}{\alpha!}, & \text{if $n \geq 2$. }
+     \end{cases}
+\]
+%We have the following noteworthy properties of the inverse sequence:
+%\begin{itemize} 
+%\item[\textbf{(A)}] For all $n \geq 1$, $\operatorname{sgn}(g^{-1}(n)) = \lambda(n)$; 
+%\item[\textbf{(B)}] For all squarefree integers $n \geq 1$, we have that 
+%     \[
+%     |g^{-1}(n)| = \sum_{m=0}^{\omega(n)} \binom{\omega(n)}{m} \times m!; 
+%     \]
+%\item[\textbf{(C)}] 
+%     For large $x$ and $n \leq x$, we associate a natural combinatorial 
+%     significance to the magnitude of the distinct values of 
+%     $g^{-1}(n)$ that depends directly on the exponent patterns in the 
+%     prime factorizations of the integers in $\{2,3,\ldots,x\}$ viewed as multisets.
+%     Suppose that $n_1, n_2 \geq 2$ are such that their factorizations into distinct primes are 
+%     given by $n_1 = p_1^{\alpha_1} \cdots p_r^{\alpha_r}$ and $n_2 = q_1^{\beta_1} \cdots q_r^{\beta_r}$. 
+%     If $\{\alpha_1, \ldots, \alpha_r\} \equiv \{\beta_1, \ldots, \beta_r\}$ as multisets of prime exponents, 
+%     then $g^{-1}(n_1) = g^{-1}(n_2)$.
+%\end{itemize} 
+For large $x$ and $n \leq x$, we can then associate a natural combinatorial 
+significance to the magnitude of the distinct values of 
+$g^{-1}(n)$ that depends directly on the exponent patterns in the 
+prime factorizations of the integers in $\{2,3,\ldots,x\}$ viewed as multisets.
+Proof methods adapted in the spirit of Montgomery and Vaughan's work \cite{MV} 
+allow us to uniquely reconcile the property of strong additivity with signed sums of 
+multiplicative functions through our new characterization of 
+$M(x)$ by the partial sums of $g^{-1}(n)$. 
+%We first prove that 
+%uniformly for all $1 \leq k \leq \frac{3}{2} \log\log x$ there is an absolute constant 
+%$A_0 > 0$ such that 
+%\begin{equation}
+%\label{eqn_cor_SummatoryFuncsOfUnsignedSeqs_v2}
+%\sum_{\substack{n \leq x \\ \Omega(n) = k}} C_{\Omega(n)}(n) \sim 
+%     A_0\sqrt{2\pi} x \times \widehat{G}\left(\frac{k-1}{\log\log x}\right) 
+%     \frac{(\log\log x)^{k-1/2}}{(k-1)!}, 
+%     \text{\ as\ } x \rightarrow \infty, 
+%\end{equation}
+%where $\widehat{G}(z) := \frac{\zeta(2)^{-z}}{\Gamma(1+z) (1+P(2)z)}$ for 
+%$0 \leq |z| < P(2)^{-1} \approx 2.21118$. 
+%Using the result in \eqref{eqn_cor_SummatoryFuncsOfUnsignedSeqs_v2}, 
+We prove 
+that for an absolute constant $B_0 > 0$ the average order 
+of the unsigned sequence satisfies 
+\begin{align*}
+%\frac{1}{n} \times \sum_{k \leq n} C_{\Omega(k)}(k) & = 
+%     B_0(\log n) \sqrt{\log\log n} \left(1 + O\left(\frac{1}{\log\log n}\right)\right), 
+%     \mathrm{\ as\ } n \rightarrow \infty \\ 
+\frac{1}{n} \times \sum_{k \leq n} |g^{-1}(k)| & = 
+     \frac{6B_0 }{\pi^2} (\log n)^2\sqrt{\log\log n} (1+o(1)), 
+     %\left(1 + O\left(\frac{1}{\log\log n}\right)\right), 
+     \mathrm{\ as\ } n \rightarrow \infty. 
+\end{align*}
+We find an analog to the famous Erd\H{o}s-Kac theorem 
+\cite{BILLINGSLY-CLT-PRIMEDIVFUNC,ERDOS-KAC-REF} 
+characterizing the 
+distribution of the distinct values of $\omega(n)$ for all $n \leq x$ at large $x$ 
+corresponding to the distribution of the unsigned sequence $|g^{-1}(n)|$. 
+%Let $\sigma_x(C) := \sqrt{\log\log x}$ and 
+%$\mu_x(C) := \log\log x - \log\left(\frac{\sqrt{2\pi}A_0}{\zeta(2)(1+P(2))}\right)$ where 
+%$P(s)$ is the \emph{prime zeta function} \cite{FROBERG-1968} and $A_0 > 0$ is an absolute constant. 
+%Our theorem states that for any fixed $Y > 0$, 
+%we have uniformly for any $-Y \leq y \leq Y$ as $x \rightarrow \infty$ that 
+%\begin{align} 
+%\label{eqn_ginvAbsValueSeq_DistByShiftedStandardNormalCDF_v1} 
+%\frac{1}{x} \#\left\{3 \leq n \leq x: 
+%     \frac{|g^{-1}(n)|}{(\log n) \sqrt{\log\log n}} - 
+%     \frac{6}{\pi^2 n (\log n) \sqrt{\log\log n}} 
+%     \times \sum_{k \leq n} |g^{-1}(k)| \leq y\right\} 
+%     & = 
+%     \Phi\left(\frac{\frac{\pi^2 y}{6}-\mu_x(C)}{\sigma_x(C)}\right) + 
+%     o(1). 
+%\end{align}
+%The function $\Phi(z) = \frac{1}{\sqrt{2\pi}} \times \int_{-\infty}^z e^{-\frac{t^2}{2}} dt$ 
+%is the CDF of the standard normal distribution. 
+%%
+%Moreover, if $x$ is sufficiently large and 
+%if we pick any integer $n \in [2, x]$ uniformly at random, then 
+%the following statement also holds as $x \rightarrow \infty$: 
+%\begin{align*} 
+%\mathbb{P}\left(|g^{-1}(n)| - \frac{6}{\pi^2 n} \times \sum_{k \leq n} |g^{-1}(k)| \leq 
+%     \frac{6}{\pi^2} (\log n) \sqrt{\log\log n} 
+%     \left(\alpha \sigma_x(C) + \mu_x(C)\right)
+%     \right) & = 
+%     \Phi\left(\alpha\right) + o(1), \text{ for } \alpha \in \mathbb{R}. 
+%\end{align*} 
+
+Let the partial sums of $g^{-1}(n)$ be defined as follows 
+\cite[\seqnum{A341472}]{OEIS}: 
+$G^{-1}(x) := \sum_{n \leq x} g^{-1}(n) = \sum_{n \leq x} \lambda(n) |g^{-1}(n)|$. 
+We prove for all $x \geq 1$ the characterizations that 
+%both characterizations of $M(x)$ by $G^{-1}(x)$ that 
+\begin{align}
+%M(x) & = \sum_{n \leq x} g^{-1}(n) \left[\pi\left(\Floor{x}{n}\right) + 1\right], \\ 
+\notag 
+M(x) & = G^{-1}(x) + G^{-1}\left(\Floor{x}{2}\right) + 
+     \sum_{1 \leq k < \frac{x}{2}} G^{-1}(k) \left[ 
+     \pi\left(\Floor{x}{k}\right) - \pi\left(\Floor{x}{k+1}\right) 
+     \right], \\ 
+\label{eqn_Mx_GInvx_SumOverPrimesFlooredFormula_v3} 
+%M(x) & = G^{-1}(x) + \sum_{\substack{p \leq x \\ p\mathrm{\ prime}}} G^{-1}\left(\Floor{x}{p}\right).
+M(x) & = G^{-1}(x) + \sum_{\substack{p \leq x}} G^{-1}\left(\Floor{x}{p}\right), 
+\end{align}
+where $\pi(x) := \sum_{p \leq x} 1$ is the classical prime counting function \cite[\seqnum{A000720}]{OEIS}. 
+My approach to $M(x)$ using the $\lambda$-sign-weighted distribution for $|g^{-1}(n)|$ and the 
+summatory function $G^{-1}(x)$ via 
+\eqref{eqn_Mx_GInvx_SumOverPrimesFlooredFormula_v3} 
+offers new hope and methodology to characterizing the asymptotics of this classical function. 
+Indeed, these auxiliary sequences have a decidedly more additive nature with clearer structure and 
+more insightful properties on inspection. 
+There is a direct link between 
+the summatory function $L(x)$ of the completely multiplicative function 
+$\lambda(n)$ and the distribution of 
+$|g^{-1}(n)|$. Hence, we see another non-classical 
+concrete link between the distributions of $L(x)$ and $M(x)$. 
+The new results in this article then 
+connect the distributions of $L(x)$, an explicitly identified 
+probability distribution, and $M(x)$ as $x \rightarrow \infty$.
+Formalizing the properties of the distribution of 
+$L(x)$ is viewed as a problem that is equally as difficult 
+as understanding the distribution of $M(x)$ well along infinite 
+subsequences of large integers 
+(\cf \cite{HUMPHRIES-JNT-2013}). 
+
+\noindent 
+{\small \textbf{\emph{Future related work, open problems and conjectures.}}} 
+I plan on extending the work for this manuscript in a few directions 
+as a postdoctoral fellow. 
+The following is a list of open conjectures about the asymptotic behavior of $M(x)$ at 
+large $x$ and along infinite subsequences of integers that I wish to make progress on proving: 
+\begin{itemize}[leftmargin=0.475in,itemsep=-1.4mm,topsep=0pt]
+
+\item[\textbf{(M-A)}] We have that 
+     \[
+     \liminf_{x \rightarrow \infty} \frac{M(x)}{\sqrt{x}} = -\infty; 
+     \quad\text{ and }\quad 
+     \limsup_{x \rightarrow \infty} \frac{M(x)}{\sqrt{x}} = +\infty;
+     \]
+\item[\textbf{(M-B)}] There is an infinite sequence of integers $\{x_n\}_{n \geq 1}$ 
+                      along which $M(x_n) = 0$ for all $n \geq 1$. That is, the Mertens 
+                      function takes on arbitrarily small absolute values infinitely often. 
+                      We have also conjectured that $M(x)$ 
+                      changes sign infinitely often through the conjectures in \textbf{(M-A)}. 
+\item[\textbf{(M-C)}] Let $\mathcal{M}_{-}(x) := \#\{n \leq x: M(n) < 0\}$ denote 
+                      the set of positive integers less than $x$ for which the Mertens function 
+                      is negative. As $x \rightarrow \infty$, the values of $M(x)$ assume a 
+                      pronounced negative bias insomuch as the density 
+                      \[
+                      \frac{\mathcal{M}_{-}(x)}{x} > \frac{3}{5}(1+o(1)), \text{ as } x \rightarrow \infty. 
+                      \]
+                      We remark on how interesting this property is by noting that the asymptotic 
+                      densities of the respective sets of squarefree integers for which 
+                      $\mu(n) = \pm 1$ are proven to be equal: 
+                      \[
+                      \lim_{x \rightarrow \infty} \frac{1}{x} \times \#\{n \leq x: \mu(n) = +1\} = 
+                      \lim_{x \rightarrow \infty} \frac{1}{x} \times \#\{n \leq x: \mu(n) = -1\} = 
+                      \frac{3}{\pi^2} \approx 0.303964. 
+                 \]
+
+\end{itemize}
+I have started work to generalize the new discoveries for the Mertens function case to 
+characterize partial sums of arithmetic functions. 
+The aim is to develop a standardized methodology by which we can associate the distribution of another  
+strongly additive function in analog to the role $\omega(n)$ plays with $M(x)$ given any 
+multiplicative function $f(n)$ or any $h(n)$ whose Dirichlet series, 
+$\sum_{n \geq 1} h(n) n^{-s}$ convergent for 
+$\Re(s) > \sigma_{a}(h) \geq \sigma_{c}(h)$, satisfies 
+certain properties and is hence suitably well enough behaved. 
+
+\subsection{Formal generating function methods in number theory and combinatorial analysis}
+
+\noindent
+{\small \textbf{\emph{Background and significant research experience.}}} 
+My peer-reviewed research profile in mathematics since 2010 includes nearly two 
+dozen articles written on the 
+following topics: generalized Stirling numbers, polynomials and factorial functions, 
+continued fraction representations for sequence generating functions (OGFs) leading to 
+new congruences and properties modulo any $h \geq 2$, 
+and varied methods of transformations of formal integer sequence OGFs.  
+I have published in top journals in general mathematics and within my subject 
+areas including articles in the \emph{Journal of Number Theory}, 
+the \emph{American Mathematical Monthly}, \emph{Acta Artithmetica}, and the 
+\emph{Ramanujan Journal}. 
+%(see bibliography starting on page 
+%\pageref{page_BibliographyB_subSection_MDSPubs}). 
+I will become a co-author with 
+Prof.~Ernie Croot at GA Tech in the near future on a preprint to be submitted to the 
+\emph{Annals of Mathematics} on the $p$-divisibility of the 
+central binomial coefficients. 
+In 2019, I published a survey article on 
+generating function transformation methods 
+in a special issue of the journal \emph{Axioms} focused on 
+mathematical analysis and its applications. 
+
+\noindent 
+{\small \textbf{\emph{My doctoral thesis work at Georgia Tech.}}} 
+My collaboration and coauthored work with M.~Merca from 2016--2018 
+led to several theorems that characterize 
+so-termed matrix-based \emph{factorization theorems} for Lambert series generating functions (LGFs) 
+that provide unexpected new identities for multiplicative functions. 
+This forms the basis for the work in my doctoral thesis 
+at GA Tech under supervision of Prof.~Michael Lacey and Prof.~Josephine Yu. 
+The work with Merca grew out of a common interest in matrix-based formulas from my 
+\emph{Acta Arithmetica} article \cite{MDS-NO-7} to express the 
+LGFs that formally enumerate the divisor sums $\sum_{d|n} f(d)$ that are characteristic of many 
+multiplicative functions: 
+\begin{equation}
+\label{eqn_LGFFactThm_v1} 
+\sum_{n \geq 1} \frac{f(n)q^n}{1-q^n} = \frac{1}{(q; q)_{\infty}} \times \sum_{n \geq 1} \left( 
+     \sum_{k=1}^{n} s_{n,k} f(k)\right) q^n = 
+     \sum_{m \geq 1} \left(\sum_{d|m} f(d)\right) q^m, |q| < 1. 
+\end{equation}
+In \eqref{eqn_LGFFactThm_v1}, the lower triangular sequence 
+$s_{n,k} = [q^n](q; q)_{\infty} \times \frac{q^k}{1-q^k} = s_o(n, k) - s_e(n, k)$ where 
+the functions $s_e(n, k)$ and $s_o(n, k)$ denote the number of $k$'s in all 
+partitions of $n$ into an even (respectively odd) number of distinct parts. The matrix $s_{n,k}$ is 
+invertible with $s_{n,k}^{-1} = \sum_{d|n} p(n-k) \mu\left(\frac{n}{d}\right)$. 
+Hence, there is a concrete link connecting both the structures underneath 
+multiplicative functions and the distinctively more additive theory of partitions that is 
+apparent from the LGF factorization theorem results and its corollaries given in print. 
+
+\noindent
+{\small \textbf{\emph{Natural generalizations.}}}
+A natural question for future work on these topics is why (restricted) partition functions 
+are such a natural fit in connecting the generating functions 
+that enumerate multiplicative functions within the context of 
+\eqref{eqn_LGFFactThm_v1}? 
+Suppose that we consider more general special convolution-type sums of the 
+following form: $(f \boxdot_{\mathcal{D}} g)(n) := \sum_{k=1}^{n} f(k) g(n+1-k) \mathcal{D}(n, k)$. 
+An open problem is to find the corresponding ``canonically best'' pairing of sequences to expand a matrix-based 
+factorization theorem in analog to \eqref{eqn_LGFFactThm_v1}. 
+In the last, more expository, section of my doctoral dissertation, I consider quantitative metrics in the 
+form of sequence cross-correlation statistics 
+for the qualitative observation of ``good (or most revealing, or interesting) fit`` 
+witnessed between multiplicative and partition theoretic functions in the LGF case above. 
+In particular, if the lower triangular kernel function 
+$\mathcal{D}(n, k)$ is invertible, then we define 
+\begin{align}
+\label{eqn_CrossCorrelationStatFormula_for_fixed_CDFuncs} 
+\operatorname{Corr}(n; \mathcal{C}, \mathcal{D}) & := 
+     \frac{1}{n} \times \frac{\sum\limits_{k=1}^{n} |c_k(\mathcal{C}) \mathcal{D}^{-1}(n, k)|}{ 
+     \sqrt{\left(\sum\limits_{k=1}^{n} c_k(\mathcal{C})^2\right) \left( 
+     \sum\limits_{k=1}^{n} \mathcal{D}^{-1}(n, k)^2\right)}}
+\end{align}
+\noindent 
+{\small \textbf{\emph{Open questions.}}} 
+Given a fixed kernel $\mathcal{D}$, what is the optimal OGF $\mathcal{C}(q)$ with 
+integer (or rational) coefficients and where 
+$\mathcal{C}(0) := 1$ that generates the sequence $\{c_n(\mathcal{C})\}_{n \geq 0}$ corresponding to 
+a minimal possible correlation statistic, $\operatorname{Corr}(n; \mathcal{C}, \mathcal{D})$, defined in 
+\eqref{eqn_CrossCorrelationStatFormula_for_fixed_CDFuncs}? 
+Preliminary theorems I prove in my thesis combined with 
+numerical results suggest that, indeed, in the LGF case, the optimal 
+correlation statistic defined above corresponds to taking the factorizing 
+OGF as the \emph{infinite $q$-Pochhammer symbol}, 
+$\mathcal{C}(q) := (q; q)_{\infty} = \prod_{i \geq 1} (1-q^i)$ 
+\cite{ANDREWS-THEORY-PARTITIONS,HARDYWRIGHT}, so that we obtain the 
+observed expansions involving partition functions. 
+
+\noindent 
+{\small \textbf{\emph{Ties to existing work and modern literature in number theory.}}} 
+The ongoing study of this type of cross-correlation statistic in future work is an active and 
+fruitful method for understanding complicated sums of these types 
+that I will continue to pursue in my postdoctoral work. 
+There is already a vast body of modern work in number theory that motivates 
+semi-standardized ways to quantify relationships between functions and sequences we study via 
+correlation based statistics. There is historically relevant literature about using 
+statistical analysis to motivate studying the structure underneath number theoretic objects. 
+For example, the non-trivial zeros of the Riemann zeta function have been related and 
+bounded via pair correlation formulas. 
+Results in analytic number theory that make sense of the distribution of the 
+non-trivial zeros of $\zeta(s)$ originated in the work of Montgomery. 
+Subsequent follow-up work that collectively builds on Montgomery’s contributions in the 
+context of $L$-functions, Gaussian unitary ensemble (GUE), 
+random matrix theory applications and associated correlation statistics is 
+famously due to Hejal, Rudnick, Sarnak and Odlyzko 
+\cite{WILLIAMS-BARRETT-SURVEY-2016}. 
+
+\section{Active work on open source software projects}
+
+I am an active user of the \emph{open source software} (OSS) based 
+platforms Linux and OpenBSD since my 
+teenage years. I was exposed to the availability, education, superior documentation and 
+freely available source to high-quality production software that runs the backbone of all large 
+computer networks early on by teaching myself how to use these systems. This experience provides me 
+insight, grounded philosophy and a great passionate love for OSS. I have gone to significant efforts to 
+donate time to and develop publicly available OSS both as an extension of my formal studies as 
+a graduate student and to grow my skill set as a professional software engineer. 
+I actively develop and maintain 
+over a dozen public cross-platform OSS projects on \emph{GitHub} 
+written in the C/C++, Java, Python and assembly languages, among others.
+
+My responsibilities working with 
+Prof.~Christine Heitsch as the \emph{gtDMMB} mathematical biology group's graduate RA and 
+software engineer on record at GA Tech have allowed me to gain experience through 
+hundreds of hours back-porting and extending OSS. This work that enables research and experimentation 
+in mathematical and computational biology. 
+In 2021, we co-authored an application note publication in \emph{BioInformatics} 
+focused on the \emph{RNAStructViz} graphical tool for visualizing RNA secondary structures 
+\cite{MDS-NO-21}. 
+We are planning to publish other OSS I have developed with her group online this year providing 
+Python bindings, or a Python accessible scripting interface, to the historic \emph{GTFold} software 
+\cite{GTFOLD-PUB-REFERENCE} 
+that provides computationally efficient predictions of RNA secondary structures. 
+Another subset of my applied research interests in OSS since relocating to GA Tech in 2017 
+is focused on security software (utilities and libraries) on contactless NFC smartcard and wireless RFID 
+hardware technology. 
+The freely available software I have developed from scratch includes an 
+Android phone based real-time NFC data logger (the \emph{CMLD} project)
+application that boasts $500+$ active international users on the 
+\emph{Google Play Store}. 
+
+From 2020--2021, I worked on a larger scale, energizing and experimental 
+security project that was a welcome challenge and software outlet away 
+from my pure math research over the pandemic. 
+The project brings sophisticated new 
+embedded firmware extensions to a class of NFC penetration testing and 
+data sniffer-loggers 
+(the Chameleon Mini) that interfaces with common wireless NFC tags (e.g., most university student ID cards). 
+This project afforded a heightened platform online 
+over which to bring 
+more awareness by users to important issues 
+that have increasingly beleaguered the world this pandemic. 
+In particular, the first beta testing versions became a reality 
+the long weekend of the sad passing of inspirational 
+US supreme court justice Ruth Bader Ginsberg on 
+Rosh Hashanah, to whom I was able to pay tribute by working on this software. 
+I am proud to have ``hacked'' for freedom with free software, as I like to say, for days on end 
+while cloaked in an over-sized \emph{Black Lives Matter} shirt. 
+The net gain from the project is that the complex and proprietary \emph{DESFire} NFC tag
+specification is now emulated by the Chameleon Mini hardware appreciated globally by 
+wireless security researchers.  
+The experience working on this project speaks to the power of 
+open source software (OSS) and how I intend to use its reach as a postdoctoral fellow.
+
+%\newpage 
+\bigskip\hrule\hrule\hrule\bigskip
+\renewcommand{\thesection}{B}
+\section{Bibliography and software contributions} 
+\label{page_Section_BibliographyB} 
+
+\vskip 0.1in
+\subsection{External works cited}
+
+\begin{thebibliography}{10}
+
+\bibitem{ANDREWS-THEORY-PARTITIONS}
+Andrews, G.~E. \emph{The Theory of Partitions (Encyclopedia of Mathematics and its Applications)}. 
+Cambridge University Press, 1984.
+
+\bibitem{APOSTOLANUMT}
+Apostol, T.~M.
+\newblock {\em Introduction to Analytic Number Theory}.
+\newblock Springer--Verlag, 1976.
+
+\bibitem{WILLIAMS-BARRETT-SURVEY-2016} 
+Barrett O., Firk F.W.K., Miller S.J., Turnage-Butterbaugh C. 
+\emph{From Quantum Systems to L-Functions: Pair Correlation Statistics and Beyond}. 
+In: Nash, Jr. J., Rassias M. (eds) Open Problems in Mathematics. Springer, Cham. (2016) 
+\url{https://doi.org/10.1007/978-3-319-32162-2_2}
+
+\bibitem{BILLINGSLY-CLT-PRIMEDIVFUNC}
+Billingsley, P.
+\newblock On the central limit theorem for the prime divisor function.
+\newblock {\em Amer. Math. Monthly}, 76(2):132--139, 1969.
+
+\bibitem{ERDOS-KAC-REF}
+Erd{\H{o}}s, P. and Kac, M.
+\newblock The Gaussian errors in the theory of additive arithmetic functions.
+\newblock {\em American Journal of Mathematics}, 62(1):738--742, 1940.
+
+\bibitem{ACOMB} 
+Flajolet, P. and Sedgewick, R. Analytic Combinatorics. Cambridge University Press, 2009.
+
+\bibitem{FROBERG-1968}
+C.~E. Fr{\"{o}}berg.
+\newblock On the prime zeta function.
+\newblock {\em BIT Numerical Mathematics}, 8:87--202, 1968.
+
+\bibitem{GKP}
+Graham, R.~L., Knuth, D.~E. and Patashnik, O. 
+\emph{Concrete Mathematics: A Foundation for Computer Science}. Addison-Wesley, 1994.
+
+\bibitem{HARDYWRIGHT}
+Hardy, G.~H. and Wright E.~M., editors.
+\newblock {\em An Introduction to the Theory of Numbers}.
+\newblock Oxford University Press, 2008.
+
+\bibitem{HAVIL-GAMMA} 
+Havil, J.  \emph{Gamma: Exploring Euler's constant}. Princeton University Press, 2003. 
+
+\bibitem{HUMPHRIES-JNT-2013}
+Humphries, P.
+\newblock The distribution of weighted sums of the {L}iouville function and
+  {P}\'{o}lya's conjecture.
+\newblock {\em J. Number Theory}, 133:545--582, 2013.
+
+\bibitem{IWANIEC-KOWALSKI}
+Iwaniec, H. and Kowalski, E.
+\newblock {\em Analytic Number Theory}, volume~53.
+\newblock AMS Colloquium Publications, 2004.
+
+\bibitem{ORDER-MERTENSFN}
+Kotnik, T. and ~van~de Lune, J.
+\newblock On the order of the {M}ertens function.
+\newblock {\em Exp. Math.}, 2004.
+
+\bibitem{MV}
+Montgomery, H.~L. and Vaughan, R.~C.
+\newblock {\em Multiplicative Number Theory: I. Classical Theory}.
+\newblock Cambridge, 2006.
+
+\bibitem{NG-MERTENS}
+Ng, N.
+\newblock The distribution of the summatory function of the {M}{\'{o}}bius
+  function.
+\newblock {\em Proc. London Math. Soc.}, 89(3):361--389, 2004.
+
+\bibitem{ODLYZ-TRIELE}
+Odlyzko, A.~M. and te~Riele, H.~J.~J. 
+\newblock Disproof of the {M}ertens conjecture.
+\newblock {\em J. Reine Angew. Math.}, 1985.
+
+\bibitem{PRIMEREC}
+Ribenboim, P.
+\newblock {\em The new book of prime number records}.
+\newblock Springer, 1996.
+
+\bibitem{OEIS}
+Sloane, N.~J.~A.
+\newblock The {O}nline {E}ncyclopedia of {I}nteger {S}equences, 2021.
+\newblock \url{http://oeis.org}
+
+\bibitem{SOUND-MERTENS-ANNALS}
+Soundararajan, K.
+\newblock Partial sums of the {M}{\"{o}}bius function.
+\newblock {\em J. Reine Angew. Math.}, 2009(631):141--152, 2009.
+
+\bibitem{GTFOLD-PUB-REFERENCE} 
+Swenson, M.~S., Anderson, J., Ash, A., Gaurav, P., Sukos, Z., Bader, D.~A., 
+Harvey, S.~C., and Heitsch, C.~E. 
+\emph{GTfold: Enabling parallel RNA secondary structure prediction on multi-core desktops}. 
+BMC Research Notes. 5(1): 341, 2012. 
+\url{https://github.com/gtDMMB/gtfold} 
+
+\bibitem{TITCHMARSH}
+Titchmarsh, E.~C.
+\newblock {\em The theory of the {R}iemann zeta function}.
+\newblock Oxford University Press, second edition, 1986.
+
+\end{thebibliography}
+
+
+\bigskip\hrule\bigskip
+\subsection{Peer-reviewed publications} 
+\label{page_BibliographyB_subSection_MDSPubs} 
+
+\begin{thebibliography}{10}
+
+\bibitem{MDS-NO-10}
+Merca, M. and Schmidt, M.~D. \emph{A partition identity related to Stanley's theorem}. 
+Amer. Math. Monthly 125 {\bf 10}: 929--933 (2018). 
+\url{https://doi.org/10.1080/00029890.2018.1521232}
+
+\bibitem{MDS-NO-16}
+Merca, M. and Schmidt, M.~D. \emph{Factorization theorems for generalized Lambert series and applications}. 
+Ramanujan J. {\bf 51}: 391--419 (2020). 
+\url{https://doi.org/10.1007/s11139-018-0095-7}
+
+\bibitem{MDS-NO-12}
+Merca, M. and Schmidt, M.~D. \emph{Generating special arithmetic functions by Lambert series factorizations}. 
+Contrib. Discrete Math. 14 {\bf (1)}: 31--45 (2019). 
+
+\bibitem{MDS-NO-9}
+Merca, M. and Schmidt, M.~D. \emph{The partition function $p(n)$ in terms of the classical M\"{o}bius function}. 
+Ramanujan J. {\bf 49}: 87--96 (2019). 
+
+\bibitem{MDS-NO-18}
+Mousavi, H. and Schmidt, M.~D. \emph{Factorization theorems for relatively prime divisor sums, 
+                                     GCD sums and generalized Ramanujan sums}. 
+Ramanujan J. {\bf 54}: 309--341 (2021). 
+\url{http://doi.org/10.1007/s11139-020-00323-5} 
+
+\bibitem{MDS-NO-2}
+Schmidt, M.~D. \emph{A computer algebra package for polynomial sequence recognition}. 
+Illinois IDEALS (2014). 
+\url{https://www.ideals.illinois.edu/handle/2142/49378}
+
+\bibitem{MDS-NO-17}
+Schmidt, M.~D. \emph{A short note on integral transformations and 
+                     conversion formulas for sequence generating functions}. 
+Axioms Special Issue on Mathematical Analysis and Applications II 8 {\bf 2}, 62 (2019). 
+\url{https://doi.org/10.3390/axioms8020062} 
+
+\bibitem{MDS-NO-13}
+Schmidt, M.~D. \emph{Combinatorial identities for generalized Stirling numbers 
+                     expanding $f$-factorial functions and the $f$-harmonic numbers}. 
+J. Integer Seq. 21 {\bf 18.2.7} (2018). 
+
+\bibitem{MDS-NO-19}
+Schmidt, M.~D. \emph{Combinatorial sums and identities involving generalized divisor functions with bounded divisors}. 
+Integers 20 {\bf A85} (2020). 
+
+\bibitem{MDS-NO-6}
+Schmidt, M.~D. \emph{Continued fractions and $q$-series generating functions for the 
+                     generalized sum-of-divisors functions}. 
+J. Number Theory 180: 579--605 (2017). 
+\url{https://doi.org/10.1016/j.jnt.2017.05.023}
+
+\bibitem{MDS-NO-8}
+Schmidt, M.~D. \emph{Continued Fractions for Square Series Generating Functions}. 
+Ramanujan J. {\bf 46}: 795--820 (2018). 
+\url{https://doi.org/10.1007/s11139-017-9971-9}
+
+\bibitem{MDS-NO-5}
+Schmidt, M.~D. \emph{Generating function transformations related to 
+                     polylogarithm functions and the $k$-order harmonic numbers}. 
+Online J. Anal. Comb. 12 {\bf 2} (2017). 
+
+\bibitem{MDS-NO-20}
+Schmidt, M.~D. \emph{Exact formulas for the generalized sum-of-divisors functions}. 
+Integers 21 {\bf A19} (2021). 
+
+\bibitem{MDS-NO-1}
+Schmidt, M.~D. \emph{Generalized $j$-factorial functions, polynomials, and applications}. 
+J. Integer Seq. 13 {\bf 10.6.7}  (2010). 
+
+\bibitem{MDS-NO-11}
+Schmidt, M.~D. \emph{Jacobi-type continued fractions and congruences for 
+                     binomial coefficients modulo integers $h \geq 2$}. 
+Integers 18 {\bf A46} (2018). 
+
+\bibitem{MDS-NO-3}
+Schmidt, M.~D. \emph{Jacobi-type continued fractions for the ordinary generating functions of 
+                     generalized factorial functions}. 
+J. Integer Seq. 20 {\bf 17.3.4} (2017). 
+
+\bibitem{MDS-NO-14}
+Schmidt, M.~D. \emph{New congruences and finite difference equations for generalized factorial functions}. 
+Integers 18 {\bf A78} (2018). 
+
+\bibitem{MDS-NO-7}
+Schmidt, M.~D. \emph{New recurrence relations and matrix equations for 
+                     arithmetic functions generated by Lambert series}. 
+Acta Arith. 181 (2017): 355-367. 
+\url{http://doi.org/10.4064/aa170217-4-8} 
+
+\bibitem{MDS-NO-21}
+Schmidt, M.~D., Kirkpatrick, A., and Heitsch, C. \emph{RNAStructViz: graphical base pairing analysis}. 
+Bioinformatics {\bf 197} (2021). 
+\url{https://doi.org/10.1101/2021.01.20.427505}
+
+\bibitem{MDS-NO-4}
+Schmidt, M.~D. \emph{Square series generating function transformations}. 
+J. Inequal. Spec. Funct. 8 {\bf 2} (2017). 
+
+\bibitem{MDS-NO-15}
+Schmidt, M.~D. \emph{Zeta series generating function transformations related to 
+                     generalized Stirling numbers and partial sums of the Hurwitz zeta function}. 
+Online J. Anal. Comb. 13 {\bf 158}. (2018). 
+
+\end{thebibliography}
+
+\bigskip\hrule\bigskip
+\subsection{Preprint manuscripts} 
+
+\begin{thebibliography}{10}
+
+\bibitem{MDS-MANU-LSERIES} 
+Schmidt, M.~D. \emph{A catalog of interesting and useful Lambert series identities}. 
+Preprint (2020). 
+\url{https://arxiv.org/abs/2004.02976} 
+
+\bibitem{MDS-MSTHESIS-EXT}
+Schmidt, M.~D. \emph{A computer algebra package for polynomial sequence recognition}. 
+Preprint (2016). 
+\url{https://arxiv.org/abs/1609.07301}
+
+\item[$\blacktriangleright$]
+Schmidt, M.~D. \emph{A recent open source embedded implementation of the DESFire specification 
+                     designed for on-the-fly logging with NFC based systems}. Preprint (2021).
+
+\bibitem{MDS-MANU-FACTTHMS-EXOTIC} 
+Schmidt, M.~D. \emph{Factorization theorems for Hadamard products and 
+                     higher-order derivatives of Lambert series generating functions}. 
+Preprint (2017). 
+\url{https://arxiv.org/abs/1712.00608} 
+
+\bibitem{MDS-MANU-JNT2021} 
+Schmidt, M.~D. \emph{New characterizations of partial sums of the M\"{o}bius function}. 
+Preprint (2021). 
+\url{https://arxiv.org/abs/2102.05842}
+
+\bibitem{MDS-MANU-MERCA-FACTORPAIRS} 
+Merca, M. and Schmidt, M.~D. \emph{New factor pairs for factorizations of Lambert series generating functions}. 
+Preprint (2017). 
+\url{https://arxiv.org/abs/1706.02359}
+
+\bibitem{MDS-MANU-PCGAPDISTS-TILINGS} 
+Schmidt, M.~D. \emph{Pair correlation and gap distributions for substitution tilings and 
+                     generalized Ulam sets in the plane}. 
+Preprint (2017). 
+\url{https://arxiv.org/abs/1707.05509}
+
+\end{thebibliography}
+
+\bigskip\hrule\bigskip
+\subsection{STEM supportive and educational software}
+
+     \vskip 0.15in
+     {\footnotesize 
+        \begin{itemize}[leftmargin=0.4cm,itemsep=-0.5mm] 
+        
+            \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{GTFold Python}}: 
+                  Python bindings and library to modernize and extend for the historical set of \emph{GTFold} 
+                  command line utilities for use with Python. It is a scientific computing project to facilitate 
+                  experimentation with RNA structures in computational biology. 
+                  The source code will be released publicly on GitHub in late 2021. 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Mathematically-oriented Unix fortune utility mod}}: 
+                  A math-related add-on package providing terminal-based text to be displayed on the 
+                  command line in the form of 
+                  Unix fortune cookie wisdom. It features a custom \emph{Concrete Math} book style 
+                  upper case $\Sigma$ summation ASCII-art graphic. \\ 
+                  \🌐 \url{github/maxieds/math-fortune-mod} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Mertens function manuscript computational supplement}}: 
+                  Facilitates computations with and exploration of the Mertens function, $M(x)$, 
+                  in both \emph{SageMath} and \emph{Mathematica}. 
+                  Software and supporting documentation written to accompany the publication of 
+                  \cite{MDS-MANU-JNT2021}. \\ 
+                  \🌐 \url{github/maxieds/MertensFunctionComputations}
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{OptiKey ``Big Hacker'' keyboard extensions}}: 
+                  Open source code and documentation that makes typing programming languages on-screen for users 
+                  with disabilities more accessible. These extensible ``Big Hacker'' encoded 
+                  keyboards are designed to simplify on-screen entry 
+                  of programming languages. This task otherwise requires scrolling through a cell-phone-style 
+                  nested set of keyboard screens to enter a single line of code in C++, Perl or Python. %\\ 
+                  %\🌐 \url{https://github.com/OptiKey/OptiKey/wiki/Creating-and-Using-Dynamic-Keyboards} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Partitions into parts package}}: 
+                  An extendable and expository Mathematica demo 
+                  package for computing the number of partitions of a positive integer $n$ 
+                  into parts of the form $pt+a$ for $p$ prime and $0 \leq a < p$. \\ 
+                  \🌐 \url{github/maxieds/PartitionsIntoParts} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Prairie Learn contributor}}: 
+                  Prairie Learn is an open source \emph{learning management system} (or LMS) 
+                  that is a viable option to replace usage of the popular \textit{Canvas} LMS at many 
+                  universities. It is actively developed at UBC and UIUC and is used on a 
+                  private server form at UC Berkeley. 
+                  I have so far contributed code to enable custom function names, symbolic constants, 
+                  custom-defined operator symbols, and documentation available 
+                  for use with \texttt{sympy} Python library parsing of internal 
+                  \texttt{pl-symbolic-input} elements. This pull request enables crucial 
+                  parsing for questions in calculus, mathematics and physics by enabling custom function names and 
+                  symbolic constants. \\ 
+                  \🌐 \url{github/PrairieLearn/PrairieLearn} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{RNAStructViz}}: 
+                  A cross-platform GUI-based application to visualize and compare RNA secondary structures 
+                  that commonly arise in mathematical biology applications. 
+                  See the application note in \cite{MDS-NO-21}. \\ 
+                  %Supports standardized text-based 
+                  %input formats for sequences and is able to export summary results and statistics to 
+                  %common formats such as PNG, SVG and CSV. \\ 
+                  \🌐 \url{github/gtDMMB/RNAStructViz/wiki} 
+
+            \item[]%[$\blacktriangleright$] 
+                 \emph{\textbf{Sage and Mathematica special sequence formula recognition packages}}: 
+                  UIUC MS thesis software in both Mathematica (original) and Sage (extended). Designed to 
+                  recognize formulas for sequences 
+                  involving special combinatorial primitives and functions. \\ 
+                  \🌐 \url{github/maxieds/GuessPolynomialSequences} \\ 
+                  \🌐 \url{github/maxieds/sage-guess} 
+             
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{WXML tilings Python library}}: 
+                  I was offered an unforgettable opportunity by Jayadev Athreya over 2016--2017 to take part in 
+                  mentoring advanced undergraduates in mathematics. 
+                  %by teaching a self-created topics course remotely 
+                  %with the University of Washington. 
+                  The course outline focused on getting students hands-on 
+                  experience with experimental mathematics methodology, gap distributions and spatial statistics and 
+                  visualizing substitution tilings of the plane in the Python programming language. \\ 
+                  \🌐 \url{github/maxieds/WXMLTilingsHOWTO} 
+ 
+        \end{itemize}
+     } 
+
+\bigskip\hrule\bigskip
+\subsection{Other significant open source software}
+
+     \vskip 0.15in
+     {\footnotesize 
+
+        \begin{itemize}[leftmargin=0.4cm,itemsep=-0.5mm]
+
+            \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Android file picker light library}}: 
+                  A file and directory chooser widget library for Android OS that focuses on presenting an easy to 
+                  configure lightweight UI. Designed from the top down to work with newer Android 10 and 11 
+                  (API 29+) platforms in the future. \\ 
+                  \🌐 \url{github/maxieds/AndroidFilePickerLight}
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Chameleon Mini crypto mod firmware extension}}: 
+                  A modification of the stock Chameleon Mini firmware sources to enable 
+                  cryptographically secure and integrity checked binary data uploads onto the device. \\ 
+                  \🌐 \url{github/maxieds/ChameleonCryptoModFirmware} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Chameleon Mini Live Debugger (CMLD)}}: 
+                  An interactive NFC logging interface for 
+                  Android OS phones that interfaces to Chameleon Mini hardware over USB. 
+                  Over 500 active users on the Google \emph{Play Store}. \\ 
+                  \🌐 \url{github/maxieds/ChameleonMiniLiveDebugger} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{DESFire emulation support for the Chameleon Mini}}: 
+                  The Chameleon Mini is a hardware tool for NFC debugging, card emulation, security testing, 
+                  reconnaissance, and general purpose low-level data logging for contactless RFID cards 
+                  like university IDs. 
+                  This work enables embedded emulation support for the complex and proprietary 
+                  Mifare DESFire type NFC tags on recent Chameleon Mini devices. \\ 
+                  %Includes extensions of hardware accelerated cryptographic routines for AES/2K-DES/3DES. \\ 
+                  \🌐 \url{github/emsec/ChameleonMini} \\ 
+                  \🌐 \url{github/maxieds/ChameleonMiniDESFireStack} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Homebrew live streamer}}: 
+                  A customizable, roll-your-own solution for live A/V recording to an Android phone device. 
+                  It is also used 
+                  with live media streaming to Facebook and YouTube for a transparent, open source non-proprietary 
+                  application to perform the media streaming. 
+                  The application was written to covertly record a private memento of a 
+                  special three hour Smashing Pumpkins concert in Atlanta from 2018. \\ 
+                  \🌐 \url{github/maxieds/HomeBrewLiveStreamer} 
+
+             \item[]%[$\blacktriangleright$] 
+                  \emph{\textbf{Mifare classic tool library}}: 
+                  A Java and Android OS library wrapper around the functionality of the popular 
+                  \emph{Mifare Classic Tool} (MCT) application for Android phones. \\ 
+                  \🌐 \url{github/maxieds/MifareClassicToolLibrary} \\ 
+                  \🌐 \url{github/maxieds/ChameleonMiniUSBInterface} 
+ 
+          \end{itemize}
+
+     }
+                  
+\end{document}

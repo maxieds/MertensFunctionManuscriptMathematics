@@ -1,0 +1,3767 @@
+\documentclass[11pt,reqno,a4letter]{article} 
+
+\usepackage{amsmath,amssymb,amsfonts,amscd}
+\usepackage[hidelinks]{hyperref} 
+\usepackage{url}
+\usepackage[usenames,dvipsnames]{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={black!63!darkgray},
+    citecolor={blue!70!white},
+    urlcolor={blue!80!white}
+}
+
+\usepackage[normalem]{ulem}
+\usepackage{graphicx} 
+\usepackage{datetime} 
+\usepackage{cancel}
+\usepackage{subcaption}
+\captionsetup{format=hang,labelfont={bf},textfont={small,it}} 
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\usepackage{framed} 
+\usepackage{ulem}
+\usepackage[T1]{fontenc}
+\usepackage{pbsi}
+
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=0.65in}
+
+\usepackage{rotating,adjustbox}
+
+\usepackage{diagbox}
+\newcommand{\trianglenk}[2]{$\diagbox{#1}{#2}$}
+\newcommand{\trianglenkII}[2]{\diagbox{#1}{#2}}
+
+\let\citep\cite
+
+\newcommand{\undersetbrace}[2]{\underset{\displaystyle{#1}}{\underbrace{#2}}}
+
+\usepackage{MnSymbol}
+\newcommand{\gkpEII}[2]{\ensuremath{\genfrac{\llangle}{\rrangle}{0pt}{}{#1}{#2}}}
+
+\newcommand{\gkpSI}[2]{\ensuremath{\genfrac{\lbrack}{\rbrack}{0pt}{}{#1}{#2}}} 
+\newcommand{\gkpSII}[2]{\ensuremath{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}}
+\newcommand{\cf}{\textit{cf.\ }} 
+\newcommand{\Iverson}[1]{\ensuremath{\left[#1\right]_{\delta}}} 
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor} 
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil} 
+\newcommand{\e}[1]{e\left(#1\right)} 
+\newcommand{\seqnum}[1]{\href{http://oeis.org/#1}{\color{ProcessBlue}{\underline{#1}}}}
+
+\usepackage{upgreek,dsfont,amssymb}
+\renewcommand{\chi}{\upchi}
+\newcommand{\ChiFunc}[1]{\ensuremath{\chi_{\{#1\}}}}
+\newcommand{\OneFunc}[1]{\ensuremath{\mathds{1}_{#1}}}
+
+\usepackage{ifthen}
+\newcommand{\Hn}[2]{
+     \ifthenelse{\equal{#2}{1}}{H_{#1}}{H_{#1}^{\left(#2\right)}}
+}
+
+\newcommand{\Floor}[2]{\ensuremath{\left\lfloor \frac{#1}{#2} \right\rfloor}}
+\newcommand{\Ceiling}[2]{\ensuremath{\left\lceil \frac{#1}{#2} \right\rceil}}
+
+\DeclareMathOperator{\DGF}{DGF} 
+\DeclareMathOperator{\ds}{ds} 
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\fg}{fg}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\rpp}{rpp}
+\DeclareMathOperator{\logll}{\ell\ell}
+
+\title{
+       \LARGE{
+       New characterizations of the summatory function of the M\"obius function 
+       } 
+}
+\author{{\Large Maxie Dion Schmidt} \\ 
+        %{\normalsize \href{mailto:maxieds@gmail.com}{maxieds@gmail.com}} \\[0.1cm] 
+        {\normalsize Georgia Institute of Technology} \\[0.025cm] 
+        {\normalsize School of Mathematics} 
+} 
+
+%\date{\small\underline{Last Revised:} \today \ @\ \hhmmsstime{} \ -- \ Compiled with \LaTeX2e} 
+
+\usepackage{amsthm} 
+
+\theoremstyle{plain} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\numberwithin{theorem}{section}
+
+\theoremstyle{definition} 
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{discussion}[theorem]{Discussion}
+\newtheorem{facts}[theorem]{Facts}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{heuristic}[theorem]{Heuristic}
+\newtheorem{ansatz}[theorem]{Ansatz}
+
+\renewcommand{\arraystretch}{1.25} 
+
+\setlength{\textheight}{9.5in}
+\setlength{\topmargin}{-0.5in}
+\setlength{\textwidth}{7in} 
+\setlength{\evensidemargin}{-0.25in} 
+\setlength{\oddsidemargin}{-0.25in} 
+\setlength{\headsep}{8pt} 
+
+\usepackage{fancyhdr}
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhead[RO,RE]{Maxie Dion Schmidt -- \today} 
+\fancyhead[LO,LE]{}
+\fancyheadoffset{0.005\textwidth} 
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{2cm} 
+
+\renewcommand{\thefootnote}{\textbf{\Alph{footnote}}}
+
+\newcommand{\SuccSim}[0]{\overset{_{\scriptsize{\blacktriangle}}}{\succsim}} 
+\newcommand{\PrecSim}[0]{\overset{_{\scriptsize{\blacktriangle}}}{\precsim}} 
+\renewcommand{\SuccSim}[0]{\ensuremath{\gg}} 
+\renewcommand{\PrecSim}[0]{\ensuremath{\ll}} 
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{enumitem} 
+
+%\input{glossaries-bibtex/PreambleGlossaries-Mertens}
+
+\usepackage{longtable}
+\usepackage{arydshln} 
+\usepackage[symbols,nogroupskip,nomain,automake=true,nonumberlist,toc]{glossaries-extra}
+\usepackage{glossary-mcols}
+
+%%%%%%%%%%%%
+
+\providecommand{\glossarytoctitle}{\glossaryname}
+\setlength{\glsdescwidth}{0.7\textwidth}
+
+\newglossarystyle{glossstyleSymbol}{%
+\renewenvironment{theglossary}%
+ {\begin{longtable}{lp{\glsdescwidth}}}%
+ {\end{longtable}}%
+ \setlength{\parskip}{3.5pt}
+ \renewcommand{\glsgroupskip}{}
+\renewcommand*\glspostdescription{\dotfill}
+\renewcommand*{\glossaryheader}{%
+ \bfseries Symbol & \bfseries Definition
+ \\\endhead}%
+ \renewcommand*{\glsgroupheading}[1]{}%
+  \renewcommand{\glossentry}[2]{%
+    \glstarget{##1}{\glossentrysymbol{##1}} &
+    \glossentrydesc{##1} \tabularnewline
+  }%
+  \renewcommand*{\glspostdescription}{}
+  \renewcommand{\glossarymark}[1]{}
+}
+
+\setglossarystyle{glossstyleSymbol}
+\glsaddall[types={symbols}]
+\makeglossaries
+
+%%%%%%%%%%%%
+
+\newglossaryentry{fCvlg}{
+    symbol={\ensuremath{f \ast g}},
+    sort={fg},
+    description={The Dirichlet convolution of $f$ and $g$, $(f \ast g)(n) := \sum\limits_{d|n} f(d) g(n/d)$, 
+    where the sum is taken over the divisors of any $n \geq 1$. 
+    },
+    type={symbols},
+    name={Dirichlet convolution}
+    }
+\newglossaryentry{coeffExtraction}{
+    symbol={\ensuremath{[q^n] F(q)}},
+    sort={coeffExtraction},
+    description={The coefficient of $q^n$ in the power series expansion of $F(q)$ about zero when 
+    $F(q)$ is treated as the ordinary generating function (OGF) of some sequence, $\{f_n\}_{n \geq 0}$. 
+    Namely, for integers $n \geq 0$ we define $[q^n] F(q) = f_n$ whenever $F(q) := \sum_{n \geq 0} f_n q^n$. },
+    type={symbols},
+    name={Series coefficient extraction}
+    }
+\newglossaryentry{MoebiusMuFunc}{
+    symbol={\ensuremath{\mu(n),M(x)}},
+    sort={MoebiusMuFunc},
+    description={The M\"obius function defined such that $\mu^2(n)$ is the indicator function of the 
+                 squarefree integers $n \geq 1$ where 
+                 $\mu(n) = (-1)^{\omega(n)}$ whenever $n$ is squarefree. 
+                 The Mertens function is the summatory function defined for all integers 
+                 $x \geq 1$ by $M(x) := \sum\limits_{n \leq x} \mu(n)$.
+                 },
+    type={symbols},
+    name={M\"obius function}
+    }
+\newglossaryentry{Iverson}{
+    symbol={\ensuremath{\Iverson{n=k}},\ensuremath{\Iverson{\mathtt{cond}}}},
+    sort={Iverson},
+    description={The symbol $\Iverson{n=k}$ is a synonym for $\delta_{n,k}$ 
+                 which is one if and only if $n = k$, and is zero otherwise. 
+                 For boolean-valued conditions, \texttt{cond}, the symbol $\Iverson{\mathtt{cond}}$ 
+                 evaluates to one precisely when \texttt{cond} is true, and to zero otherwise. 
+                 This notation is called \emph{Iverson's convention}.},
+    type={symbols},
+    name={Iverson's convention}
+    }
+\newglossaryentry{epsilonN}{
+    symbol={\ensuremath{\varepsilon(n)}},
+    sort={epsilonN},
+    description={The multiplicative identity with respect to Dirichlet convolution, $\varepsilon(n) := \delta_{n,1}$, 
+                 defined such that for any arithmetic function $f$ we have that 
+                 $f \ast \varepsilon = \varepsilon \ast f = f$ where the operation 
+                 $\ast$ denotes Dirichlet convolution 
+                 (see definition below).},
+    type={symbols},
+    name={Dirichlet multiplicative identity}
+    }
+\newglossaryentry{Zetas}{
+    symbol={\ensuremath{\zeta(s)}},
+    sort={Zetas},
+    description={The Riemann zeta function is defined by $\zeta(s) := \sum_{n \geq 1} n^{-s}$ when $\Re(s) > 1$, 
+                 and by analytic continuation on the rest of the complex plane with the exception of a 
+                 simple pole at $s = 1$ of residue one.},
+    type={symbols},
+    name={Riemann zeta function}
+    }
+\newglossaryentry{fInvn}{
+     symbol={\ensuremath{f^{-1}(n)}},
+    sort={fInvn},
+    description={
+     The Dirichlet inverse $f^{-1}$ of any arithmetic function $f$ exists 
+     if and only if $f(1) \neq 0$. 
+     The Dirichlet inverse of any $f$ such that $f(1) \neq 0$ 
+     is defined recursively by 
+     $f^{-1}(n) = -\frac{1}{f(1)} \sum\limits_{\substack{d|n \\ d>1}} f(d) f^{-1}(n/d)$ for $n \geq 2$ with $f^{-1}(1) = 1 / f(1)$. 
+    When it exists, this inverse function 
+    is unique and satisfies the characteristic relations 
+    that $f^{-1} \ast f = f \ast f^{-1} = \varepsilon$.},
+    type={symbols},
+    name={Dirichlet inverse of $f$}
+    }
+\newglossaryentry{PrimeZetaFunc}{
+    symbol={$P(s)$},
+    sort={PrimeZetaFunc},
+    description={For complex $s$ with $\Re(s) > 1$, we define the prime zeta function to be the 
+                 Dirichlet generating function (DGF) 
+                 $P(s) = \sum_{n \geq 1} \frac{\chi_{\mathbb{P}}(n)}{n^s} = 
+                         \sum_{k \geq 2} \frac{\mu(k)}{k} \log\zeta(ks)$. 
+                 },
+    type={symbols},
+    name={Prime zeta function}
+    }
+\newglossaryentry{CkngInvAuxFunc}{
+    symbol={$C_k(n),C_{\Omega(n)}(n)$},
+    sort={CkngInvAuxFunc},
+    description={The sequence is defined recursively for integers $n \geq 1$ and $k \geq 0$ as follows: 
+                 \[
+                 C_k(n) := \begin{cases} 
+                      \delta_{n,1}, & \text{ if $k = 0$; } \\ 
+                      \sum\limits_{d|n} \omega(d) C_{k-1}\left(\frac{n}{d}\right), & \text{ if $k \geq 1$. } 
+                      \end{cases} 
+                 \]
+                 It represents the multiple ($k$-fold) convolution of the function $\omega(n)$ 
+                 with itself. 
+                 %For $k := \Omega(n)$ and $n \geq 2$, we have the explicit formula that 
+                 %$C_{\Omega(n)}(n) = (\Omega(n))! \times \prod_{p^{\alpha}||n} (\alpha!)^{-1}$. 
+                 },
+    type={symbols},
+    name={Dirichlet inverse component functions}
+    }
+\newglossaryentry{gInvn}{
+    symbol={$g^{-1}(n),G^{-1}(x)$},
+    sort={gInvn},
+    description={The Dirichlet inverse function, $g^{-1}(n) = (\omega+1)^{-1}(n)$ with corresponding 
+                 summatory function $G^{-1}(x) := \sum_{n \leq x} g^{-1}(n)$. },
+    type={symbols},
+    name={Key Dirichlet inverse functions}
+    }
+\newglossaryentry{PikPiHatkx}{
+    symbol={$\pi_k(x),\widehat{\pi}_k(x)$},
+    sort={PikPiHatkx},
+    description={For integers $k \geq 1$, the 
+                 prime counting function variant $\pi_k(x)$ denotes the number of 
+                 $2 \leq n \leq x$ with 
+                 exactly $k$ distinct prime factors: $\pi_k(x) := \#\{2 \leq n \leq x: \omega(n) = k\}$. 
+                 Similarly, the function 
+                 $\widehat{\pi}_k(x) := \#\{2 \leq n \leq x: \Omega(n) = k\}$ for $x \geq 2$ and fixed $k \geq 1$. },
+    type={symbols},
+    name={Distinct prime counting functions}
+    }   
+\newglossaryentry{Nupn}{
+    symbol={$\nu_p(n)$}, 
+    sort={Nupn},
+    description={The valuation function that extracts the maximal exponent of $p$ in the prime factorization of $n$, e.g., 
+                 $\nu_p(n) = 0$ if $p \nmid n$ and $\nu_p(n) = \alpha$ if $p^{\alpha} || n$ 
+                 (that is, when $p^{\alpha}$ exactly divides $n$) for 
+                 $p \geq 2$ prime, $\alpha \geq 1$ and $n \geq 2$.},
+    type={symbols},
+    name={Exponent extraction function}
+    }
+\newglossaryentry{primeOmegaFunctions}{
+    symbol={$\omega(n)$,$\Omega(n)$}, 
+    sort={OmegaPrimeOmegaFunctions},
+    description={We define the strongly additive function 
+                 $\omega(n) := \sum_{p|n} 1$ and the completely additive function 
+                 $\Omega(n) := \sum_{p^{\alpha} || n} \alpha$. This means that if the prime 
+                 factorization of $n \geq 2$ is 
+                 given by $n := p_1^{\alpha_1} \cdots p_r^{\alpha_r}$ with $p_i \neq p_j$ for all $i \neq j$, 
+                 then $\omega(n) = r$ and $\Omega(n) = \alpha_1 + \cdots + \alpha_r$. 
+                 By convention we set $\omega(1) = \Omega(1) = 0$.},
+    type={symbols},
+    name={Prime omega functions}
+    }
+\newglossaryentry{LiouvilleLambdaFunc}{
+     symbol={$\lambda(n), L(x); \lambda_{\ast}(n)$}, 
+    sort={LiouvilleLambdaFunc},
+    description={The Liouville lambda function is the completely multiplicative function defined by 
+                 $\lambda(n) := (-1)^{\Omega(n)}$. 
+                 Its summatory function is defined by $L(x) := \sum_{n \leq x} \lambda(n)$. 
+                 For positive integers $n \geq 2$, we define $\lambda_{\ast}(n) := (-1)^{\omega(n)}$. 
+                 },
+    type={symbols},
+    name={Liouville lambda function}
+    }
+\newglossaryentry{AverageOrderExpectation}{
+    symbol={$\mathbb{E}[f(x)]$},
+    sort={AverageOrderExpectation},
+    description={We use the expectation notation of $\mathbb{E}[f(x)] = h(x)$ 
+                 to denote that $f$ has an \emph{average order} 
+                 of $h(x)$. This means that $\frac{1}{x} \sum_{n \leq x} f(n) \sim h(x)$. }, 
+    type={symbols},
+    name={Average order (expectation) notation}
+    }
+%\newglossaryentry{BConstant}{
+%    symbol={$B$},
+%    sort={BConstant},
+%    description={The absolute constant $B \approx 0.2614972$ from the statement of Mertens theorem. },
+%    type={symbols},
+%    name={Constant $B$}
+%    }
+\newglossaryentry{QxSummatoryFunc}{
+    symbol={$Q(x)$},
+    sort={QxSummatoryFunc},
+    description={For $x \geq 1$, we define $Q(x)$ to be the summatory function indicating the number of 
+                 squarefree integers $n \leq x$. That is, $Q(x) := \sum_{n \leq x} \mu^2(n)$.}, 
+    type={symbols},
+    name={Summatory function of the squarefree integers}
+    }
+\newglossaryentry{ApproxAndSimRelations}{
+    symbol={$\approx,\sim$},
+    sort={ApproxAndSimRelations},
+    description={We write that $f(x) \approx g(x)$ if $|f(x) - g(x)| = O(1)$ 
+                 as $x \rightarrow \infty$. 
+                 Two arithmetic functions $A(x), B(x)$ satisfy the relation $A \sim B$ if 
+                 $\lim_{x \rightarrow \infty} \frac{A(x)}{B(x)} = 1.$ },
+    type={symbols},
+    name={Asymptotic relation symbol}
+    }
+\newglossaryentry{GGLLRelations}{
+    symbol={$\gg,\ll,\asymp$},
+    sort={GGLLRelations},
+    description={
+                 For functions $A,B$, the notation $A \ll B$ implies that $A = O(B)$. 
+                 Similarly, for $B \geq 0$ the notation $A \gg B$ implies that $B = O(A)$. 
+                 When we have that $A, B \geq 0$, $A \ll B$ and $B \ll A$, we write $A \asymp B$. },
+    type={symbols},
+    name={Asymptotic relation symbols}
+    }
+\newglossaryentry{NormalCDFFunc}{
+    symbol={$\Phi(z)$},
+    sort={NormalCDFFunc},
+    description={For $x \in \mathbb{R}$, we define the CDF of the standard normal distribution to be  
+                 $\Phi(z) := \frac{1}{\sqrt{2\pi}} \times \int_{-\infty}^{z} e^{-t^2/2} dt$. },
+    type={symbols},
+    name={Asymptotic relation symbol}
+    }
+%\newglossaryentry{dkDensity}{
+%    symbol={$d_k$},
+%    sort={dkDensity},
+%    description={For non-negative integers $k \geq 0$, we define the densities $d_k$ of the 
+%                 distinct values of the differences of the prime omega functions by 
+%                 $d_k := \lim_{x \rightarrow \infty} \frac{1}{x} \cdot \#\{n \leq x: \Omega(n) - \omega(n) = k\}$. 
+%                 },
+%    type={symbols},
+%    name={Asymptotic densities of prime omega function difference values}
+%    }
+%\newglossaryentry{lambdaFuncAst}{
+%    symbol={$\lambda_{\ast}(n)$},
+%    sort={lambdaFuncAst},
+%    description={For positive integers $n \geq 2$, we define $\lambda_{\ast}(n) := (-1)^{\omega(n)}$. 
+%                 We have the initial condition that $\lambda_{\ast}(1) = 1$. },
+%    type={symbols},
+%    name={Prime omega function difference lambda function}
+%    }
+%\newglossaryentry{cHatConstant}{
+%    symbol={$\hat{c}$},
+%    sort={cHatConstant},
+%    description={The absolute constant defined by 
+%                 $\hat{c} := \frac{1}{4} \prod\limits_{p > 2} \left(1 - \frac{1}{(p-1)^2}\right)^{-1} \approx 0.378647$. },
+%    type={symbols},
+%    name={Prime product absolute constant}
+%    }
+%\newglossaryentry{gammaConstant}{
+%    symbol={$\gamma$},
+%    sort={gammaConstant},
+%    description={The Euler gamma constant defined by 
+%                 $\gamma := \lim\limits_{n \rightarrow \infty} \left(\sum\limits_{k=1}^{n} \frac{1}{k} - \log n\right) 
+%                  \approx 0.5772157$. },
+%    type={symbols},
+%    name={Euler gamma constant}
+%    }
+%\newglossaryentry{muSigmaTheoremConstants}{
+%    symbol={$\mu_x(C),\sigma_x(C)$},
+%    sort={muSigmaTheoremConstants},
+%    description={We define $\mu_x(C) := \log\log x$ and 
+%                 $\sigma_x(C) := \sqrt{\log\log x}$. }, 
+%    type={symbols},
+%    name={Erd{\H{o}}s-Kac theorem mean and variance analogs}
+%    }
+\newglossaryentry{chiPrimeP}{
+    symbol={$\chi_{\mathbb{P}}(n)$},
+    sort={chiPrimeP},
+    description={The characteristic (or indicator) function of the primes equals one if and only if 
+                 $n \in \mathbb{Z}^{+}$ is prime, and is 
+                 zero-valued otherwise. },
+    type={symbols},
+    name={Prime set indicator function}
+    }
+\newglossaryentry{WLambertWFunction}{
+    symbol={$W(x)$},
+    sort={WLambertWFunction},
+    description={For $x,y \in \mathbb{R}_{\geq 0}$, we write that $x = W(y)$ if and only if $xe^{x} = y$. 
+                 This function denotes the principal branch of the multi-valued Lambert $W$ function 
+                 on the non-negative reals. },
+    type={symbols},
+    name={Lambert $W$-Function}
+    }
+\newglossaryentry{aStarConstant}{
+    symbol={$a^{\ast}$},
+    sort={aStarConstant},
+    description={We define the absolute constant 
+                 $a^{\ast} := \frac{3}{2}\log\left(\frac{3}{2e}\right)+1 \approx 0.108198$. },
+    type={symbols},
+    name={The Absolute Constant $a^{\ast}$}
+    }
+\glsaddall[types={symbols}]
+
+\allowdisplaybreaks 
+
+\begin{document} 
+
+\maketitle
+
+\begin{abstract} 
+The Mertens function, $M(x) := \sum_{n \leq x} \mu(n)$, is 
+defined as the summatory function of the classical M\"obius function for $x \geq 1$. 
+The inverse sequence $\{g^{-1}(n)\}_{n \geq 1}$ 
+taken with respect to Dirichlet convolution is defined in terms of the 
+strongly additive function $\omega(n)$ that counts the 
+number of distinct prime factors of any integer $n \geq 2$. 
+For large $x$ and $n \leq x$, we associate a natural combinatorial 
+significance to the magnitude of the distinct values of the 
+function $g^{-1}(n)$ that depends directly on the exponent patterns in the 
+prime factorizations of the integers in $\{2,3,\ldots,x\}$ viewed as multisets. 
+
+We prove an Erd\H{o}s-Kac theorem analog for the distribution of the 
+unsigned sequence $|g^{-1}(n)|$ over $n \leq x$ with a central limit theorem 
+tendency towards normal as $x \rightarrow \infty$. 
+For all $x \geq 1$, discrete convolutions of the summatory function 
+$G^{-1}(x) := \sum_{n \leq x} \lambda(n) |g^{-1}(n)|$ with 
+the prime counting function $\pi(x)$ determine 
+exact formulas and new characterizations of asymptotic bounds for $M(x)$. 
+In this way, we prove another concrete link of the distribution of  
+$L(x) := \sum_{n \leq x} \lambda(n)$ with the Mertens function and connect these classical 
+summatory functions with an explicit normal tending 
+probability distribution at large $x$. 
+The proofs of these resulting combinatorially motivated new characterizations of $M(x)$ 
+are rigorous and unconditional. 
+
+\bigskip 
+\noindent
+\textbf{Keywords and Phrases:} {\it M\"obius function; Mertens function; 
+                                    Dirichlet inverse; Liouville lambda function; prime omega function; 
+                                    prime counting function; Dirichlet generating function; 
+                                    Erd\H{o}s-Kac theorem; strongly additive function. } \\ 
+% 11-XX			Number theory
+%    11A25  	Arithmetic functions; related numbers; inversion formulas
+%    11Y70  	Values of arithmetic functions; tables
+%    11-04  	Software, source code, etc. for problems pertaining to number theory
+% 11Nxx		Multiplicative number theory
+%    11N05  	Distribution of primes
+%    11N37  	Asymptotic results on arithmetic functions
+%    11N56  	Rate of growth of arithmetic functions
+%    11N60  	Distribution functions associated with additive and positive multiplicative functions
+%    11N64  	Other results on the distribution of values or the characterization of arithmetic functions
+\textbf{Math Subject Classifications (MSC 2010):} {\it 11N37; 11A25; 11N60; 11N64; and 11-04. } 
+\end{abstract} 
+
+\newpage
+\renewcommand{\contentsname}{Article Index}
+\tableofcontents
+
+\newpage
+\section{Introduction} 
+\label{subSection_MertensMxClassical_Intro} 
+
+\subsection{Preliminaries}
+
+\subsubsection{Definitions} 
+
+We define the \emph{M\"obius function} to be the signed indicator function 
+of the squarefree integers in the form of \cite[\seqnum{A008683}]{OEIS} 
+\[
+\mu(n) = \begin{cases} 
+     1, & \text{if $n = 1$; } \\ 
+     (-1)^{\omega(n)}, & \text{if $\omega(n) = \Omega(n) \wedge n \geq 2$; } \\ 
+     0, & \text{otherwise.} 
+     \end{cases} 
+\]
+The \emph{Mertens function}, or summatory function of $\mu(n)$, is defined on the 
+positive integers as 
+\begin{align*} 
+M(x) & = \sum_{n \leq x} \mu(n), x \geq 1. 
+\end{align*} 
+The sequence of slow growing oscillatory values of this 
+summatory function begins as follows \cite[\seqnum{A002321}]{OEIS}: 
+\[
+\{M(x)\}_{x \geq 1} = \{1, 0, -1, -1, -2, -1, -2, -2, -2, -1, -2, -2, -3, -2, 
+     -1, -1, -2, -2, -3, -3, -2, -1, -2, \ldots\}. 
+\] 
+The Mertens function satisfies that $\sum_{n \leq x} M\left(\Floor{x}{n}\right) = 1$, and is related 
+to the summatory function $L(x) := \sum_{n \leq x} \lambda(n)$ via the relation 
+\cite{HUMPHRIES-JNT-2013,LEHMAN-1960} 
+\[
+L(x) = \sum_{d \leq \sqrt{x}} M\left(\Floor{x}{d^2}\right), x \geq 1. 
+\]
+A positive integer $n \geq 1$ is \emph{squarefree}, or contains no divisors 
+which are squares (other than one when $n \geq 2$), if and only if $\mu^2(n) = 1$. 
+The summatory function that counts the 
+number of \emph{squarefree} integers $n \leq x$ satisfies 
+\cite[\S 18.6]{HARDYWRIGHT} \cite[\seqnum{A013928}]{OEIS} 
+\[ 
+Q(x) = \sum_{n \leq x} \mu^2(n) = \frac{6x}{\pi^2} + O\left(\sqrt{x}\right). 
+\] 
+
+\subsubsection{Properties} 
+\label{subSection_Intro_Mx_properties} 
+
+A conventional approach to evaluating the limiting asymptotic 
+behavior of $M(x)$ for large $x \rightarrow \infty$ considers an 
+inverse Mellin transformation of the reciprocal of the Riemann zeta function. 
+In particular, since 
+\[
+\frac{1}{\zeta(s)} = \prod_{p} \left(1 - \frac{1}{p^s}\right) = 
+     s \times \int_1^{\infty} \frac{M(x)}{x^{s+1}} dx, \Re(s) > 1, 
+\]
+we obtain that 
+\[
+M(x) = \lim_{T \rightarrow \infty}\ \frac{1}{2\pi\imath} \times \int_{T-\imath\infty}^{T+\imath\infty} 
+     \frac{x^s}{s \zeta(s)} ds. 
+\] 
+The previous two representations lead us to the 
+exact expression of $M(x)$ for any $x > 0$ 
+given by the next theorem. 
+\nocite{TITCHMARSH} 
+
+\begin{theorem}[Titchmarsh] 
+\label{theorem_MxMellinTransformInvFormula} 
+Assuming the Riemann Hypothesis (RH), there exists an infinite sequence 
+$\{T_k\}_{k \geq 1}$ satisfying $k \leq T_k \leq k+1$ for each integer $k \geq 1$ 
+such that for any real $x > 0$ 
+\[
+M(x) = \lim_{k \rightarrow \infty} 
+     \sum_{\substack{\rho: \zeta(\rho) = 0 \\ |\Im(\rho)| < T_k}} 
+     \frac{x^{\rho}}{\rho \zeta^{\prime}(\rho)} - 2 + 
+     \sum_{n \geq 1} \frac{(-1)^{n-1}}{n (2n)! \zeta(2n+1)} 
+     \left(\frac{2\pi}{x}\right)^{2n} + 
+     \frac{\mu(x)}{2} \Iverson{x \in \mathbb{Z}^{+}}. 
+\] 
+\end{theorem} 
+
+A historical unconditional bound on the Mertens function due to Walfisz (circa 1963) 
+states that there is an absolute constant $C_1 > 0$ such that 
+$$M(x) \ll x \times \exp\left(-C_1 \log^{\frac{3}{5}}(x) 
+  (\log\log x)^{-\frac{3}{5}}\right).$$ 
+Under the assumption of the RH, Soundararajan improved estimates 
+bounding $M(x)$ from above for large $x$ in the following form for any fixed 
+$\epsilon > 0$ \cite{SOUND-MERTENS-ANNALS}: 
+\begin{align*} 
+%M(x) & \ll \sqrt{x} \cdot \exp\left((\log x)^{\frac{1}{2}} (\log\log x)^{14}\right), \\ 
+M(x) & = O\left(\sqrt{x} \times \exp\left( 
+     (\log x)^{\frac{1}{2}} (\log\log x)^{\frac{5}{2}+\epsilon}\right)\right). 
+\end{align*} 
+
+\subsubsection{Conjectures on boundedness and limiting behavior} 
+
+The RH is equivalent to showing that 
+$M(x) = O\left(x^{\frac{1}{2}+\epsilon}\right)$ for any 
+$0 < \epsilon < \frac{1}{2}$. 
+There is a rich history to the original statement of the \emph{Mertens conjecture} which 
+asserts that 
+\[ 
+|M(x)| < C_2 \sqrt{x},\ \text{ for some absolute constant $C_2 > 0$. }
+\] 
+The conjecture was first verified by Mertens himself for $C_2 = 1$ and all $x < 10000$ 
+without the benefit of modern computation. 
+Since its beginnings in 1897, the Mertens conjecture has been disproved by computational methods with
+non-trivial simple zeta function zeros with comparatively small imaginary parts in the famous paper by 
+Odlyzko and t\'{e} Riele \cite{ODLYZ-TRIELE}. 
+More recent attempts 
+at bounding $M(x)$ naturally consider determining the rates at which the function 
+$q(x) := M(x) / \sqrt{x}$ grows with or without bound along infinite 
+subsequences, e.g., considering the asymptotics of $q(x)$ 
+in the limit supremum and limit infimum senses. 
+
+It is verified by computation 
+that \cite[\cf \S 4.1]{PRIMEREC} 
+\cite[\cf \seqnum{A051400}; \seqnum{A051401}]{OEIS} 
+\[
+\limsup_{x\rightarrow\infty} \frac{M(x)}{\sqrt{x}} > 1.060\ \qquad (\text{now } \geq 1.826054), 
+\] 
+and 
+\[ 
+\liminf_{x\rightarrow\infty} \frac{M(x)}{\sqrt{x}} < -1.009\ \qquad (\text{now } \leq -1.837625). 
+\] 
+Based on the work by Odlyzyko and t\'{e} Riele, it seems probable that 
+each of these limits should evaluate to $\pm \infty$, respectively 
+\cite{ODLYZ-TRIELE,MREVISITED,ORDER-MERTENSFN,HURST-2017}. 
+A famous conjecture due to Gonek asserts that in fact 
+$M(x)$ satisfies \cite{NG-MERTENS}
+$$\limsup_{x \rightarrow \infty} \frac{|M(x)|}{\sqrt{x} \cdot (\log\log\log x)^{\frac{5}{4}}} = O(1).$$ 
+
+\subsection{A concrete new approach to characterizing $M(x)$} 
+
+The main interpretation to take away from the article is 
+our rigorous motivation of an 
+equivalent characterization of $M(x)$. This characterization is formed by constructing 
+combinatorially relevant sequences related to the distribution of the primes 
+through convolutions of strongly additive functions. 
+These sequences and their summatory functions 
+have not yet been studied in the literature surrounding the Mertens function. 
+This new perspective offers new exact characterizations of $M(x)$ for all $x \geq 1$ 
+through the formulas involving discrete convolutions of 
+$G^{-1}(x) := \sum_{n \leq x} g^{-1}(n)$, where $g^{-1}(n) := (\omega+1)^{-1}(n)$, with the 
+classical prime counting function $\pi(x)$ we prove in 
+Section \ref{Section_KeyApplications}. 
+
+The sequence $g^{-1}(n)$ and its summatory function 
+$G^{-1}(x)$ are crucially tied to 
+canonical number theoretic examples of strongly and completely additive functions, 
+e.g., to $\omega(n)$ and $\Omega(n)$, respectively. 
+The definitions of the primary new auxiliary subsequences we define, and the 
+proof methods given in the spirit of Montgomery and Vaughan's work, 
+allow us to reconcile the property of strong additivity with signed sums of 
+multiplicative functions. 
+The proofs of characteristic properties of these new sequences 
+imply a scaled normal tending probability distribution for the unsigned 
+magnitude of $|g^{-1}(n)|$ that is analogous to the established Erd\H{o}s-Kac theorems 
+characterizing $\omega(n)$ and $\Omega(n)$. 
+
+Since we prove that $\operatorname{sgn}(g^{-1}(n)) = \lambda(n)$ for all $n \geq 1$, it follows 
+that we have a new probabilistic perspective from which to express distributional features of 
+the summatory functions $G^{-1}(x)$ as $x \rightarrow \infty$ in terms of the properties of 
+$|g^{-1}(n)|$ and asymptotics for $L(x) := \sum_{n \leq x} \lambda(n)$. 
+Formalizing the properties of the distribution of 
+$L(x)$ is typically viewed as a problem that is equally as difficult 
+as understanding the distribution of $M(x)$ well at large $x$ or along infinite subsequences. 
+The new results in this article then precisely 
+connect the distributions of $L(x)$, an explicitly identified 
+scaled normally tending probability distribution, and $M(x)$ as $x \rightarrow \infty$. 
+
+\subsubsection{Summatory functions of Dirichlet convolutions of arithmetic functions} 
+
+\begin{theorem}[Summatory functions of Dirichlet convolutions] 
+\label{theorem_SummatoryFuncsOfDirCvls} 
+Let $f,h: \mathbb{Z}^{+} \rightarrow \mathbb{C}$ be any arithmetic functions such that $f(1) \neq 0$. 
+Suppose that $F(x) := \sum_{n \leq x} f(n)$ and $H(x) := \sum_{n \leq x} h(n)$ denote the summatory 
+functions of $f$ and $h$, respectively, and that $F^{-1}(x) := \sum_{n \leq x} f^{-1}(n)$ 
+denotes the summatory function of the 
+Dirichlet inverse of $f$ for any $x \geq 1$. We have the following exact expressions for the 
+summatory function of the convolution $f \ast h$ for all integers $x \geq 1$: 
+\begin{align*} 
+\pi_{f \ast h}(x) & := \sum_{n \leq x} \sum_{d|n} f(d) h\left(\frac{n}{d}\right) \\ 
+     & \phantom{:}= \sum_{d \leq x} f(d) H\left(\Floor{x}{d}\right) \\ 
+     & \phantom{:}= \sum_{k=1}^{x} H(k) \left[F\left(\Floor{x}{k}\right) - 
+     F\left(\Floor{x}{k+1}\right)\right]. 
+\end{align*} 
+Moreover, for all $x \geq 1$ 
+\begin{align*} 
+H(x) & = \sum_{j=1}^{x} \pi_{f \ast h}(j) \left[F^{-1}\left(\Floor{x}{j}\right) - 
+     F^{-1}\left(\Floor{x}{j+1}\right)\right] \\ 
+     & = \sum_{k=1}^{x} f^{-1}(k) \pi_{f \ast h}\left(\Floor{x}{k}\right). 
+\end{align*} 
+\end{theorem} 
+
+\begin{cor}[Applications of M\"obius inversion] 
+\label{cor_CvlGAstMu} 
+Suppose that $h$ is an arithmetic function such that 
+$h(1) \neq 0$. Define the summatory function of 
+the convolution of $h$ with $\mu$ by $\widetilde{H}(x) := \sum_{n \leq x} (h \ast \mu)(n)$. 
+Then the Mertens function is expressed by the sum 
+\[
+M(x) = \sum_{k=1}^{x} \left(\sum_{j=\floor{\frac{x}{k+1}}+1}^{\floor{\frac{x}{k}}} h^{-1}(j)\right) 
+     \widetilde{H}(k), \forall x \geq 1. 
+\]
+\end{cor} 
+
+\begin{cor} 
+\label{cor_Mx_gInvnPixk_formula} 
+We have that for all $x \geq 1$ 
+\begin{equation} 
+\label{eqn_Mx_gInvnPixk_formula} 
+M(x) = \sum_{k=1}^{x} (\omega+1)^{-1}(k) \left[\pi\left(\Floor{x}{k}\right) + 1\right]. 
+\end{equation} 
+\end{cor} 
+
+\subsubsection{An exact expression for $M(x)$ via strongly additive functions} 
+\label{example_InvertingARecRelForMx_Intro}
+
+Fix the notation for the Dirichlet invertible function $g(n) := \omega(n) + 1$ and define its 
+inverse with respect to Dirichlet convolution by $g^{-1}(n)$ 
+\cite[\seqnum{A341444}]{OEIS}. 
+We can compute exactly that 
+(see Table \ref{table_conjecture_Mertens_ginvSeq_approx_values} on page 
+\pageref{table_conjecture_Mertens_ginvSeq_approx_values}) 
+\[
+\{g^{-1}(n)\}_{n \geq 1} = \{1, -2, -2, 2, -2, 5, -2, -2, 2, 5, -2, -7, -2, 5, 5, 2, -2, -7, -2, 
+     -7, 5, 5, -2, 9, \ldots \}. 
+\] 
+There is not a simple 
+direct recursion between the distinct values of $g^{-1}(n)$ that holds for all $n \geq 1$. 
+The distribution of distinct sets of prime exponents is still clearly quite regular since 
+$\omega(n)$ and $\Omega(n)$ play a crucial role in the repetition of common values of 
+$g^{-1}(n)$. 
+The following observation is suggestive of the quasi-periodicity of the distribution of 
+distinct values of this inverse function over $n \geq 2$: 
+
+\begin{heuristic}[Symmetry in $g^{-1}(n)$ from the prime factorizations of $n \leq x$] 
+\label{heuristic_SymmetryIngInvFuncs} 
+Suppose that $n_1, n_2 \geq 2$ are such that their factorizations into distinct primes are 
+given by $n_1 = p_1^{\alpha_1} \cdots p_r^{\alpha_r}$ and $n_2 = q_1^{\beta_1} \cdots q_r^{\beta_r}$. 
+If $\{\alpha_1, \ldots, \alpha_r\} \equiv \{\beta_1, \ldots, \beta_r\}$ as multisets of prime exponents, 
+then $g^{-1}(n_1) = g^{-1}(n_2)$. For example, $g^{-1}$ has the same values on the squarefree integers 
+with exactly one, two, three (and so on) prime factors.  
+\end{heuristic} 
+
+%\NBRef{A01-2020-04-26}
+\begin{conjecture}[Characteristic properties of the inverse sequence] 
+\label{lemma_gInv_MxExample} 
+We have the following properties characterizing the 
+Dirichlet inverse function $g^{-1}(n)$: 
+\begin{itemize} 
+
+\item[\textbf{(A)}] For all $n \geq 1$, $\operatorname{sgn}(g^{-1}(n)) = \lambda(n)$; 
+\item[\textbf{(B)}] For all squarefree integers $n \geq 2$, we have that 
+     \[
+     |g^{-1}(n)| = \sum_{m=0}^{\omega(n)} \binom{\omega(n)}{m} \times m!; 
+     \]
+\item[\textbf{(C)}] If $n \geq 2$ and $\Omega(n) = k$, then 
+     \[
+     2 \leq |g^{-1}(n)| \leq \sum_{j=0}^{k} \binom{k}{j} \times j!. 
+     \]
+\end{itemize} 
+\end{conjecture} 
+
+The signedness property in (A) is proved precisely in 
+Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1}. 
+A proof of (B) follows from 
+Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} 
+stated on page \pageref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1}. 
+
+The realization that the beautiful and remarkably simple combinatorial form of property (B) 
+in Conjecture \ref{lemma_gInv_MxExample} holds for all squarefree $n \geq 1$ 
+motivates our pursuit of simpler formulas for the inverse functions $g^{-1}(n)$ 
+through the sums of auxiliary subsequences $C_k(n)$ with $k := \Omega(n)$ 
+defined in Section \ref{Section_InvFunc_PreciseExpsAndAsymptotics}. 
+That is, we observe a familiar formula for $g^{-1}(n)$ 
+on an asymptotically dense infinite subset of integers, e.g., that holds for 
+all squarefree $n \geq 2$, and then seek 
+to extrapolate by proving there are regular tendencies of this sequence viewed 
+more generally over any $n \geq 2$. 
+
+An exact expression for $g^{-1}(n)$ is given by 
+\[
+g^{-1}(n) = \lambda(n) \times \sum_{d|n} \mu^2\left(\frac{n}{d}\right) C_{\Omega(d)}(d), n \geq 1,  
+\]
+where the sequence $\lambda(n) C_{\Omega(n)}(n)$ has DGF $(P(s)+1)^{-1}$ for $\Re(s) > 1$ 
+(see Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1}). 
+The function $C_{\Omega(n)}(n)$ is previously considered in 
+\cite{FROBERG-1968} with its exact formula 
+given by (\cf \cite{CLT-RANDOM-ORDERED-FACTS-2011}) 
+\[
+C_{\Omega(n)}(n) = \begin{cases}
+     1, & \text{if $n = 1$; } \\ 
+     (\Omega(n))! \times \prod\limits_{p^{\alpha}||n} \frac{1}{\alpha!}, & \text{if $n \geq 2$. }
+     \end{cases}
+\]
+In Corollary \ref{cor_ExpectationFormulaAbsgInvn_v2}, we prove that 
+the average order of the unsigned sequence is 
+\[
+\mathbb{E}|g^{-1}(n)| = \frac{3}{\pi} \cdot \frac{(\log n)^2}{\sqrt{\log\log n}} (1+o(1)),  
+     \mathrm{\ as\ } n \rightarrow \infty. 
+\]
+In Section \ref{Section_NewFormulasForgInvn}, 
+we prove a variant of the Erd\H{o}s-Kac theorem 
+that characterizes the distribution of the sequence $C_{\Omega(n)}(n)$. 
+This leads us to conclude the following statement for any fixed $Y > 0$, with 
+$\mu_x(C) := \log\log x - \log(4\sqrt{2\pi})$ and 
+$\sigma_x(C) := \sqrt{\log\log x}$, 
+that holds uniformly for any $-Y \leq y \leq Y$ 
+as $x \rightarrow \infty$ (see Corollary \ref{cor_CLT_VII}): 
+\[
+\frac{1}{x} \cdot \#\left\{2 \leq n \leq x:|g^{-1}(n)| - 
+     \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)| \leq y\right\} = 
+     \Phi\left\{\frac{6 \sigma_x(C)}{\pi^2}\left(\frac{\pi^2 y}{6} + \sigma_x(C)\right) - 
+     \frac{6}{\pi^2} \log(4\sqrt{2\pi})\right\} + 
+     O\left(\frac{1}{\sqrt{\log\log x}}\right). 
+\]
+The regularity and quasi-periodicity we have alluded 
+to in the remarks above are then 
+quantifiable in so much as the distribution of $|g^{-1}(n)|$ for $n \leq x$ 
+tends to its average order with a non-central normal tendency 
+depending on $x$ as $x \rightarrow \infty$. 
+That is, if $x > e$ is sufficiently large and 
+if we pick any integer $n \in [2, x]$ uniformly at random, then 
+the following statement holds: 
+\begin{align*} 
+%\tag{D}
+%\mathbb{P}\left(|g^{-1}(n)| - \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)| \leq 
+%     \frac{6}{\pi^2}(\log\log x)  
+%     \right) & = \frac{1}{2} + o(1) \\ 
+\tag{D} 
+\mathbb{P}\left(|g^{-1}(n)| - \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)| \leq 
+     \frac{6}{\pi^2}\left(\alpha + \log\log x\right)
+     \right) & = 
+     \Phi\left(\alpha\right) + o(1), \alpha \in \mathbb{R}. 
+\end{align*} 
+It follows from the last property that as $n \rightarrow \infty$, 
+$$|g^{-1}(n)| \leq \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)|(1+o(1)),$$
+on an infinite set of the integers with asymptotic density one over the 
+positive integers. 
+
+\subsubsection{Formulas illustrating the new characterizations of $M(x)$} 
+
+Let $G^{-1}(x) := \sum_{n \leq x} g^{-1}(n)$ for integers $x \geq 1$ 
+\cite[\seqnum{A341472}]{OEIS}. 
+We prove that (see Proposition \ref{prop_Mx_SBP_IntegralFormula}) 
+\begin{align} 
+\label{eqn_Mx_gInvnPixk_formula_v2} 
+M(x) & = G^{-1}(x) + G^{-1}\left(\Floor{x}{2}\right) + 
+     \sum_{k=1}^{\frac{x}{2}-1} G^{-1}(k) \left[ 
+     \pi\left(\Floor{x}{k}\right) - \pi\left(\Floor{x}{k+1}\right) 
+     \right] \\ 
+\notag
+     & = 
+     G^{-1}(x) + \sum_{p \leq x} G^{-1}\left(\Floor{x}{p}\right), x \geq 1. 
+\end{align} 
+This formula 
+implies that we can establish new asymptotic bounds on 
+$M(x)$ along infinite subsequences
+by sharply bounding the summatory function $G^{-1}(x)$ at those points. 
+The take on the regularity of $|g^{-1}(n)|$ is as such imperative to our arguments 
+that formally bound the growth 
+of $M(x)$ by its new identification with $G^{-1}(x)$. 
+An initial combinatorial approach to summing $G^{-1}(x)$ for large $x$ based on the distribution of the primes 
+is outlined in our remarks in Section \ref{subSection_AConnectionToDistOfThePrimes}. 
+
+Theorem \ref{cor_ExprForGInvxByLx_v1} proves that for almost every sufficiently large $x$ 
+there exists some $1 \leq t_0 \leq x$ such that\footnote{
+     By the terminology 
+     \emph{almost every} large integer $x$, we mean that the result holds for all large $x$ 
+     taken within an infinite subset of $\mathbb{Z}^{+}$ with asymptotic density one. 
+} 
+\[
+G^{-1}(x) = O\left(L(t_0) \times \mathbb{E}|g^{-1}(x)|\right).
+\]
+If the RH is true, then 
+for every $\epsilon > 0$ and all sufficiently large $x > e$ we have that  
+\[
+G^{-1}(x) = O\left(\frac{\sqrt{x} (\log x)^2}{\sqrt{\log\log x}} \times \exp\left(
+     \sqrt{\log x} (\log\log x)^{\frac{5}{2}+\epsilon}\right) 
+     \right). 
+\]
+In Corollary \ref{cor_IntFormulaGInvx_for_Mx_v1}, 
+we also prove that 
+\begin{align*}
+M(x) & = O\left(G^{-1}(x) + G^{-1}\left(\frac{x}{2}\right) + 
+     \frac{x}{\log x} \times \sum_{k \leq \sqrt{x}} \frac{G^{-1}(k)}{k^2} 
+     + (\log x)^2 \sqrt{\log\log x}\right). 
+\end{align*} 
+A complete discussion of the properties of the summatory functions 
+$G^{-1}(x)$ motivates more study in the future to 
+extend the full range of possibilities for viewing 
+the new structure behind $M(x)$ we identify within this article. 
+The prime-related combinatorics at hand are again discussed by the remarks 
+given in Section \ref{subSection_AConnectionToDistOfThePrimes}. 
+
+%\subsection{Newer analytic methods utilized in the proofs within the article}
+%\begin{remark}[Proofs of uniform asymptotics from bivariate counting DGFs] 
+%\label{remark_MV_NewDGFApplications} 
+%We emphasize the modern method demonstrated by 
+%Montgomery and Vaughan in constructing their original proof of 
+%Theorem \ref{theorem_HatPi_ExtInTermsOfGz} (stated below). 
+%To the best of our knowledge, this textbook reference is 
+%one of the first clear cut applications documenting something of a hybrid 
+%DGF-and-OGF type approach to enumerating sequences of arithmetic functions 
+%and their summatory functions. 
+%This interpretation of certain bivariate DGFs 
+%offers a window into the best of both generating function type worlds. 
+%It combines the additivity 
+%implicit to the coefficients indexed by a formal power series variable formed by 
+%multiplication of these structures, while coordinating the distinct DGF-best 
+%property of the multiplicativity with respect to distinct prime powers invoked 
+%by taking powers of a reciprocal Euler type product over the primes. 
+%That is, this unique method invokes properties of certain infinite products 
+%over the primes that form both a sequence DGF in $s$ and a formal power series 
+%in $z$ by which we can also index coefficients in these expansions. 
+%We give a proof constructed from this type of bivariate power series 
+%DGF in Section \ref{Section_NewFormulasForgInvn}. 
+%\end{remark} 
+
+\subsection{Notation and conventions}
+
+The next listing provides a glossary of common notation, conventions and 
+abbreviations used throughout the article. 
+
+\renewcommand{\glossarysection}[2][]{}
+\printglossary[type={symbols},
+               style={glossstyleSymbol},
+               nogroupskip=true]
+
+\newpage 
+\section{Initial elementary proofs of new results} 
+\label{Section_PrelimProofs_Config} 
+
+\subsection{Establishing the summatory function properties and inversion identities} 
+
+We will offer a proof of Theorem \ref{theorem_SummatoryFuncsOfDirCvls} 
+suggested by an intuitive construction through matrix based methods in this section. 
+Related results on summations of Dirichlet convolutions and their inversion appear in 
+\cite[\S 2.14; \S 3.10; \S 3.12; \cf \S 4.9, p.\ 95]{APOSTOLANUMT}. 
+It is not difficult to prove the identity that
+\[
+\sum_{n \leq x} h(n) (f \ast g)(n) = 
+     \sum_{n \leq x} f(n) \times \sum_{k \leq \Floor{x}{n}} g(k) h(kn). 
+\]
+
+\begin{proof}[Proof of Theorem \ref{theorem_SummatoryFuncsOfDirCvls}] 
+\label{proofOf_theorem_SummatoryFuncsOfDirCvls} 
+Let $h,g$ be arithmetic functions such that $g(1) \neq 0$. 
+Denote the summatory functions of $h$ and $g$, 
+respectively, by $H(x) = \sum_{n \leq x} h(n)$ and $G(x) = \sum_{n \leq x} g(n)$. 
+We define $\pi_{g \ast h}(x)$ to be the summatory function of the 
+Dirichlet convolution of $g$ with $h$. 
+We have that the following formulas hold for all $x \geq 1$: 
+\begin{align} 
+\notag 
+\pi_{g \ast h}(x) & := \sum_{n=1}^{x} \sum_{d|n} g(n) h(n/d) = \sum_{d=1}^x g(d) H\left(\floor{\frac{x}{d}}\right) \\ 
+\label{eqn_proof_tag_PigAsthx_ExactSummationFormula_exp_v2} 
+     & = \sum_{i=1}^x \left[G\left(\floor{\frac{x}{i}}\right) - G\left(\floor{\frac{x}{i+1}}\right)\right] H(i). 
+\end{align} 
+The first formula above is well known in the references. The second formula is justified directly using 
+summation by parts as \cite[\S 2.10(ii)]{NISTHB} 
+\begin{align*} 
+\pi_{g \ast h}(x) & = \sum_{d=1}^x h(d) G\left(\floor{\frac{x}{d}}\right) \\ 
+     & = \sum_{i \leq x} \left(\sum_{j \leq i} h(j)\right) \times 
+     \left[G\left(\floor{\frac{x}{i}}\right) - 
+     G\left(\floor{\frac{x}{i+1}}\right)\right]. 
+\end{align*} 
+We form the invertible matrix of coefficients $\widehat{G}$ 
+associated with this linear system defining $H(j)$ for all 
+$1 \leq j \leq x$ in \eqref{eqn_proof_tag_PigAsthx_ExactSummationFormula_exp_v2} by setting 
+\[
+g_{x,j} := G\left(\floor{\frac{x}{j}}\right) - G\left(\floor{\frac{x}{j+1}}\right) \equiv G_{x,j} - G_{x,j+1}, 
+\] 
+where 
+\[
+G_{x,j} := G\left(\Floor{x}{j}\right), 1 \leq j \leq x. 
+\]
+Since $g_{x,x} = G(1) = g(1)$ and $g_{x,j} = 0$ for all $j > x$, 
+the matrix $\widehat{G}$ we have defined in this problem is lower triangular with a non-zero 
+constant on its diagonals, and is hence invertible. 
+If we let $\hat{G} := (G_{x,j})$, then this matrix is 
+expressed by applying an invertible shift operation as 
+\[
+(g_{x,j}) = \hat{G} (I - U^{T}). 
+\]
+The square matrix $U$ of sufficiently large finite dimensions $N \times N$ 
+has $(i,j)^{th}$ entries for all $1 \leq i,j \leq N$ that are defined by 
+$(U)_{i,j} = \delta_{i+1,j}$ such that 
+\[
+\left[(I - U^T)^{-1}\right]_{i,j} = \Iverson{j \leq i}. 
+\]
+Observe that 
+\[
+\Floor{x}{j} - \Floor{x-1}{j} = \begin{cases} 
+     1, & \text{ if $j|x$; } \\ 
+     0, & \text{ otherwise. } 
+     \end{cases} 
+\] 
+The previous property implies that 
+\begin{equation} 
+\label{eqn_proof_tag_FloorFuncDiffsOfSummatoryFuncs_v2} 
+G\left(\floor{\frac{x}{j}}\right) - G\left(\floor{\frac{x-1}{j}}\right) = 
+     \begin{cases} 
+     g\left(\frac{x}{j}\right), & \text{ if $j | x$; } \\ 
+     0, & \text{ otherwise. } 
+     \end{cases}
+\end{equation} 
+We use the last property in \eqref{eqn_proof_tag_FloorFuncDiffsOfSummatoryFuncs_v2} 
+to shift the matrix $\hat{G}$, and then invert the result to obtain a matrix involving the 
+Dirichlet inverse of $g$ in the following forms: 
+\begin{align*} 
+\left[(I-U^{T}) \hat{G}\right]^{-1} & = \left(g\left(\frac{x}{j}\right) \Iverson{j|x}\right)^{-1} = 
+     \left(g^{-1}\left(\frac{x}{j}\right) \Iverson{j|x}\right). 
+\end{align*} 
+In particular, our target matrix in the inversion problem is defined by 
+$$(g_{x,j}) = (I-U^{T}) \left(g\left(\frac{x}{j}\right) \Iverson{j|x}\right) (I-U^{T})^{-1}.$$
+We can express its inverse by a similarity transformation conjugated by shift operators as 
+\begin{align*} 
+(g_{x,j})^{-1} & = (I-U^{T})^{-1} \left(g^{-1}\left(\frac{x}{j}\right) \Iverson{j|x}\right) (I-U^{T}) \\ 
+     & = \left(\sum_{k=1}^{\floor{\frac{x}{j}}} g^{-1}(k)\right) (I-U^{T}) \\ 
+     & = \left(\sum_{k=1}^{\floor{\frac{x}{j}}} g^{-1}(k) - \sum_{k=1}^{\floor{\frac{x}{j+1}}} g^{-1}(k)\right). 
+\end{align*} 
+Hence, the summatory function $H(x)$ is given exactly for any integers $x \geq 1$ 
+by a vector product with the inverse matrix from the previous equation by 
+\begin{align*} 
+H(x) & = \sum_{k=1}^x \left(\sum_{j=\floor{\frac{x}{k+1}}+1}^{\floor{\frac{x}{k}}} g^{-1}(j)\right) 
+     \times \pi_{g \ast h}(k). 
+\end{align*} 
+We can prove another inversion formula providing the coefficients of the summatory function 
+$G^{-1}(i)$ for $1 \leq i \leq x$ from the last equation by adapting our argument to prove 
+\eqref{eqn_proof_tag_PigAsthx_ExactSummationFormula_exp_v2} above. 
+This leads to the following equivalent identity expressing $H(x)$: 
+\[
+H(x) = \sum_{k=1}^{x} g^{-1}(x) \times \pi_{g \ast h}\left(\Floor{x}{k}\right). 
+     \qedhere 
+\]
+\end{proof} 
+
+\subsection{Proving the characteristic signedness property of $g^{-1}(n)$} 
+
+Let $\chi_{\mathbb{P}}$ denote the characteristic function of the primes, let 
+$\varepsilon(n) = \delta_{n,1}$ be the multiplicative identity with respect to Dirichlet convolution, 
+and denote by $\omega(n)$ the strongly additive function that counts the number of 
+distinct prime factors of $n$ (without multiplicity). We can easily prove using DGFs 
+(or other elementary methods) that 
+\begin{equation}
+\label{eqn_AntiqueDivisorSumIdent} 
+\chi_{\mathbb{P}} + \varepsilon = (\omega + 1) \ast \mu. 
+\end{equation} 
+When combined with Corollary \ref{cor_CvlGAstMu} 
+this convolution identity yields the exact 
+formula for $M(x)$ stated in \eqref{eqn_Mx_gInvnPixk_formula} of 
+Corollary \ref{cor_Mx_gInvnPixk_formula}. 
+
+\begin{prop}[The signedness property of $g^{-1}(n)$]
+\label{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1} 
+Let the operator 
+$\operatorname{sgn}(h(n)) = \frac{h(n)}{|h(n)| + \Iverson{h(n) = 0}} \in \{0, \pm 1\}$ denote the sign 
+of the arithmetic function $h$ at integers $n \geq 1$. 
+For the Dirichlet invertible function $g(n) := \omega(n) + 1$, 
+we have that $\operatorname{sgn}(g^{-1}(n)) = \lambda(n)$ for all $n \geq 1$. 
+%\NBRef{A02-2020-04-26}
+\end{prop} 
+\begin{proof} 
+The function $D_f(s) := \sum_{n \geq 1} f(n) n^{-s}$ defines the 
+\emph{Dirichlet generating function} (DGF) of any 
+arithmetic function $f(n)$ which is convergent for all $s \in \mathbb{C}$ satisfying 
+$\Re(s) > \sigma_f$ with $\sigma_f$ the abscissa of convergence of the series. 
+Recall that $D_1(s) = \zeta(s)$, $D_{\mu}(s) = \zeta(s)^{-1}$ and $D_{\omega}(s) = P(s) \zeta(s)$ for 
+$\Re(s) > 1$. 
+Then by \eqref{eqn_AntiqueDivisorSumIdent} and the known property that whenever $f(1) \neq 0$, 
+the DGF of $f^{-1}(n)$ is 
+the reciprocal of the DGF of the arithmetic function $f$, 
+we have for all $\Re(s) > 1$ that 
+\begin{align} 
+\label{eqn_DGF_of_gInvn} 
+D_{(\omega+1)^{-1}}(s) = \frac{1}{(P(s)+1) \zeta(s)}. 
+\end{align} 
+It follows that $(\omega + 1)^{-1}(n) = (h^{-1} \ast \mu)(n)$ when we take 
+$h := \chi_{\mathbb{P}} + \varepsilon$. 
+We first show that $\operatorname{sgn}(h^{-1}) = \lambda$. 
+This observation then implies 
+that $\operatorname{sgn}(h^{-1} \ast \mu) = \lambda$. 
+
+By the recurrence relation that defines the Dirichlet inverse function of any 
+arithmetic function $h$ such that $h(1) = 1$, we have that \cite[\S 2.7]{APOSTOLANUMT} 
+\begin{equation} 
+\label{eqn_proof_tag_hInvn_ExactRecFormula_v1}
+h^{-1}(n) = \begin{cases} 
+            1, & n = 1; \\ 
+            -\sum\limits_{\substack{d|n \\ d>1}} h(d) h^{-1}\left(\frac{n}{d}\right), & n \geq 2. 
+            \end{cases} 
+\end{equation} 
+For $n \geq 2$, the summands in \eqref{eqn_proof_tag_hInvn_ExactRecFormula_v1} 
+can be indexed over only the primes $p|n$ given our definition of $h$ from above. 
+We can inductively 
+unfold these sums into nested divisor sums provided the depth of the 
+expanded divisor sums does not exceed the 
+capacity to index non-trivial summations over the primes dividing $n$. 
+Namely, notice that for $n \geq 2$ 
+\begin{align*} 
+h^{-1}(n) & = -\sum_{p|n} h^{-1}\left(\frac{n}{p}\right), && \text{\ if\ } \Omega(n) = 1; \\ 
+     & = \sum_{p_1|n} \sum_{p_2|\frac{n}{p_1}} h^{-1}\left(\frac{n}{p_1p_2}\right), && \text{\ if\ } \Omega(n) = 2; \\ 
+     & = -\sum_{p_1|n} \sum_{p_2|\frac{n}{p_1}} \sum_{p_3|\frac{n}{p_1p_2}} h^{-1}\left(\frac{n}{p_1p_2p_3}\right), 
+     && \text{\ if\ } \Omega(n) = 3. 
+\end{align*} 
+Then by induction with $h^{-1}(1) = h(1) = 1$, we expand these 
+nested divisor sums as above to the maximal possible depth as 
+\begin{equation} 
+\label{eqn_proof_tag_hInvn_ExactNestedSumFormula_v2} 
+\lambda(n) \times h^{-1}(n) = \sum_{p_1|n} \sum_{p_2|\frac{n}{p_1}} \times \cdots \times 
+     \sum_{p_{\Omega(n)}|\frac{n}{p_1p_2 \cdots p_{\Omega(n)-1}}} 1, n \geq 2. 
+\end{equation} 
+Moreover, by a combinatorial argument related to multinomial coefficient expansions of the sums in 
+\eqref{eqn_proof_tag_hInvn_ExactNestedSumFormula_v2}, we recover exactly that 
+(\cf \cite[\S 2]{FROBERG-1968}) 
+\begin{equation} 
+\label{eqn_proof_tag_hInvn_ExactNestedSumFormula_CombInterpetIdent_v3} 
+h^{-1}(n) = \lambda(n) (\Omega(n))! \times \prod_{p^{\alpha} || n} \frac{1}{\alpha!}, n \geq 2. 
+\end{equation} 
+The last two expansions imply that  
+$\operatorname{sgn}(h^{-1}(n)) = \lambda(n)$ for all $n \geq 1$. 
+Since $\lambda$ is completely multiplicative we have that 
+$\lambda\left(\frac{n}{d}\right) \lambda(d) = \lambda(n)$ for all divisors 
+$d|n$ when $n \geq 1$. We also know that $\mu(n) = \lambda(n)$ whenever $n$ is squarefree, 
+so that we obtain the following result: 
+\[
+g^{-1}(n) = (h^{-1} \ast \mu)(n) = \lambda(n) \times \sum_{d|n} \mu^2\left(\frac{n}{d}\right) |h^{-1}(n)|, n \geq 1. 
+     \qedhere 
+\]
+\end{proof} 
+
+The conclusion of the proof of 
+Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1} 
+in fact implies the stronger result that 
+\[
+g^{-1}(n) = \lambda(n) \times \sum_{d|n} \mu^2\left(\frac{n}{d}\right) C_{\Omega(d)}(d).  
+\]
+We have adopted the notation that for $n \geq 2$, 
+$C_{\Omega(n)}(n) = (\Omega(n))! \times \prod_{p^{\alpha} || n} \frac{1}{\alpha!}$, 
+where the same function, $C_0(1)$, is taken to be one for $n := 1$. 
+
+\subsection{Results on the distribution of exceptional values of $\omega(n)$ and $\Omega(n)$} 
+
+The next theorems reproduced from \cite[\S 7.4]{MV} characterize the relative 
+scarcity of the distributions of $\omega(n)$ and $\Omega(n)$ for $n \leq x$ such that 
+$\omega(n),\Omega(n) > \log\log x$. 
+Since $\mathbb{E}[\omega(n)],\mathbb{E}[\Omega(n)] = \log\log n + B$ for $B \in (0, 1)$ 
+an absolute constant in each case, 
+these results imply a regular tendency 
+of these additive arithmetic functions towards their respective average orders. 
+
+\begin{theorem}[Upper bounds on exceptional values of $\Omega(n)$ for large $n$] 
+\label{theorem_MV_Thm7.20-init_stmt} 
+Let 
+\begin{align*} 
+A(x, r) & := \#\left\{n \leq x: \Omega(n) \leq r \log\log x\right\}, \\ 
+B(x, r) & := \#\left\{n \leq x: \Omega(n) \geq r \log\log x\right\}. 
+\end{align*} 
+If $0 < r \leq 1$ and $x \geq 2$, then 
+\[
+A(x, r) \ll x (\log x)^{r-1 - r\log r}, \text{ \ as\ } x \rightarrow \infty. 
+\]
+If $1 \leq r \leq R < 2$ and $x \geq 2$, then 
+\[
+B(x, r) \ll_R x (\log x)^{r-1-r \log r}, \text{ \ as\ } x \rightarrow \infty. 
+\]
+\end{theorem} 
+
+Theorem \ref{theorem_MV_Thm7.21-init_stmt} is a special case analog to the 
+celebrated Erd\H{o}s-Kac theorem typically stated for the 
+normally distributed values of the function $\omega(n)$ over $n \leq x$ as 
+$x \rightarrow \infty$ \cite[\cf Thm.\ 7.21]{MV} \cite[\cf \S 1.7]{IWANIEC-KOWALSKI}. 
+
+\begin{theorem}
+\label{theorem_MV_Thm7.21-init_stmt} 
+We have that as $x \rightarrow \infty$ 
+\[
+\#\left\{3 \leq n \leq x: \Omega(n) \leq \log\log n \right\} = 
+     \frac{x}{2} + O\left(\frac{x}{\sqrt{\log\log x}}\right). 
+\]
+\end{theorem} 
+
+\begin{theorem}[Montgomery and Vaughan]
+\label{theorem_HatPi_ExtInTermsOfGz} 
+Recall that for integers $k \geq 1$ and $x \geq 2$ we have defined 
+$$\widehat{\pi}_k(x) := \#\{n \leq x: \Omega(n)=k\}.$$ 
+For $0 < R < 2$ we have that uniformly for all $1 \leq k \leq R \log\log x$ 
+\[
+\widehat{\pi}_k(x) = \mathcal{G}\left(\frac{k-1}{\log\log x}\right) \frac{x}{\log x} \cdot 
+     \frac{(\log\log x)^{k-1}}{(k-1)!} \left[1 + O_R\left(\frac{k}{(\log\log x)^2}\right)\right], 
+\]
+where 
+\[
+\mathcal{G}(z) := \frac{1}{\Gamma(z+1)} \times 
+     \prod_p \left(1-\frac{z}{p}\right)^{-1} \left(1-\frac{1}{p}\right)^z, 0 \leq |z| < R. 
+\]
+\end{theorem} 
+
+\begin{remark} 
+\label{remark_MV_Pikx_FuncResultsAnnotated_v1} 
+We can extend the work in \cite{MV} on the distribution of $\Omega(n)$ to find 
+analogous results bounding the distribution of $\omega(n)$. In particular, we have 
+for $0 < R < 2$ that as $x \rightarrow \infty$ 
+\begin{equation}
+\label{eqn_Pikx_UniformAsymptoticsStmt_from_MV_v2} 
+\pi_k(x) = \widetilde{\mathcal{G}}\left(\frac{k-1}{\log\log x}\right) 
+     \frac{x}{\log x} \cdot \frac{(\log\log x)^{k-1}}{(k-1)!} \left[ 
+     1 + O_R\left(\frac{k}{(\log\log x)^2}\right) 
+     \right], 
+     \mathrm{\ uniformly\ for\ } 1 \leq k \leq R\log\log x. 
+\end{equation}
+The analogous function to express these bounds for $\omega(n)$ is 
+defined by $\widetilde{\mathcal{G}}(z) := \widetilde{F}(1, z) / \Gamma(1 + z)$ where 
+we take 
+\[
+\widetilde{F}(s, z) := \prod_p \left(1 + \frac{z}{p^s-1}\right)^{-1} \left(1 - \frac{1}{p^s}\right)^{z}, 
+     \Re(s) > \frac{1}{2}; |z| \leq R < 2. 
+\]
+Let the functions 
+\begin{align*} 
+C(x, r) & := \#\{n \leq x: \omega(n) \leq r \log\log x\} \\ 
+D(x, r) & := \#\{n \leq x: \omega(n) \geq r \log\log x\}. 
+\end{align*} 
+Then we have upper bounds on these functions given by 
+\begin{align*} 
+C(x, r) & \ll x (\log x)^{r - 1 - r \log r}, \mathrm{\ uniformly\ for\ } 0 < r \leq 1, \\ 
+D(x, r) & \ll x (\log x)^{r - 1 - r \log r}, \mathrm{\ uniformly\ for\ } 1 \leq r \leq R < 2.
+\end{align*} 
+\end{remark} 
+
+\newpage
+\section{Auxiliary sequences related to the Dirichlet inverse function $g^{-1}(n)$} 
+\label{Section_InvFunc_PreciseExpsAndAsymptotics} 
+
+The computational data given as Table \ref{table_conjecture_Mertens_ginvSeq_approx_values} 
+in the appendix section (refer to 
+page \pageref{table_conjecture_Mertens_ginvSeq_approx_values}) is intended to 
+provide clear insight into why we eventually arrived at the stated formulas for  
+$g^{-1}(n)$ proved in this section. The table provides illustrative 
+numerical data by examining the approximate behavior 
+at hand for the cases of $1 \leq n \leq 500$ with \emph{Mathematica} 
+\cite{SCHMIDT-MERTENS-COMPUTATIONS}. 
+In Section \ref{Section_NewFormulasForgInvn}, 
+we will use these relations between $g^{-1}(n)$ and 
+$C_{\Omega(n)}(n)$ to prove an exact Erd\H{o}s-Kac like analog that characterizes 
+the distribution of the unsigned function $|g^{-1}(n)|$. 
+
+\subsection{Definitions and properties of triangular component function sequences} 
+
+We define the following sequence for integers $n \geq 1$ and $k \geq 0$: 
+\begin{align} 
+\label{eqn_CknFuncDef_v2} 
+C_k(n) := \begin{cases} 
+     \varepsilon(n), & \text{ if $k = 0$; } \\ 
+     \sum\limits_{d|n} \omega(d) C_{k-1}(n/d), & \text{ if $k \geq 1$. } 
+     \end{cases} 
+\end{align} 
+
+By recursively expanding the definition of $C_k(n)$ 
+at any fixed $n \geq 2$, we see that 
+we can form a chain of at most $\Omega(n)$ iterated (or nested) divisor sums by 
+unfolding the definition of \eqref{eqn_CknFuncDef_v2} inductively. 
+By the same argument, we see that at fixed $n$, the function 
+$C_k(n)$ is seen to be non-zero only for positive integers 
+$k \leq \Omega(n)$ whenever $n \geq 2$. 
+A sequence of relevant signed semi-diagonals of the functions $C_k(n)$ begins as follows 
+\cite[\seqnum{A008480}]{OEIS}: 
+\[
+\{\lambda(n) C_{\Omega(n)}(n) \}_{n \geq 1} = \{
+     1, -1, -1, 1, -1, 2, -1, -1, 1, 2, -1, -3, -1, 2, 2, 1, -1, -3, -1, 
+     -3, 2, 2, -1, 4, 1, 2, \ldots \}. 
+\]
+We can see that $C_{\Omega(n)}(n) \leq (\Omega(n))!$ for all $n \geq 1$ with equality precisely at the 
+squarefree integers. In fact, 
+$h^{-1}(n) \equiv \lambda(n) C_{\Omega(n)}(n)$ is the same function given by 
+the formula in \eqref{eqn_proof_tag_hInvn_ExactNestedSumFormula_CombInterpetIdent_v3} from 
+Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1}. 
+
+\subsection{Relating the function $C_{\Omega(n)}(n)$ to exact formulas for $g^{-1}(n)$} 
+\label{subSection_Relating_CknFuncs_to_gInvn} 
+
+\begin{lemma}[An exact formula for $g^{-1}(n)$] 
+\label{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} 
+For all $n \geq 1$, we have that 
+\[
+g^{-1}(n) = \sum_{d|n} \mu\left(\frac{n}{d}\right) \lambda(d) C_{\Omega(d)}(d). 
+\]
+\end{lemma}
+\begin{proof} 
+We first write out the standard recurrence relation for the Dirichlet inverse as 
+\begin{align} 
+\label{eqn_proof_tag_gInvCvlOne_EQ_omegaCvlgInvCvl_v1} 
+g^{-1}(n) & = - \sum_{\substack{d|n \\ d>1}} (\omega(d) + 1) g^{-1}(n/d) 
+     \quad\implies\quad 
+     (g^{-1} \ast 1)(n) = -(\omega \ast g^{-1})(n). 
+\end{align} 
+We argue that for $1 \leq m \leq \Omega(n)$, we can inductively expand the 
+implication on the right-hand-side of \eqref{eqn_proof_tag_gInvCvlOne_EQ_omegaCvlgInvCvl_v1} 
+in the form of $(g^{-1} \ast 1)(n) = F_m(n)$ where 
+$F_m(n) := (-1)^{m} (C_m(-) \ast g^{-1})(n)$, so that 
+\[
+F_m(n) = - 
+     \begin{cases} 
+     \sum\limits_{\substack{d|n \\ d > 1}} F_{m-1}(d) \times \sum\limits_{\substack{r|\frac{n}{d} \\ r > 1}} 
+     \omega(r) g^{-1}\left(\frac{n}{dr}\right), & 2 \leq m \leq \Omega(n), \\ 
+     (\omega \ast g^{-1})(n), & m = 1. 
+     \end{cases} 
+\]
+By repeatedly expanding the right-hand-side of the previous equation, 
+we find that when $m := \Omega(n)$ (i.e., with the expansions 
+in the previous equation taken to a maximal depth) we get the relation 
+\begin{equation} 
+\label{eqn_proof_tag_gInvCvlOne_EQ_omegaCvlgInvCvl_v2} 
+(g^{-1} \ast 1)(n) = (-1)^{\Omega(n)} C_{\Omega(n)}(n) = \lambda(n) C_{\Omega(n)}(n). 
+\end{equation} 
+The formula then follows from \eqref{eqn_proof_tag_gInvCvlOne_EQ_omegaCvlgInvCvl_v2} 
+by M\"obius inversion applied to each side of the last equation. 
+\end{proof} 
+
+\begin{cor} 
+\label{lemma_AbsValueOf_gInvn_FornSquareFree_v1} 
+For all positive integers $n \geq 1$, we have that 
+\begin{equation} 
+\label{eqn_AbsValueOf_gInvn_FornSquareFree_v1} 
+|g^{-1}(n)| = \sum_{d|n} \mu^2\left(\frac{n}{d}\right) C_{\Omega(d)}(d). 
+\end{equation} 
+\end{cor} 
+\begin{proof} 
+By applying 
+Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1}, 
+Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1} and the 
+complete multiplicativity of $\lambda(n)$, 
+we easily obtain the stated result. 
+In particular, since $\mu(n)$ is non-zero only at squarefree integers and since 
+at any squarefree $d \geq 1$ we have $\mu(d) = (-1)^{\omega(d)} = \lambda(d)$, 
+Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} implies 
+\begin{align*} 
+|g^{-1}(n)| & = \lambda(n) \times \sum_{d|n} \mu\left(\frac{n}{d}\right) \lambda(d) C_{\Omega(d)}(d) \\ 
+     & = \sum_{d|n} \mu^2\left(\frac{n}{d}\right) \lambda\left(\frac{n}{d}\right) 
+     \lambda(nd) C_{\Omega(d)}(d) \\ 
+     & = \lambda(n^2) \times \sum_{d|n} \mu^2\left(\frac{n}{d}\right) C_{\Omega(d)}(d). 
+\end{align*} 
+We see that 
+that $\lambda(n^2) = +1$ for all $n \geq 1$ since the number of distinct 
+prime factors (counting multiplicity) of any square integer is even. 
+\end{proof} 
+
+Since $C_{\Omega(n)}(n) = |h^{-1}(n)|$ using the notation defined in the the proof of 
+Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1}, we can see that 
+$C_{\Omega(n)}(n) = (\omega(n))!$ for all squarefree $n \geq 1$. 
+A proof of part (B) of Conjecture \ref{lemma_gInv_MxExample} 
+follows as an immediate consequence. 
+
+\begin{remark} 
+Combined with the signedness property of $g^{-1}(n)$ guaranteed by 
+Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1}, 
+Corollary \ref{lemma_AbsValueOf_gInvn_FornSquareFree_v1} shows that the summatory 
+function of this sequence satisfies 
+\[
+G^{-1}(x) = \sum_{d \leq x} \lambda(d) C_{\Omega(d)}(d) M\left(\Floor{x}{d}\right). 
+\]
+Additionally, equation \eqref{eqn_AntiqueDivisorSumIdent} implies that 
+$$\lambda(d) C_{\Omega(d)}(d) = (g^{-1} \ast 1)(d) = (\chi_{\mathbb{P}} + \varepsilon)^{-1}(d),$$ 
+where $\chi_{\mathbb{P}}$ denotes the characteristic function of the primes. We clearly 
+recover by inversion that 
+\[
+M(x) = G^{-1}(x) + \sum_{p \leq x} G^{-1}\left(\Floor{x}{p}\right), x \geq 1. 
+\]
+\end{remark} 
+
+\subsection{Another connection to the distribution of the primes} 
+\label{subSection_AConnectionToDistOfThePrimes} 
+
+The combinatorial properties of $g^{-1}(n)$ are deeply tied to the distribution of the primes 
+$p \leq n$ as $n \rightarrow \infty$. 
+The magnitudes and dispersion of the primes $p \leq n$ certainly restricts the 
+repeating of these distinct sequence values. 
+Nonetheless, we can see that the following 
+is still clear about the relation of the weight functions $|g^{-1}(n)|$ to the 
+distribution of the primes: 
+The value of $|g^{-1}(n)|$ is entirely dependent only on the pattern of the \emph{exponents} 
+(viewed as multisets) of the distinct prime factors of $n \geq 2$, rather than on the 
+prime factor weights themselves 
+(\cf Heuristic \ref{heuristic_SymmetryIngInvFuncs}). 
+This observation implies that $|g^{-1}(n)|$ has an inherently additive, rather than 
+multiplicative, structure behind the distribution of its distinct values over $n \leq x$. 
+
+\begin{example} 
+We have a natural extremal behavior with respect to distinct values of $\Omega(n)$ 
+corresponding to squarefree integers and prime powers. If for integers 
+$k \geq 1$ we define the 
+infinite sets $M_k$ and $m_k$ to correspond to the maximal (minimal) sets of 
+positive integers such that 
+\begin{align*} 
+M_k & := \left\{n \geq 2: |g^{-1}(n)| = \underset{{\substack{j \geq 2 \\ \Omega(j) = k}}}{\operatorname{sup}} 
+     |g^{-1}(j)|\right\} \subseteq \mathbb{Z}^{+}, \\  
+m_k & := \left\{n \geq 2: |g^{-1}(n)| = \underset{{\substack{j \geq 2 \\ \Omega(j) = k}}}{\operatorname{inf}} 
+     |g^{-1}(j)|\right\} \subseteq \mathbb{Z}^{+}, 
+\end{align*} 
+then any element of $M_k$ is squarefree and any element of $m_k$ is a prime power. 
+Moreover, for any fixed $k \geq 1$ 
+we have that for any $N_k \in M_k$ and $n_k \in m_k$
+\[
+(-1)^{k} g^{-1}(N_k) = \sum_{j=0}^{k} \binom{k}{j} j!, 
+     \quad \mathrm{\ and\ } \quad 
+     (-1)^{k} g^{-1}(n_k) = 2. 
+\]
+\end{example}
+
+\begin{remark}[Combinatorial properties]
+The formula for the function $h^{-1}(n) = (g^{-1} \ast 1)(n)$ defined in the proof of 
+Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1} implies that we can express 
+an exact formula for $g^{-1}(n)$ in terms of symmetric polynomials in the 
+exponents of the prime factorization of $n$. 
+For $n \geq 2$ and $0 \leq k \leq \omega(n)$ let 
+\[
+\widehat{e}_k(n) := [z^k] \prod_{p|n} (1 + z \nu_p(n)) = [z^k] \prod_{p^{\alpha} || n} (1 + \alpha z). 
+\]
+Then we can prove using 
+\eqref{eqn_proof_tag_hInvn_ExactNestedSumFormula_CombInterpetIdent_v3} and 
+\eqref{eqn_AbsValueOf_gInvn_FornSquareFree_v1} that we can expand exact formulas for 
+the signed inverse sequence in the following form: 
+\[
+g^{-1}(n) = h^{-1}(n) \times \sum_{k=0}^{\omega(n)} \binom{\Omega(n)}{k}^{-1} 
+     \frac{\widehat{e}_k(n)}{k!}, n \geq 2. 
+\]
+The combinatorial formula\footnote{ 
+     This sequence is also considered using a different motivation based on the DGFs 
+     $(1\pm P(s))^{-1}$ in \cite[\S 2]{FROBERG-1968}. 
+} 
+for $h^{-1}(n) = \lambda(n) (\Omega(n))! \times \prod_{p^{\alpha} || n} (\alpha !)^{-1}$ 
+we discovered in the proof of the proposition from 
+Section \ref{Section_PrelimProofs_Config} 
+suggests additional patterns and more regularity in the contributions of the distinct sign weighted 
+terms in the summands of $G^{-1}(x)$. 
+A preliminary analysis suggests that bounds of this type 
+will improve upon those we are able to prove within this article for $G^{-1}(x)$ in 
+Section \ref{Section_ProofOfValidityOfAverageOrderLowerBounds}. 
+\end{remark}
+
+%In particular, we give the next ansatz which relies upon an unproven assertion 
+%about the asymptotic main term of certain sums which we concretely identify below. 
+%This ansatz is intended as an example that can be later refined to bound the 
+%summatory function $G^{-1}(x)$ in meaningful new ways by exploiting the combinatorial 
+%properties of the prime exponent patterns that lead to duplicate values of 
+%the sequence $g^{-1}(n)$ for $n \leq x$. 
+%\begin{ansatz}[Towards a counting argument based bound for $G^{-1}(x)$]
+%For $m,r \geq 1$, let $n_{m,r}$ denote any integer (not uniquely) 
+%such that $\Omega(n) = m$ and $\omega(n) = r$. 
+%We estimate using a conditional probability formula that 
+%\begin{align*}
+%\#\{2 \leq n \leq x: \Omega(n)=m \wedge \omega(n)-r\} & = x \cdot 
+%     \mathbb{P}(\Omega(n)=m|\omega(n)=r) \mathbb{P}(\omega(n)=r) 
+%     \approx \frac{1}{x} \widehat{\pi}_m(x) \pi_r(x) \\ 
+%     & \sim \frac{x}{(\log x)^2} \cdot \frac{(\log\log x)^{m+r-2}}{(m-1)! (r-1)!}, 
+%     \text{ for any } 1 \leq m, r \leq \log\log x. 
+%\end{align*}
+%So to sum $G^{-1}(x)$, we surmise that its main term satisfies 
+%\begin{align*}
+%G^{-1}(x) & \asymp \sum_{1 \leq m \leq \log\log x} \sum_{1 \leq r \leq m} 
+%     (-1)^m |g^{-1}(n_{m,r})| \cdot \frac{x}{(\log x)^2} \cdot \frac{(\log\log x)^{m+r-3}}{ 
+%     (m-1)! (r-1)!} \\ 
+%     & \approx \frac{2x}{(\log x)^2} \times \sum_{m=1}^{\log\log x} 
+%          \frac{(-1)^m (\log\log x)^{2m-3}}{(m-1)!^2} \\ 
+%     & \sim -\frac{2x}{(\log x)^2 (\log\log x)} \times I_0(-2\log\log x) \left[ 
+%     1 + O\left(\frac{1}{\log\log x}\right)\right] \\ 
+%     & \sim -\frac{x}{\sqrt{\pi} (\log\log x)^{3/2}} \left(1 + o(1)\right). 
+%\end{align*}
+%The second line above relies on an unproven assertion that we expect the dominant 
+%term in the sums over $1 \leq r \leq m$ to correspond to the case where the power of 
+%$(\log\log x)^{r}$ is the highest, e.g., when $r = m$. 
+%In computing the final estimate on the last line of the previous equation, 
+%we have also asserted the known asymptotic estimate for the \emph{incomplete Bessel function}, 
+%$I_0(z)$, which states that \cite[\S 10.40]{NISTHB}
+%\[
+%I_0(z) \sim \frac{e^z}{\sqrt{2\pi z}} (1+o(1)), \text{ as } |z| \rightarrow \infty. 
+%\]
+%\end{ansatz}
+
+\newpage
+\section{The distributions of $C_{\Omega(n)}(n)$ and $|g^{-1}(n)|$} 
+\label{Section_NewFormulasForgInvn} 
+
+We suggested in the introduction that the relation of the component 
+functions, $g^{-1}(n)$ and $C_{\Omega(n)}(n)$, to the canonical additive functions 
+$\omega(n)$ and $\Omega(n)$ leads to the regular properties of these functions 
+cited in the numerical data from 
+Table \ref{table_conjecture_Mertens_ginvSeq_approx_values}. 
+Each of $\omega(n)$ and $\Omega(n)$ satisfies 
+an Erd\H{o}s-Kac theorem that provides a central limit type theorem for the 
+distributions of these functions over $n \leq x$ as $x \rightarrow \infty$ 
+\cite{ERDOS-KAC-REF,BILLINGSLY-CLT-PRIMEDIVFUNC,RENYI-TURAN} 
+(\cf \cite{CLT-RANDOM-ORDERED-FACTS-2011}). 
+In the remainder of this section we establish more analytical proofs of 
+related properties of these key sequences used to express the unweighted summands that define 
+$G^{-1}(x)$. 
+
+\subsection{Analytic proofs and adaptations of bivariate DGF methods for additive functions} 
+
+\begin{theorem} 
+\label{prop_HatAzx_ModSummatoryFuncExps_RelatedToCkn} 
+Let the function $\widehat{F}(s, z)$ be defined in terms of the prime zeta function, $P(s)$,  
+for $\Re(s) \geq 2$ and $|z| < |P(s)|^{-1}$ by 
+\[
+\widehat{F}(s, z) := \frac{1}{1+P(s) z} 
+     \times \prod_p \left(1 - \frac{1}{p^s}\right)^{z}. 
+\]
+For $|z| < P(2)^{-1}$, the 
+summatory function of the DGF coefficients of 
+$\widehat{F}(s, z) \zeta(s)^{z}$ corresponds to 
+\[
+\widehat{A}_z(x) := \sum_{n \leq x} (-1)^{\omega(n)} 
+     C_{\Omega(n)}(n) z^{\Omega(n)}. 
+\]
+We have for all sufficiently large $x \geq 2$ and any $|z|< P(2)^{-1}$ that
+\[
+\widehat{A}_z(x) = \frac{x \widehat{F}(2, z)}{\Gamma(z)} \times (\log x)^{z-1} + 
+     O_{z}\left(x (\log x)^{\Re(z) - 2}\right). 
+\]
+\end{theorem} 
+\begin{proof} 
+We see from the proof of 
+Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1} 
+that 
+\[
+C_{\Omega(n)}(n) = \begin{cases} 
+     1, & n = 1; \\ 
+     (\Omega(n))! \times \prod\limits_{p^{\alpha}||n} \frac{1}{\alpha!}, & n \geq 2. 
+     \end{cases} 
+\]
+We can then generate scaled forms of these terms through a 
+product identity of the following form: 
+\begin{align*} 
+\sum_{n \geq 1} \frac{C_{\Omega(n)}(n)}{(\Omega(n))!} \cdot 
+     \frac{(-1)^{\omega(n)} z^{\Omega(n)}}{n^s} & = \prod_p \left(1 + \sum_{r \geq 1} 
+     \frac{z^{\Omega(p^r)}}{r! p^{rs}}\right)^{-1} 
+     = \exp\left(-z P(s)\right), \Re(s) \geq 2 \wedge \Re(P(s)z) > -1. 
+\end{align*} 
+This Euler-type product based expansion is similar in construction to the parameterized bivariate 
+DGF used by Montgomery and Vaughan in \cite[\S 7.4]{MV}.
+By computing a termwise Laplace transform on the right-hand-side of the 
+above equation, we obtain that 
+\begin{align*} 
+\sum_{n \geq 1} \frac{C_{\Omega(n)}(n) (-1)^{\omega(n)} z^{\Omega(n)}}{n^s} & = 
+     \int_0^{\infty} e^{-t} \exp\left(-tz P(s)\right) dt = \frac{1}{1 + P(s) z}, 
+     \Re(s) > 1 \wedge \Re(P(s)z) > -1. 
+\end{align*} 
+It follows that 
+\[
+\sum_{n \geq 1} \frac{(-1)^{\omega(n)} C_{\Omega(n)}(n) z^{\Omega(n)}}{n^s} = 
+     \zeta(s)^z \times \widehat{F}(s, z), \Re(s) > 1 \wedge |z| < |P(s)|^{-1}. 
+\]
+Since $\widehat{F}(s, z)$ is an analytic function of $s$ for all $\Re(s) \geq 2$ 
+whenever the parameter $|z| < |P(s)|^{-1}$, 
+if the sequence $\{b_z(n)\}_{n \geq 1}$ indexes the coefficients in 
+the DGF expansion of $\widehat{F}(s, z) \zeta(s)^{z}$, then the series 
+\[
+\left\lvert \sum_{n \geq 1} \frac{b_z(n) (\log n)^{2R+1}}{n^s} \right\rvert < +\infty, 
+     \Re(s) \geq 2, 
+\]
+is uniformly bounded for $|z| \leq R < |P(s)|^{-1} < +\infty$. This fact follows by repeated 
+termwise differentiation $\ceiling{2R+1}$ times with respect to $s$. 
+
+For fixed $0 < |z| < 2$, let the sequence $d_z(n)$ be generated as the coefficients of the DGF 
+$$\zeta(s)^{z} = \sum_{n \geq 1} \frac{d_z(n)}{n^s}, \Re(s) > 1,$$ with corresponding 
+summatory function defined by $D_z(x) := \sum_{n \leq x} d_z(n)$. 
+The theorem proved in the reference 
+\cite[Thm.\ 7.17; \S 7.4]{MV} shows that for any $0 < |z| < 2$ 
+and all integers $x \geq 2$ 
+\[
+D_z(x) = \frac{x (\log x)^{z-1}}{\Gamma(z)} + O\left(x (\log x)^{\Re(z)-2}\right). 
+\]
+We set 
+$b_z(n) := (-1)^{\omega(n)} C_{\Omega(n)}(n) z^{\Omega(n)}$, define the convolution 
+$a_z(n) := \sum_{d|n} b_z(d) d_z(n/d)$, and take its summatory function to be 
+$A_z(x) := \sum_{n \leq x} a_z(n)$. 
+Then we have that 
+\begin{align} 
+\notag 
+A_z(x) & = \sum_{m \leq x/2} b_z(m) D_z(x/m) + \sum_{x/2 < m \leq x} b_z(m) \\ 
+\label{eqn_proof_tag_Azx_FullTermsFormulaSum_v1} 
+     & = \frac{x}{\Gamma(z)} \times \sum_{m \leq x/2} 
+     \frac{b_z(m)}{m^2} \times m \log\left(\frac{x}{m}\right)^{z-1} + 
+     O\left(\sum_{m \leq x} \frac{x |b_z(m)|}{m^2} \times m 
+     \log\left(\frac{2x}{m}\right)^{\Re(z) - 2}\right). 
+\end{align} 
+We can sum the coefficients $b_z(m) / m$ 
+for integers $m \leq u$ with $u > e$ taken sufficiently large as follows: 
+\begin{align*} 
+\sum_{m \leq u} \frac{b_z(m)}{m} & = \left(\widehat{F}(2, z) + O(u^{-2})\right) u - \int_1^{u} 
+     \left(\widehat{F}(2, z) + O(t^{-2})\right) dt 
+     = \widehat{F}(2, z) + O(u^{-1}). 
+\end{align*} 
+Suppose that $|z| \leq R < P(2)^{-1} \approx 2.21118$. 
+The error term in \eqref{eqn_proof_tag_Azx_FullTermsFormulaSum_v1} satisfies 
+\begin{align*} 
+\sum_{m \leq x} \frac{x \cdot |b_z(m)|}{m^2} \times m 
+     \log\left(\frac{2x}{m}\right)^{\Re(z) - 2} & \ll 
+     x (\log x)^{\Re(z) - 2} \times \sum_{m \leq \sqrt{x}} \frac{|b_z(m)|}{m} \\ 
+     & \phantom{\ll x\ } + 
+     x (\log x)^{-(R+2)} \times \sum_{m > \sqrt{x}} \frac{|b_z(m)|}{m} (\log m)^{2R} \\ 
+     & = O_z\left(x (\log x)^{\Re(z) - 2}\right), |z| \leq R. 
+\end{align*} 
+When $m \leq \sqrt{x}$ we have 
+\[
+\log\left(\frac{x}{m}\right)^{z-1} = (\log x)^{z-1} + 
+     O\left((\log m) (\log x)^{\Re(z) - 2}\right). 
+\]
+The total sum over the interval $m \leq x/2$ corresponds to bounding the 
+sum components when we take $|z| \leq R$ in the following forms: 
+\begin{align*} 
+\sum_{m \leq x/2} b_z(m) D_z(x/m) & = \frac{x}{\Gamma(z)} (\log x)^{z-1} \times 
+     \sum_{m \leq x/2} \frac{b_z(m)}{m} \\ 
+     & \phantom{=\quad\ } + 
+     O_R\left(x (\log x)^{\Re(z)-2} \times \sum_{m \leq \sqrt{x}} \frac{|b_z(m)|}{m} + 
+     x (\log x)^{R-1} \times \sum_{m > \sqrt{x}} \frac{|b_z(m)|}{m}\right) \\ 
+     & = \frac{x \widehat{F}(2, z)}{\Gamma(z)} (\log x)^{z-1} + O_R\left( 
+     x (\log x)^{\Re(z)-2} \times \sum_{m \geq 1} \frac{b_z(m) (\log m)^{2R+1}}{m^2} 
+     \right) \\ 
+     & = \frac{x \widehat{F}(2, z)}{\Gamma(z)} (\log x)^{z-1} + O_{R}\left( 
+     x (\log x)^{\Re(z)-2}\right). 
+     \qedhere  
+\end{align*} 
+\end{proof} 
+
+\begin{theorem} 
+\label{theorem_CnkSpCasesScaledSummatoryFuncs} 
+For large $x > e$ and integers $k \geq 1$, let 
+\[
+\widehat{C}_{k,\ast}(x) := \sum_{\substack{n \leq x \\ \Omega(n) = k}} 
+     (-1)^{\omega(n)} C_k(n) 
+\]
+Let the function $\widehat{G}(z) := \widehat{F}(2, z) / \Gamma(z+1)$ for 
+$|z| < P(2)^{-1}$ where the function $\widehat{F}(s, z)$ is defined as 
+in Theorem \ref{prop_HatAzx_ModSummatoryFuncExps_RelatedToCkn} for $\Re(s) > 1$. 
+As $x \rightarrow +\infty$, we have uniformly for any $1 \leq k \leq \log\log x$ that 
+\[
+\widehat{C}_{k,\ast}(x) = -\widehat{G}\left(-\frac{k-1}{\log\log x}\right) \frac{x}{\log x} \cdot 
+     \frac{(\log\log x)^{k-1}}{(k-1)!} \left[ 
+     1 + O\left(\frac{k}{(\log\log x)^2}\right)\right]. 
+\]
+\end{theorem} 
+\begin{proof} 
+When $k = 1$, we have that $\Omega(n) = \omega(n)$ for all $n \leq x$ such that $\Omega(n) = k$. 
+The $n \leq x$ that satisfy this requirement are precisely the primes $p \leq x$. 
+Thus we get that the bound is satisfied as 
+\[
+\sum_{p \leq x} (-1)^{\omega(p)} C_1(p) = -\sum_{p \leq x} 1 = 
+     - \frac{x}{\log x} \left[1 + O\left(\frac{1}{\log x}\right)\right]. 
+\]
+Since $O((\log x)^{-1}) = O((\log\log x)^{-2})$, we obtain the required error term 
+bound when $k := 1$. 
+
+For $2 \leq k \leq \log\log x$, we will apply the error estimate from 
+Theorem \ref{prop_HatAzx_ModSummatoryFuncExps_RelatedToCkn} at 
+$r := \frac{k-1}{\log\log x}$. 
+At large $x$, the error from this bound contributes terms that are bounded from above by 
+\begin{align*} 
+x (\log x)^{-(r+2)} r^{-(k+1)} & \ll \frac{x}{(\log x)^2} \cdot 
+     \frac{(\log\log x)^{k+1}}{(k-1)^{k+1}} \cdot \frac{1}{e^{k-1}} 
+     \ll \frac{x}{(\log x)^2} \cdot \frac{(\log\log x)^{k+1}}{(k-1)^{3/2}} \cdot 
+     \frac{1}{e^{2k} (k-1)!} \\ 
+     & \ll \frac{x}{(\log x)^2} \cdot \frac{(\log\log x)^{k-1}}{(k-1)!} \ll 
+     \frac{x}{\log x} \cdot \frac{k (\log\log x)^{k-5}}{(k-1)!}. 
+\end{align*} 
+We next find an asymptotically accurate main term approximation to the coefficients 
+of the following contour integral for $r \in [0, z_{\max}]$ where $z_{\max} < P(2)^{-1}$ 
+to satisfy Theorem \ref{prop_HatAzx_ModSummatoryFuncExps_RelatedToCkn}: 
+\begin{align} 
+\label{eqn_WideTildeArx_CountourIntDef_v1} 
+\widetilde{A}_r(x) := 
+     (-1)^k \times \int_{|v|=r} \frac{x (\log x)^{-v} \zeta(2)^{v}}{(\log x) \Gamma(1+v) 
+     v^{k} (1 - P(2) v)} dv. 
+\end{align} 
+The main term for the sums $\widehat{C}_{k,\ast}(x)$ 
+is given by $-\frac{x}{\log x} \times I_k(r, x)$, where we take 
+\begin{align*}
+I_k(r, x) & = \frac{(-1)^{k}}{2\pi\imath} \times \int_{|v|=r} 
+     \frac{\widehat{G}(-v) (\log x)^{-v}}{v^k} dv \\ 
+     & =: I_{1,k}(r, x) + I_{2,k}(r, x). 
+\end{align*}
+The first of the component integrals in the last equation is defined to be 
+\begin{align*}
+I_{1,k}(r, x) & := -\frac{\widehat{G}(-r)}{2\pi\imath} \times \int_{|v|=r} 
+     \frac{(\log x)^{-v}}{v^k} dv. 
+\end{align*}
+We can inductively compute the remaining coefficients 
+$I_{1,k}(r, x)$ with respect to 
+$x$ for fixed $k \leq \log\log x$ to apply the Cauchy integral formula. 
+It is not difficult to see that for any integer $m \geq 0$, 
+we have the $m^{th}$ partial derivative of the scaled integrand with respect to $v$ 
+has the following limiting expansion by applying 
+\eqref{lemma_ConvenientIncGammaFuncTypePartialSumAsymptotics_v2} from the appendix at large $x$: 
+\begin{align*} 
+\frac{(-1)^{m-1}}{m!} \times \frac{\partial^{(m)}}{{\partial v}^{(m)}}\left[ 
+     \frac{(\log x)^{-v}}{1 - P(2) v}\right] \Biggr\rvert_{v=0} & = 
+     \sum_{j=0}^{m} \frac{(-1)^{j+1} P(2)^{j} (\log\log x)^{m-j}}{(m-j)!} \\ 
+     & = 
+     -\frac{P(2)^{m} (\log x)^{-\frac{1}{P(2)}}}{m!} \times 
+     \Gamma\left(m+1, -\frac{\log\log x}{P(2)}\right) \\ 
+     & = -\frac{(\log\log x)^m}{m!} + O\left(\frac{(\log\log x)^{m-2}}{m!}\right). 
+\end{align*} 
+Note that we have restricted the asymptotic analysis of the limiting dominant terms in 
+the above formula to cases of $k = m + 1 < \log\log x$. 
+We then see by taking $v = r = \frac{k-1}{\log\log x}$ that 
+(\cf \eqref{eqn_ProofTag_lemma_ConvenientIncGammaFuncTypePartialSumAsymptotics_v2} 
+in Appendix \ref{subSection_OtherFactsAndResults} for the error term bounds below) 
+\[
+I_{1,k}(r, x) = -\frac{\widehat{G}(-r) (\log\log x)^{k-1}}{(k-1)!} + O\left(
+     \frac{(\log\log x)^{k-2}}{(\log x) (k-1)!}\right). 
+\]
+The second component integral, $I_{2,k}(r, x)$, corresponds to error terms in our approximation 
+that we must bound. This function is defined by 
+\[
+I_{2,k}(r, x) := -\frac{1}{2\pi\imath} \times \int_{|v|=r} (\widehat{G}(-r) - \widehat{G}(-v)) 
+     \times \frac{(\log x)^{-v}}{v^k} dv. 
+\]
+After integrating by parts, we write that 
+\[
+I_{2,k}(r, x) := -\frac{1}{2\pi\imath} \times \int_{|v|=r} (\widehat{G}(-r) - \widehat{G}(-v) - 
+     \widehat{G}^{\prime}(-r)(v+r)) 
+     (\log x)^{-v} v^{-k} dv. 
+\]
+Notice that 
+\[
+\left\lvert \widehat{G}(-r) - \widehat{G}(-v) - \widehat{G}^{\prime}(-r)(v+r) \right\rvert = 
+     \left\lvert \int_{-r}^{-v} 
+     (v+w) \widehat{G}^{\prime\prime}(-w) dw \right\rvert 
+     \ll |v+r|^2. 
+\]
+With the parameterization $v = -re^{2\pi\imath\theta}$ for real $\theta \in [-1/2,1/2]$ and 
+with $r := \frac{k-1}{\log\log x}$ (as above), 
+we get that 
+\[
+|I_{2,k}(r, x)| \ll r^{3-k} \int_{-1/2}^{1/2} (\sin \pi\theta)^2 e^{(k-1) \cos(2\pi\theta)} d\theta. 
+\]
+Since $|\sin x| \leq |x|$ for all $|x| < 1$ and $\cos(2\pi\theta) \leq 1 - 8\theta^2$ whenever 
+$-1/2 \leq \theta \leq 1/2$, we obtain bounds of the next forms by again 
+setting $r := \frac{k-1}{\log\log x}$ for any $1 \leq k \leq \log\log x$. 
+\begin{align*}
+|I_{2,k}(r, x)| & \ll r^{3-k} e^{k-1} \times \int_0^{\infty} \theta^2 e^{-8(k-1) \theta^2} d\theta \\ 
+     & \ll \frac{r^{3-k} e^{k-1}}{(k-1)^{3/2}} \ll 
+     \frac{(\log\log x)^{k-3} e^{k-1}}{(k-1)^{3/2} (k-1)^{k-3}} \\ 
+     & \ll 
+     \frac{k (\log\log x)^{k-3}}{(k-1)!}. 
+\end{align*}
+Finally, we see that whenever $1 \leq k \leq \log\log x$, we have 
+\[
+\widehat{G}\left(\frac{1-k}{\log\log x}\right) = \frac{1}{\Gamma\left(2-\frac{k-1}{\log\log x}\right)} \cdot 
+     \frac{\zeta(2)^{(k-1)/\log\log x}}{\left(1-\frac{(k-1)}{\log\log x}\right)^{-1}} \gg 1. 
+\]
+In fact, we can show that the the function on the left-hand-side of the last equation is 
+asymptotic to $e^{o(1)}$ as $x \rightarrow \infty$. 
+This implies the stated result of our theorem. 
+\end{proof} 
+
+\begin{lemma} 
+\label{cor_AsymptoticsForSignedSumsOfomegan_v1} 
+Suppose that for $x > e$ we define the following functions: 
+\begin{align*} 
+\mathcal{N}_{\omega}(x) & := \left\lvert \sum_{k > \frac{3}{2}\log\log x} (-1)^{k} \pi_k(x) \right\rvert, \\ 
+\mathcal{D}_{\omega}(x) & := \left\lvert \sum_{k \leq \frac{3}{2}\log\log x} (-1)^{k} \pi_k(x) \right\rvert, \\ 
+\mathcal{A}_{\omega}(x) & := \left\lvert \sum_{k \geq 1} (-1)^{k} \pi_k(x) \right\rvert. 
+\end{align*} 
+As $x \rightarrow \infty$, we have that $\mathcal{N}_{\omega}(x) / \mathcal{D}_{\omega}(x) = o(1)$ 
+and $\mathcal{A}_{\omega}(x) \sim \mathcal{D}_{\omega}(x)$. 
+\end{lemma} 
+With this lemma, we can accurately approximate asymptotic order of 
+the sums $\mathcal{A}_{\omega}(x)$
+for large $x$ by only considering the truncated sums 
+$\mathcal{D}_{\omega}(x)$  
+where we have the known uniform bounds on the summands for 
+$1 \leq k \leq \log\log x$ by the results in 
+Remark \ref{remark_MV_Pikx_FuncResultsAnnotated_v1}. 
+\begin{proof} 
+First, we sum the main term for the function $\mathcal{D}_{\omega}(x)$ by applying the limiting 
+asymptotics for the incomplete gamma function derived in 
+Lemma \ref{lemma_ConvenientIncGammaFuncTypePartialSumAsymptotics_v2} to obtain that 
+\begin{align*} 
+\mathcal{D}_{\omega}(x) & =  
+\left\lvert \sum_{1 \leq k \leq \frac{3}{2}\log\log x} \frac{(-1)^k \cdot x}{\log x} \cdot 
+     \frac{(\log\log x)^{k-1}}{(k-1)!} \right\rvert + O(E_{\omega}(x)) \\ 
+     & = \frac{8x}{65\sqrt{2\pi} (\log x)^{a^{\ast}} \sqrt{\log\log x}} + 
+     O\left(\frac{x}{(\log x)^{a^{\ast}} (\log\log x)^{3/2}} + E_{\omega}(x)\right), 
+\end{align*}
+where the absolute constant $a^{\ast} := -\frac{3}{2}\log\left(\frac{3}{2e}\right) - \frac{1}{2} \approx 0.391802$. 
+The error term from the bound in the previous equation is defined according to 
+\eqref{eqn_Pikx_UniformAsymptoticsStmt_from_MV_v2} with 
+$\widetilde{\mathcal{G}}\left(\frac{k-1}{\log\log x}\right) \gg 1$ for all 
+$1 \leq k \leq \log\log x$ and large $x$ as 
+\begin{align*}
+E_{\omega}(x) & := \sum_{k \leq \frac{3}{2}\log\log x} \frac{x}{\log x} 
+     \cdot \frac{k (\log\log x)^{k-3}}{(k-1)!} 
+     \leq \frac{x}{\log x} \times \sum_{1 \leq k \leq \frac{3}{2}\log\log x} 
+     \frac{(\log\log x)^{k-2}}{(k-1)!} \\ 
+     & \leq \frac{x}{(\log x)(\log\log x)} e^{\log\log x} \leq \frac{x}{\log\log x}. 
+\end{align*}
+Next, we utilize the notation for and bounds on the function $D(x, r)$ for $r := 3/2$ from 
+Remark \ref{remark_MV_Pikx_FuncResultsAnnotated_v1} 
+to bound the function $\mathcal{N}_{\omega}(x)$ as follows: 
+\begin{align*}
+\frac{1}{x} \times \left\lvert \mathcal{N}_{\omega}(x) \right\rvert & \leq 
+     \sum_{k \geq \frac{3}{2}\log\log x} \frac{\pi_k(x)}{x} = 
+     \frac{1}{x} \times \sum_{k \geq \frac{3}{2}\log\log x} \#\left\{2 \leq n \leq x: \omega(n)=k\right\} 
+     \ll \frac{1}{(\log x)^{0.108198}}. 
+\end{align*} 
+Then we see that 
+\[
+\left\lvert \frac{\mathcal{N}_{\omega}(x)}{\mathcal{D}_{\omega}(x)} \right\rvert = 
+     O\left(\frac{(\log\log x)^{1-a^{\ast}}}{(\log x)^{0.108198}}\right) = o(1), 
+     \mathrm{\ as\ } x \rightarrow \infty. 
+\]
+Equivalently, we have shown that $\mathcal{D}_{\omega}(x) = o\left(\mathcal{N}_{\omega}(x)\right)$. 
+The following results from the triangle inequality when $x$ is large: 
+\[
+1+o(1) = \frac{\mathcal{D}_{\omega}(x)- 
+     \mathcal{N}_{\omega}(x)}{\mathcal{D}_{\omega}(x)} \ll 
+     \frac{\mathcal{D}_{\omega}(x)}{\mathcal{A}_{\omega}(x)} \ll 
+     \frac{\mathcal{D}_{\omega}(x)+\mathcal{N}_{\omega}(x)}{\mathcal{D}_{\omega}(x)} = 
+     1 + o(1). 
+\]
+The last equation implies that 
+$\mathcal{A}_{\omega}(x) \sim \mathcal{D}_{\omega}(x)$ as $x \rightarrow \infty$. 
+\end{proof} 
+
+\begin{cor} 
+\label{cor_SummatoryFuncsOfUnsignedSeqs_v2} 
+We have for large $x > e$ and $1 \leq k \leq \log\log x$ that  
+\begin{align*} 
+\widehat{C}_k(x) := 
+     \sum_{\substack{n \leq x \\ \Omega(n) = k}} C_{\Omega(n)}(n) & \sim 
+     \frac{4\sqrt{2\pi} \cdot x}{(2k-1)} \cdot \frac{(\log\log x)^{k-1/2}}{(k-1)!}. 
+\end{align*} 
+\end{cor} 
+\begin{proof} 
+Suppose that $h$ is any sufficiently smooth function on $\mathbb{R}^{+}$. 
+We have integral formulas that result by 
+applying Abel summation in the form of the next equations. 
+\begin{subequations}
+\begin{align} 
+\label{eqn_AbelSummationIBPReverseFormula_stmt_v1} 
+\sum_{n \leq x} (-1)^{\omega(n)} h(n) & = \left(\sum_{n \leq x} \lambda_{\ast}(n)\right) h(x) - 
+     \int_{1}^{x} \left(\sum_{n \leq t} \lambda_{\ast}(n)\right) h^{\prime}(t) dt \\ 
+\label{eqn_AbelSummationIBPReverseFormula_stmt_v2}
+     & \sim 
+     \int_1^{x} \frac{d}{dt}\left[\sum_{n \leq t} \lambda_{\ast}(n)\right] h(t) dt
+\end{align} 
+\end{subequations}
+Let the signed left-hand-side summatory function for our function 
+in \eqref{eqn_AbelSummationIBPReverseFormula_stmt_v1} when $h(n) := C_{\Omega(n)}(n)$ be defined precisely 
+corresponding to large $x > e$ and any integers $1 \leq k \leq \log\log x$ by 
+\begin{align*} 
+\widehat{C}_{k,\ast}(x) & := \sum_{\substack{n \leq x \\ \Omega(n)=k}} 
+     (-1)^{\omega(n)} C_{\Omega(n)}(n) \\ 
+     & \phantom{:} \sim 
+     \frac{x}{\log x} \cdot \frac{(\log\log x)^{k-1}}{(k-1)!} \left[ 
+     1 + O\left(\frac{1}{\log\log x}\right)\right].
+\end{align*} 
+The second equation above follows from the proof of 
+Theorem \ref{theorem_CnkSpCasesScaledSummatoryFuncs} where 
+we note that $\widehat{G}((1-k)/\log\log x) \sim e^{o(1)}$ as 
+$x \rightarrow \infty$. 
+We adopt the notation that $\lambda_{\ast}(n) = (-1)^{\omega(n)}$ for $n \geq 1$ and 
+set $L_{\ast}(x) := \left\lvert \sum_{n \leq x} \lambda_{\ast}(n) \right\rvert$ for $x \geq 1$. 
+We can then transform our previous results for the partial sums over the signed sequences 
+$\lambda_{\ast}(n) C_{\Omega(n)}(n)$ such that $\Omega(n) = k$ to approximate 
+the same sum over the unsigned summands $C_{\Omega(n)}(n)$. 
+
+The next argument is based on first approximating $L_{\ast}(t)$ for large $t$ 
+using the following uniform asymptotics for $\pi_k(x)$ that hold when 
+$1 \leq k \leq \log\log x$\footnote{
+     We can in fact show that for any $1 \leq k \leq x$, 
+     the function $\widetilde{\mathcal{G}}(z)$ defined in 
+     Remark \ref{remark_MV_Pikx_FuncResultsAnnotated_v1} satisfies 
+     \[ 
+     \widetilde{\mathcal{G}}\left(\frac{k-1}{\log\log x}\right) = e^{o(1)} \xrightarrow{x \rightarrow \infty} 1. 
+     \]
+}:
+\[
+\pi_k(x) = \frac{x}{\log x} \cdot \frac{(\log\log x)^{k-1}}{(k-1)!} \left[1 + 
+     O\left(\frac{k}{(\log\log x)^2}\right)\right], 
+     \mathrm{\ as\ } x \rightarrow \infty. 
+\]
+We have by Lemma \ref{lemma_ConvenientIncGammaFuncTypePartialSumAsymptotics_v2} and 
+Lemma \ref{cor_AsymptoticsForSignedSumsOfomegan_v1} that 
+(\cf the proof of Lemma \ref{cor_AsymptoticsForSignedSumsOfomegan_v1} for the error term) 
+\begin{align} 
+\label{eqn_ProofTag_LAsttSummatoryFuncAsymptotics_v1}
+L_{\ast}(t) & := \left\lvert \sum_{n \leq t} \lambda_{\ast}(n) \right\rvert \sim 
+     \left\lvert \sum_{k=1}^{\log\log t} (-1)^{k} \pi_k(t) \right\rvert = 
+     \frac{t}{2\sqrt{2\pi \log\log t}} + O\left(\frac{t}{\log\log t}\right), 
+     \mathrm{\ as\ } t \rightarrow \infty. 
+\end{align} 
+The error term in the previous equation corresponds to the asymptotics of the 
+following sum as $x \rightarrow +\infty$ over the error term for $\pi_k(x)$ above 
+obtained from Stirling's formula, \eqref{eqn_IncompleteGamma_PropA} and 
+\eqref{eqn_IncompleteGamma_PropC} from the appendix section, respectively. 
+\begin{align*} 
+\frac{x}{\log x} \times \sum_{1 \leq k \leq \log\log x} \frac{(\log\log x)^{k-2}}{(k-1)!} & = 
+     \frac{x \Gamma(\log\log x, \log\log x)}{\Gamma(\log\log x + 1)} 
+     \sim \frac{x}{\sqrt{2\pi} (\log\log x)^{3/2}}. 
+\end{align*}
+The main term for the reciprocal of the derivative of the main term approximation of this 
+summatory function is then given by computation as 
+\[
+\frac{1}{L_{\ast}^{\prime}(t)} \sim 2 \sqrt{2\pi \log\log t}. 
+\]
+We apply the formula from \eqref{eqn_AbelSummationIBPReverseFormula_stmt_v2},  
+to deduce that the unsigned summatory function variant satisfies 
+\begin{align*} 
+     \widehat{C}_{k,\ast}(x) & = \int_1^{x} L_{\ast}^{\prime}(t) C_{\Omega(t)}(t) \Iverson{\Omega(t) = k} 
+     dt \qquad \implies \\ 
+     & 
+     C_{\Omega(x)}(x) \Iverson{\Omega(x) = k} 
+     \sim \frac{\widehat{C}_{k,\ast}^{\prime}(x)}{L_{\ast}^{\prime}(x)} \qquad\quad \implies \\ 
+     C_{\Omega(x)}(x) \Iverson{\Omega(x) = k} & \sim 
+     2\sqrt{2\pi \log\log x} \times \widehat{C}_{k,\ast}^{\prime}(x) (1+o(1)) 
+     =: \widehat{C}_{k,\ast\ast}(x). 
+\end{align*} 
+We have that 
+\begin{align*}
+     \widehat{C}_{k,\ast\ast}(x) & \sim 
+     -2\sqrt{2\pi \log\log x}\left[ 
+     \frac{(\log\log x)^{k-1}}{(\log x) (k-1)!} \left( 
+     1 - \frac{1}{\log x}\right) + 
+     \frac{(\log\log x)^{k-2}}{(\log x)^2 (k-2)!}\right]. 
+\end{align*} 
+Hence, integration by parts and Proposition \ref{prop_IncGammaLambdaTypeBounds_v1} 
+(from the appendix) yield the main term 
+\begin{align}
+\label{eqn_proofTag_CkAstAstHatx_DerivativeFormula_NeedsIBP_v1} 
+\sum_{\substack{n \leq x \\ \Omega(n)=k}} C_{\Omega(n)}(n) & \sim
+     \left\lvert \int \widehat{C}_{k,\ast\ast}(x)dx \right\rvert \\ 
+\notag
+     & \sim 
+     \frac{4\sqrt{2\pi} \cdot x (\log\log x)^{k-1/2}}{(2k-1) (k-1)!} + 
+     \frac{2\sqrt{2\pi} \cdot x \Gamma\left(k - \frac{1}{2}, \log\log x\right)}{(k-1)!} - 
+     \frac{2\sqrt{2\pi} \cdot x \Gamma\left(k - \frac{3}{2}, \log\log x\right)}{(k-1)!} \\ 
+     & \sim \frac{4\sqrt{2\pi} \cdot x (\log\log x)^{k-1/2}}{(2k-1) (k-1)!}. 
+     \qedhere 
+\end{align}
+\end{proof}
+
+\subsection{Average orders of the unsigned sequences}
+\label{subSection_AvgOrdersOfTheUnsignedSequences} 
+
+\begin{prop} 
+\label{lemma_HatCAstxSum_ExactFormulaWithError_v1} 
+We have that as $n \rightarrow \infty$ 
+\[
+\mathbb{E}\left[C_{\Omega(n)}(n)\right] = 
+     \frac{\sqrt{2\pi} (\log n)}{2\sqrt{\log\log n}} (1+o(1)). 
+\] 
+\end{prop} 
+\begin{proof} 
+We first compute the following 
+summatory function by applying 
+Corollary \ref{cor_SummatoryFuncsOfUnsignedSeqs_v2} and 
+Lemma \ref{lemma_ConvenientIncGammaFuncTypePartialSumAsymptotics_v3} from the appendix:
+\begin{align} 
+\label{eqn_proof_tag_PartialSumsOver_HatCkx_v3} 
+\sum_{k=1}^{2\log\log x} \sum_{\substack{n \leq x \\ \Omega(n) = k}} C_{\Omega(n)}(n) & \sim 
+     \frac{\sqrt{2\pi} \cdot x (\log x)}{2 \sqrt{\log\log x}}. 
+\end{align} 
+We claim that 
+\begin{align} 
+\notag 
+\frac{1}{x} \times \sum_{n \leq x} C_{\Omega(n)}(n) & = \frac{1}{x} \times 
+     \sum_{k \geq 1} \sum_{\substack{n \leq x \\ \Omega(n) = k}} C_{\Omega(n)}(n) \\ 
+\label{eqn_proof_tag_PartialSumsOver_HatCkx_v1} 
+     & = 
+     \frac{1}{x} \times \sum_{k=1}^{2\log\log x} \sum_{\substack{n \leq x \\ \Omega(n) = k}} 
+     C_{\Omega(n)}(n) (1+o(1)), 
+     \text{ as } x \rightarrow \infty. 
+\end{align} 
+To prove \eqref{eqn_proof_tag_PartialSumsOver_HatCkx_v1}, by 
+\eqref{eqn_proof_tag_PartialSumsOver_HatCkx_v3} it suffices to show that 
+\begin{equation} 
+\label{eqn_proof_tag_PartialSumsOver_HatCkx_EquivCond_v2} 
+\frac{1}{x} \times 
+     \sum\limits_{k > 2\log\log x} \sum\limits_{\substack{n \leq x \\ \Omega(n) = k}} C_{\Omega(n)}(n)
+     = O\left((\log x)^{0.613706} \times (\log\log x)\right), 
+     \mathrm{\ as\ } x \rightarrow \infty. 
+\end{equation} 
+We proved in Theorem \ref{prop_HatAzx_ModSummatoryFuncExps_RelatedToCkn} 
+that for all sufficiently large $x$ 
+\[
+\sum_{n \leq x} (-1)^{\omega(n)} C_{\Omega(n)}(n) z^{\Omega(n)} = 
+     \frac{x \widehat{F}(2, z)}{\Gamma(z)} (\log x)^{z-1} + O\left( 
+     x (\log x)^{\Re(z)-2}\right). 
+\]
+By \eqref{eqn_ProofTag_LAsttSummatoryFuncAsymptotics_v1} 
+we have that the summatory function 
+\[
+\left\lvert \sum_{n \leq x} (-1)^{\omega(n)} \right\rvert = 
+     \frac{x}{2 \sqrt{2\pi \log\log x}} + O\left(\frac{x}{\log\log x}\right). 
+\]
+We can argue as in the proof of Corollary \ref{cor_SummatoryFuncsOfUnsignedSeqs_v2} 
+using integration by parts with the Abel summation formula that whenever $1 < |z| < P(2)^{-1}$ 
+and $x > e$ is sufficiently large we have 
+\begin{align}
+\notag
+\sum_{n \leq x} C_{\Omega(n)}(n) z^{\Omega(n)} & \ll \frac{\widehat{F}(2, z)}{\Gamma(z)} \times 
+     \int_e^{x} \frac{\sqrt{\log\log t}}{t} \cdot 
+     \frac{\partial}{\partial t}\left[ t (\log t)^{z-1}\right] dt \\ 
+\notag 
+     & \ll 
+     \frac{x \widehat{F}(2, z)}{\Gamma(z)} \Biggl[
+     \frac{(\log x)^{z-1}(z+\log x)}{z} \sqrt{\log\log x} - 
+     \frac{\sqrt{\pi}}{2\sqrt{z-1}} \operatorname{erfi}\left(\sqrt{(z-1)\log\log x}\right) \\ 
+\notag
+     & \phantom{\ll\Biggl[\qquad\qquad\ } - 
+     \frac{\sqrt{\pi}}{2 z^{3/2}} \operatorname{erfi}\left(\sqrt{z \log\log x}\right) 
+     \Biggr] \\ 
+\label{eqn_COmegannzPowOmeganLLRelation_v1} 
+     & \ll \frac{x \widehat{F}(2, z)}{\Gamma(1+z)} (\log x)^{z} \sqrt{\log\log x}. 
+\end{align}
+The omitted error term in the last formula follows from the asymptotic series for 
+$\operatorname{erfi}(z)$ in \eqref{eqn_Erfix_KnownAsymptoticSeries_v1}. 
+Namely, as $|z| \rightarrow \infty$, the \emph{imaginary error function}, denoted by 
+$\operatorname{erfi}(z)$, has the following asymptotic expansion 
+\cite[\S 7.12]{NISTHB}: 
+\begin{equation}
+\label{eqn_Erfix_KnownAsymptoticSeries_v1}
+\operatorname{erfi}(z) := \frac{2}{\sqrt{\pi} \cdot \imath} \times \int_0^{\imath z} e^{t^2} dt = 
+     \frac{e^{z^2}}{\sqrt{\pi}} \left(z^{-1} + \frac{z^{-3}}{2} + 
+     \frac{3z^{-5}}{4} + \frac{15 z^{-7}}{8} + O\left(z^{-9}\right)\right). 
+\end{equation}
+For all large enough $x > e$, we define 
+\[
+\widehat{B}(x, r) := \sum_{\substack{n \leq x \\ \Omega(n) \geq r\log\log x}} 
+     C_{\Omega(n)}(n). 
+\]
+We argue as in the proof from the reference \cite[\cf Thm.\ 7.20; \S 7.4]{MV} 
+applying \eqref{eqn_COmegannzPowOmeganLLRelation_v1} when $1 \leq r < P(2)^{-1}$. 
+Since $\widehat{F}(2, r) = \frac{\zeta(2)^{-r}}{1+P(2)r} \ll 1$ for $r \in [1, P(2)^{-1})$, and 
+similarly since we have that $\frac{1}{\Gamma(1+r)} \gg 1$ for $r$ taken within this same range, 
+we obtain that 
+\[
+x \sqrt{\log\log x} (\log x)^{r} \gg \sum_{\substack{n \leq x \\ \Omega(n) \geq r\log\log x}} 
+     C_{\Omega(n)}(n) r^{\Omega(n)} \gg 
+     \sum_{\substack{n \leq x \\ \Omega(n) \geq r\log\log x}} 
+     C_{\Omega(n)}(n) r^{r \log\log x}, \text{\ for\ } 1 \leq r < P(2)^{-1}. 
+\]
+This implies that for $r := 2$ we have 
+\begin{equation}
+\label{eqn_BHatxrUpperBound_v1}
+\widehat{B}(x, r) \ll x (\log x)^{r-r\log r} \sqrt{\log\log x} = 
+     O\left(x (\log x)^{0.613706} \times \sqrt{\log\log x}\right)
+\end{equation}
+We wish to evaluate the limiting asymptotics of the sum 
+\begin{align*}
+S_2(x) & := \frac{1}{x \sqrt{\log\log x}} \times 
+     \sum_{k \geq 2\log\log x} \sum_{\substack{n \leq x \\ \Omega(n)=k}} 
+     C_{\Omega(n)}(n) \ll \widehat{B}(x, 2). 
+\end{align*} 
+We have proved that 
+$S_2(x) \sqrt{\log\log x} = O\left((\log x)^{0.61306} (\log\log x)\right)$ 
+as $x \rightarrow \infty$, as claimed. 
+\end{proof} 
+
+\begin{cor}
+\label{cor_ExpectationFormulaAbsgInvn_v2} 
+We have that as $n \rightarrow \infty$ 
+\begin{align*} 
+\mathbb{E}|g^{-1}(n)| & = \frac{3}{\pi} \cdot 
+     \frac{(\log n)^2}{\sqrt{\log\log n}} (1+o(1)). 
+\end{align*} 
+\end{cor} 
+\begin{proof} 
+We use the formula from Proposition \ref{lemma_HatCAstxSum_ExactFormulaWithError_v1} 
+to sum $\mathbb{E}[C_{\Omega(n)}(n)]$ as $n \rightarrow \infty$.
+This result and \eqref{eqn_Erfix_KnownAsymptoticSeries_v1} 
+imply that for all sufficiently large $t \rightarrow +\infty$ 
+\begin{align*} 
+\frac{2}{\sqrt{2\pi}} \times \int \frac{\mathbb{E}[C_{\Omega(t)}(t)]}{t} dt & = 
+     \pi \operatorname{erfi}\left(\sqrt{2\log\log t}\right) = 
+     \sqrt{\frac{\pi}{2}} \cdot \frac{(\log t)^2}{\sqrt{\log\log t}} (1+o(1)). 
+\end{align*} 
+Recall that for large $x$ 
+\[
+Q(x) := \sum_{n \leq x} \mu^2(n) = \frac{6x}{\pi^2} + O(\sqrt{x}). 
+\]
+Therefore summing over the formula from 
+\eqref{eqn_AbsValueOf_gInvn_FornSquareFree_v1} we find that  
+\begin{align} 
+\notag 
+\mathbb{E}|g^{-1}(n)| & = \frac{1}{n} \times \sum_{d \leq n} 
+     C_{\Omega(d)}(d) Q\left(\Floor{n}{d}\right) \\ 
+\notag 
+     & \sim \sum_{d \leq n} C_{\Omega(d)}(d) \left[\frac{6}{d \cdot \pi^2} + O\left(\frac{1}{\sqrt{dn}}\right) 
+     \right] \\ 
+\notag 
+     & = \frac{6}{\pi^2} \left[\mathbb{E}[C_{\Omega(n)}(n)] + \sum_{d<n} 
+     \frac{\mathbb{E}[C_{\Omega(d)}(d)]}{d}\right] + O(1). 
+     \qedhere 
+\end{align} 
+\end{proof} 
+
+\subsection{Erd\H{o}s-Kac theorem analogs for the distributions of the unsigned sequences} 
+
+\begin{theorem}[Central limit theorem for the distribution of $C_{\Omega(n)}(n)$] 
+\label{theorem_CLT_VI} 
+For large $x > e$, let the mean and variance parameter analogs be defined by 
+\[
+     \mu_x(C) := \log\log x - \log\left(4\sqrt{2\pi}\right), 
+     \qquad \mathrm{\ and\ } \qquad 
+     \sigma_x(C) := \sqrt{\log\log x}. 
+\]
+Let $Y > 0$ be fixed. 
+We have uniformly for all $-Y \leq z \leq Y$ that 
+\[
+\frac{1}{x} \times \#\left\{2 \leq n \leq x: 
+     \frac{C_{\Omega(n)}(n) - \mu_x(C)}{\sigma_x(C)} \leq z\right\} = 
+     \Phi\left(z\right) + O\left(\frac{1}{\sqrt{\log\log x}}\right), 
+     \mathrm{\ as\ } x \rightarrow \infty. 
+\] 
+\end{theorem} 
+\begin{proof} 
+Fix any $Y > 0$ and set $z \in [-Y, Y]$. 
+For large $x$ and $2 \leq n \leq x$, define the following auxiliary variables: 
+\[
+\alpha_n := \frac{C_{\Omega(n)}(n) - \mu_n(C)}{\sigma_n(C)}, \quad\mathrm{and}\quad 
+     \beta_{n,x} := \frac{C_{\Omega(n)}(n) - \mu_x(C)}{\sigma_x(C)}. 
+\] 
+Let the corresponding densities be defined by the functions 
+\[
+\Phi_1(x, z) := \frac{1}{x} \times \#\{n \leq x: \alpha_n \leq z\}, 
+\]
+and 
+\[
+\Phi_2(x, z) := \frac{1}{x} \times \#\{n \leq x: \beta_{n,x} \leq z\}. 
+\] 
+We assert that it suffices to show that $\Phi_2(x, z) = \Phi(x) + o(1)$ as 
+$x \rightarrow \infty$ in place of considering the distribution of 
+$\Phi_1(x, z)$ to obtain the conclusion. 
+The normalizing terms $\mu_n(C)$ and $\sigma_n(C)$ hardly change over 
+$\sqrt{x} \leq n \leq x$. Namely, we see that for $n \in [\sqrt{x}, x]$
+\[
+|\mu_n(C) - \mu_x(C)| \leq 
+     \frac{\log 2}{\log x} + 
+     O\left(\frac{1}{(\log x)^2}\right), 
+\]
+and 
+\[
+|\sigma_n(C) - \sigma_x(C)| 
+     \leq \frac{\log 2}{(\log x) \sqrt{\log\log x}} + O\left( 
+     \frac{1}{(\log\log x) (\log x)^2}\right). 
+\]
+In particular, for 
+$\sqrt{x} \leq n \leq x$ and $C_{\Omega(n)}(n) \leq 2 \mu_x(C)$ we can show 
+using \eqref{eqn_BHatxrUpperBound_v1} 
+that the following is true: 
+\[
+|\alpha_n - \beta_{n,x}| \xrightarrow{x \rightarrow \infty} 0. 
+\]
+Thus we can replace $\alpha_n$ by $\beta_{n,x}$ and estimate the limiting 
+densities corresponding to these alternate terms as $x \rightarrow \infty$. 
+The rest of our argument parallels the method from the proof of the related theorem in 
+\cite[Thm.\ 7.21; \S 7.4]{MV} from Montgomery and Vaughan closely. 
+After a change of variable in our proof, we obtain the limiting 
+CLT statement in analog to their analytic proof of the Erd\H{o}s-Kac theorem 
+for the distribution of $\Omega(n)$. 
+
+We use the formula proved in Corollary \ref{cor_SummatoryFuncsOfUnsignedSeqs_v2} 
+to estimate the densities claimed within the ranges bounded by 
+$z$ as $x \rightarrow \infty$. 
+Let $k \geq 1$ be a natural number such that $k := t_x + \mu_x(C)$ where 
+$t_x := \frac{t \sqrt{\log\log x}}{(\log x)}$. 
+For fixed large $x$, we define the small parameter $\delta_{t,x} := \frac{t_x}{\mu_x(C)}$ 
+for some target PDF parameter $t \in \mathbb{R}$. 
+When $|t| \leq \frac{1}{2} \mu_x(C)$, we have by Stirling's formula that 
+\begin{align*} 
+\frac{1}{x} \times \sum_{\substack{n \leq x \\ \Omega(n)=k}} C_{\Omega(n)}(n) & 
+     \sim 
+     \frac{4\sqrt{2\pi} (\log\log x)^{k-\frac{1}{2}}}{(2k-1) (k-1)!} \\ 
+     & \sim 
+     \frac{(\log x)}{\sqrt{2\pi \log\log x} \cdot \sigma_x(C)  
+     \left(1-\frac{1}{2k}\right)} \times e^{t_x} (1+o(1))^{k-\frac{1}{2}} \times 
+     \left(1+\delta_{t,x}\right)^{-\mu_x(C)(1+\delta_{t,x})-\frac{1}{2}}. 
+\end{align*} 
+Notice that 
+\begin{align*}
+\frac{1}{1-\frac{1}{2k}} & \sim \sum_{m \geq 0} \frac{1}{(2 \mu_x(C))^m (1+\delta)^m} 
+     \sim 1 + \frac{1}{2 \mu_x(C)} \left(1+\delta+O(\delta^2)\right) \\ 
+     & = 1 + o_{\delta}(1), \text{\ for\ } \delta \approx 0 \text{\ as\ } x \rightarrow \infty. 
+\end{align*}
+We have the uniform estimate that 
+$\log(1+\delta_{t,x}) = \delta_{t,x} - \frac{\delta_{t,x}^2}{2} + O(|\delta_{t,x}|^3)$ whenever 
+$|\delta_{t,x}| \leq \frac{1}{2}$. Then we can expand the factor involving $\delta_{t,x}$ 
+from the previous equation as follows: 
+\begin{align*} 
+(1+\delta_{t,x})^{-\mu_x(C) (1+\delta_{t,x}) - \frac{1}{2}} & = 
+     \exp\left(\left(\frac{1}{2}+\mu_x(C) (1+\delta_{t,x})\right) \times 
+     \left(-\delta_{t,x} + \frac{\delta_{t,x}^2}{2} + O(|\delta_{t,x}|^3)\right)\right) \\ 
+     & = \exp\left(-t_x - \frac{t_x+t_x^2}{2\mu_x(C)} + \frac{t_x^2}{4\mu_x(C)^2} + 
+     O\left(\frac{|t_x|^3}{\mu_x(C)^2}\right)\right). 
+\end{align*} 
+For both $|t| \leq \mu_x(C)^{1/2}$ and 
+$\mu_x(C)^{1/2} < |t| \leq \mu_x(C)^{2/3}$, 
+we can see that 
+\[
+\frac{t}{\mu_x(C)} \ll \frac{1}{\sqrt{\mu_x(C)}} + \frac{|t|^3}{\mu_x(C)^2}. 
+\]
+Similarly, for both  $|t| \leq 1$ and $|t| > 1$, we have that 
+\[
+\frac{t^2}{\mu_x(C)^2} \ll \frac{1}{\sqrt{\mu_x(C)}} + 
+     \frac{|t|^3}{\mu_x(C)^2}. 
+\] 
+Let the corresponding error terms in $x$ and $t$ be denoted by 
+\[
+\widetilde{E}(x, t) := O\left(\frac{1}{\sigma_x(C)} + \frac{|t|^3}{\mu_x(C)^2}\right). 
+\]
+Combining these estimates with the previous computations, we deduce 
+uniformly for $|t| \leq \mu_x(C)^{2/3}$ that 
+\begin{align*} 
+\frac{4\sqrt{2\pi} (\log\log x)^{k-\frac{1}{2}}}{(2k-1)(k-1)!} & \sim 
+     \frac{\log x}{\sqrt{2\pi \log\log x} \cdot \sigma_x(C)} 
+     \times \exp\left(-\frac{t_x^2}{2\sigma_x(C)^2}\right) \times 
+     \left[1 + \widetilde{E}(x, t_x)\right]. 
+\end{align*} 
+It follows that uniformly for $1 \leq k \leq \log\log x$ 
+\begin{align*}
+f(k, x) & = 
+     \frac{1}{x} \times \sum_{\substack{n \leq x \\ \Omega(n)=k}} C_{\Omega(n)}(n) \\ 
+     & \sim 
+     \frac{(\log x)}{\sqrt{2\pi \log\log x} \cdot \sigma_x(C)} 
+     \times \exp\left(-\frac{(k-\mu_x(C))^2 \sqrt{\log\log x}}{2 (\log x) \sigma_x(C)^2}\right) \times 
+     \left[1 + \widetilde{E}\left(x, \frac{|k - \mu_x(C)| \sqrt{\log\log x}}{(\log x)}\right)\right]. 
+\end{align*}
+Since our target probability density function approximating the PDF (in $t$) of the 
+normal distribution is given here by 
+$$\frac{f(k, x) \sqrt{\log\log x}}{(\log x)} 
+  \rightarrow \frac{1}{\sqrt{2\pi} \cdot \sigma_x(C)} \times \exp\left(-\frac{t^2}{2
+  \sigma_x(C)^2}\right),$$ 
+we perform the change of variable $t \mapsto \frac{t \sqrt{\log\log x}}{(\log x)}$ to obtain the 
+form of our theorem stated above. 
+
+By the same argument utilized in the proof of 
+Proposition \ref{lemma_HatCAstxSum_ExactFormulaWithError_v1}, we see that 
+the contributions of these summatory functions for 
+$k \leq \mu_x(C) - \mu_x(C)^{2/3}$ is negligible. 
+We also require that $k \leq \log\log x$ for all large $x$ as we required by 
+Theorem \ref{theorem_CnkSpCasesScaledSummatoryFuncs}. We then sum over a 
+corresponding range of 
+\[
+\mu_x(C) -\mu_x(C)^{2/3} \leq k \leq \mu_x(C) + z \sigma_x(C), 
+\] 
+to approximate the stated normalized densities. 
+As $x \rightarrow \infty$ the 
+three terms that result (one main term and two error terms, respectively) 
+can be considered to each correspond to a Riemann sum for an associated integral whose 
+limiting formula corresponds to a main term given by the standard normal CDF, $\Phi(z)$. 
+The error term in our formula corresponds to the first term that is independent of $t$ in the 
+definition of $\widetilde{E}(x, t)$ given above. 
+\end{proof} 
+
+\begin{cor} 
+\label{cor_CLT_VII} 
+Let $Y > 0$. Suppose that $\mu_x(C)$ and $\sigma_x(C)$ are defined as in 
+Theorem \ref{theorem_CLT_VI} for large $x > e$. 
+For $Y > 0$ and we have uniformly for all $-Y \leq z \leq Y$ 
+that as $x \rightarrow \infty$ 
+\begin{align*} 
+\frac{1}{x} \cdot \#\left\{2 \leq n \leq x:|g^{-1}(n)| - 
+     \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)| \leq z\right\} & = 
+     \Phi\left\{\frac{6 \sigma_x(C)}{\pi^2}\left(\frac{\pi^2 z}{6} + \sigma_x(C)\right) - 
+     \frac{6}{\pi^2} \log(4\sqrt{2\pi})\right\} + o(1). 
+\end{align*} 
+\end{cor} 
+\begin{proof} 
+We claim that 
+\begin{align*} 
+|g^{-1}(n)| - \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)| & \sim \frac{6}{\pi^2} C_{\Omega(n)}(n), 
+     \text{\ as\ } n \rightarrow \infty. 
+\end{align*} 
+As in the proof of Corollary \ref{cor_ExpectationFormulaAbsgInvn_v2}, 
+we obtain that 
+\begin{align*} 
+\frac{1}{x} \times \sum_{n \leq x} |g^{-1}(n)| & = 
+     \frac{6}{\pi^2} \left[\mathbb{E}[C_{\Omega(x)}(x)] + \sum_{d<x} 
+     \frac{\mathbb{E}[C_{\Omega(d)}(d)]}{d}\right] + O(1). 
+\end{align*} 
+Let the \emph{backwards difference operator} with respect to $x$ 
+be defined for $x \geq 2$ and any arithmetic function $f$ as 
+$\Delta_x(f(x)) := f(x) - f(x-1)$. 
+We see that for large $n$ 
+\begin{align*} 
+|g^{-1}(n)| & = \Delta_n(n \cdot \mathbb{E}|g^{-1}(n)|) 
+     \sim \Delta_n\left(\sum_{d \leq n} \frac{6}{\pi^2} \cdot C_{\Omega(d)}(d) \cdot \frac{n}{d}\right) \\ 
+     & = \frac{6}{\pi^2}\left[C_{\Omega(n)}(n) + \sum_{d < n} C_{\Omega(d)}(d) \frac{n}{d} - 
+     \sum_{d<n} C_{\Omega(d)}(d) \frac{(n-1)}{d}\right] \\ 
+     & \sim \frac{6}{\pi^2} C_{\Omega(n)}(n) + \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n-1)|, 
+     \mathrm{\ as\ } n \rightarrow \infty. 
+\end{align*} 
+Since $\mathbb{E}|g^{-1}(n-1)| \sim \mathbb{E}|g^{-1}(n)|$ for all sufficiently large $n$, 
+the result finally follows by a normalization of Theorem \ref{theorem_CLT_VI}. 
+\end{proof} 
+
+\begin{lemma} 
+\label{lemma_ProbsOfAbsgInvnDist_v2} 
+For all $x$ sufficiently large, if we pick any integer $n \in [2, x]$ uniformly at random, then 
+each of the following statements holds: 
+\begin{align*} 
+\tag{A}
+     \mathbb{P}\left(|g^{-1}(n)| - \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)| \leq 
+     \frac{6}{\pi^2} (\log\log x) 
+     \right) & = \frac{1}{2} + o(1) \\ 
+\tag{B} 
+\mathbb{P}\left(|g^{-1}(n)| - \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)| \leq 
+     \frac{6}{\pi^2}\left(\alpha + \log\log x\right)
+     \right) & = 
+     \Phi\left(\alpha\right) + o(1), \alpha \in \mathbb{R}. 
+\end{align*} 
+\end{lemma} 
+\begin{proof} 
+Each of these results is a consequence of Corollary \ref{cor_CLT_VII}. 
+The result in (A) follows since $\Phi(0) = \frac{1}{2}$ by taking 
+$$z = \frac{\left(\alpha + \frac{6}{\pi^2} \log\left(4\sqrt{2\pi}\right)\right)}{\sigma_x(C)} - 
+  \frac{6}{\pi^2} \sigma_x(C),$$ 
+in Corollary \ref{cor_CLT_VII} 
+for $\alpha = 0$ for $\sigma_x(C) := \log\log x$. Note that as $\alpha \rightarrow +\infty$, 
+we get that the right-hand-side of (B) tends to one for large $x \rightarrow +\infty$. 
+\end{proof} 
+
+\label{remark_ProbsOfAbsgInvnDist_v3} 
+It follows from Lemma \ref{lemma_ProbsOfAbsgInvnDist_v2} and 
+Corollary \ref{cor_ExpectationFormulaAbsgInvn_v2} that 
+\[
+\lim_{x \rightarrow \infty}\ \frac{1}{x} \times \#\left\{n \leq x: 
+     |g^{-1}(n)| \leq \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)| (1+o(1))\right\} = 1. 
+\]
+That is, for almost every sufficiently large integer $n$ we recover that 
+$$|g^{-1}(n)| \leq \frac{6}{\pi^2} \mathbb{E}|g^{-1}(n)| (1+o(1)).$$
+
+\newpage 
+\section{New formulas and limiting relations characterizing $M(x)$} 
+\label{Section_KeyApplications} 
+
+\subsection{Establishing initial asymptotic bounds on the summatory function $G^{-1}(x)$} 
+\label{Section_ProofOfValidityOfAverageOrderLowerBounds} 
+
+Let $L(x) := \sum_{n \leq x} \lambda(n)$ for $x \geq 1$. 
+A recent upper bound on $L(x)$ (assuming the RH) is proved by 
+Humphries based on Soundararajan's result bounding $M(x)$. It is 
+stated in the following form \cite{HUMPHRIES-JNT-2013}: 
+\begin{equation} 
+\label{eqn_LxBigOhAsymptotics_Humphries_v1}
+L(x) = O\left(\sqrt{x} \times \exp\left( (\log x)^{\frac{1}{2}} 
+     (\log\log x)^{\frac{5}{2} + \epsilon}\right)\right), 
+     \mathrm{\ for\ any\ } \epsilon > 0, 
+     \mathrm{\ as\ } x \rightarrow \infty.
+\end{equation}
+
+\begin{theorem} 
+\label{cor_ExprForGInvxByLx_v1} 
+We have that for almost every sufficiently large $x$, there exists $1 \leq t_0 \leq x$ such that 
+$$G^{-1}(x) = O\left(L(t_0) \times \mathbb{E}|g^{-1}(x)|\right).$$ 
+If the RH is true, then 
+for any $\epsilon > 0$ and all large integers $x > e$ we have that 
+\[
+G^{-1}(x) = O\left(\frac{\sqrt{x} (\log x)^2}{\sqrt{\log\log x}} \times \exp\left( 
+     \sqrt{\log x} (\log\log x)^{\frac{5}{2} + \epsilon}\right)\right). 
+\]
+\end{theorem} 
+\begin{proof} 
+We write the next formulas for $G^{-1}(x)$ at almost every large $x > e$ 
+by Abel summation and applying the mean value theorem: 
+\begin{align} 
+\notag 
+G^{-1}(x) & = \sum_{n \leq x} \lambda(n) |g^{-1}(n)| \\ 
+\notag
+     & = L(x) |g^{-1}(x)| - \int L(x) \frac{d}{dx}\left\lvert g^{-1}(x) \right\rvert dx \\ 
+\label{proof_tag_GInvx_LxAbelSummationIntFormula_v1} 
+     & = O\left(L(t_0) \times \mathbb{E}|g^{-1}(x)|\right), \mathrm{\ for\ some\ } t_0 \in [1, x]. 
+\end{align} 
+The proof of this result appeals to the 
+last few results we used to establish the 
+probabilistic interpretations of the distribution of $|g^{-1}(n)|$ as 
+$n \rightarrow \infty$ in 
+Section \ref{Section_NewFormulasForgInvn}. 
+
+We need to bound the sums of the maximal extreme values of $|g^{-1}(n)|$ over $n \leq x$
+as $x \rightarrow \infty$ to prove the second bound. 
+We know by a result of Robin that \cite{ROBIN-PRIMEOMEGAFUNC-BOUNDS}
+\[
+\omega(n) \ll \frac{\log n}{\log\log n}, \mathrm{\ as\ } n \rightarrow \infty. 
+\]
+Recall that the values of $|g^{-1}(n)|$ are locally maximized when $n$ is squarefree with 
+\begin{align*}
+|g^{-1}(n)| & \leq \sum_{j=0}^{\omega(n)} \binom{\omega(n)}{j} j! 
+     \ll \Gamma(\omega(n)+1) 
+     \ll \left(\frac{\log n}{\log\log n}\right)^{\frac{\log n}{\log\log n} + \frac{1}{2}}. 
+\end{align*}
+Since we deduced that the set of $n \leq x$ on which $|g^{-1}(n)|$ is substantially larger 
+than its average order is asymptotically thin at the end of the last section, 
+we find the largest possible bounds that assert 
+\begin{align*}
+     \left\lvert \int_{x-o(1)}^{x} L^{\prime}(t) |g^{-1}(t)| dt\right\vert & \ll 
+\int_{x-o(1)}^{x} \left(\frac{\log t}{\log\log t}\right)^{\frac{\log t}{\log\log t} + 
+     \frac{1}{2}} dt 
+     = o\left(\left(\frac{\log x}{\log\log x}\right)^{\frac{\log x}{\log\log x} + \frac{1}{2}}\right) \\ 
+     & \ll o\left(\frac{x}{(\log x)^m (\log\log x)^r}\right), \text{\ for\ any\ } 
+     m, r = o\left(\frac{\log\log\log x}{\log\log x}\right), 
+     \mathrm{\ as\ } x \rightarrow \infty. 
+\end{align*}
+Indeed, we can see that the limit 
+\begin{align*}
+     \lim_{x \rightarrow \infty}\ & \frac{1}{x} \left(\frac{\log x}{\log\log x} 
+     \right)^{\frac{\log x}{\log\log x} + \frac{1}{2}} (\log x)^m (\log\log x)^r \ll 
+\lim_{x \rightarrow \infty} x^{-\frac{\log\log\log x}{\log\log x}} 
+     (\log x)^{m+r+1/2} \\ 
+     & = \lim_{x \rightarrow \infty} \exp\left((m+r+1/2) \log x - (\log x) 
+     \frac{\log\log\log x}{\log\log x}\right) 
+     = \lim_{t \rightarrow \infty} e^{-t} = 0. 
+\end{align*} 
+For large $x$, let $\mathcal{R}_x := \{t \leq x: |g^{-1}(t)| \ggg \mathbb{E}|g^{-1}(t)|\}$ such that 
+$|\mathcal{R}_x| = o(1)$ (as we argued before). 
+The formula from \eqref{eqn_AbelSummationIBPReverseFormula_stmt_v1} then implies 
+that for large $x$ and any $m, r = o\left(\frac{\log\log\log x}{\log\log x}\right)$ 
+\begin{align*}
+G^{-1}(x) & = O\left(\int L^{\prime}(x) |g^{-1}(x)| dx\right) 
+     = O\left(\mathbb{E}|g^{-1}(x)| \times \int L^{\prime}(x) dx + 
+     \int_{x-|\mathcal{R}_x|}^x |L^{\prime}(t)| \times |g^{-1}(t)| dt\right) \\ 
+     & = O\left(\mathbb{E}|g^{-1}(x)| \times |L(x)| + 
+     o\left(\frac{x}{(\log x)^m (\log\log x)^r}\right)\right). 
+\end{align*} 
+If the RH is true, by applying Humphries' result in 
+\eqref{eqn_LxBigOhAsymptotics_Humphries_v1} and 
+Corollary \ref{cor_ExpectationFormulaAbsgInvn_v2}, 
+then for any $\epsilon > 0$, 
+$m,r = o\left(\frac{\log\log\log x}{\log\log x}\right)$ and 
+large integers $x \geq 1$ we have that 
+\begin{align*}
+G^{-1}(x) & = O\left( 
+     \sqrt{x} (\log x)^2 \sqrt{\log\log x} \times 
+     \exp\left(\sqrt{\log x} \cdot (\log\log x)^{\frac{5}{2} + \epsilon}\right) + 
+     o\left(\frac{x}{(\log x)^m (\log\log x)^r}\right) 
+     \right). 
+\end{align*}
+To obtain the conclusion in the second result, we take limits as $x \rightarrow \infty$ 
+to see that the dominant term is given by the leftmost term in the last bound. 
+\end{proof} 
+
+\subsection{Bounding $M(x)$ by asymptotics for $G^{-1}(x)$} 
+
+\begin{prop} 
+\label{prop_Mx_SBP_IntegralFormula} 
+For all sufficiently large $x$, we have that the Mertens function satisfies 
+\begin{align} 
+\label{eqn_pf_tag_v2-restated_v2} 
+M(x) & = G^{-1}(x) + 
+     \sum_{k=1}^{\frac{x}{2}} G^{-1}(k) \left[ 
+     \pi\left(\Floor{x}{k}\right) - \pi\left(\Floor{x}{k+1}\right) 
+     \right]. 
+\end{align} 
+\end{prop} 
+\begin{proof} 
+We know by applying Corollary \ref{cor_Mx_gInvnPixk_formula} that 
+\begin{align} 
+\notag
+M(x) & = \sum_{k=1}^{x} g^{-1}(k) \left[\pi\left(\Floor{x}{k}\right)+1\right] \\ 
+\notag 
+     & = G^{-1}(x) + \sum_{k=1}^{\frac{x}{2}} g^{-1}(k) \pi\left(\Floor{x}{k}\right) \\ 
+\notag 
+     & = G^{-1}(x) + G^{-1}\left(\Floor{x}{2}\right) + 
+     \sum_{k=1}^{\frac{x}{2}-1} G^{-1}(k) \left[ 
+     \pi\left(\Floor{x}{k}\right) - \pi\left(\Floor{x}{k+1}\right) 
+     \right].
+\end{align} 
+The upper bound on the sum is truncated to $k \in \left[1, \frac{x}{2}\right]$ in the second equation 
+above due to the fact that $\pi(1) = 0$. 
+The third formula above follows directly by (ordinary) summation by parts. 
+\end{proof} 
+
+\begin{lemma}
+\label{lemma_PrimePix_ErrorBoundDiffs_SimplifyingConditions_v1} 
+For sufficiently large $x$, integers $k \in \left[1, \sqrt{x}\right]$ and 
+$m \geq 0$, we have that 
+\begin{equation} 
+\tag{A} 
+\frac{x}{k \cdot \log^m\left(\frac{x}{k}\right)} - 
+     \frac{x}{(k+1) \cdot \log^m\left(\frac{x}{k+1}\right)}
+     \asymp \frac{x}{(\log x)^m \cdot k(k+1)}, 
+\end{equation} 
+and 
+\begin{equation} 
+\tag{B} 
+\sum_{k=\sqrt{x}}^{\frac{x}{2}} \frac{x}{k(k+1)} = 
+     \sum_{k=\sqrt{x}}^{\frac{x}{2}} \frac{x}{k^2} + O(1). 
+\end{equation} 
+\end{lemma} 
+\begin{proof} 
+To prove (A), we first notice that for any $k \in \left[1, \sqrt{x}\right]$ 
+\begin{align*}
+\frac{\log\left(\frac{x}{k}\right)}{\log\left(\frac{x}{k+1}\right)} & = 
+     \frac{1 - \frac{\log k}{\log x}}{1 - \frac{\log k}{\log x} + O\left(\frac{1}{k\log x}\right)} 
+     = 1 + O\left(\frac{1}{k\log x\left(1 - \frac{\log k}{\log x}\right)}\right) 
+     = 1 + o(1), \text{\ as\ } x \rightarrow \infty. 
+\end{align*}
+Then for any $m \geq 0$ and $k$ within these bounds, we see that 
+\begin{align*}
+\frac{x}{k \cdot \log^m\left(\frac{x}{k}\right)} - 
+     \frac{x}{(k+1) \cdot \log^m\left(\frac{x}{k+1}\right)} & = \frac{x}{\log^m\left(\frac{x}{k+1}\right)} \left[ 
+     \frac{1}{k(1+o(1))^m} - \frac{1}{k+1}\right] \\ 
+     & \asymp \frac{x}{(\log x)^m} \left[\frac{1}{k(k+1)} + o\left(\frac{1}{k}\right)\right], 
+\end{align*}
+where for any $k \in \left[1, \sqrt{x}\right]$, we have that 
+$o\left(k^{-1}\right) = o(1)$ for all large $x \rightarrow \infty$. 
+
+To prove (B), notice that 
+\[
+\frac{x}{k(k+1)} - \frac{x}{k^2} = -\frac{x}{k^2(k+1)}. 
+\]
+Then we see that 
+\[
+\left\lvert \int_{\sqrt{x}}^{\frac{x}{2}} \frac{x}{t^2(t+1)} dt \right\rvert \leq 
+     \left\lvert \int_{\sqrt{x}}^{\frac{x}{2}} \frac{x}{t^3} dt \right\rvert = O(1). 
+     \qedhere 
+\]
+\end{proof} 
+
+\begin{cor} 
+\label{cor_IntFormulaGInvx_for_Mx_v1} 
+We have that as $x \rightarrow \infty$ 
+\begin{align*}
+     M(x) & = O\left(G^{-1}(x) + G^{-1}\left(\frac{x}{2}\right) + 
+     \frac{x}{\log x} \times \sum_{k \leq \sqrt{x}} \frac{G^{-1}(k)}{k^2}
+     + (\log x)^2 \sqrt{\log\log x}\right). 
+\end{align*} 
+\end{cor}
+\begin{proof}
+We need to first bound the prime counting function differences in the formula given by 
+Proposition \ref{prop_Mx_SBP_IntegralFormula}. 
+We will require the following known bounds on the prime counting 
+function due to Rosser and Schoenfeld for all large $x > 59$ 
+\cite[Thm.\ 1]{ROSSER-SCHOENFELD-1962}: 
+\begin{equation} 
+\label{eqn_RosserSchoenfeld_PrimePixBounds_v2} 
+\frac{x}{\log x}\left(1 + \frac{1}{2\log x}\right) \leq \pi(x) \leq 
+     \frac{x}{\log x}\left(1 + \frac{3}{2 \log x}\right). 
+\end{equation} 
+The result in \eqref{eqn_RosserSchoenfeld_PrimePixBounds_v2} together with 
+Lemma \ref{lemma_PrimePix_ErrorBoundDiffs_SimplifyingConditions_v1} implies that 
+for $\sqrt{x} \leq k \leq \frac{x}{2}$ 
+\begin{equation}
+\label{eqn_PrimePiDifferenceOfTermsBound_v1}
+\pi\left(\Floor{x}{k}\right) - \pi\left(\Floor{x}{k+1}\right) = 
+     O\left(\frac{x}{k^2 \log\left(\frac{x}{k}\right)}\right). 
+\end{equation}
+We will rewrite the intermediate formula from the proof of 
+Proposition \ref{prop_Mx_SBP_IntegralFormula} 
+as a sum of two components with summands taken over disjoint intervals. 
+For large $x > e$, let 
+\begin{align*}
+S_1(x) & := \sum_{1 \leq k \leq \sqrt{x}} g^{-1}(k) \pi\left(\frac{x}{k}\right) \\ 
+S_2(x) & := \sum_{\sqrt{x} < k \leq \frac{x}{2}} g^{-1}(k) \pi\left(\frac{x}{k}\right).
+\end{align*}
+We then assert by the asymptotic formulas for the 
+prime counting function that 
+\[
+S_1(x) = O\left(\frac{x}{\log x} \times \sum_{k \leq \sqrt{x}} 
+     \frac{G^{-1}(k)}{k^2}\right). 
+\]
+To bound the second sum, we perform summation by parts as in the proof of 
+the proposition and apply \eqref{eqn_PrimePiDifferenceOfTermsBound_v1} above for the difference of the 
+summand functions to obtain that 
+\begin{align*} 
+S_2(x) & = O\left(G^{-1}\left(\frac{x}{2}\right) + \int_{\sqrt{x}}^{\frac{x}{2}} 
+     \frac{G^{-1}(t)}{t^2 \log\left(\frac{x}{t}\right)} dt\right) \\ 
+     & = O\left(G^{-1}\left(\frac{x}{2}\right) + 
+     \max_{\sqrt{x} < k < \frac{x}{2}} \frac{|G^{-1}(k)|}{k} \times 
+     \int_{\sqrt{x}}^{\frac{x}{2}} \frac{dt}{t \log\left(\frac{x}{t}\right)}\right) \\ 
+     & = O\left(G^{-1}\left(\frac{x}{2}\right) + (\log\log x) \times 
+     \max_{\sqrt{x} < k < \frac{x}{2}} \frac{|G^{-1}(k)|}{k}\right). 
+\end{align*} 
+The rightmost maximum term in the previous equation 
+satisfies $\frac{|G^{-1}(k)|}{k} \ll \mathbb{E}|g^{-1}(k)|$ as 
+$k \rightarrow \infty$. 
+The conclusion follows since the average order of $|g^{-1}(n)|$ is 
+increasing for sufficiently large $n$ by 
+Corollary \ref{cor_ExpectationFormulaAbsgInvn_v2}. 
+\end{proof} 
+
+\newpage
+\section{Conclusions}
+
+We have identified a new sequence, 
+$\{g^{-1}(n)\}_{n \geq 1}$, which is the Dirichlet inverse of the 
+shifted additive function, $g := \omega + 1$. In general, we find that the 
+Dirichlet inverse of any arithmetic function $f$ such that $f(1) \neq 0$ is 
+expressed at each $n \geq 2$ as a signed sum of $m$-fold convolutions of $f$ 
+with itself for $1 \leq m \leq \Omega(n)$. 
+As we discussed in the remarks in 
+Section \ref{subSection_AConnectionToDistOfThePrimes}, 
+it happens that there is a natural combinatorial interpretation to the 
+distribution of distinct values 
+of $|g^{-1}(n)|$ for $n \leq x$ involving the distribution of the 
+primes $p \leq x$ at large $x$. 
+In particular, the magnitude of $|g^{-1}(n)|$ depends only on the pattern of 
+the exponents of the prime factorization of $n$. 
+
+The signedness of $g^{-1}(n)$ is given by $\lambda(n)$ for all $n \geq 1$. 
+This leads to a familiar dependence of the 
+summatory functions $G^{-1}(x)$ on the distribution of the summatory function $L(x)$. 
+Section \ref{Section_KeyApplications} 
+provides equivalent characterizations of the limiting properties of 
+$M(x)$ by exact formulas and asymptotic relations involving 
+$G^{-1}(x)$ and $L(x)$. 
+We emphasize that our new work on the Mertens function proved within this article 
+is significant in providing a new window through which we can view bounding $M(x)$. 
+The computational data generated in 
+Table \ref{table_conjecture_Mertens_ginvSeq_approx_values} suggests numerically 
+that the distribution of $G^{-1}(x)$ may be easier to work with 
+than those of $M(x)$ or $L(x)$. 
+The remarks given in Section \ref{subSection_AConnectionToDistOfThePrimes} 
+about the direct combinatorial 
+relation of the distinct (and repetition of) values of $|g^{-1}(n)|$ 
+for $n \leq x$ are suggestive towards bounding main terms for $G^{-1}(x)$ along 
+infinite subsequences in future work. 
+
+One topic that we do not touch on in the article is to consider what 
+correlation (if any) exists between $\lambda(n)$ and the unsigned sequence of $|g^{-1}(n)|$ 
+with the limiting distribution proved in 
+Corollary \ref{cor_CLT_VII}. 
+Much in the same way that variants of the famous Erd\H{o}s-Kac theorem are historically established 
+by defining random variables related to $\omega(n)$, 
+we also suggest an analysis of the summatory function $G^{-1}(x)$ by scaling 
+the explicitly distributed $|g^{-1}(n)|$ for $n \leq x$ as $x \rightarrow \infty$ by 
+its signed weight of $\lambda(n)$ using an initial heuristic along these lines 
+for future work. 
+
+Another experiment illustrated in the online computational reference 
+\cite{SCHMIDT-MERTENS-COMPUTATIONS} suggests that 
+for many sufficiently large $x$ we may consider replacing the 
+summatory function with other summands weighted by $\lambda(n)$. 
+These alternate sums can be seen to average these sequences differently while still 
+preserving the original asymptotic order of $|G^{-1}(x)|$ heuristically. 
+For example, each of the following three summatory functions offer a unique 
+interpretation of an average of sorts that non-routinely ``mixes'' the values of 
+$\lambda(n)$ with the unsigned sequence $|g^{-1}(n)|$ over $1 \leq n \leq x$: 
+\begin{align*}
+G_{\ast}^{-1}(x) & := \sum_{n \leq x} \frac{1}{2\gamma-1+\log n} \times 
+     \sum_{d|n} \lambda\left(\frac{n}{d}\right) |g^{-1}(d)| \\ 
+G_{\ast\ast}^{-1}(x) & := \sum_{n \leq x} \frac{1}{2\gamma-1+\log n} \times 
+     \sum_{d|n} \lambda\left(\frac{n}{d}\right) g^{-1}(d) \\ 
+G_{\ast\ast\ast}^{-1}(x) & := \sum_{n \leq x} \frac{1}{2\gamma-1+\log n} \times 
+     \sum_{d|n} g^{-1}(d). 
+\end{align*}
+Then based on preliminary numerical results, a large proportion of the $y \leq x$ for 
+large $x$ satisfy 
+\[
+     \left\lvert \frac{G_{\ast}^{-1}(y)}{G^{-1}(y)} \right\rvert^{-1}, 
+     \left\lvert \frac{G_{\ast\ast}^{-1}(y)}{G^{-1}(y)} \right\rvert, 
+     \left\lvert \frac{G_{\ast\ast\ast}^{-1}(y)}{G^{-1}(y)} \right\rvert \in 
+     (0, 3]. 
+\]
+Variants of this type of summatory function identity exchange are similarly 
+suggested for future work to extend the topics and new results proved in this article.
+
+\section*{Acknowledgments}
+
+We thank the following professors that offered 
+discussion, feedback and correspondence while the article was written: 
+Paul Pollack, Steven J.~Miller, Gerg\H{o} Nemes and Bruce Reznick. 
+The work on the article was supported in part by 
+funding made available within the School of Mathematics at the 
+Georgia Institute of Technology in 2020 and 2021. 
+Without this combined support, the article would not have been possible.
+
+\newpage 
+\renewcommand{\refname}{References} 
+%\bibliography{glossaries-bibtex/thesis-references}{}
+\bibliographystyle{plain}
+
+\begin{thebibliography}{10}
+
+\bibitem{APOSTOLANUMT}
+T.~M. Apostol.
+\newblock {\em Introduction to Analytic Number Theory}.
+\newblock Springer--Verlag, 1976.
+
+\bibitem{BILLINGSLY-CLT-PRIMEDIVFUNC}
+P.~Billingsley.
+\newblock On the central limit theorem for the prime divisor function.
+\newblock {\em Amer. Math. Monthly}, 76(2):132--139, 1969.
+
+\bibitem{ERDOS-KAC-REF}
+P.~Erd{\H{o}}s and M.~Kac.
+\newblock The guassian errors in the theory of additive arithmetic functions.
+\newblock {\em American Journal of Mathematics}, 62(1):738--742, 1940.
+
+\bibitem{FROBERG-1968}
+C.~E. Fr{\"{o}}berg.
+\newblock On the prime zeta function.
+\newblock {\em BIT Numerical Mathematics}, 8:87--202, 1968.
+
+\bibitem{HARDYWRIGHT}
+G.~H. Hardy and E.~M. Wright, editors.
+\newblock {\em An Introduction to the Theory of Numbers}.
+\newblock Oxford University Press, 2008 (Sixth Edition).
+
+\bibitem{HUMPHRIES-JNT-2013}
+P.~Humphries.
+\newblock The distribution of weighted sums of the {L}iouville function and
+  {P}\'{o}lya's conjecture.
+\newblock {\em J. Number Theory}, 133:545--582, 2013.
+
+\bibitem{HURST-2017}
+G.~Hurst.
+\newblock Computations of the {M}ertens function and improved bounds on the
+  {M}ertens conjecture.
+\newblock {\em Math. Comp.}, 87:1013--1028, 2018.
+
+\bibitem{CLT-RANDOM-ORDERED-FACTS-2011}
+H.~Hwang and S.~Janson.
+\newblock A central limit theorem for random ordered factorizations of
+  integers.
+\newblock {\em Electron. J. Probab.}, 16(12):347--361, 2011.
+
+\bibitem{IWANIEC-KOWALSKI}
+H.~Iwaniec and E.~Kowalski.
+\newblock {\em Analytic Number Theory}, volume~53.
+\newblock AMS Colloquium Publications, 2004.
+
+\bibitem{MREVISITED}
+T.~Kotnik and H.~t{\'{e}}~Riele.
+\newblock The {M}ertens conjecture revisited.
+\newblock {\em Algorithmic Number Theory}, $7^{th}$ International Symposium,
+  2006.
+
+\bibitem{ORDER-MERTENSFN}
+T.~Kotnik and J.~van~de Lune.
+\newblock On the order of the {M}ertens function.
+\newblock {\em Exp. Math.}, 2004.
+
+\bibitem{LEHMAN-1960}
+R.~S. Lehman.
+\newblock On {L}iouville's function.
+\newblock {\em Math. Comput.}, 14:311--320, 1960.
+
+\bibitem{MV}
+H.~L. Montgomery and R.~C. Vaughan.
+\newblock {\em Multiplicative Number Theory: I. Classical Theory}.
+\newblock Cambridge, 2006.
+
+\bibitem{NEMES2015C}
+G.~Nemes.
+\newblock The resurgence properties of the incomplete gamma function ii.
+\newblock {\em Stud. Appl. Math.}, 135(1):86--116, 2015.
+
+\bibitem{NEMES2016}
+G.~Nemes.
+\newblock The resurgence properties of the incomplete gamma function i.
+\newblock {\em Anal. Appl. (Singap.)}, 14(5):631--677, 2016.
+
+\bibitem{NEMES2019}
+G.~Nemes and A.~B.~Olde Daalhuis.
+\newblock Asymptotic expansions for the incomplete gamma function in the
+  transition regions.
+\newblock {\em Math. Comp.}, 88(318):1805--1827, 2019.
+
+\bibitem{NG-MERTENS}
+N.~Ng.
+\newblock The distribution of the summatory function of the {M}{\'{o}}bius
+  function.
+\newblock {\em Proc. London Math. Soc.}, 89(3):361--389, 2004.
+
+\bibitem{ODLYZ-TRIELE}
+A.~M. Odlyzko and H.~J.~J. t{\'{e}}~Riele.
+\newblock Disproof of the {M}ertens conjecture.
+\newblock {\em J. Reine Angew. Math}, 1985.
+
+\bibitem{NISTHB}
+Frank W.~J. Olver, Daniel~W. Lozier, Ronald~F. Boisvert, and Charles~W. Clark,
+  editors.
+\newblock {\em {NIST} Handbook of Mathematical Functions}.
+\newblock Cambridge University Press, 2010.
+
+\bibitem{RENYI-TURAN}
+A.~Renyi and P.~Turan.
+\newblock On a theorem of {E}rd{\H{o}}s-{K}ac.
+\newblock {\em Acta Arithmetica}, 4(1):71--84, 1958.
+
+\bibitem{PRIMEREC}
+P.~Ribenboim.
+\newblock {\em The new book of prime number records}.
+\newblock Springer, 1996.
+
+\bibitem{ROBIN-PRIMEOMEGAFUNC-BOUNDS}
+G.~Robin.
+\newblock Estimate of the {C}hebyshev function $\theta$ on the $k^{th}$ prime
+  number and large values of the number of prime divisors function $\omega(n)$
+  of $n$.
+\newblock {\em Acta Arith.}, 42(4):367--389, 1983.
+
+\bibitem{ROSSER-SCHOENFELD-1962}
+J.~B. Rosser and L.~Schoenfeld.
+\newblock Approximate formulas for some functions of prime numbers.
+\newblock {\em Illinois J. Math.}, 6:64--94, 1962.
+
+\bibitem{SCHMIDT-MERTENS-COMPUTATIONS}
+M.~D. Schmidt.
+\newblock {S}age{M}ath and {M}athematica software for computations with the
+  {M}ertens function, 2021.
+\newblock \url{https://github.com/maxieds/MertensFunctionComputations}.
+
+\bibitem{OEIS}
+N.~J.~A. Sloane.
+\newblock The {O}nline {E}ncyclopedia of {I}nteger {S}equences, 2021.
+\newblock \url{http://oeis.org}.
+
+\bibitem{SOUND-MERTENS-ANNALS}
+K.~Soundararajan.
+\newblock Partial sums of the {M}{\"{o}}bius function.
+\newblock {\em Annals of Mathematics}, 2009.
+
+\bibitem{TITCHMARSH}
+E.~C. Titchmarsh.
+\newblock {\em The theory of the {R}iemann zeta function}.
+\newblock Clarendon Press, 1951.
+
+\end{thebibliography}
+
+\setcounter{section}{0} 
+\renewcommand{\thesection}{\Alph{section}} 
+
+\newpage
+\section{Appendix: Asymptotic formulas} 
+\label{subSection_OtherFactsAndResults} 
+
+We thank Gerg\H{o} Nemes from the Alfr\'{e}d R\'{e}nyi Institute of Mathematics for his 
+careful notes on the limiting asymptotics for the sums identified in this section. 
+We have adapted the communication of his proofs to establish the next few lemmas. 
+
+\begin{facts}[The incomplete gamma function] 
+\label{facts_ExpIntIncGammaFuncs} 
+\begin{subequations}
+The (upper) \emph{incomplete gamma function} is defined by \cite[\S 8.4]{NISTHB} 
+\[
+\Gamma(a, z) = \int_{z}^{\infty} t^{a-1} e^{-t} dt, a \in \mathbb{R}, |\arg z| < \pi.  
+\]
+The function $\Gamma(a, z)$ can be continued to an analytic function of $z$ on the 
+universal covering of $\mathbb{C} \mathbin{\big\backslash} \{0\}$. 
+For $a \in \mathbb{Z}^{+}$, the function $\Gamma(a, z)$ is an entire function of $z$. 
+The following properties of $\Gamma(a, z)$ hold \cite[\S 8.4; \S 8.11(i)]{NISTHB}: 
+\begin{align} 
+\label{eqn_IncompleteGamma_PropA} 
+\Gamma(a, z) & = (a-1)! \cdot e^{-z} \times \sum_{k=0}^{a-1} \frac{z^k}{k!}, \mathrm{\ for\ } 
+     a \in \mathbb{Z}^{+}, z \in \mathbb{C}; \\ 
+\label{eqn_IncompleteGamma_PropB} 
+\Gamma(a, z) & \sim z^{a-1} e^{-z}, \mathrm{\ for\ fixed\ } a \in \mathbb{C}, \mathrm{\ as\ } z \rightarrow +\infty. 
+\end{align}
+Moreover, for real $z > 0$, as $z \rightarrow +\infty$ we have that \cite{NEMES2015C} 
+\begin{equation} 
+\label{eqn_IncompleteGamma_PropC}
+\Gamma(z, z) = \sqrt{\frac{\pi}{2}} z^{z-\frac{1}{2}} e^{-z} + 
+     O\left(z^{z-1} e^{-z}\right), 
+\end{equation} 
+If $z,a \rightarrow \infty$ with $z = \lambda a$ for some $\lambda > 1$ such that 
+$(\lambda - 1)^{-1} = o(|a|^{1/2})$, then \cite{NEMES2015C}
+\begin{equation}
+\label{eqn_IncompleteGamma_PropD}
+\Gamma(a, z) = z^a e^{-z} \times \sum_{n \geq 0} \frac{(-a)^n b_n(\lambda)}{(z-a)^{2n+1}}, 
+\end{equation} 
+where the sequence $b_n(\lambda)$ satisfies the characteristic relation that 
+$b_0(\lambda) = 1$ and\footnote{
+     An exact formula for $b_n(\lambda)$ is given in terms of the \emph{second-order Eulerian number triangle} 
+     \cite[\seqnum{A008517}]{OEIS} as follows: 
+     \[
+          b_n(\lambda) = \sum_{k=0}^{n} \gkpEII{n}{k} \lambda^{k+1}. 
+     \]
+}
+\[
+b_n(\lambda) = \lambda(1-\lambda) b_{n-1}^{\prime}(\lambda) + \lambda(2n-1) b_{n-1}(\lambda), n \geq 1. 
+\]
+\end{subequations}
+\end{facts} 
+
+\begin{prop}
+\label{prop_IncGammaLambdaTypeBounds_v1}
+Let $a,z,\lambda$ be positive real parameters such that $z=\lambda a$. 
+If $\lambda \in (0, 1)$, then as $z \rightarrow +\infty$ 
+\[
+\Gamma(a, z) = \Gamma(a) + O_{\lambda}\left(z^{a-1} e^{-z}\right). 
+\]
+If $\lambda > 1$, then as 
+$z \rightarrow +\infty$ 
+\[
+\Gamma(a, z) = \frac{z^{a-1} e^{-z}}{1-\lambda^{-1}} + O_{\lambda}\left(z^{a-2} e^{-z}\right). 
+\]
+If $\lambda > 0.567142 > W(1)$ where $W(x)$ denotes the principal branch of the 
+Lambert $W$-function for $x \geq 0$, 
+then as $z \rightarrow +\infty$ 
+\[
+\Gamma(a, z e^{\pm\pi\imath}) = -e^{\pm \pi\imath a} \frac{z^{a-1} e^{z}}{1 + \lambda^{-1}} + 
+     O_{\lambda}\left(z^{a-2} e^{z}\right). 
+\]
+\end{prop}
+The first two asymptotic estmates are only useful when $\lambda$ is bounded away from the 
+transition point at $1$. 
+Note that we cannot write the last expansion above 
+as $\Gamma(a, -z)$ directly unless $a \in \mathbb{Z}^{+}$ 
+as the incomplete gamma function 
+has a branch point at the origin with respect to its second variable. 
+This function becomes a single-valued 
+analytic function of its second input by continuation 
+on the universal covering of $\mathbb{C} \mathbin{\big\backslash} \{0\}$. 
+\begin{proof}
+The first asymptotic estimate follows directly from the following 
+asymptotic series expansion that holds as $z \rightarrow +\infty$ 
+\cite[Eq.\ (2.1)]{NEMES2019}: 
+\[
+\Gamma(a, z) \sim \Gamma(a) + z^a e^{-z} \times \sum_{k \geq 0} 
+     \frac{(-a)^k b_k(\lambda)}{(z-a)^{2k+1}}. 
+\]
+Using the notation from \eqref{eqn_IncompleteGamma_PropD} and \cite{NEMES2016}, 
+we have that 
+\[
+\Gamma(a, z) = \frac{z^{a-1} e^{-z}}{1-\lambda^{-1}} + z^{a} e^{-z} R_1(a, \lambda). 
+\]
+From the bounds in \cite[\S 3.1]{NEMES2016}, we get that 
+\[
+\left\lvert z^{a} e^{-z} R_1(a, \lambda) \right\rvert \leq 
+     z^a e^{-z} \times \frac{a \cdot b_1(\lambda)}{(z-a)^{3}} = 
+     \frac{z^{a-2} e^{-z}}{(1-\lambda^{-1})^{3}}
+\]
+Note that the main and error terms in the previous equation can also be 
+seen by applying the asymptotic series in 
+\eqref{eqn_IncompleteGamma_PropD} directly. 
+
+The proof of the third equation above follows from the following asymptotics 
+\cite[Eq.\ (1.1)]{NEMES2015C}
+\[
+\Gamma(-a, z) \sim z^{-a} e^{-z} \times \sum_{n \geq 0} \frac{a^n b_n(-\lambda)}{(z+a)^{2n+1}}, 
+\]
+by setting $a \mapsto a e^{\pm \pi\imath}$ and $z \mapsto z e^{\pm \pi\imath}$ with 
+$\lambda = z/a > 0.567142 > W(1)$. 
+The restriction on the range of $\lambda$ over which the second formula holds is made to ensure that 
+the last formula from the reference is valid at negative real $a$. 
+\end{proof}
+
+\begin{lemma}
+\label{lemma_ConvenientIncGammaFuncTypePartialSumAsymptotics_v2}
+Let the absolute constant $a^{\ast} := \frac{3}{2}\log\left(\frac{3}{2e}\right)+1 \approx 0.108198$. 
+For $x \rightarrow +\infty$, we have that 
+\begin{align*}
+S_1(x) & := \frac{x}{\log x} \times \left\lvert \sum_{1 \leq k \leq \floor{\frac{3}{2}\log\log x}} 
+     \frac{(-1)^k (\log\log x)^{k-1}}{(k-1)!} \right\rvert 
+     = \frac{8x}{65\sqrt{2\pi} (\log x)^{a^{\ast}} \sqrt{\log\log x}} + 
+     O\left(\frac{x}{(\log x)^{a^{\ast}} (\log\log x)^{3/2}}\right). 
+\end{align*}
+\end{lemma}
+\begin{proof}
+We have for $n \geq 1$ and any $t > 0$ by 
+\eqref{eqn_IncompleteGamma_PropA} that 
+\[
+\sum_{1 \leq k \leq n} \frac{(-1)^k t^{k-1}}{(k-1)!} = -e^{-t} \times 
+     \frac{\Gamma(n, -t)}{(n-1)!}. 
+\]
+Suppose that $t = \frac{2n}{3} + \xi$ with $\xi = O(1)$ (e.g., so we can take the floor of the input $n$ to 
+truncate the last sum). By the third formula 
+in Proposition \ref{prop_IncGammaLambdaTypeBounds_v1} 
+with the parameters $(a, z, \lambda) \mapsto \left(n, t, \frac{2}{3} + \frac{\xi}{n}\right)$, 
+we deduce that as $n,t \rightarrow +\infty$. 
+\begin{equation}
+\label{eqn_ProofTag_lemma_ConvenientIncGammaFuncTypePartialSumAsymptotics_v2}
+     \Gamma(n, -t) = (-1)^{n+1} \times \frac{4t^n e^{t}}{5(3n+2t)} + 
+     O\left(\frac{n t^n e^{t}}{\left(3n+2t\right)^3}\right) = 
+     (-1)^{n+1} \times \frac{8t^n e^t}{65n} + O\left(\frac{t^{n-1} e^t}{n}\right). 
+\end{equation}
+Accordingly, we see that 
+\[
+\sum_{1 \leq k \leq n} \frac{(-1)^k t^{k-1}}{(k-1)!} = 
+     (-1)^{n} \times \frac{8t^n}{65n!} + O\left(\frac{t^{n-1}}{n!}\right). 
+\]
+By the variant of Stirling's formula in \cite[\cf Eq.\ (5.11.8)]{NISTHB}, we have 
+\[
+n! = \Gamma\left(1 + \frac{2t}{3} - \frac{2\xi}{3}\right) = 
+     \sqrt{2\pi} \cdot \left(\frac{3t}{2}\right)^{\frac{3}{2}(t-\xi)+1/2} e^{-t} \left(1 + O(t^{-1})\right) = 
+     \sqrt{2\pi} \cdot e^{-t} t^{n+1/2} \left(\frac{3}{2e}\right)^{\frac{3t}{2}} \left(1 + O(t^{-1})\right). 
+\]
+Hence, as $n \rightarrow +\infty$ with $t := n + \xi$ and $\xi = O(1)$, we obtain that 
+\[
+\sum_{k=1}^{n} \frac{(-1)^k t^{k-1}}{(k-1)!} = (-1)^n \times \frac{8e^t}{65 \sqrt{2\pi t}} 
+     \left(\frac{3}{2e}\right)^{\frac{3t}{2}}\left(1+ O\left(t^{-1}\right)\right). 
+\]
+The conclusion follows by taking $n := \floor{\frac{3}{2}\log\log x}$, 
+$t := \log\log x$ and applying the triangle inequality 
+to obtain the desired result. 
+\end{proof}
+
+\begin{lemma}
+\label{lemma_ConvenientIncGammaFuncTypePartialSumAsymptotics_v3}
+For $x \rightarrow +\infty$, we have that 
+\begin{align*}
+S_3(x) := \sum_{1 \leq k \leq \floor{2\log\log x}} \frac{(\log\log x)^{k-1/2}}{(2k-1) (k-1)!} = 
+     \frac{\log x}{2\sqrt{\log\log x}} + O\left(\frac{\log x}{(\log\log x)^{3/2}}\right).       
+\end{align*}
+\end{lemma}
+\begin{proof}
+For $n \geq 1$ and any $t > 0$, let 
+\[
+\widetilde{S}_n(t) := \sum_{1 \leq k \leq n} \frac{t^{k-1}}{(2k-1) (k-1)!}. 
+\]
+By the formula in \eqref{eqn_IncompleteGamma_PropA} and a change of variable, we get that 
+\begin{align*}
+\widetilde{S}_n(t) & = \int_0^1 \left(\sum_{k=1}^{n} \frac{(s^2t)^{k-1}}{(k-1)!}\right) ds \\ 
+     & = \frac{1}{(n-1)!} \times \int_0^1 e^{s^2t} \Gamma(n, s^2t) ds \\ 
+     & = \frac{1}{2t^{1/2}(n-1)!} \times \int_0^{t} \frac{e^{u}}{\sqrt{u}} \times \Gamma(n, u) du. 
+\end{align*}
+Integration by parts performed one time with 
+\[
+     \left\{\begin{array}{ll} 
+     u_x = \Gamma(n, x) & v_x^{\prime} = \frac{e^{x}}{\sqrt{x}} dx \\ 
+     u_x^{\prime} = -x^{n-1} e^{-x} dx & v_x = 
+     \sqrt{\pi} \operatorname{erfi}\left(\sqrt{x}\right)
+     \end{array} 
+     \right\}, 
+\]
+implies that 
+\begin{align}
+\label{eqn_ProofTag_AppendixLastSumLemma_IBP_resulting_exp_terms_v1}
+\widetilde{S}_n(t) & = 
+     \frac{1}{2(n-1)!} \sqrt{\frac{\pi}{t}} \times \Gamma(n, t) \operatorname{erfi}\left(
+     \sqrt{t}\right) + 
+     \frac{1}{2(n-1)!} \sqrt{\frac{\pi}{t}} \times \int_0^{t} u^{n-1} e^{-u} 
+     \operatorname{erfi}\left(\sqrt{u}\right) du. 
+\end{align}
+For the remainder of the proof, we assume that $t = \frac{n}{2} + \xi$ where $\xi = O(1)$. 
+By \cite[Eq.\ (7.12.1)]{NISTHB} and \eqref{eqn_Erfix_KnownAsymptoticSeries_v1}, 
+we find that as $t \rightarrow +\infty$ 
+\[
+e^{-t} \operatorname{erfi}\left(\sqrt{t}\right) = \frac{1}{\sqrt{\pi t}} + O\left(\frac{1}{t^{3/2}}\right) = 
+     O\left(\frac{1}{t^{1/2}}\right). 
+\]
+Consequently, we see that as $t \rightarrow +\infty$ 
+\[
+\frac{1}{2(n-1)!} \sqrt{\frac{\pi}{t}} \times \int_0^{t} u^{n-1} e^{-u} 
+     \operatorname{erfi}\left(\sqrt{u}\right) du = 
+     O\left(\frac{t^{n-2}}{(n-1)!}\right). 
+\]
+Applying the first estimate in 
+Proposition \ref{prop_IncGammaLambdaTypeBounds_v1} with the parameters 
+$(a, z, \lambda) \mapsto \left(n, t, \frac{1}{2} + \frac{\xi}{n}\right)$, 
+we find that 
+\[
+\Gamma(n, t) = \Gamma(n) + O\left(t^{n-1} e^{-t}\right), \text{\ as\ } t \rightarrow + \infty.
+\]
+Thus, as $t \rightarrow +\infty$ we have that 
+\[
+\widetilde{S}_n(t) = \frac{e^t}{2t} + O\left(\frac{e^t}{t^2} + \frac{t^{n-2}}{(n-1)!}\right). 
+\]
+By applying \cite[Eq.\ (5.11.8)]{NISTHB} we have 
+\[
+(n-1)! = \Gamma(2t-2\xi) = O\left((2t)^{2t-2\xi-1/2} e^{-2t}\right) = 
+     O\left(e^{-t} t^{n-1/2} \left(\frac{4}{e}\right)^t\right). 
+\]
+Whence, with $t := \frac{n}{2} + O(1)$ as $n \rightarrow +\infty$, we find 
+\[
+\widetilde{S}_n(t) = \frac{e^t}{2t} + O\left(\frac{e^t}{t^2}\right). 
+\]
+The conclusion follows taking $n = \floor{2\log\log x}$, $t = \log\log x$ and 
+mulitplying $\widetilde{S}_n(t)$ by $(\log\log x)^{1/2}$. 
+\end{proof}
+
+\newpage
+\section{Table: The Dirichlet inverse function $g^{-1}(n)$} 
+\label{table_conjecture_Mertens_ginvSeq_approx_values}
+
+\begin{table}[ht!]
+
+\centering
+
+\tiny
+\begin{equation*}
+\boxed{
+\begin{array}{cc|cc|ccc|cc|ccc}
+ n & \mathbf{Primes} & \mathbf{Sqfree} & \mathbf{PPower} & g^{-1}(n) & 
+ \lambda(n) g^{-1}(n) - \widehat{f}_1(n) & 
+ \frac{\sum_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|} & 
+ \mathcal{L}_{+}(n) & \mathcal{L}_{-}(n) & 
+ G^{-1}(n) & G^{-1}_{+}(n) & G^{-1}_{-}(n) \\ \hline 
+1 & 1^1 & \text{Y} & \text{N} & 1 & 0 & 1.0000000 & 1.000000 & 0.000000 & 1 & 1 & 0 \\
+ 2 & 2^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.500000 & 0.500000 & -1 & 1 & -2 \\
+ 3 & 3^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.333333 & 0.666667 & -3 & 1 & -4 \\
+ 4 & 2^2 & \text{N} & \text{Y} & 2 & 0 & 1.5000000 & 0.500000 & 0.500000 & -1 & 3 & -4 \\
+ 5 & 5^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.400000 & 0.600000 & -3 & 3 & -6 \\
+ 6 & 2^1 3^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.500000 & 0.500000 & 2 & 8 & -6 \\
+ 7 & 7^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.428571 & 0.571429 & 0 & 8 & -8 \\
+ 8 & 2^3 & \text{N} & \text{Y} & -2 & 0 & 2.0000000 & 0.375000 & 0.625000 & -2 & 8 & -10 \\
+ 9 & 3^2 & \text{N} & \text{Y} & 2 & 0 & 1.5000000 & 0.444444 & 0.555556 & 0 & 10 & -10 \\
+ 10 & 2^1 5^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.500000 & 0.500000 & 5 & 15 & -10 \\
+ 11 & 11^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.454545 & 0.545455 & 3 & 15 & -12 \\
+ 12 & 2^2 3^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.416667 & 0.583333 & -4 & 15 & -19 \\
+ 13 & 13^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.384615 & 0.615385 & -6 & 15 & -21 \\
+ 14 & 2^1 7^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.428571 & 0.571429 & -1 & 20 & -21 \\
+ 15 & 3^1 5^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.466667 & 0.533333 & 4 & 25 & -21 \\
+ 16 & 2^4 & \text{N} & \text{Y} & 2 & 0 & 2.5000000 & 0.500000 & 0.500000 & 6 & 27 & -21 \\
+ 17 & 17^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.470588 & 0.529412 & 4 & 27 & -23 \\
+ 18 & 2^1 3^2 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.444444 & 0.555556 & -3 & 27 & -30 \\
+ 19 & 19^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.421053 & 0.578947 & -5 & 27 & -32 \\
+ 20 & 2^2 5^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.400000 & 0.600000 & -12 & 27 & -39 \\
+ 21 & 3^1 7^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.428571 & 0.571429 & -7 & 32 & -39 \\
+ 22 & 2^1 11^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.454545 & 0.545455 & -2 & 37 & -39 \\
+ 23 & 23^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.434783 & 0.565217 & -4 & 37 & -41 \\
+ 24 & 2^3 3^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.458333 & 0.541667 & 5 & 46 & -41 \\
+ 25 & 5^2 & \text{N} & \text{Y} & 2 & 0 & 1.5000000 & 0.480000 & 0.520000 & 7 & 48 & -41 \\
+ 26 & 2^1 13^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.500000 & 0.500000 & 12 & 53 & -41 \\
+ 27 & 3^3 & \text{N} & \text{Y} & -2 & 0 & 2.0000000 & 0.481481 & 0.518519 & 10 & 53 & -43 \\
+ 28 & 2^2 7^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.464286 & 0.535714 & 3 & 53 & -50 \\
+ 29 & 29^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.448276 & 0.551724 & 1 & 53 & -52 \\
+ 30 & 2^1 3^1 5^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.433333 & 0.566667 & -15 & 53 & -68 \\
+ 31 & 31^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.419355 & 0.580645 & -17 & 53 & -70 \\
+ 32 & 2^5 & \text{N} & \text{Y} & -2 & 0 & 3.0000000 & 0.406250 & 0.593750 & -19 & 53 & -72 \\
+ 33 & 3^1 11^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.424242 & 0.575758 & -14 & 58 & -72 \\
+ 34 & 2^1 17^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.441176 & 0.558824 & -9 & 63 & -72 \\
+ 35 & 5^1 7^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.457143 & 0.542857 & -4 & 68 & -72 \\
+ 36 & 2^2 3^2 & \text{N} & \text{N} & 14 & 9 & 1.3571429 & 0.472222 & 0.527778 & 10 & 82 & -72 \\
+ 37 & 37^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.459459 & 0.540541 & 8 & 82 & -74 \\
+ 38 & 2^1 19^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.473684 & 0.526316 & 13 & 87 & -74 \\
+ 39 & 3^1 13^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.487179 & 0.512821 & 18 & 92 & -74 \\
+ 40 & 2^3 5^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.500000 & 0.500000 & 27 & 101 & -74 \\
+ 41 & 41^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.487805 & 0.512195 & 25 & 101 & -76 \\
+ 42 & 2^1 3^1 7^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.476190 & 0.523810 & 9 & 101 & -92 \\
+ 43 & 43^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.465116 & 0.534884 & 7 & 101 & -94 \\
+ 44 & 2^2 11^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.454545 & 0.545455 & 0 & 101 & -101 \\
+ 45 & 3^2 5^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.444444 & 0.555556 & -7 & 101 & -108 \\
+ 46 & 2^1 23^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.456522 & 0.543478 & -2 & 106 & -108 \\
+ 47 & 47^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.446809 & 0.553191 & -4 & 106 & -110 \\
+ 48 & 2^4 3^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.437500 & 0.562500 & -15 & 106 & -121 \\ 
+\end{array}
+}
+\end{equation*}
+
+\bigskip\hrule\smallskip 
+
+\captionsetup{singlelinecheck=off} 
+\caption*{\textbf{\rm \bf Table \thesection:} 
+          \textbf{Computations with $\mathbf{g^{-1}(n) \equiv (\omega+1)^{-1}(n)}$ 
+          for $\mathbf{1 \leq n \leq 500}$.} 
+          \begin{itemize}[noitemsep,topsep=0pt,leftmargin=0.23in] 
+          \item[$\blacktriangleright$] 
+          The column labeled \texttt{Primes} provides the prime factorization of each $n$ so that the values of 
+          $\omega(n)$ and $\Omega(n)$ are easily extracted. 
+          The columns labeled \texttt{Sqfree} and \texttt{PPower}, respectively, 
+          list inclusion of $n$ in the sets of squarefree integers and the prime powers. 
+          \item[$\blacktriangleright$] 
+          The next three columns provide the 
+          explicit values of the inverse function $g^{-1}(n)$ and compare its explicit value with other estimates. 
+          We define the function $\widehat{f}_1(n) := \sum_{k=0}^{\omega(n)} \binom{\omega(n)}{k} \cdot k!$. 
+          \item[$\blacktriangleright$] 
+          The last columns indicate properties of the summatory function of $g^{-1}(n)$. 
+          The notation for the densities of the sign weight of $g^{-1}(n)$ is defined as 
+          $\mathcal{L}_{\pm}(x) := \frac{1}{n} \cdot \#\left\{n \leq x: \lambda(n) = \pm 1\right\}$. 
+          The last three 
+          columns then show the explicit components to the signed summatory function, 
+          $G^{-1}(x) := \sum_{n \leq x} g^{-1}(n)$, decomposed into its 
+          respective positive and negative magnitude sum contributions: $G^{-1}(x) = G^{-1}_{+}(x) + G^{-1}_{-}(x)$ where 
+          $G^{-1}_{+}(x) > 0$ and $G^{-1}_{-}(x) < 0$ for all $x \geq 1$. 
+          \end{itemize} 
+          } 
+\clearpage 
+
+\end{table}
+
+\newpage
+\begin{table}[ht]
+
+\centering
+
+\tiny
+\begin{equation*}
+\boxed{
+\begin{array}{cc|cc|ccc|cc|ccc}
+ n & \mathbf{Primes} & \mathbf{Sqfree} & \mathbf{PPower} & g^{-1}(n) & 
+ \lambda(n) g^{-1}(n) - \widehat{f}_1(n) & 
+ \frac{\sum_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|} & 
+ \mathcal{L}_{+}(n) & \mathcal{L}_{-}(n) & 
+ G^{-1}(n) & G^{-1}_{+}(n) & G^{-1}_{-}(n) \\ \hline 
+ 49 & 7^2 & \text{N} & \text{Y} & 2 & 0 & 1.5000000 & 0.448980 & 0.551020 & -13 & 108 & -121 \\
+ 50 & 2^1 5^2 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.440000 & 0.560000 & -20 & 108 & -128 \\
+ 51 & 3^1 17^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.450980 & 0.549020 & -15 & 113 & -128 \\
+ 52 & 2^2 13^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.442308 & 0.557692 & -22 & 113 & -135 \\
+ 53 & 53^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.433962 & 0.566038 & -24 & 113 & -137 \\
+ 54 & 2^1 3^3 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.444444 & 0.555556 & -15 & 122 & -137 \\
+ 55 & 5^1 11^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.454545 & 0.545455 & -10 & 127 & -137 \\
+ 56 & 2^3 7^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.464286 & 0.535714 & -1 & 136 & -137 \\
+ 57 & 3^1 19^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.473684 & 0.526316 & 4 & 141 & -137 \\
+ 58 & 2^1 29^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.482759 & 0.517241 & 9 & 146 & -137 \\
+ 59 & 59^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.474576 & 0.525424 & 7 & 146 & -139 \\
+ 60 & 2^2 3^1 5^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.483333 & 0.516667 & 37 & 176 & -139 \\
+ 61 & 61^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.475410 & 0.524590 & 35 & 176 & -141 \\
+ 62 & 2^1 31^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.483871 & 0.516129 & 40 & 181 & -141 \\
+ 63 & 3^2 7^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.476190 & 0.523810 & 33 & 181 & -148 \\
+ 64 & 2^6 & \text{N} & \text{Y} & 2 & 0 & 3.5000000 & 0.484375 & 0.515625 & 35 & 183 & -148 \\
+ 65 & 5^1 13^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.492308 & 0.507692 & 40 & 188 & -148 \\
+ 66 & 2^1 3^1 11^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.484848 & 0.515152 & 24 & 188 & -164 \\
+ 67 & 67^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.477612 & 0.522388 & 22 & 188 & -166 \\
+ 68 & 2^2 17^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.470588 & 0.529412 & 15 & 188 & -173 \\
+ 69 & 3^1 23^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478261 & 0.521739 & 20 & 193 & -173 \\
+ 70 & 2^1 5^1 7^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.471429 & 0.528571 & 4 & 193 & -189 \\
+ 71 & 71^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.464789 & 0.535211 & 2 & 193 & -191 \\
+ 72 & 2^3 3^2 & \text{N} & \text{N} & -23 & 18 & 1.4782609 & 0.458333 & 0.541667 & -21 & 193 & -214 \\
+ 73 & 73^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.452055 & 0.547945 & -23 & 193 & -216 \\
+ 74 & 2^1 37^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.459459 & 0.540541 & -18 & 198 & -216 \\
+ 75 & 3^1 5^2 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.453333 & 0.546667 & -25 & 198 & -223 \\
+ 76 & 2^2 19^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.447368 & 0.552632 & -32 & 198 & -230 \\
+ 77 & 7^1 11^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.454545 & 0.545455 & -27 & 203 & -230 \\
+ 78 & 2^1 3^1 13^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.448718 & 0.551282 & -43 & 203 & -246 \\
+ 79 & 79^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.443038 & 0.556962 & -45 & 203 & -248 \\
+ 80 & 2^4 5^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.437500 & 0.562500 & -56 & 203 & -259 \\
+ 81 & 3^4 & \text{N} & \text{Y} & 2 & 0 & 2.5000000 & 0.444444 & 0.555556 & -54 & 205 & -259 \\
+ 82 & 2^1 41^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.451220 & 0.548780 & -49 & 210 & -259 \\
+ 83 & 83^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.445783 & 0.554217 & -51 & 210 & -261 \\
+ 84 & 2^2 3^1 7^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.452381 & 0.547619 & -21 & 240 & -261 \\
+ 85 & 5^1 17^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.458824 & 0.541176 & -16 & 245 & -261 \\
+ 86 & 2^1 43^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.465116 & 0.534884 & -11 & 250 & -261 \\
+ 87 & 3^1 29^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.471264 & 0.528736 & -6 & 255 & -261 \\
+ 88 & 2^3 11^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.477273 & 0.522727 & 3 & 264 & -261 \\
+ 89 & 89^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.471910 & 0.528090 & 1 & 264 & -263 \\
+ 90 & 2^1 3^2 5^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.477778 & 0.522222 & 31 & 294 & -263 \\
+ 91 & 7^1 13^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.483516 & 0.516484 & 36 & 299 & -263 \\
+ 92 & 2^2 23^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.478261 & 0.521739 & 29 & 299 & -270 \\
+ 93 & 3^1 31^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.483871 & 0.516129 & 34 & 304 & -270 \\
+ 94 & 2^1 47^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.489362 & 0.510638 & 39 & 309 & -270 \\
+ 95 & 5^1 19^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.494737 & 0.505263 & 44 & 314 & -270 \\
+ 96 & 2^5 3^1 & \text{N} & \text{N} & 13 & 8 & 2.0769231 & 0.500000 & 0.500000 & 57 & 327 & -270 \\
+ 97 & 97^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.494845 & 0.505155 & 55 & 327 & -272 \\
+ 98 & 2^1 7^2 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.489796 & 0.510204 & 48 & 327 & -279 \\
+ 99 & 3^2 11^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.484848 & 0.515152 & 41 & 327 & -286 \\
+ 100 & 2^2 5^2 & \text{N} & \text{N} & 14 & 9 & 1.3571429 & 0.490000 & 0.510000 & 55 & 341 & -286 \\
+ 101 & 101^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.485149 & 0.514851 & 53 & 341 & -288 \\
+ 102 & 2^1 3^1 17^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.480392 & 0.519608 & 37 & 341 & -304 \\
+ 103 & 103^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.475728 & 0.524272 & 35 & 341 & -306 \\
+ 104 & 2^3 13^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.480769 & 0.519231 & 44 & 350 & -306 \\
+ 105 & 3^1 5^1 7^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.476190 & 0.523810 & 28 & 350 & -322 \\
+ 106 & 2^1 53^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.481132 & 0.518868 & 33 & 355 & -322 \\
+ 107 & 107^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.476636 & 0.523364 & 31 & 355 & -324 \\
+ 108 & 2^2 3^3 & \text{N} & \text{N} & -23 & 18 & 1.4782609 & 0.472222 & 0.527778 & 8 & 355 & -347 \\
+ 109 & 109^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.467890 & 0.532110 & 6 & 355 & -349 \\
+ 110 & 2^1 5^1 11^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.463636 & 0.536364 & -10 & 355 & -365 \\
+ 111 & 3^1 37^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.468468 & 0.531532 & -5 & 360 & -365 \\
+ 112 & 2^4 7^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.464286 & 0.535714 & -16 & 360 & -376 \\
+ 113 & 113^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.460177 & 0.539823 & -18 & 360 & -378 \\
+ 114 & 2^1 3^1 19^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.456140 & 0.543860 & -34 & 360 & -394 \\
+ 115 & 5^1 23^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.460870 & 0.539130 & -29 & 365 & -394 \\
+ 116 & 2^2 29^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.456897 & 0.543103 & -36 & 365 & -401 \\
+ 117 & 3^2 13^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.452991 & 0.547009 & -43 & 365 & -408 \\
+ 118 & 2^1 59^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.457627 & 0.542373 & -38 & 370 & -408 \\
+ 119 & 7^1 17^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.462185 & 0.537815 & -33 & 375 & -408 \\
+ 120 & 2^3 3^1 5^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.458333 & 0.541667 & -81 & 375 & -456 \\
+ 121 & 11^2 & \text{N} & \text{Y} & 2 & 0 & 1.5000000 & 0.462810 & 0.537190 & -79 & 377 & -456 \\
+ 122 & 2^1 61^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.467213 & 0.532787 & -74 & 382 & -456 \\
+ 123 & 3^1 41^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.471545 & 0.528455 & -69 & 387 & -456 \\
+ 124 & 2^2 31^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.467742 & 0.532258 & -76 & 387 & -463 \\ 
+\end{array}
+}
+\end{equation*}
+\clearpage 
+
+\end{table} 
+
+
+\newpage
+\begin{table}[ht]
+
+\centering
+
+\tiny
+\begin{equation*}
+\boxed{
+\begin{array}{cc|cc|ccc|cc|ccc}
+ n & \mathbf{Primes} & \mathbf{Sqfree} & \mathbf{PPower} & g^{-1}(n) & 
+ \lambda(n) g^{-1}(n) - \widehat{f}_1(n) & 
+ \frac{\sum_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|} & 
+ \mathcal{L}_{+}(n) & \mathcal{L}_{-}(n) & 
+ G^{-1}(n) & G^{-1}_{+}(n) & G^{-1}_{-}(n) \\ \hline 
+ 125 & 5^3 & \text{N} & \text{Y} & -2 & 0 & 2.0000000 & 0.464000 & 0.536000 & -78 & 387 & -465 \\
+ 126 & 2^1 3^2 7^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.468254 & 0.531746 & -48 & 417 & -465 \\
+ 127 & 127^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.464567 & 0.535433 & -50 & 417 & -467 \\
+ 128 & 2^7 & \text{N} & \text{Y} & -2 & 0 & 4.0000000 & 0.460938 & 0.539062 & -52 & 417 & -469 \\
+ 129 & 3^1 43^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.465116 & 0.534884 & -47 & 422 & -469 \\
+ 130 & 2^1 5^1 13^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.461538 & 0.538462 & -63 & 422 & -485 \\
+ 131 & 131^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.458015 & 0.541985 & -65 & 422 & -487 \\
+ 132 & 2^2 3^1 11^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.462121 & 0.537879 & -35 & 452 & -487 \\
+ 133 & 7^1 19^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.466165 & 0.533835 & -30 & 457 & -487 \\
+ 134 & 2^1 67^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.470149 & 0.529851 & -25 & 462 & -487 \\
+ 135 & 3^3 5^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.474074 & 0.525926 & -16 & 471 & -487 \\
+ 136 & 2^3 17^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.477941 & 0.522059 & -7 & 480 & -487 \\
+ 137 & 137^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.474453 & 0.525547 & -9 & 480 & -489 \\
+ 138 & 2^1 3^1 23^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.471014 & 0.528986 & -25 & 480 & -505 \\
+ 139 & 139^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.467626 & 0.532374 & -27 & 480 & -507 \\
+ 140 & 2^2 5^1 7^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.471429 & 0.528571 & 3 & 510 & -507 \\
+ 141 & 3^1 47^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.475177 & 0.524823 & 8 & 515 & -507 \\
+ 142 & 2^1 71^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478873 & 0.521127 & 13 & 520 & -507 \\
+ 143 & 11^1 13^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.482517 & 0.517483 & 18 & 525 & -507 \\
+ 144 & 2^4 3^2 & \text{N} & \text{N} & 34 & 29 & 1.6176471 & 0.486111 & 0.513889 & 52 & 559 & -507 \\
+ 145 & 5^1 29^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.489655 & 0.510345 & 57 & 564 & -507 \\
+ 146 & 2^1 73^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.493151 & 0.506849 & 62 & 569 & -507 \\
+ 147 & 3^1 7^2 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.489796 & 0.510204 & 55 & 569 & -514 \\
+ 148 & 2^2 37^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.486486 & 0.513514 & 48 & 569 & -521 \\
+ 149 & 149^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.483221 & 0.516779 & 46 & 569 & -523 \\
+ 150 & 2^1 3^1 5^2 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.486667 & 0.513333 & 76 & 599 & -523 \\
+ 151 & 151^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.483444 & 0.516556 & 74 & 599 & -525 \\
+ 152 & 2^3 19^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.486842 & 0.513158 & 83 & 608 & -525 \\
+ 153 & 3^2 17^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.483660 & 0.516340 & 76 & 608 & -532 \\
+ 154 & 2^1 7^1 11^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.480519 & 0.519481 & 60 & 608 & -548 \\
+ 155 & 5^1 31^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.483871 & 0.516129 & 65 & 613 & -548 \\
+ 156 & 2^2 3^1 13^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.487179 & 0.512821 & 95 & 643 & -548 \\
+ 157 & 157^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.484076 & 0.515924 & 93 & 643 & -550 \\
+ 158 & 2^1 79^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.487342 & 0.512658 & 98 & 648 & -550 \\
+ 159 & 3^1 53^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.490566 & 0.509434 & 103 & 653 & -550 \\
+ 160 & 2^5 5^1 & \text{N} & \text{N} & 13 & 8 & 2.0769231 & 0.493750 & 0.506250 & 116 & 666 & -550 \\
+ 161 & 7^1 23^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.496894 & 0.503106 & 121 & 671 & -550 \\
+ 162 & 2^1 3^4 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.493827 & 0.506173 & 110 & 671 & -561 \\
+ 163 & 163^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.490798 & 0.509202 & 108 & 671 & -563 \\
+ 164 & 2^2 41^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.487805 & 0.512195 & 101 & 671 & -570 \\
+ 165 & 3^1 5^1 11^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.484848 & 0.515152 & 85 & 671 & -586 \\
+ 166 & 2^1 83^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.487952 & 0.512048 & 90 & 676 & -586 \\
+ 167 & 167^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.485030 & 0.514970 & 88 & 676 & -588 \\
+ 168 & 2^3 3^1 7^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.482143 & 0.517857 & 40 & 676 & -636 \\
+ 169 & 13^2 & \text{N} & \text{Y} & 2 & 0 & 1.5000000 & 0.485207 & 0.514793 & 42 & 678 & -636 \\
+ 170 & 2^1 5^1 17^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.482353 & 0.517647 & 26 & 678 & -652 \\
+ 171 & 3^2 19^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.479532 & 0.520468 & 19 & 678 & -659 \\
+ 172 & 2^2 43^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.476744 & 0.523256 & 12 & 678 & -666 \\
+ 173 & 173^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.473988 & 0.526012 & 10 & 678 & -668 \\
+ 174 & 2^1 3^1 29^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.471264 & 0.528736 & -6 & 678 & -684 \\
+ 175 & 5^2 7^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.468571 & 0.531429 & -13 & 678 & -691 \\
+ 176 & 2^4 11^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.465909 & 0.534091 & -24 & 678 & -702 \\
+ 177 & 3^1 59^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.468927 & 0.531073 & -19 & 683 & -702 \\
+ 178 & 2^1 89^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.471910 & 0.528090 & -14 & 688 & -702 \\
+ 179 & 179^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.469274 & 0.530726 & -16 & 688 & -704 \\
+ 180 & 2^2 3^2 5^1 & \text{N} & \text{N} & -74 & 58 & 1.2162162 & 0.466667 & 0.533333 & -90 & 688 & -778 \\
+ 181 & 181^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.464088 & 0.535912 & -92 & 688 & -780 \\
+ 182 & 2^1 7^1 13^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.461538 & 0.538462 & -108 & 688 & -796 \\
+ 183 & 3^1 61^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.464481 & 0.535519 & -103 & 693 & -796 \\
+ 184 & 2^3 23^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.467391 & 0.532609 & -94 & 702 & -796 \\
+ 185 & 5^1 37^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.470270 & 0.529730 & -89 & 707 & -796 \\
+ 186 & 2^1 3^1 31^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.467742 & 0.532258 & -105 & 707 & -812 \\
+ 187 & 11^1 17^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.470588 & 0.529412 & -100 & 712 & -812 \\
+ 188 & 2^2 47^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.468085 & 0.531915 & -107 & 712 & -819 \\
+ 189 & 3^3 7^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.470899 & 0.529101 & -98 & 721 & -819 \\
+ 190 & 2^1 5^1 19^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.468421 & 0.531579 & -114 & 721 & -835 \\
+ 191 & 191^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.465969 & 0.534031 & -116 & 721 & -837 \\
+ 192 & 2^6 3^1 & \text{N} & \text{N} & -15 & 10 & 2.3333333 & 0.463542 & 0.536458 & -131 & 721 & -852 \\
+ 193 & 193^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.461140 & 0.538860 & -133 & 721 & -854 \\
+ 194 & 2^1 97^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.463918 & 0.536082 & -128 & 726 & -854 \\
+ 195 & 3^1 5^1 13^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.461538 & 0.538462 & -144 & 726 & -870 \\
+ 196 & 2^2 7^2 & \text{N} & \text{N} & 14 & 9 & 1.3571429 & 0.464286 & 0.535714 & -130 & 740 & -870 \\
+ 197 & 197^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.461929 & 0.538071 & -132 & 740 & -872 \\
+ 198 & 2^1 3^2 11^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.464646 & 0.535354 & -102 & 770 & -872 \\
+ 199 & 199^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.462312 & 0.537688 & -104 & 770 & -874 \\
+ 200 & 2^3 5^2 & \text{N} & \text{N} & -23 & 18 & 1.4782609 & 0.460000 & 0.540000 & -127 & 770 & -897 \\ 
+\end{array}
+}
+\end{equation*}
+\clearpage 
+
+\end{table} 
+
+\newpage
+\begin{table}[ht]
+
+\centering
+
+\tiny
+\begin{equation*}
+\boxed{
+\begin{array}{cc|cc|ccc|cc|ccc}
+ n & \mathbf{Primes} & \mathbf{Sqfree} & \mathbf{PPower} & g^{-1}(n) & 
+ \lambda(n) g^{-1}(n) - \widehat{f}_1(n) & 
+ \frac{\sum_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|} & 
+ \mathcal{L}_{+}(n) & \mathcal{L}_{-}(n) & 
+ G^{-1}(n) & G^{-1}_{+}(n) & G^{-1}_{-}(n) \\ \hline 
+ 201 & 3^1 67^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.462687 & 0.537313 & -122 & 775 & -897 \\
+ 202 & 2^1 101^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.465347 & 0.534653 & -117 & 780 & -897 \\
+ 203 & 7^1 29^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.467980 & 0.532020 & -112 & 785 & -897 \\
+ 204 & 2^2 3^1 17^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.470588 & 0.529412 & -82 & 815 & -897 \\
+ 205 & 5^1 41^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.473171 & 0.526829 & -77 & 820 & -897 \\
+ 206 & 2^1 103^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.475728 & 0.524272 & -72 & 825 & -897 \\
+ 207 & 3^2 23^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.473430 & 0.526570 & -79 & 825 & -904 \\
+ 208 & 2^4 13^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.471154 & 0.528846 & -90 & 825 & -915 \\
+ 209 & 11^1 19^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.473684 & 0.526316 & -85 & 830 & -915 \\
+ 210 & 2^1 3^1 5^1 7^1 & \text{Y} & \text{N} & 65 & 0 & 1.0000000 & 0.476190 & 0.523810 & -20 & 895 & -915 \\
+ 211 & 211^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.473934 & 0.526066 & -22 & 895 & -917 \\
+ 212 & 2^2 53^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.471698 & 0.528302 & -29 & 895 & -924 \\
+ 213 & 3^1 71^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.474178 & 0.525822 & -24 & 900 & -924 \\
+ 214 & 2^1 107^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476636 & 0.523364 & -19 & 905 & -924 \\
+ 215 & 5^1 43^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.479070 & 0.520930 & -14 & 910 & -924 \\
+ 216 & 2^3 3^3 & \text{N} & \text{N} & 46 & 41 & 1.5000000 & 0.481481 & 0.518519 & 32 & 956 & -924 \\
+ 217 & 7^1 31^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.483871 & 0.516129 & 37 & 961 & -924 \\
+ 218 & 2^1 109^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.486239 & 0.513761 & 42 & 966 & -924 \\
+ 219 & 3^1 73^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.488584 & 0.511416 & 47 & 971 & -924 \\
+ 220 & 2^2 5^1 11^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.490909 & 0.509091 & 77 & 1001 & -924 \\
+ 221 & 13^1 17^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.493213 & 0.506787 & 82 & 1006 & -924 \\
+ 222 & 2^1 3^1 37^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.490991 & 0.509009 & 66 & 1006 & -940 \\
+ 223 & 223^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.488789 & 0.511211 & 64 & 1006 & -942 \\
+ 224 & 2^5 7^1 & \text{N} & \text{N} & 13 & 8 & 2.0769231 & 0.491071 & 0.508929 & 77 & 1019 & -942 \\
+ 225 & 3^2 5^2 & \text{N} & \text{N} & 14 & 9 & 1.3571429 & 0.493333 & 0.506667 & 91 & 1033 & -942 \\
+ 226 & 2^1 113^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.495575 & 0.504425 & 96 & 1038 & -942 \\
+ 227 & 227^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.493392 & 0.506608 & 94 & 1038 & -944 \\
+ 228 & 2^2 3^1 19^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.495614 & 0.504386 & 124 & 1068 & -944 \\
+ 229 & 229^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.493450 & 0.506550 & 122 & 1068 & -946 \\
+ 230 & 2^1 5^1 23^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.491304 & 0.508696 & 106 & 1068 & -962 \\
+ 231 & 3^1 7^1 11^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.489177 & 0.510823 & 90 & 1068 & -978 \\
+ 232 & 2^3 29^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.491379 & 0.508621 & 99 & 1077 & -978 \\
+ 233 & 233^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.489270 & 0.510730 & 97 & 1077 & -980 \\
+ 234 & 2^1 3^2 13^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.491453 & 0.508547 & 127 & 1107 & -980 \\
+ 235 & 5^1 47^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.493617 & 0.506383 & 132 & 1112 & -980 \\
+ 236 & 2^2 59^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.491525 & 0.508475 & 125 & 1112 & -987 \\
+ 237 & 3^1 79^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.493671 & 0.506329 & 130 & 1117 & -987 \\
+ 238 & 2^1 7^1 17^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.491597 & 0.508403 & 114 & 1117 & -1003 \\
+ 239 & 239^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.489540 & 0.510460 & 112 & 1117 & -1005 \\
+ 240 & 2^4 3^1 5^1 & \text{N} & \text{N} & 70 & 54 & 1.5000000 & 0.491667 & 0.508333 & 182 & 1187 & -1005 \\
+ 241 & 241^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.489627 & 0.510373 & 180 & 1187 & -1007 \\
+ 242 & 2^1 11^2 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.487603 & 0.512397 & 173 & 1187 & -1014 \\
+ 243 & 3^5 & \text{N} & \text{Y} & -2 & 0 & 3.0000000 & 0.485597 & 0.514403 & 171 & 1187 & -1016 \\
+ 244 & 2^2 61^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.483607 & 0.516393 & 164 & 1187 & -1023 \\
+ 245 & 5^1 7^2 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.481633 & 0.518367 & 157 & 1187 & -1030 \\
+ 246 & 2^1 3^1 41^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.479675 & 0.520325 & 141 & 1187 & -1046 \\
+ 247 & 13^1 19^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.481781 & 0.518219 & 146 & 1192 & -1046 \\
+ 248 & 2^3 31^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.483871 & 0.516129 & 155 & 1201 & -1046 \\
+ 249 & 3^1 83^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.485944 & 0.514056 & 160 & 1206 & -1046 \\
+ 250 & 2^1 5^3 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.488000 & 0.512000 & 169 & 1215 & -1046 \\
+ 251 & 251^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.486056 & 0.513944 & 167 & 1215 & -1048 \\
+ 252 & 2^2 3^2 7^1 & \text{N} & \text{N} & -74 & 58 & 1.2162162 & 0.484127 & 0.515873 & 93 & 1215 & -1122 \\
+ 253 & 11^1 23^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.486166 & 0.513834 & 98 & 1220 & -1122 \\
+ 254 & 2^1 127^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.488189 & 0.511811 & 103 & 1225 & -1122 \\
+ 255 & 3^1 5^1 17^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.486275 & 0.513725 & 87 & 1225 & -1138 \\
+ 256 & 2^8 & \text{N} & \text{Y} & 2 & 0 & 4.5000000 & 0.488281 & 0.511719 & 89 & 1227 & -1138 \\
+ 257 & 257^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.486381 & 0.513619 & 87 & 1227 & -1140 \\
+ 258 & 2^1 3^1 43^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.484496 & 0.515504 & 71 & 1227 & -1156 \\
+ 259 & 7^1 37^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.486486 & 0.513514 & 76 & 1232 & -1156 \\
+ 260 & 2^2 5^1 13^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.488462 & 0.511538 & 106 & 1262 & -1156 \\
+ 261 & 3^2 29^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.486590 & 0.513410 & 99 & 1262 & -1163 \\
+ 262 & 2^1 131^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.488550 & 0.511450 & 104 & 1267 & -1163 \\
+ 263 & 263^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.486692 & 0.513308 & 102 & 1267 & -1165 \\
+ 264 & 2^3 3^1 11^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.484848 & 0.515152 & 54 & 1267 & -1213 \\
+ 265 & 5^1 53^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.486792 & 0.513208 & 59 & 1272 & -1213 \\
+ 266 & 2^1 7^1 19^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.484962 & 0.515038 & 43 & 1272 & -1229 \\
+ 267 & 3^1 89^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.486891 & 0.513109 & 48 & 1277 & -1229 \\
+ 268 & 2^2 67^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.485075 & 0.514925 & 41 & 1277 & -1236 \\
+ 269 & 269^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.483271 & 0.516729 & 39 & 1277 & -1238 \\
+ 270 & 2^1 3^3 5^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.481481 & 0.518519 & -9 & 1277 & -1286 \\
+ 271 & 271^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.479705 & 0.520295 & -11 & 1277 & -1288 \\
+ 272 & 2^4 17^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.477941 & 0.522059 & -22 & 1277 & -1299 \\
+ 273 & 3^1 7^1 13^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.476190 & 0.523810 & -38 & 1277 & -1315 \\
+ 274 & 2^1 137^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478102 & 0.521898 & -33 & 1282 & -1315 \\
+ 275 & 5^2 11^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.476364 & 0.523636 & -40 & 1282 & -1322 \\
+ 276 & 2^2 3^1 23^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.478261 & 0.521739 & -10 & 1312 & -1322 \\
+ 277 & 277^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.476534 & 0.523466 & -12 & 1312 & -1324 \\ 
+\end{array}
+}
+\end{equation*}
+\clearpage 
+
+\end{table} 
+
+\newpage
+\begin{table}[ht]
+
+\centering
+
+\tiny
+\begin{equation*}
+\boxed{
+\begin{array}{cc|cc|ccc|cc|ccc}
+ n & \mathbf{Primes} & \mathbf{Sqfree} & \mathbf{PPower} & g^{-1}(n) & 
+ \lambda(n) g^{-1}(n) - \widehat{f}_1(n) & 
+ \frac{\sum_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|} & 
+ \mathcal{L}_{+}(n) & \mathcal{L}_{-}(n) & 
+ G^{-1}(n) & G^{-1}_{+}(n) & G^{-1}_{-}(n) \\ \hline 
+ 278 & 2^1 139^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478417 & 0.521583 & -7 & 1317 & -1324 \\
+ 279 & 3^2 31^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.476703 & 0.523297 & -14 & 1317 & -1331 \\
+ 280 & 2^3 5^1 7^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.475000 & 0.525000 & -62 & 1317 & -1379 \\
+ 281 & 281^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.473310 & 0.526690 & -64 & 1317 & -1381 \\
+ 282 & 2^1 3^1 47^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.471631 & 0.528369 & -80 & 1317 & -1397 \\
+ 283 & 283^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.469965 & 0.530035 & -82 & 1317 & -1399 \\
+ 284 & 2^2 71^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.468310 & 0.531690 & -89 & 1317 & -1406 \\
+ 285 & 3^1 5^1 19^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.466667 & 0.533333 & -105 & 1317 & -1422 \\
+ 286 & 2^1 11^1 13^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.465035 & 0.534965 & -121 & 1317 & -1438 \\
+ 287 & 7^1 41^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.466899 & 0.533101 & -116 & 1322 & -1438 \\
+ 288 & 2^5 3^2 & \text{N} & \text{N} & -47 & 42 & 1.7659574 & 0.465278 & 0.534722 & -163 & 1322 & -1485 \\
+ 289 & 17^2 & \text{N} & \text{Y} & 2 & 0 & 1.5000000 & 0.467128 & 0.532872 & -161 & 1324 & -1485 \\
+ 290 & 2^1 5^1 29^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.465517 & 0.534483 & -177 & 1324 & -1501 \\
+ 291 & 3^1 97^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.467354 & 0.532646 & -172 & 1329 & -1501 \\
+ 292 & 2^2 73^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.465753 & 0.534247 & -179 & 1329 & -1508 \\
+ 293 & 293^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.464164 & 0.535836 & -181 & 1329 & -1510 \\
+ 294 & 2^1 3^1 7^2 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.465986 & 0.534014 & -151 & 1359 & -1510 \\
+ 295 & 5^1 59^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.467797 & 0.532203 & -146 & 1364 & -1510 \\
+ 296 & 2^3 37^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.469595 & 0.530405 & -137 & 1373 & -1510 \\
+ 297 & 3^3 11^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.471380 & 0.528620 & -128 & 1382 & -1510 \\
+ 298 & 2^1 149^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.473154 & 0.526846 & -123 & 1387 & -1510 \\
+ 299 & 13^1 23^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.474916 & 0.525084 & -118 & 1392 & -1510 \\
+ 300 & 2^2 3^1 5^2 & \text{N} & \text{N} & -74 & 58 & 1.2162162 & 0.473333 & 0.526667 & -192 & 1392 & -1584 \\
+ 301 & 7^1 43^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.475083 & 0.524917 & -187 & 1397 & -1584 \\
+ 302 & 2^1 151^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476821 & 0.523179 & -182 & 1402 & -1584 \\
+ 303 & 3^1 101^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478548 & 0.521452 & -177 & 1407 & -1584 \\
+ 304 & 2^4 19^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.476974 & 0.523026 & -188 & 1407 & -1595 \\
+ 305 & 5^1 61^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478689 & 0.521311 & -183 & 1412 & -1595 \\
+ 306 & 2^1 3^2 17^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.480392 & 0.519608 & -153 & 1442 & -1595 \\
+ 307 & 307^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.478827 & 0.521173 & -155 & 1442 & -1597 \\
+ 308 & 2^2 7^1 11^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.480519 & 0.519481 & -125 & 1472 & -1597 \\
+ 309 & 3^1 103^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.482201 & 0.517799 & -120 & 1477 & -1597 \\
+ 310 & 2^1 5^1 31^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.480645 & 0.519355 & -136 & 1477 & -1613 \\
+ 311 & 311^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.479100 & 0.520900 & -138 & 1477 & -1615 \\
+ 312 & 2^3 3^1 13^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.477564 & 0.522436 & -186 & 1477 & -1663 \\
+ 313 & 313^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.476038 & 0.523962 & -188 & 1477 & -1665 \\
+ 314 & 2^1 157^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.477707 & 0.522293 & -183 & 1482 & -1665 \\
+ 315 & 3^2 5^1 7^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.479365 & 0.520635 & -153 & 1512 & -1665 \\
+ 316 & 2^2 79^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.477848 & 0.522152 & -160 & 1512 & -1672 \\
+ 317 & 317^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.476341 & 0.523659 & -162 & 1512 & -1674 \\
+ 318 & 2^1 3^1 53^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.474843 & 0.525157 & -178 & 1512 & -1690 \\
+ 319 & 11^1 29^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476489 & 0.523511 & -173 & 1517 & -1690 \\
+ 320 & 2^6 5^1 & \text{N} & \text{N} & -15 & 10 & 2.3333333 & 0.475000 & 0.525000 & -188 & 1517 & -1705 \\
+ 321 & 3^1 107^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476636 & 0.523364 & -183 & 1522 & -1705 \\
+ 322 & 2^1 7^1 23^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.475155 & 0.524845 & -199 & 1522 & -1721 \\
+ 323 & 17^1 19^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476780 & 0.523220 & -194 & 1527 & -1721 \\
+ 324 & 2^2 3^4 & \text{N} & \text{N} & 34 & 29 & 1.6176471 & 0.478395 & 0.521605 & -160 & 1561 & -1721 \\
+ 325 & 5^2 13^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.476923 & 0.523077 & -167 & 1561 & -1728 \\
+ 326 & 2^1 163^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478528 & 0.521472 & -162 & 1566 & -1728 \\
+ 327 & 3^1 109^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.480122 & 0.519878 & -157 & 1571 & -1728 \\
+ 328 & 2^3 41^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.481707 & 0.518293 & -148 & 1580 & -1728 \\
+ 329 & 7^1 47^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.483283 & 0.516717 & -143 & 1585 & -1728 \\
+ 330 & 2^1 3^1 5^1 11^1 & \text{Y} & \text{N} & 65 & 0 & 1.0000000 & 0.484848 & 0.515152 & -78 & 1650 & -1728 \\
+ 331 & 331^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.483384 & 0.516616 & -80 & 1650 & -1730 \\
+ 332 & 2^2 83^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.481928 & 0.518072 & -87 & 1650 & -1737 \\
+ 333 & 3^2 37^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.480480 & 0.519520 & -94 & 1650 & -1744 \\
+ 334 & 2^1 167^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.482036 & 0.517964 & -89 & 1655 & -1744 \\
+ 335 & 5^1 67^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.483582 & 0.516418 & -84 & 1660 & -1744 \\
+ 336 & 2^4 3^1 7^1 & \text{N} & \text{N} & 70 & 54 & 1.5000000 & 0.485119 & 0.514881 & -14 & 1730 & -1744 \\
+ 337 & 337^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.483680 & 0.516320 & -16 & 1730 & -1746 \\
+ 338 & 2^1 13^2 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.482249 & 0.517751 & -23 & 1730 & -1753 \\
+ 339 & 3^1 113^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.483776 & 0.516224 & -18 & 1735 & -1753 \\
+ 340 & 2^2 5^1 17^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.485294 & 0.514706 & 12 & 1765 & -1753 \\
+ 341 & 11^1 31^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.486804 & 0.513196 & 17 & 1770 & -1753 \\
+ 342 & 2^1 3^2 19^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.488304 & 0.511696 & 47 & 1800 & -1753 \\
+ 343 & 7^3 & \text{N} & \text{Y} & -2 & 0 & 2.0000000 & 0.486880 & 0.513120 & 45 & 1800 & -1755 \\
+ 344 & 2^3 43^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.488372 & 0.511628 & 54 & 1809 & -1755 \\
+ 345 & 3^1 5^1 23^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.486957 & 0.513043 & 38 & 1809 & -1771 \\
+ 346 & 2^1 173^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.488439 & 0.511561 & 43 & 1814 & -1771 \\
+ 347 & 347^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.487032 & 0.512968 & 41 & 1814 & -1773 \\
+ 348 & 2^2 3^1 29^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.488506 & 0.511494 & 71 & 1844 & -1773 \\
+ 349 & 349^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.487106 & 0.512894 & 69 & 1844 & -1775 \\
+ 350 & 2^1 5^2 7^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.488571 & 0.511429 & 99 & 1874 & -1775 \\ 
+\end{array}
+}
+\end{equation*}
+\clearpage 
+
+\end{table} 
+
+\newpage
+\begin{table}[ht]
+
+\centering
+\tiny
+\begin{equation*}
+\boxed{
+\begin{array}{cc|cc|ccc|cc|ccc}
+ n & \mathbf{Primes} & \mathbf{Sqfree} & \mathbf{PPower} & g^{-1}(n) & 
+ \lambda(n) g^{-1}(n) - \widehat{f}_1(n) & 
+ \frac{\sum_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|} & 
+ \mathcal{L}_{+}(n) & \mathcal{L}_{-}(n) & 
+ G^{-1}(n) & G^{-1}_{+}(n) & G^{-1}_{-}(n) \\ \hline 
+ 351 & 3^3 13^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.490028 & 0.509972 & 108 & 1883 & -1775 \\
+ 352 & 2^5 11^1 & \text{N} & \text{N} & 13 & 8 & 2.0769231 & 0.491477 & 0.508523 & 121 & 1896 & -1775 \\
+ 353 & 353^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.490085 & 0.509915 & 119 & 1896 & -1777 \\
+ 354 & 2^1 3^1 59^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.488701 & 0.511299 & 103 & 1896 & -1793 \\
+ 355 & 5^1 71^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.490141 & 0.509859 & 108 & 1901 & -1793 \\
+ 356 & 2^2 89^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.488764 & 0.511236 & 101 & 1901 & -1800 \\
+ 357 & 3^1 7^1 17^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.487395 & 0.512605 & 85 & 1901 & -1816 \\
+ 358 & 2^1 179^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.488827 & 0.511173 & 90 & 1906 & -1816 \\
+ 359 & 359^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.487465 & 0.512535 & 88 & 1906 & -1818 \\
+ 360 & 2^3 3^2 5^1 & \text{N} & \text{N} & 145 & 129 & 1.3034483 & 0.488889 & 0.511111 & 233 & 2051 & -1818 \\
+ 361 & 19^2 & \text{N} & \text{Y} & 2 & 0 & 1.5000000 & 0.490305 & 0.509695 & 235 & 2053 & -1818 \\
+ 362 & 2^1 181^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.491713 & 0.508287 & 240 & 2058 & -1818 \\
+ 363 & 3^1 11^2 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.490358 & 0.509642 & 233 & 2058 & -1825 \\
+ 364 & 2^2 7^1 13^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.491758 & 0.508242 & 263 & 2088 & -1825 \\
+ 365 & 5^1 73^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.493151 & 0.506849 & 268 & 2093 & -1825 \\
+ 366 & 2^1 3^1 61^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.491803 & 0.508197 & 252 & 2093 & -1841 \\
+ 367 & 367^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.490463 & 0.509537 & 250 & 2093 & -1843 \\
+ 368 & 2^4 23^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.489130 & 0.510870 & 239 & 2093 & -1854 \\
+ 369 & 3^2 41^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.487805 & 0.512195 & 232 & 2093 & -1861 \\
+ 370 & 2^1 5^1 37^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.486486 & 0.513514 & 216 & 2093 & -1877 \\
+ 371 & 7^1 53^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.487871 & 0.512129 & 221 & 2098 & -1877 \\
+ 372 & 2^2 3^1 31^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.489247 & 0.510753 & 251 & 2128 & -1877 \\
+ 373 & 373^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.487936 & 0.512064 & 249 & 2128 & -1879 \\
+ 374 & 2^1 11^1 17^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.486631 & 0.513369 & 233 & 2128 & -1895 \\
+ 375 & 3^1 5^3 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.488000 & 0.512000 & 242 & 2137 & -1895 \\
+ 376 & 2^3 47^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.489362 & 0.510638 & 251 & 2146 & -1895 \\
+ 377 & 13^1 29^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.490716 & 0.509284 & 256 & 2151 & -1895 \\
+ 378 & 2^1 3^3 7^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.489418 & 0.510582 & 208 & 2151 & -1943 \\
+ 379 & 379^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.488127 & 0.511873 & 206 & 2151 & -1945 \\
+ 380 & 2^2 5^1 19^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.489474 & 0.510526 & 236 & 2181 & -1945 \\
+ 381 & 3^1 127^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.490814 & 0.509186 & 241 & 2186 & -1945 \\
+ 382 & 2^1 191^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.492147 & 0.507853 & 246 & 2191 & -1945 \\
+ 383 & 383^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.490862 & 0.509138 & 244 & 2191 & -1947 \\
+ 384 & 2^7 3^1 & \text{N} & \text{N} & 17 & 12 & 2.5882353 & 0.492188 & 0.507812 & 261 & 2208 & -1947 \\
+ 385 & 5^1 7^1 11^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.490909 & 0.509091 & 245 & 2208 & -1963 \\
+ 386 & 2^1 193^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.492228 & 0.507772 & 250 & 2213 & -1963 \\
+ 387 & 3^2 43^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.490956 & 0.509044 & 243 & 2213 & -1970 \\
+ 388 & 2^2 97^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.489691 & 0.510309 & 236 & 2213 & -1977 \\
+ 389 & 389^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.488432 & 0.511568 & 234 & 2213 & -1979 \\
+ 390 & 2^1 3^1 5^1 13^1 & \text{Y} & \text{N} & 65 & 0 & 1.0000000 & 0.489744 & 0.510256 & 299 & 2278 & -1979 \\
+ 391 & 17^1 23^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.491049 & 0.508951 & 304 & 2283 & -1979 \\
+ 392 & 2^3 7^2 & \text{N} & \text{N} & -23 & 18 & 1.4782609 & 0.489796 & 0.510204 & 281 & 2283 & -2002 \\
+ 393 & 3^1 131^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.491094 & 0.508906 & 286 & 2288 & -2002 \\
+ 394 & 2^1 197^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.492386 & 0.507614 & 291 & 2293 & -2002 \\
+ 395 & 5^1 79^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.493671 & 0.506329 & 296 & 2298 & -2002 \\
+ 396 & 2^2 3^2 11^1 & \text{N} & \text{N} & -74 & 58 & 1.2162162 & 0.492424 & 0.507576 & 222 & 2298 & -2076 \\
+ 397 & 397^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.491184 & 0.508816 & 220 & 2298 & -2078 \\
+ 398 & 2^1 199^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.492462 & 0.507538 & 225 & 2303 & -2078 \\
+ 399 & 3^1 7^1 19^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.491228 & 0.508772 & 209 & 2303 & -2094 \\
+ 400 & 2^4 5^2 & \text{N} & \text{N} & 34 & 29 & 1.6176471 & 0.492500 & 0.507500 & 243 & 2337 & -2094 \\
+ 401 & 401^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.491272 & 0.508728 & 241 & 2337 & -2096 \\
+ 402 & 2^1 3^1 67^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.490050 & 0.509950 & 225 & 2337 & -2112 \\
+ 403 & 13^1 31^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.491315 & 0.508685 & 230 & 2342 & -2112 \\
+ 404 & 2^2 101^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.490099 & 0.509901 & 223 & 2342 & -2119 \\
+ 405 & 3^4 5^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.488889 & 0.511111 & 212 & 2342 & -2130 \\
+ 406 & 2^1 7^1 29^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.487685 & 0.512315 & 196 & 2342 & -2146 \\
+ 407 & 11^1 37^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.488943 & 0.511057 & 201 & 2347 & -2146 \\
+ 408 & 2^3 3^1 17^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.487745 & 0.512255 & 153 & 2347 & -2194 \\
+ 409 & 409^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.486553 & 0.513447 & 151 & 2347 & -2196 \\
+ 410 & 2^1 5^1 41^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.485366 & 0.514634 & 135 & 2347 & -2212 \\
+ 411 & 3^1 137^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.486618 & 0.513382 & 140 & 2352 & -2212 \\
+ 412 & 2^2 103^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.485437 & 0.514563 & 133 & 2352 & -2219 \\
+ 413 & 7^1 59^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.486683 & 0.513317 & 138 & 2357 & -2219 \\
+ 414 & 2^1 3^2 23^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.487923 & 0.512077 & 168 & 2387 & -2219 \\
+ 415 & 5^1 83^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.489157 & 0.510843 & 173 & 2392 & -2219 \\
+ 416 & 2^5 13^1 & \text{N} & \text{N} & 13 & 8 & 2.0769231 & 0.490385 & 0.509615 & 186 & 2405 & -2219 \\
+ 417 & 3^1 139^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.491607 & 0.508393 & 191 & 2410 & -2219 \\
+ 418 & 2^1 11^1 19^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.490431 & 0.509569 & 175 & 2410 & -2235 \\
+ 419 & 419^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.489260 & 0.510740 & 173 & 2410 & -2237 \\
+ 420 & 2^2 3^1 5^1 7^1 & \text{N} & \text{N} & -155 & 90 & 1.1032258 & 0.488095 & 0.511905 & 18 & 2410 & -2392 \\
+ 421 & 421^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.486936 & 0.513064 & 16 & 2410 & -2394 \\
+ 422 & 2^1 211^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.488152 & 0.511848 & 21 & 2415 & -2394 \\
+ 423 & 3^2 47^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.486998 & 0.513002 & 14 & 2415 & -2401 \\
+ 424 & 2^3 53^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.488208 & 0.511792 & 23 & 2424 & -2401 \\
+ 425 & 5^2 17^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.487059 & 0.512941 & 16 & 2424 & -2408 \\ 
+\end{array}
+}
+\end{equation*}
+\clearpage 
+
+\end{table} 
+
+\newpage
+
+\begin{table}[ht]
+\label{table_conjecture_Mertens_ginvSeq_approx_values_LastPage} 
+
+\centering
+\tiny
+\begin{equation*}
+\boxed{
+\begin{array}{cc|cc|ccc|cc|ccc}
+ n & \mathbf{Primes} & \mathbf{Sqfree} & \mathbf{PPower} & g^{-1}(n) & 
+ \lambda(n) g^{-1}(n) - \widehat{f}_1(n) & 
+ \frac{\sum_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|} & 
+ \mathcal{L}_{+}(n) & \mathcal{L}_{-}(n) & 
+ G^{-1}(n) & G^{-1}_{+}(n) & G^{-1}_{-}(n) \\ \hline 
+ 426 & 2^1 3^1 71^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.485915 & 0.514085 & 0 & 2424 & -2424 \\
+ 427 & 7^1 61^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.487119 & 0.512881 & 5 & 2429 & -2424 \\
+ 428 & 2^2 107^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.485981 & 0.514019 & -2 & 2429 & -2431 \\
+ 429 & 3^1 11^1 13^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.484848 & 0.515152 & -18 & 2429 & -2447 \\
+ 430 & 2^1 5^1 43^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.483721 & 0.516279 & -34 & 2429 & -2463 \\
+ 431 & 431^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.482599 & 0.517401 & -36 & 2429 & -2465 \\
+ 432 & 2^4 3^3 & \text{N} & \text{N} & -80 & 75 & 1.5625000 & 0.481481 & 0.518519 & -116 & 2429 & -2545 \\
+ 433 & 433^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.480370 & 0.519630 & -118 & 2429 & -2547 \\
+ 434 & 2^1 7^1 31^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.479263 & 0.520737 & -134 & 2429 & -2563 \\
+ 435 & 3^1 5^1 29^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.478161 & 0.521839 & -150 & 2429 & -2579 \\
+ 436 & 2^2 109^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.477064 & 0.522936 & -157 & 2429 & -2586 \\
+ 437 & 19^1 23^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478261 & 0.521739 & -152 & 2434 & -2586 \\
+ 438 & 2^1 3^1 73^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.477169 & 0.522831 & -168 & 2434 & -2602 \\
+ 439 & 439^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.476082 & 0.523918 & -170 & 2434 & -2604 \\
+ 440 & 2^3 5^1 11^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.475000 & 0.525000 & -218 & 2434 & -2652 \\
+ 441 & 3^2 7^2 & \text{N} & \text{N} & 14 & 9 & 1.3571429 & 0.476190 & 0.523810 & -204 & 2448 & -2652 \\
+ 442 & 2^1 13^1 17^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.475113 & 0.524887 & -220 & 2448 & -2668 \\
+ 443 & 443^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.474041 & 0.525959 & -222 & 2448 & -2670 \\
+ 444 & 2^2 3^1 37^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.475225 & 0.524775 & -192 & 2478 & -2670 \\
+ 445 & 5^1 89^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476404 & 0.523596 & -187 & 2483 & -2670 \\
+ 446 & 2^1 223^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.477578 & 0.522422 & -182 & 2488 & -2670 \\
+ 447 & 3^1 149^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478747 & 0.521253 & -177 & 2493 & -2670 \\
+ 448 & 2^6 7^1 & \text{N} & \text{N} & -15 & 10 & 2.3333333 & 0.477679 & 0.522321 & -192 & 2493 & -2685 \\
+ 449 & 449^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.476615 & 0.523385 & -194 & 2493 & -2687 \\
+ 450 & 2^1 3^2 5^2 & \text{N} & \text{N} & -74 & 58 & 1.2162162 & 0.475556 & 0.524444 & -268 & 2493 & -2761 \\
+ 451 & 11^1 41^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476718 & 0.523282 & -263 & 2498 & -2761 \\
+ 452 & 2^2 113^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.475664 & 0.524336 & -270 & 2498 & -2768 \\
+ 453 & 3^1 151^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476821 & 0.523179 & -265 & 2503 & -2768 \\
+ 454 & 2^1 227^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.477974 & 0.522026 & -260 & 2508 & -2768 \\
+ 455 & 5^1 7^1 13^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.476923 & 0.523077 & -276 & 2508 & -2784 \\
+ 456 & 2^3 3^1 19^1 & \text{N} & \text{N} & -48 & 32 & 1.3333333 & 0.475877 & 0.524123 & -324 & 2508 & -2832 \\
+ 457 & 457^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.474836 & 0.525164 & -326 & 2508 & -2834 \\
+ 458 & 2^1 229^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.475983 & 0.524017 & -321 & 2513 & -2834 \\
+ 459 & 3^3 17^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.477124 & 0.522876 & -312 & 2522 & -2834 \\
+ 460 & 2^2 5^1 23^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.478261 & 0.521739 & -282 & 2552 & -2834 \\
+ 461 & 461^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.477223 & 0.522777 & -284 & 2552 & -2836 \\
+ 462 & 2^1 3^1 7^1 11^1 & \text{Y} & \text{N} & 65 & 0 & 1.0000000 & 0.478355 & 0.521645 & -219 & 2617 & -2836 \\
+ 463 & 463^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.477322 & 0.522678 & -221 & 2617 & -2838 \\
+ 464 & 2^4 29^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.476293 & 0.523707 & -232 & 2617 & -2849 \\
+ 465 & 3^1 5^1 31^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.475269 & 0.524731 & -248 & 2617 & -2865 \\
+ 466 & 2^1 233^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476395 & 0.523605 & -243 & 2622 & -2865 \\
+ 467 & 467^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.475375 & 0.524625 & -245 & 2622 & -2867 \\
+ 468 & 2^2 3^2 13^1 & \text{N} & \text{N} & -74 & 58 & 1.2162162 & 0.474359 & 0.525641 & -319 & 2622 & -2941 \\
+ 469 & 7^1 67^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.475480 & 0.524520 & -314 & 2627 & -2941 \\
+ 470 & 2^1 5^1 47^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.474468 & 0.525532 & -330 & 2627 & -2957 \\
+ 471 & 3^1 157^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.475584 & 0.524416 & -325 & 2632 & -2957 \\
+ 472 & 2^3 59^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.476695 & 0.523305 & -316 & 2641 & -2957 \\
+ 473 & 11^1 43^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.477801 & 0.522199 & -311 & 2646 & -2957 \\
+ 474 & 2^1 3^1 79^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.476793 & 0.523207 & -327 & 2646 & -2973 \\
+ 475 & 5^2 19^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.475789 & 0.524211 & -334 & 2646 & -2980 \\
+ 476 & 2^2 7^1 17^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.476891 & 0.523109 & -304 & 2676 & -2980 \\
+ 477 & 3^2 53^1 & \text{N} & \text{N} & -7 & 2 & 1.2857143 & 0.475891 & 0.524109 & -311 & 2676 & -2987 \\
+ 478 & 2^1 239^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476987 & 0.523013 & -306 & 2681 & -2987 \\
+ 479 & 479^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.475992 & 0.524008 & -308 & 2681 & -2989 \\
+ 480 & 2^5 3^1 5^1 & \text{N} & \text{N} & -96 & 80 & 1.6666667 & 0.475000 & 0.525000 & -404 & 2681 & -3085 \\
+ 481 & 13^1 37^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.476091 & 0.523909 & -399 & 2686 & -3085 \\
+ 482 & 2^1 241^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.477178 & 0.522822 & -394 & 2691 & -3085 \\
+ 483 & 3^1 7^1 23^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.476190 & 0.523810 & -410 & 2691 & -3101 \\
+ 484 & 2^2 11^2 & \text{N} & \text{N} & 14 & 9 & 1.3571429 & 0.477273 & 0.522727 & -396 & 2705 & -3101 \\
+ 485 & 5^1 97^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.478351 & 0.521649 & -391 & 2710 & -3101 \\
+ 486 & 2^1 3^5 & \text{N} & \text{N} & 13 & 8 & 2.0769231 & 0.479424 & 0.520576 & -378 & 2723 & -3101 \\
+ 487 & 487^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.478439 & 0.521561 & -380 & 2723 & -3103 \\
+ 488 & 2^3 61^1 & \text{N} & \text{N} & 9 & 4 & 1.5555556 & 0.479508 & 0.520492 & -371 & 2732 & -3103 \\
+ 489 & 3^1 163^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.480573 & 0.519427 & -366 & 2737 & -3103 \\
+ 490 & 2^1 5^1 7^2 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.481633 & 0.518367 & -336 & 2767 & -3103 \\
+ 491 & 491^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.480652 & 0.519348 & -338 & 2767 & -3105 \\
+ 492 & 2^2 3^1 41^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.481707 & 0.518293 & -308 & 2797 & -3105 \\
+ 493 & 17^1 29^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.482759 & 0.517241 & -303 & 2802 & -3105 \\
+ 494 & 2^1 13^1 19^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.481781 & 0.518219 & -319 & 2802 & -3121 \\
+ 495 & 3^2 5^1 11^1 & \text{N} & \text{N} & 30 & 14 & 1.1666667 & 0.482828 & 0.517172 & -289 & 2832 & -3121 \\
+ 496 & 2^4 31^1 & \text{N} & \text{N} & -11 & 6 & 1.8181818 & 0.481855 & 0.518145 & -300 & 2832 & -3132 \\
+ 497 & 7^1 71^1 & \text{Y} & \text{N} & 5 & 0 & 1.0000000 & 0.482897 & 0.517103 & -295 & 2837 & -3132 \\
+ 498 & 2^1 3^1 83^1 & \text{Y} & \text{N} & -16 & 0 & 1.0000000 & 0.481928 & 0.518072 & -311 & 2837 & -3148 \\
+ 499 & 499^1 & \text{Y} & \text{Y} & -2 & 0 & 1.0000000 & 0.480962 & 0.519038 & -313 & 2837 & -3150 \\
+ 500 & 2^2 5^3 & \text{N} & \text{N} & -23 & 18 & 1.4782609 & 0.480000 & 0.520000 & -336 & 2837 & -3173 \\  
+\end{array}
+}
+\end{equation*}
+
+\end{table} 
+
+\clearpage 
+
+%% working-topics-2020.09.13-v1.tex
+
+
+\end{document}

@@ -1,0 +1,765 @@
+Using Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} directly is complicated since 
+forming the summatory function of the exact $g^{-1}(n)$ that obey this formula leads to 
+a nested recurrence relation involving $M(x)$. 
+What Corollary \ref{cor_ComputingInvFuncs_InPractice_DivSumgInvAst1_v1} below 
+allows us to do is 
+provide a substantially simpler formula and limiting bound on the summatory functions 
+$G^{-1}(x)$ of $g^{-1}(n)$. 
+
+\begin{cor} 
+\label{cor_AnExactFormulaFor_gInvByMobiusInv_nSqFree_v2} 
+For all squarefree integers $n \geq 1$, we have that 
+\begin{equation} 
+\label{eqn_gInvnSqFreeN_exactDivSum_Formula} 
+g^{-1}(n) = \lambda(n) \times \sum_{d|n} C_{\Omega(d)}(d). 
+\end{equation} 
+\end{cor} 
+\begin{proof} 
+Since $g^{-1}(1) = 1$, clearly the claim is true for $n = 1$. Suppose that $n \geq 2$ and that 
+$n$ is squarefree. Then $n = p_1p_2 \cdots p_{\omega(n)}$ where $p_i$ is prime for all 
+$1 \leq i \leq \omega(n)$. So we can transform the exact divisor sum guaranteed for all $n$ in 
+Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} into the following: 
+\begin{align*} 
+g^{-1}(n) & = \sum_{i=1}^{\omega(n)} \sum_{\substack{d|n \\ \omega(d)=i}} (-1)^{\omega(n) - i} (-1)^{i} \cdot 
+     C_{\Omega(d)}(d) + \mu(1) \lambda(n) C_1(1) \\ 
+     & = \lambda(n) \left[\sum_{i=1}^{\omega(n)} \sum_{\substack{d|n \\ \omega(d)=i}} C_{\Omega(d)}(d) + 1\right] \\ 
+     & = \lambda(n) \times \sum_{d|n} C_{\Omega(d)}(d). 
+\end{align*} 
+The signed computations in the first of the previous equations is justified by noting that $\lambda(n) = (-1)^{\omega(n)}$ 
+whenever $n$ is squarefree, and that for $d$ squarefree with $\omega(d) = i$, $\Omega(d) = i$. 
+\end{proof} 
+
+\begin{cor}[A simplification in form towards computing the inverse functions] 
+\label{cor_ComputingInvFuncs_InPractice_DivSumgInvAst1_v1} 
+For $n \geq 2$ as $n \rightarrow \infty$ we have that 
+\[
+\mathbb{E}\left[\frac{\sum\limits_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|}\right] \leq 1. 
+\]
+Thus if we let 
+\[
+\widetilde{G}^{-1}(x) := \sum_{n \leq x} \lambda(n) \times \mathbb{E}\left[ 
+     \sum_{d|n} C_{\Omega(d)}(d)\right], 
+\]
+denote the summatory function defined by approximating $g^{-1}(n)$ by 
+$\lambda(n) \times \sum_{d|n} C_{\Omega(d)}(d)$, we obtain a lower bound in the form of 
+$$|G_E^{-1}(x)| \gg \left\lvert \widetilde{G}^{-1}(x) \right\rvert.$$
+\end{cor} 
+\begin{proof} 
+Let the approximation to the formula for $g^{-1}(n)$ from 
+Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} be denoted by 
+\[
+S_R(n) := \lambda(n) \times \sum_{d|n} C_{\Omega(d)}(d). 
+\]
+The sign on the terms $C_{\Omega(d)}(d)$ in the cited approximation to $g^{-1}(n)$ 
+given by $S_R(n)$ differs from Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} when 
+\[
+\operatorname{sgn}\left(\mu(d) \lambda(n/d)\right) = -\lambda(n) \iff 
+     \operatorname{sgn}\left(\mu(d) \lambda\left(\frac{n^2}{d}\right)\right) = -1. 
+\]
+By a case-by-case analysis of the parity of $(n, d)$, we see that this occurs when one of two 
+cases is met: 
+\begin{itemize} 
+\item[(1)] $n$ is even, $d$ is even, and $\mu(d) = -1$; or 
+\item[(2)] $n$ is odd, $d$ is odd, and $\mu(d) = +1$. 
+\end{itemize} 
+According to the results on the asymptotic densities of the squarefree integers corresponding to 
+$\mu(n) = \pm 1$ we cited in the preliminaries from Section \ref{subSection_MertensMxClassical_Intro}, 
+we obtain the following statements: 
+\begin{itemize} 
+\item[(3)] The asymptotic density of the integers which are squarefree and satisfy either (1) or (2) is $\frac{3}{\pi^2}$; 
+\item[(4)] The asymptotic density of the integers which are squarefree and satisfy neither (1) nor (2) is $\frac{3}{\pi^2}$. 
+\end{itemize} 
+Moreover, the asymptotic density of the positive integers that are not squarefree is given by 
+$1 - \frac{6}{\pi^2}$. Thus the limiting density of integers such that the sign of the terms in 
+$S_R(n)$ matches those in Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} corresponds to 
+$\frac{3}{\pi^2}$. The divisors $d$ of $n$ in the expression for $S_R(n)$ that do not contribute 
+any weight to the formula for $g^{-1}(n)$ in 
+Lemma \ref{lemma_AnExactFormulaFor_gInvByMobiusInv_v1} have 
+asymptotic density $1 - \frac{6}{\pi^2}$ (the density of the non-squarefree integers). 
+
+The average order of the divisor function $d(n)$ is known to satisfy \cite[\S 27.11]{NISTHB} 
+\[
+\mathbb{E}[d(n)] = \log n + 2\gamma-1 + o(1). 
+\]
+When we take the difference between $g^{-1}(n)$ from the lemma and the divisor sum $S_R(n)$, 
+we have to subtract off the terms for the non-squarefree integers that vanish in the exact result 
+due to the M\"obius function, and then subtract off (twice) the terms that have leading coefficient of 
+$+1$ where the exact formula weights the term by $-1$. What this argument leads to is an average order 
+calculation showing that 
+\begin{align} 
+\notag 
+\mathbb{E}\left[\frac{\sum\limits_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|}\right] & = 
+     \mathbb{E}\left\lvert \frac{g^{-1}(n) - \lambda(n) \left(1 - \frac{6}{\pi^2}\right) 
+     \mathbb{E}[d(n)] + \lambda(n) \frac{6}{\pi^2} \mathbb{E}[d(n)]}{g^{-1}(n)} 
+     \right\rvert \\ 
+\notag 
+     & = 1 - \mathbb{E}\left[\frac{\log n + 2\gamma-1 + o(1)}{|g^{-1}(n)|}\right] \\ 
+\label{eqn_proof_tag_v1_ExpectationFormulagInvnVersisSRn} 
+     & = 1 - \frac{\log n + 2\gamma-1 + o(1)}{\mathbb{E}|g^{-1}(n)|}. 
+\end{align} 
+Now clearly we obtain from Theorem \ref{theorem_Ckn_GeneralAsymptoticsForms} that 
+\[
+\mathbb{E}|g^{-1}(n)| \leq \mathbb{E}\left[C_{\Omega(n)}(n)\right] = 
+     (\log n) \cdot (\log\log n)^{2\log\log n-1}. 
+\]
+Since the right-hand-side bound in the previous equation has an asymptotically larger rate of 
+growth that $\log n$, from \eqref{eqn_proof_tag_v1_ExpectationFormulagInvnVersisSRn} we have that 
+the second term in the difference is $o(1)$ as $n \rightarrow \infty$. 
+This implies the first bound we have claimed in this corollary. 
+The second conclusion on the bounds satisfied when comparing $G^{-1}(x)$ to the approximate 
+summatory function follows along the same lines as the proof of 
+Lemma \ref{lemma_lowerBoundsOnLambdaFuncParitySummFuncs} 
+given in Section \ref{subsubSection_RoutineProofsNeededForMainBoundOnGInvxFunc}. 
+\end{proof} 
+
+
+%\begin{facts} 
+%\label{lemma_AsymptoticDensitiesParityOmegan_v1} 
+%Let the asymptotic densities for the distinct parity of $\Omega(n)$ (sign of $\lambda(n)$) 
+%be denoted by 
+%\begin{align*} 
+%\lambda_{+} & := \lim_{x \rightarrow \infty} \frac{1}{x} \cdot \#\{n \leq x: \lambda(n) = +1\} \\ 
+%\lambda_{-} & := \lim_{x \rightarrow \infty} \frac{1}{x} \cdot \#\{n \leq x: \lambda(n) = -1\}. 
+%\end{align*} 
+%Then we can prove that both limits exist and $\lambda_{+} = \lambda_{-} = \frac{1}{2}$. 
+%\end{facts} 
+
+%To prove that the hypothesis assumed in 
+%Theorem \ref{theorem_CondAvgOrderGInvxSummatoryFunc_v1} 
+%is true, we will require the prior statement of 
+%Theorem \ref{theorem_MV_Thm7.21-init_stmt}, as well as 
+%the next forms of the famed Erd\"os-Kac theorem providing CLT-like statements for strongly 
+%additive functions from \cite[\S 1.7]{IWANIEC-KOWALSKI}: 
+
+%\begin{theorem}[Erd\"os-Kac]
+%For sufficiently large $x \geq 2$ and any $z \in \mathbb{R}$, we have that 
+%\[
+%\#\left\{n \leq x: |\omega(n) - \log\log x| > z \sqrt{\log\log x}\right\} \ll \frac{x}{z^2}, 
+%\]
+%where 
+%\[
+%\Phi(z) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{z} e^{-t^2/2} dt, 
+%\]
+%is the CDF for the standard normal distribution, $\mathcal{N}(0, 1)$. 
+%\end{theorem} 
+
+%\begin{cor}
+%For any $z \in \mathbb{R}$, as $x \rightarrow \infty$ we have that 
+%\[
+%\#\left\{n \leq x: \omega(n) - \log\log x \leq z \sqrt{\log\log x}\right\} = x \cdot \Phi(z). 
+%\]
+%\end{cor} 
+
+%\begin{theorem}[Generalization of Erd\"os-Kac] 
+%Suppose that the arithmetic function $f$ is strongly additive such that $-1 \leq f(p^k) = f(p) \leq 1$ 
+%for all primes $p$ and integers $k \geq 1$, with $f(mn) = f(m) + f(n)$ whenever $\gcd(m, n) = 1$. 
+%For $x \geq 2$, let the functions $A(x), B(x)$ be defined by the sums 
+%\begin{align*} 
+%A(x) & := \sum_{p \leq x} \frac{f(p)}{p} \\ 
+%B(x) & := \sum\limits_{p \leq x} \frac{f(p)^2}{p}. 
+%\end{align*} 
+%Suppose that $B(x) \rightarrow \infty$ as $x \rightarrow \infty$. 
+%Then as $n \rightarrow \infty$, we have that for $z \in \mathbb{R}$ 
+%\[
+%\frac{1}{x} \cdot \#\left\{n \leq x: \frac{g(n) - A(n)}{B(n)} \leq z\right\} \sim \Phi(z). 
+%\]
+%\end{theorem} 
+
+
+
+\begin{lemma} 
+\label{lemma_KeyPropsOfBoundsOnTheRatio_v2} 
+We have that for all $n$ squarefree 
+\[
+\frac{\sum\limits_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|} = 1. 
+\]
+For $n$ not squarefree and sufficiently large, e.g., such that $\mu(n) = 0$ as 
+$n \rightarrow \infty$, we have that 
+\[
+\frac{\sum\limits_{d|n} C_{\Omega(d)}(d)}{|g^{-1}(n)|} \geq 1. 
+\]
+\end{lemma}
+\begin{proof} 
+Since $C_k(n)$ is positive for all $n, k \geq 1$, we have the result in the case of 
+squarefree $n$ by Corollary \ref{cor_AnExactFormulaFor_gInvByMobiusInv_nSqFree_v2}. 
+Suppose now that $n \geq 2$ is not squarefree. Then since, in particular $\mu(n) = 0$, 
+we have that 
+\[
+d(n) \geq \left\lvert \#\{d|n: d \mathrm{\ squarefree}, \mu(d)\lambda(n/d) = +1\} - 
+     \#\{d|n: d \mathrm{\ squarefree}, \mu(d)\lambda(n/d) = -1\} \right\rvert. 
+\]
+This property shows that 
+\[
+\sum_{d|n} C_{\Omega(d)}(d) \geq |g^{-1}(n)|, 
+\]
+which implies the claim. 
+\end{proof} 
+
+
+\begin{prop}[Key property] 
+\label{prop_CondAvgOrderGInvxSummatoryFunc_KeyProp_v2} 
+We have that as $x \rightarrow \infty$, 
+\[
+\lim_{x \rightarrow \infty} \frac{1}{x} \cdot \#\left\{n \leq x: \mathbb{E}\left[ 
+     \sum_{d|n} C_{\Omega(d)}(d)\right] - |g^{-1}(n)| \geq 0\right\} = 1. 
+\]
+\end{prop} 
+\begin{proof} 
+Our proof begins similarly to the proof of fact (B) shown above. 
+In particular, we observe that for $n$ large enough, as $n \rightarrow \infty$ we have 
+\begin{align} 
+\notag 
+\frac{\mathbb{E}\left[\sum\limits_{d|n} C_{\Omega(d)}(d)\right]}{|g^{-1}(n)|} & \sim 
+     \frac{1}{|g^{-1}(n)|} \times \sum_{d \leq n} \frac{C_{\Omega(d)}(d)}{d} \\ 
+\notag 
+     & \sim \frac{1}{|g^{-1}(n)|} \times \left[ 
+     \mathbb{E}[C_{\Omega(n)}(n)] + \sum_{e^e \leq d \leq n} \frac{\mathbb{E}[C_{\Omega(d)}(d)]}{d}
+     \right] \\ 
+\notag 
+     & \sim \frac{1}{|g^{-1}(n)|} \times \sum_{e^e \leq d \leq n} \frac{\mathbb{E}[C_{\Omega(d)}(d)]}{d} \\ 
+\label{eqn_proof_tag_SetN2_compEqnsIneqs_v1} 
+     & \SuccSim \frac{(\log n)^2 (\log\log n)}{2 \cdot |g^{-1}(n)|},  
+\end{align} 
+using the lower-most bound from fact (A). 
+We have also again used an approximation based on the integral formula approximation given by 
+\[
+\int \frac{\log t \cdot \log\log t}{t} dt = \frac{(\log t)^2}{2} \times (\log\log t) - \frac{(\log t)^2}{4}. 
+\]
+Now let the set $\mathcal{N}_2$ be defined as follows: 
+\[
+\mathcal{N}_2 := \left\{n \geq 1: \frac{\mathbb{E}\left[\sum\limits_{d|n} 
+     C_{\Omega(d)}(d)\right]}{|g^{-1}(n)|} \geq 1 \right\}. 
+\]
+Clearly, by Lemma \ref{lemma_BddExpectationOfgInvn} and the method sketched in 
+Remark \ref{remark_AsymptoticDensitiesOfExceptionalSets_v1}, on a set of asymptotic density one, we have 
+\[
+\frac{\mathbb{E}\left[\sum\limits_{d|n} C_{\Omega(d)}(d)\right]}{|g^{-1}(n)|} \geq \log\log n \geq 1, 
+     \mathrm{\ as\ } n \rightarrow \infty. 
+\]
+This last fact implies that 
+\[
+\mathbb{E}\left[\sum\limits_{d|n} C_{\Omega(d)}(d)\right] - |g^{-1}(n)| \geq 0, 
+\]
+for $n$ on a set of asymptotic density one, which is the same as our proposed claim. 
+\end{proof} 
+
+
+
+
+\begin{prop} 
+\label{prop_factA_stmt_v1} 
+For sufficiently large $n \rightarrow \infty$, we have that 
+$$\mathbb{E}[C_{\Omega(n)}(n)] \gg (\log n) \cdot (\log\log n)^{2\log\log n - 1} \gg 
+  \log n \cdot \log\log n, \mathrm{\ as\ } n \rightarrow \infty.$$
+\end{prop} 
+\begin{proof} 
+We must first argue that the set of $n > e$ on which $\Omega(n)$ differs substantially 
+from its average order of $\mathbb{E}[\Omega(n)] = \log\log n$ has asymptotic density zero. 
+For $\delta, \rho > 0$, let 
+\begin{align*} 
+\Omega_{+}(\delta, x) & := \frac{1}{x} \cdot \#\{n \leq x: \Omega(n) \geq (1+\delta) \log\log x\} \\ 
+\Omega_{-}(\rho, x) & := \frac{1}{x} \cdot \#\{n \leq x: \Omega(n) \leq (1+\rho) \log\log x\}. 
+\end{align*} 
+We utilize Theorem \ref{theorem_MV_Thm7.20-init_stmt} 
+to show each of the following as $x \rightarrow \infty$: 
+\begin{align*} 
+\Omega_{+}(\delta, x) & \ll (\log x)^{\delta - (1+\delta)\log(1+\delta)} \\ 
+\Omega_{-}(\rho, x) & \ll (\log x)^{\rho - (1+\rho)\log(1+\rho)}. 
+\end{align*} 
+Thus for all $\delta, \rho > 0$, where we typically can assume very small values of the parameters 
+$\delta, \rho \approx 0^{+}$, we have that 
+\begin{equation} 
+\label{eqn_proof_tag_OmeganGeqLeqAsymptoticDensityCalcs_v1} 
+\Omega_{+}(\delta, x) = o(1), \Omega_{-}(\rho, x) = o(1), \mathrm{\ as\ } x \rightarrow \infty. 
+\end{equation} 
+The results expanded in 
+\eqref{eqn_proof_tag_OmeganGeqLeqAsymptoticDensityCalcs_v1} show that we can expect the 
+asymptotic density of the positive integers $n \leq x$ where 
+$\Omega(n) \not{\approx} \mathbb{E}[\Omega(n)]$ to be small, 
+and tending to zero as $n \rightarrow \infty$. 
+
+With our result for fixed $1 \leq k \leq \Omega(n)$ from 
+Theorem \ref{theorem_Ckn_GeneralAsymptoticsForms}, 
+we can conclude that 
+\begin{align} 
+\notag 
+\mathbb{E}[C_{\Omega(n)}(n)] & \gg \frac{1}{n} \sum_{d \leq n} (\log\log d)^{2\Omega(d)-1} \\ 
+\label{eqn_proof_tag_ECknkEQOmegan_v2} 
+     & \sim (\log n) \cdot (\log\log n)^{2\log\log n - 1}, \mathrm{\ as\ } n \rightarrow \infty. 
+\end{align} 
+Hence, we also have that 
+\begin{align*} 
+\mathbb{E}[C_{\Omega(n)}(n)] & \gg \log n \cdot \log\log n, \mathrm{\ as\ } n \rightarrow \infty. 
+\end{align*} 
+To prove that \eqref{eqn_proof_tag_ECknkEQOmegan_v2} is correct, notice that 
+for any fixed $m$ we have integrating by parts and applying \eqref{eqn_IncompleteGamma_PropB} at 
+large $n \rightarrow \infty$ that \footnote{ 
+     In particular, we obtain the following definite integral formula exactly 
+     for fixed $m$: 
+     \[
+     \int_{e}^{n} \frac{(\log\log t)^{m}}{t} dt = (-1)^m \cdot \Gamma(m+1, -\log\log n). 
+     \]
+}
+\begin{align} 
+\label{eqn_proof_tag_LargeNIndefIntegralForIncompleteGammaFunc_v1} 
+\frac{1}{n} \times \int_{e}^{n} (\log\log t)^m dt & = \frac{1}{n}\left[ 
+     n \cdot (\log n) (\log\log n)^m - (\log n) (\log\log n)^m\right] \\ 
+\notag 
+     & \sim (\log n) (\log\log n)^m. 
+\end{align} 
+The claimed two implications follow are seen to hold by a 
+perturbed expansion of the binomial series where \cite[\cf \S 6]{GKP} 
+\begin{align*} 
+\frac{1}{n} \times \int_{e}^{n} (\log\log t)^{2\log\log t - 1} dt & \approx 
+     \frac{1}{n} \times \int_{e}^{n} \frac{(1 + \log\log t)^{2\log\log t}}{\log\log t} dt \\ 
+     & = \frac{1}{n} \times \int_{e}^{n} 
+     \sum_{s \geq 0} \sum_{k=0}^{s} \gkpSI{s}{k} (2\log\log t)^{k} (-1)^{s-k} \times 
+     \frac{(\log\log t)^{s-1}}{s!} dt. 
+\end{align*} 
+Our result then follows from the fact that we can integrate the last equation termwise using the 
+integral formula in \eqref{eqn_proof_tag_LargeNIndefIntegralForIncompleteGammaFunc_v1} 
+from above. 
+\end{proof} 
+
+\begin{prop} 
+\label{prop_GInvGeqBehavior_v1} 
+For all sufficiently large $n$ on a set of asymptotic density one, we have that 
+\[
+|g^{-1}(n)| \gg \frac{2}{\pi^2} (\log n)^3 (\log\log n).  
+\]
+\end{prop} 
+\begin{proof} 
+An immediate consequence of 
+Proposition \ref{prop_factA_stmt_v1} 
+is that for all sufficiently large $n$ we have that 
+\[
+\mathbb{E}\left[C_{\Omega(n)}(n)\right] \gg (\log n)^2 (\log\log n). 
+\]
+Recall once again that the summatory function of the squarefree integers satisfies 
+\[
+Q(x) := \sum_{n \leq x} \mu^2(n) = \frac{6}{\pi^2} x + O(\sqrt{x}). 
+\]
+Then by Corollary \ref{cor_AnExactFormulaFor_gInvByMobiusInv_nSqFree_v2} 
+and since 
+\[
+|g^{-1}(n)| \leq \sum_{d|n} C_{\Omega(d)}(d), \forall n \geq 1, 
+\]
+we have that as $n \rightarrow \infty$ 
+\begin{align*} 
+\mathbb{E}|g^{-1}(n)| & \geq \frac{1}{n} \times \sum_{\substack{m \leq n \\ \mu^2(m) = 1}} \sum_{d|m} C_{\Omega(d)}(d) \\ 
+     & = \frac{1}{n} \times \sum_{d \leq n} C_{\Omega(d)}(d) Q\left(\floor{\frac{n}{d}}\right) \\ 
+     & \sim \frac{1}{n} \times \sum_{d \leq n} \mathbb{E}[C_{\Omega(d)}(d)] \cdot d \left( 
+     \frac{6}{\pi^2} \frac{n}{d+1} - \frac{6}{\pi^2} \frac{n}{d}\right) \\ 
+     & \sim \sum_{d \leq n} \mathbb{E}[C_{\Omega(d)}(d)] \cdot \frac{6}{\pi^2 d} \\ 
+     & \gg \frac{6}{\pi^2} \int_{e}^n \frac{(\log t)^2 (\log\log t)}{t} dt \\ 
+     & = \frac{2}{\pi^2} \left((\log n)^3 \log\log n - \frac{(\log n)^3}{3}\right) \\ 
+     & \gg \frac{2}{\pi^2} (\log n)^3 \log\log n. 
+\end{align*} 
+So using our observation in Lemma \ref{lemma_AsymptoticDensitiesOfExceptionalSets_v1} 
+where $\mathbb{E}|g^{-1}(n)| \not{\rightarrow} 0$ by 
+Corollary \ref{lemma_BddExpectationOfgInvn}, we have that our claim holds. 
+\end{proof} 
+
+
+\begin{prop} 
+\label{prop_DensityOfGInvxPosAndBdd} 
+Let the set where $G^{-1}(x)$ is non-positive be defined as 
+\[
+\mathcal{G}_{-} := \left\{n \leq x: G^{-1}(x) \leq 0\right\}. 
+\]
+We claim that for all large $x \rightarrow \infty$, the density of this set is 
+always positive and less than one: 
+\[
+0 + o(1) < \frac{1}{x} \cdot \#\{n \leq x: n \in \mathcal{G}_{-}\} < 1 + o(1). 
+\]
+Moreover, if a limiting asymptotic density for $\mathcal{G}_{-}$ exists, it does not 
+tend to zero as $x \rightarrow \infty$: 
+\[
+\lim_{x \rightarrow \infty} \frac{1}{x} \cdot \#\{n \leq x: n \in \mathcal{G}_{-}\} \neq 0. 
+\]
+\end{prop} 
+
+We will prove Proposition \ref{prop_DensityOfGInvxPosAndBdd} after we prove 
+Proposition \ref{prop_Mx_SBP_IntegralFormula} in the next section. 
+
+\begin{proof}[Proof of Proposition \ref{prop_DensityOfGInvxPosAndBdd}] 
+Suppose to the contrary that 
+\[
+\Gamma_{-} := \lim_{x \rightarrow \infty} \frac{1}{x} \cdot \#\{n \leq x: n \in \mathcal{G}_{-}\} = 0, 
+\]
+i.e., assume that $G^{-1}(x) > 0$ almost everywhere for all sufficiently large positive integers $x$. 
+We will utilize the formula for $M(x)$ frin 
+Proposition \ref{prop_Mx_SBP_IntegralFormula} to 
+derive a contradiction under this assumption. 
+In particular, assuming the above limiting density is zero, we have that 
+\begin{equation} 
+\label{eqn_proof_tag_MxAbsValueConsequence_v1} 
+\frac{|M(x)|}{x} \approx \left\lvert \int_1^{x/2} \frac{|G^{-1}(t)|}{t^2 \cdot \log(x/t)} dt - 
+     \frac{|G^{-1}(x)|}{x} \right\rvert, \mathrm{\ a.e. }, \mathrm{\ as\ } x \rightarrow \infty. 
+\end{equation} 
+So for almost every sufficiently large $x \rightarrow \infty$, we have that 
+\begin{equation} 
+\label{eqn_proof_tag_MxAbsValueConsequence_v2} 
+\frac{|M(x)|}{x} \gg \left\lvert \int_1^{x/2} \frac{|\mathbb{E}[g^{-1}(t)]|}{t \cdot \log(x/t)} dt - 
+     |\mathbb{E}[g^{-1}(x)]| \right\rvert. 
+\end{equation} 
+We can justify \eqref{eqn_proof_tag_MxAbsValueConsequence_v2} by seeing that 
+for any constant $u_0 > 1$, 
+$\int_{1}^{u_0} \frac{dt}{t^2 \cdot \log(x/t)} = o(1)$ is of lower order 
+growth than the integral contribution over $t \in \left[u_0, \frac{x}{2}\right]$ in 
+\eqref{eqn_proof_tag_MxAbsValueConsequence_v1} as $x \rightarrow \infty$. 
+
+We also can compute that  
+\[
+\int \frac{dt}{t \cdot \log(x/t)} = -\log\log(x/t) + C, 
+\]
+So by the signedness of the sequence $g^{-1}(n)$, we can write that minimally 
+$|\mathbb{E}[g^{-1}(n)]| \geq o(1) \rightarrow 0$ as $n \rightarrow \infty$. 
+Combined, it follows at any rate that we can bound the right-hand-side of 
+\eqref{eqn_proof_tag_MxAbsValueConsequence_v2} from below by only the remaining non-integral term as 
+\begin{equation} 
+\label{eqn_proof_tag_MxAbsValueConsequence_v3} 
+\frac{|M(x)|}{x} \gg \left\lvert \mathbb{E}[g^{-1}(x)] \right\rvert. 
+\end{equation} 
+Since we have assumed that almost everywhere $G^{-1}(x) > 0$ when $x$ is sufficiently large, 
+for infinitely many $x$ we have that 
+\begin{align} 
+\notag 
+\left\lvert \mathbb{E}[g^{-1}(x)] \right\rvert & = \frac{1}{x} \times \left[ 
+     \sum_{\substack{n \leq x \\ \lambda(n) = +1}} |g^{-1}(n)| - 
+     \sum_{\substack{n \leq x \\ \lambda(n) = -1}} |g^{-1}(n)| \right] \\ 
+\notag 
+     & \geq \frac{1}{x} \times \left[\sum_{n \leq \left(\frac{1}{2} + \delta_x\right) x} |g^{-1}(n)|\right] (1 + o(1)) \\ 
+\label{eqn_proof_tag_MxAbsValueConsequence_v4} 
+     & \geq \left(\frac{1}{2} + \delta_x\right)^{-1} \cdot 
+     \mathbb{E}\left\lvert g^{-1}\left(\left(\frac{1}{2} + \delta_x\right) x\right) \right\rvert (1 + o(1)), 
+\end{align} 
+with $\delta_x \in \left(-\frac{1}{2}, \frac{1}{2}\right]$ for all $x$. 
+The base factor term of $\frac{1}{2}$ in the upper limit of summation from the previous equation 
+above corresponds to the known fact that \cite{TAO-VALUEPATTERNS} 
+\[
+\lim_{x \rightarrow \infty} \frac{1}{x} \cdot \#\{n \leq x: \lambda(n) = +1\} = \frac{1}{2}. 
+\]
+Thus we expect in fact to take $\delta_x \approx 0$ for almost every large enough $x$. 
+When we apply Corollary \ref{lemma_BddExpectationOfgInvn} to 
+\eqref{eqn_proof_tag_MxAbsValueConsequence_v3} using 
+\eqref{eqn_proof_tag_MxAbsValueConsequence_v4}, we must have that for infinitely many 
+$x \rightarrow \infty$ 
+\begin{align*} 
+\frac{|M(x)|}{x} \gg \frac{6}{\pi^2} \log\left(x\right) (1 + o(1)) 
+     \xrightarrow{x \rightarrow \infty} + \infty. 
+\end{align*} 
+Then we recover a contradiction to the known property that $|M(x)| \leq x$ 
+for all $x \geq 1$. So $\Gamma_{-} > 0$ (if the limit exists), or otherwise the limiting densities of 
+$\mathcal{G}_{-} \cap \{n \leq x\}$ in $\{n \leq x\}$ are eventually almost always positive as 
+$x \rightarrow \infty$. 
+
+A similarly constructed argument shows the corresponding result is true for the 
+set $\mathcal{G}_{+}$ on which $G^{-1}(x) \geq 0$. 
+Thus, we conclude from these two consequences that the limiting densities of 
+$\mathcal{G}_{-} \cap \{n \leq x\}$ are positive, 
+less than one, and in particular cannot tend to zero when $x \rightarrow \infty$. 
+\end{proof} 
+
+
+\begin{remark} 
+In Section \ref{Section_ProofOfValidityOfAverageOrderLowerBounds} 
+we show that when $k := \Omega(n)$ depends on $n$, then 
+\[
+\mathbb{E}[C_{\Omega(n)}(n)] \gg (\log n) (\log\log n)^{2\log\log n - 1} \gg \log n \cdot \log\log n. 
+\] 
+Indeed, for any fixed integral powers $m \geq 1$, whenever $n \rightarrow \infty$ is taken large enough 
+we have that 
+\[
+\mathbb{E}[C_{\Omega(n)}(n)] \gg (\log n)^{m} \cdot \log\log n.  
+\]
+The estimates we use in the form of the above, 
+especially the rightmost lower bound in the previous equation at $m := 1$, 
+are much weaker than the sharpest possible estimate we could have obtained working through 
+the arithmetic in the proof of 
+Theorem \ref{theorem_Ckn_GeneralAsymptoticsForms}. 
+\end{remark} 
+\begin{remark} 
+In Section \ref{Section_ProofOfValidityOfAverageOrderLowerBounds} 
+we show that when $k := \Omega(n)$ depends on $n$, then 
+\[
+\mathbb{E}[C_{\Omega(n)}(n)] \gg (\log n) (\log\log n)^{2\log\log n - 1} \gg \log n \cdot \log\log n. 
+\] 
+Indeed, for any fixed integral powers $m \geq 1$, whenever $n \rightarrow \infty$ is taken large enough 
+we have that 
+\[
+\mathbb{E}[C_{\Omega(n)}(n)] \gg (\log n)^{m} \cdot \log\log n.  
+\]
+The estimates we use in the form of the above, 
+especially the rightmost lower bound in the previous equation at $m := 1$, 
+are much weaker than the sharpest possible estimate we could have obtained working through 
+the arithmetic in the proof of 
+Theorem \ref{theorem_Ckn_GeneralAsymptoticsForms}. 
+\end{remark} 
+
+
+
+\subsubsection{The proof that the necessary hypotheses in Theorem \ref{theorem_CondAvgOrderGInvxSummatoryFunc_v1} are 
+               attained for all large $x$} 
+\label{subsubSection_PfOfNecessaryThmHyps} 
+
+\begin{proof}[Proof of the hypotheses of Theorem \ref{theorem_CondAvgOrderGInvxSummatoryFunc_v1}]
+Let $G_E^{-1}(x)$ be defined as in \eqref{eqn_GEInvxSummatoryFuncDef_v1} of the theorem. 
+We need to find some absolute tight limiting constants 
+$B, C \in (0, 1)$ such that as $x \rightarrow \infty$ 
+\begin{equation} 
+\label{eqn_proof_tag_ThmConstsBCHyp_defs_v1} 
+B + o(1) \leq \frac{1}{x} \cdot \#\left\{n \leq x: |G^{-1}(n)| - |G_E^{-1}(n)| \leq Y\right\} \leq 
+     C + o(1), 
+\end{equation} 
+for some bounded constant $0 \leq Y < +\infty$. 
+By Corollary \ref{cor_GInvGeqBehavior_v2}, 
+for all $n$ sufficiently large within a set $\mathcal{S}_E$ of asymptotic density one, 
+\begin{align} 
+\label{eqn_proof_tag_IneqsHold_vb} 
+\sum_{\substack{d|n \\ d > e}} \frac{(\log d)^{\frac{1}{4}}}{\log\log d} - 
+     |g^{-1}(n)| & \leq 0, \forall n \in \mathcal{S}_E, 
+     \mathrm{\ as\ } n \rightarrow \infty. 
+\end{align} 
+We aim to sum the functions $G^{-1}(x)$ and $G_E^{-1}(x)$ weighted by the same signs on the 
+terms at each large enough $n$ that satisfy the condition in \eqref{eqn_proof_tag_IneqsHold_vb}. 
+
+Since the sign of $g^{-1}(n)$ is $\lambda(n)$ as given by 
+Proposition \ref{prop_SignageDirInvsOfPosBddArithmeticFuncs_v1}, for all large enough $n \rightarrow \infty$ 
+on the set $\mathcal{S}_E$ defined as in 
+\eqref{eqn_proof_tag_IneqsHold_vb}, we have that both 
+\begin{align*} 
+\sum_{\substack{e \leq n \leq x \\ n \in \mathcal{S}_E \\ \lambda(n) = +1}} g^{-1}(n) & \geq 
+     \phantom{-} \sum_{\substack{e \leq n \leq x \\ n \in \mathcal{S}_E \\ \lambda(n) = +1}} 
+     \sum_{\substack{d|n \\ d > e}} \frac{(\log d)^{\frac{1}{4}}}{\log\log d} \geq \phantom{-} 
+     \sum_{\substack{e \leq n \leq \log\log x \\ n \in \mathcal{S}_E \\ \lambda(n) = +1}} 
+     \sum_{\substack{d|n \\ d > e}} \frac{(\log d)^{\frac{1}{4}}}{\log\log d} \\ 
+\sum_{\substack{e \leq n \leq x \\ n \in \mathcal{S}_E \\ \lambda(n) = -1}} g^{-1}(n) & \leq 
+     -\sum_{\substack{e \leq n \leq x \\ n \in \mathcal{S}_E \\ \lambda(n) = -1}}
+     \sum_{\substack{d|n \\ d > e}} \frac{(\log d)^{\frac{1}{4}}}{\log\log d} \leq 
+     -\sum_{\substack{e \leq n \leq \log\log x \\ n \in \mathcal{S}_E \\ \lambda(n) = -1}}
+     \sum_{\substack{d|n \\ d > e}} \frac{(\log d)^{\frac{1}{4}}}{\log\log d}. 
+\end{align*} 
+Hence, we have that almost every large $x \in \mathbb{Z}^{+}$, as $x \rightarrow \infty$ the 
+following equation is true for some constant offset $0 \leq Y < +\infty$ that is determined 
+by the values of $g^{-1}(n)$ for the small order $n \in \mathcal{S}_E$ where the limiting predicate of 
+\eqref{eqn_proof_tag_IneqsHold_vb} does not necessarily hold: 
+\begin{equation} 
+\label{eqn_proof_tag_IneqsHold_vc} 
+G^{-1}(x) \geq \sum_{n \leq \log\log x} \lambda(n) \times 
+     \sum_{\substack{d|n \\ d > e}} \frac{(\log d)^{\frac{1}{4}}}{\log\log d} + Y. 
+\end{equation} 
+Now we notice that the right-hand-side of \eqref{eqn_proof_tag_IneqsHold_vc} corresponds to the definition of 
+the function $G_E^{-1}(x) + Y$. So we see that if $G^{-1}(x) \leq 0$ for sufficiently large $x$ where 
+\eqref{eqn_proof_tag_IneqsHold_vc} holds, then also 
+$G_E^{-1}(x) \leq 0$. Then letting 
+\[
+\mathcal{A}_E(Y) := \left\{x \geq 1: 
+     G^{-1}(x) \geq G_E^{-1}(x) + Y \wedge G^{-1}(x) \leq 0 
+     \right\}, 
+\] 
+we have that $|G^{-1}(x)| - |G_E^{-1}(x)| \leq Y$, $\forall x \in \mathcal{A}_E(Y)$. 
+We still need to show that the density of $\mathcal{A}_E(Y) \cap \{n \leq x\}$ can be bounded closely 
+below and above by some respective constants $B, C \in (0, 1)$ 
+for large enough $x \rightarrow \infty$. 
+
+Using Proposition \ref{prop_DensityOfGInvxPosAndBdd} and that 
+\eqref{eqn_proof_tag_IneqsHold_vc} holds almost everywhere on the sufficiently large 
+positive integers, 
+we can see that there must be some limitingly tight constants 
+$B, C \in (0, 1)$ bounding the densities of the infinite set, $\mathcal{A}_E(Y)$, such that the condition 
+$|G^{-1}(x)| - |G_E^{-1}(x)| \leq Y$ holds for all large $x \in \mathcal{A}_E(Y)$ with 
+\[
+B + o(1) \leq \frac{1}{x} \cdot \#\left\{n \leq x: n \in \mathcal{A}_E(Y)\right\} \leq C + o(1), 
+     \mathrm{\ as\ } x \rightarrow \infty. 
+\] 
+That is, for the constant $Y$ defined as in \eqref{eqn_proof_tag_IneqsHold_vc}, 
+we have seen that we can select 
+\begin{align*} 
+B & := \liminf_{x \rightarrow \infty} \frac{1}{x} \cdot \#\left\{n \leq x: n \in \mathcal{A}_E(Y)\right\} \in (0, 1) \\ 
+C & := \limsup_{x \rightarrow \infty} \frac{1}{x} \cdot \#\left\{n \leq x: n \in \mathcal{A}_E(Y)\right\} \in (0, 1). 
+\end{align*} 
+Hence, we have shown that the necessary conditions in hypotheses of 
+Theorem \ref{theorem_CondAvgOrderGInvxSummatoryFunc_v1} can in fact be achieved for all 
+sufficiently large $x \rightarrow \infty$. 
+We have implicitly used the fact that the intersection of a set $\mathcal{S}_1$ of asymptotic 
+density one with another infinite set $\mathcal{S}_2$ of bounded asymptotic density must similarly 
+have bounded limiting densities of order not exceeding the tightest possible bounds on 
+$\mathcal{S}_2$. 
+\end{proof} 
+
+The point of proving the results in this section before moving onto the core results needed in 
+the next section is to provide a rigorous justification for the intuition we sketched in 
+Section \ref{subSection_Intro_RigorToTheAverageCaseEstimates} of the introduction. 
+That is, we expect our arithmetic functions that are closely 
+tied to the canonical strongly additive functions, 
+$\omega(n)$ and $\Omega(n)$, to similarly behave regularly (and 
+infinitely often) with respect to their values being close to the average case for large $x$. 
+
+
+\subsection{The proof of our central theorem} 
+
+\begin{proof}[Proof of Theorem \ref{theorem_CondAvgOrderGInvxSummatoryFunc_v1}] 
+\label{proofOf_theorem_CondAvgOrderGInvxSummatoryFunc_v1} 
+The result is obtained by contradiction. Suppose that $x$ is so large that the inequalities in the 
+hypotheses hold given a satisfactory fixed bounded $0 \leq Y < +\infty$. 
+We have assumed that the constants $B,C \in (0, 1)$ are the tightest possible bounds on the next set as 
+$x \rightarrow \infty$ according to their precise definitions given in the theorem statement. 
+We need to show that a concrete fixed $\varepsilon \in (0, 1)$ 
+satisfying the conditions in the theorem exists (depending only on $B,C$). 
+
+Let $x \geq 1$ be fixed and sufficiently large. 
+Suppose that for all $\varepsilon \in (0, 1)$ satisfying $0 < B - \varepsilon, C+\varepsilon < 1$, we have that 
+\begin{equation} 
+\label{eqn_proof_tag_IneqSetG0x0_DNHold_v1} 
+|G^{-1}(x_0)| < |G_E^{-1}(x_0)| + Y, \forall x_0 \in [(B-\varepsilon) x, (C+\varepsilon) x]. 
+\end{equation} 
+For large integers $x \gg 1$, we have a disjoint set decomposition of the 
+positive integers $n \leq x$ given by  
+\[
+\{1 \leq n \leq x\} = \{1 \leq n < (B-\varepsilon) x\} \oplus 
+     \{(B-\varepsilon) x \leq n \leq (C + \varepsilon) x\} \oplus 
+     \{(C+\varepsilon) x < n \leq x\}, 
+\]
+where the three disjoint sets above are respectively denoted in increasing 
+left-to-right order by $\mathcal{D}_i(x)$ for $i = 1,2,3$. 
+The set decomposition in the previous equation yields that as 
+$x \rightarrow \infty$, if \eqref{eqn_proof_tag_IneqSetG0x0_DNHold_v1} is true, then 
+\begin{align} 
+\label{eqn_proof_tag_G123xDensityBounds_v1} 
+\mathcal{G}_1(x) & := \frac{1}{x} \cdot \#\left\{n \in \mathcal{D}_1(x): |G^{-1}(x_0)| - |G_E^{-1}(x_0)| \leq Y\right\} 
+     \in [(B-\varepsilon)^2 + o(1), (B-\varepsilon) (C+\varepsilon) + o(1)] \\ 
+\notag 
+\mathcal{G}_2(x) & := \frac{1}{x} \cdot \#\left\{n \in \mathcal{D}_2(x): |G^{-1}(x_0)| - |G_E^{-1}(x_0)| \leq Y\right\} 
+     \in [B-\varepsilon, C+\varepsilon] \\ 
+\notag 
+\mathcal{G}_3(x) & := \frac{1}{x} \cdot \#\left\{n \in \mathcal{D}_3(x): |G^{-1}(x_0)| - |G_E^{-1}(x_0)| \leq Y\right\} \\ 
+\notag 
+     & \phantom{:= \frac{1}{x} \cdot \ } 
+     \in [(B-\varepsilon)-(B-\varepsilon) (C+\varepsilon) + o(1), (C+\varepsilon)-(C+\varepsilon)^2 + o(1)]. 
+\end{align} 
+For $x \geq 1$, let the density of our target set at $x$ be denoted by 
+$$\mathcal{G}_0(x) := \frac{1}{x} \cdot \#\left\{n \leq x: |G^{-1}(x_0)| - |G_E^{-1}(x_0)| \leq Y\right\}.$$ 
+Then we obtain by summing the respective upper and lower bounds on the densities for the 
+disjoint sets given in \eqref{eqn_proof_tag_G123xDensityBounds_v1} above that 
+\[
+(B-\varepsilon)^2 + B - \varepsilon + (B-\varepsilon) (1 - C - \varepsilon) + o(1) \leq \mathcal{G}_0(x) \leq 
+     (B-\varepsilon) (C+\varepsilon) + C + \varepsilon + (C + \varepsilon) (1 - C - \varepsilon) + o(1). 
+\]
+We show that contrary to our assumption, we can in fact pick any $\varepsilon > 0$ that satisfies 
+$B - 2\varepsilon < C, 0 < B - \varepsilon < 1, 0 < C + \varepsilon < 1$, e.g., choosing 
+$\varepsilon := \frac{1}{2} \min(B, 1-C)$ will satisfy our requirements. 
+Indeed, given such a choice of this parameter, we have that 
+\[
+C + \varepsilon - \left[(B-\varepsilon) (C+\varepsilon) + C + \varepsilon + (C + \varepsilon) (1 - C - \varepsilon)\right] = 
+     -(C + \varepsilon)(1 + B - C - 2\varepsilon) < 0. 
+\]
+This implies a contradiction to the maximality in the limit supremum sense of our tight 
+upper bound of $C \in (0, 1)$. 
+Then we must have that our assumption on $x_0$ is invalid as $x \rightarrow \infty$. 
+More to the point, there must be such a fixed 
+$\varepsilon > 0$ and such a $x_0 \in [(B-\varepsilon) x, (C+\varepsilon) x]$ 
+so that $|G^{-1}(x_0)| \geq |G_E^{-1}(x_0)| + Y$ whenever $x$ is sufficiently large.  
+\end{proof} 
+
+\subsection{Verifying the hypotheses in Theorem \ref{theorem_CondAvgOrderGInvxSummatoryFunc_v1} 
+            are achieved for all large $x$} 
+\label{subSection_ProvingTheNecessaryHyps_ThmCondAvgOrderGInvxSummatoryFunc_v1} 
+
+\subsubsection{Building up to a proof of the necessary hypotheses: Preliminary facts and results} 
+\label{subsubSection_ProvingTheNecessaryHyps_PrelimFactPfs} 
+
+\subsection{Recovering meaningful asymptotics from an average case analysis of bounds} 
+\label{subSection_Intro_RigorToTheAverageCaseEstimates} 
+
+\subsubsection{An average-to-global phenomenon for the average case analysis of our new lower bounds} 
+
+\begin{theorem} 
+\label{theorem_CondAvgOrderGInvxSummatoryFunc_v1} 
+\begin{subequations} 
+Let the summatory function $G_E^{-1}(x)$ be defined for $x \geq 1$ by \footnote{ 
+     The subscript of $E$ (as in expectation) 
+     on the function $G_E^{-1}(x)$ is purely for notation and does not correspond to 
+     a formal parameter or any implicit dependence on $E$ in the formula 
+     that defines this function. 
+}
+\begin{equation} 
+\label{eqn_GEInvxSummatoryFuncDef_v1} 
+G_E^{-1}(x) := \sum_{n \leq \log\log x} \lambda(n) \times 
+     \sum_{\substack{d|n \\ d > e}} \frac{(\log d)^{\frac{1}{4}}}{\log\log d}. 
+\end{equation} 
+Suppose that $B, C \in (0, 1)$ denote some respectively minimally and maximally defined absolute constants 
+such that for a bounded constant $Y \geq 0$, we have that as $x \rightarrow \infty$
+\begin{equation} 
+\label{eqn_theorem_CondAvgOrderGInvxSummatoryFunc_v1_stmt_tag_v2} 
+B + o(1) \leq \frac{1}{x} \cdot \#\left\{n \leq x: |G^{-1}(n)| - |G_E^{-1}(n)| \leq Y\right\} \leq 
+     C + o(1). 
+\end{equation} 
+That is, if for a bounded constant $Y \geq 0$ we have that the set 
+\[
+\left\{n \leq x: |G^{-1}(n)| - |G_E^{-1}(n)| \leq Y\right\}, 
+\]
+has bounded asymptotic density in $(0, 1)$ such that the condition in 
+\eqref{eqn_theorem_CondAvgOrderGInvxSummatoryFunc_v1_stmt_tag_v2} 
+holds for all large $x$, then we take 
+\begin{align*} 
+B & := \liminf_{x \rightarrow \infty} \frac{1}{x} \cdot \#\left\{n \leq x: |G^{-1}(n)| - |G_E^{-1}(n)| \leq Y\right\} \in (0, 1) \\ 
+C & := \limsup_{x \rightarrow \infty} \frac{1}{x} \cdot \#\left\{n \leq x: |G^{-1}(n)| - |G_E^{-1}(n)| \leq Y\right\} \in (0, 1). 
+\end{align*} 
+If such constants $B, C \in (0, 1)$ exist, then there is some $\varepsilon \in (0, 1)$ (depending on $B,C$) with 
+$0 < B - \varepsilon, C+\varepsilon < 1$ such that 
+for all sufficiently large $x$ we have at least one point 
+$x_0 \in [(B - \varepsilon) x, (C + \varepsilon) x]$ such that 
+\[
+|G^{-1}(x_0)| \geq \left\lvert G_E^{-1}(x_0) \right\rvert + Y. 
+\] 
+It suffices to take $\varepsilon := \frac{1}{2} \min(B, 1-C)$ to attain the point $x_0$ 
+within the above interval for all sufficiently large $x$. 
+\end{subequations} 
+\end{theorem} 
+We prove Theorem \ref{theorem_CondAvgOrderGInvxSummatoryFunc_v1}, and 
+rigorously justify that its hypotheses are in fact regularly attainable for all large $x$, in 
+Section \ref{Section_ProofOfValidityOfAverageOrderLowerBounds}.  
+This result allows us to express lower bounds based on average case estimates of 
+certain arithmetic functions we have defined to approximate $g^{-1}(n)$ and still recover 
+an infinite subsequence along which we can witness the classical unboundedness property 
+of $|M(x)| / \sqrt{x}$ stated below in 
+Corollary \ref{cor_ThePipeDreamResult_v1}. 
+
+\subsubsection{Intuition for average case asymptotics leading to exact estimates near any large $x$} 
+
+The next points make clear what our intuition should suggest about the relation of 
+the actual function values to the average case expectation of $g^{-1}(n)$ for all 
+$n \leq x$ when $x$ is large. 
+
+\begin{remark} 
+Given that we have chosen to work with a representation for $M(x)$ that depends critically on 
+the distribution of the values of the additive functions, $\omega(n)$ and $\Omega(n)$, there is 
+substantial intuition involved \'{a} priori that suggests our sums over these functions 
+behave regularly on average. 
+Stated precisely, when we define the function 
+$\Phi(z) := \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{z} e^{-t^2/2} dt$,  
+for any real $z \in (-\infty, +\infty)$ we have that 
+\cite[\S 1.7]{IWANIEC-KOWALSKI} 
+\[
+\#\left\{n \leq x: \frac{\omega(n) - \log\log x}{\sqrt{\log\log x}} \leq z\right\} = 
+     \Phi(z) \cdot x + o(1), 
+\]
+and uniformly for $-Z \leq z \leq Z$ with respect to any $Z > 0$ that \cite[\S 7.4]{MV} 
+\begin{align*} 
+\#\left\{3 \leq n \leq x: \frac{\Omega(n) - \log\log n}{\sqrt{\log\log n}} \leq z\right\} & = 
+     \Phi(z) \cdot x + O_Z\left(\frac{x}{\sqrt{\log\log x}}\right). 
+\end{align*} 
+When the bounding parameter in these Erd\"os-Kac like theorems is set to $z := 0$, we provably 
+expect these sums involving these canonical additive functions and the 
+distribution of their values to tend towards their 
+asymptotic average case behavior infinitely often, and predictably near any large $x$ 
+as in Theorem \ref{theorem_CondAvgOrderGInvxSummatoryFunc_v1}. 
+Thus when it comes to recovering globally regular behavior from an 
+average case analysis of bounds of our new arithmetic functions from below, 
+the choice in stating \eqref{eqn_Mx_gInvnPixk_formula} as it depends on the 
+canonical additive function examples we have cited is 
+\emph{absolutely essential} to the success of our proof.  
+\end{remark} 
+
+
