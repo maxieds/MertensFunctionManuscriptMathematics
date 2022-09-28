@@ -1,4 +1,4 @@
-<img src="" />
+<img src="https://github.com/maxieds/MertensFunctionComputations/raw/master/Images/RepositoryHeader.png" />
 
 # Why is this information so scatter brained?
 
@@ -44,7 +44,7 @@ To quote an email exchange from the pandemic era of this generation
 (to the tune of Kelis, of course): :musical_note:
 *Damn right, it's better than yours. I could teach you, but 
 I'd have to charge.* :musical_note: 
-(My :musical_note: **source code** :musical_note:, 
+(My **source code**, 
 it's better than your's, I could teach you, but I'd 
 have to charge ...)
 
@@ -60,3 +60,5 @@ with a big bad hacker label? In room of like-minded men that
 already agree with you, what is the point of the bullsh-t? 
 There's an intimidation factor that gives men like this a 
 quick cheap thrill, for sure.
+
+<img src="https://tinyurl.com/2fmasc7s" height="373" /><img src="https://tinyurl.com/2p95keds" />
