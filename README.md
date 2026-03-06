@@ -61,4 +61,6 @@ already agree with you, what is the point of the bullsh-t?
 There's an intimidation factor that gives men like this a 
 quick cheap thrill, for sure.
 
-<img src="https://tinyurl.com/2fmasc7s" height="373" /><img src="https://tinyurl.com/2p95keds" />
+<img src="https://github.com/maxieds/MertensFunctionManuscriptMathematics/blob/main/hacker-images/2600Cover.jpg" height="225" />&nbsp;<img src="https://github.com/maxieds/MertensFunctionManuscriptMathematics/blob/main/hacker-images/OlBenCheGuevarraStyle.png" height="225" />
+
+<img src="https://github.com/maxieds/MertensFunctionManuscriptMathematics/blob/main/hacker-images/PuffyTheKid-WIN_20190917_23_08_09_Pro.png" height="225" />&nbsp;<img src="https://github.com/maxieds/MertensFunctionManuscriptMathematics/blob/main/hacker-images/NotFunny.png" height="225" />
